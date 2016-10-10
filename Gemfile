@@ -28,6 +28,10 @@ end
 group :development do
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'brakeman', '~> 3.4.0'
+  gem 'rails_best_practices', '~> 1.16.0'
+  gem 'reek', '~> 3.4.0'
+  gem 'rubocop', '~> 0.32.1'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
