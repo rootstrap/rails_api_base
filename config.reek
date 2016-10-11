@@ -1,0 +1,108 @@
+Attribute:
+  enabled: false
+  exclude: []
+BooleanParameter:
+  enabled: true
+  exclude: []
+ClassVariable:
+  enabled: false
+  exclude: []
+ControlParameter:
+  enabled: true
+  exclude: []
+DataClump:
+  enabled: true
+  exclude: []
+  max_copies: 2
+  min_clump_size: 2
+DuplicateMethodCall:
+  enabled: true
+  exclude: []
+  max_calls: 1
+  allow_calls: []
+FeatureEnvy:
+  enabled: true
+  exclude: []
+IrresponsibleModule:
+  enabled: false
+  exclude: []
+LongParameterList:
+  enabled: true
+  exclude: []
+  max_params: 4
+  overrides:
+    initialize:
+      max_params: 5
+LongYieldList:
+  enabled: true
+  exclude: []
+  max_params: 3
+NestedIterators:
+  enabled: true
+  exclude: []
+  max_allowed_nesting: 3
+  ignore_iterators: []
+NilCheck:
+  enabled: false
+  exclude: []
+PrimaDonnaMethod:
+  enabled: false
+  exclude: []
+RepeatedConditional:
+  enabled: true
+  exclude: []
+  max_ifs: 3
+TooManyInstanceVariables:
+  enabled: true
+  exclude: []
+  max_instance_variables: 9
+TooManyMethods:
+  enabled: true
+  exclude: []
+  max_methods: 25
+TooManyStatements:
+  enabled: true
+  exclude:
+  - initialize
+  - ApplicationController#global_search
+  max_statements: 12
+UncommunicativeMethodName:
+  enabled: true
+  exclude: []
+  reject:
+  - !ruby/regexp /^[a-z]$/
+  - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /[A-Z]/
+  accept: []
+UncommunicativeModuleName:
+  enabled: true
+  exclude: ['V1']
+  reject:
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
+  accept:
+  - Inline::C
+UncommunicativeParameterName:
+  enabled: true
+  exclude: []
+  reject:
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /[A-Z]/
+  accept: []
+UncommunicativeVariableName:
+  enabled: true
+  exclude: []
+  reject:
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /[A-Z]/
+  accept:
+  - _
+UnusedParameters:
+  enabled: true
+  exclude: []
+UtilityFunction:
+  enabled: true
+  exclude: [find_or_create_by_fb]
+  max_helper_calls: 1
