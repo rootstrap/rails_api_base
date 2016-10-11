@@ -7,14 +7,14 @@ default: &default
   host: localhost
   port: 5432
 
-  development:
-   <<: *default
-   database:
+development:
+ <<: *default
+ database:
 
-  test:
-   <<: *default
-   database:
+test:
+ <<: *default
+ database:
 
-  production:
-   <<: *default
-   database:
+production:
+ <<: *default
+ database:
