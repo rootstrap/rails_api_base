@@ -37,6 +37,7 @@ Rails.application.configure do
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
+  config.action_mailer.default_url_options = { host: ENV['SERVER_URL'] }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
