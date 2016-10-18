@@ -5,9 +5,11 @@ ruby '2.3.1'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 
 gem 'devise', '~> 4.2.0'
+gem 'haml', '~> 4.0.6'
 gem 'puma', '~> 3.0'
 gem 'rack-cors', '~> 0.4.0'
 gem 'pg', '~> 0.18.2'
+gem 'pry-rails', '~> 0.3.4'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -23,13 +25,16 @@ gem 'pg', '~> 0.18.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
+  gem 'pry-byebug', '~> 3.3.0', platform: :mri
 end
 
 group :development do
-  gem 'listen', '~> 3.0.5'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'annotate', '~> 2.6.5'
+  gem 'better_errors', '~> 2.1.1'
+  gem 'binding_of_caller', '~> 0.7.2'
   gem 'brakeman', '~> 3.4.0'
+  gem 'letter_opener', '~> 1.4.1'
+  gem 'listen', '~> 3.0.5'
   gem 'rails_best_practices', '~> 1.16.0'
   gem 'reek', '~> 3.4.0'
   gem 'rubocop', '~> 0.32.1'
