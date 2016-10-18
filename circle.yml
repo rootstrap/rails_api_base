@@ -1,0 +1,5 @@
+test:
+  override:
+    - bundle exec rspec --format progress
+  post:
+    - bundle exec rake code_analysis
