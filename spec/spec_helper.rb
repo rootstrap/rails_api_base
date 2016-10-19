@@ -20,12 +20,19 @@ RSpec.configure do |config|
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
   config.order = 'random'
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
   config.include FactoryGirl::Syntax::Methods
-
-  config.before :each do |example_group|
+  
+  config.before :each do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     ActionMailer::Base.deliveries.clear
+  end
+
+  config.before(:each, type: :controller) do
+    @request.env['devise.mapping'] = Devise.mappings[:user]
   end
 
   config.after do
