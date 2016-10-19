@@ -25,7 +25,11 @@ gem 'pry-rails', '~> 0.3.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'factory_girl_rails', '~> 4.5.0'
   gem 'pry-byebug', '~> 3.3.0', platform: :mri
+  gem 'rails-controller-testing', '~> 1.0.1'
+  gem 'rspec-rails', '~> 3.5.2'
+  gem 'rspec-core', '~> 3.5.2'
 end
 
 group :development do
@@ -40,6 +44,11 @@ group :development do
   gem 'rubocop', '~> 0.32.1'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  gem 'database_cleaner', '~> 1.4.1'
+  gem 'faker', '~> 1.4.3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
