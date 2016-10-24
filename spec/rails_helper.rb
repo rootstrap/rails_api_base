@@ -10,6 +10,7 @@ require 'rspec/rails'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
 end
