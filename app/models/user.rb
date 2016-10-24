@@ -18,11 +18,15 @@
 #  username               :string           default("")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  provider               :string           default("email"), not null
+#  uid                    :string           default(""), not null
+#  tokens                 :json
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_uid_and_provider      (uid,provider) UNIQUE
 #
 
 class User < ApplicationRecord
@@ -30,6 +34,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  include DeviseTokenAuth::Concerns::User
 
   def full_name
     return username unless first_name.present?
