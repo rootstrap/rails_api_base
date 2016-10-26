@@ -7,12 +7,12 @@ gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'devise', '~> 4.2.0'
 gem 'devise_token_auth', '~> 0.1.39'
 gem 'haml', '~> 4.0.6'
+gem 'jbuilder', '~> 1.5.3'
+gem 'oj', '~> 2.17.5'
 gem 'puma', '~> 3.0'
 gem 'rack-cors', '~> 0.4.0'
 gem 'pg', '~> 0.18.2'
 gem 'pry-rails', '~> 0.3.4'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-# gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
