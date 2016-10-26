@@ -3,5 +3,11 @@ Rails.application.routes.draw do
     registrations:  'api/v1/registrations',
     sessions:  'api/v1/sessions'
   }
-  root 'api/v1/api#status'
+
+  namespace :api do
+    namespace :v1, defaults: { format: :json } do
+      get :status, to: 'api#status'
+      resources :users, only: [:show, :update]
+    end
+  end
 end

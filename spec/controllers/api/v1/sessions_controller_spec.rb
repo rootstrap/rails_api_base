@@ -27,7 +27,7 @@ describe Api::V1::SessionsController do
       shared_context 'returns invalid credentials' do
         it 'returns an error' do
           post :create, params: params
-          expect(parse_response(response)['errors']).to include(error_message)
+          expect(parsed_response['errors']).to include(error_message)
         end
       end
       let(:error_message) { 'Invalid login credentials. Please try again.' }
