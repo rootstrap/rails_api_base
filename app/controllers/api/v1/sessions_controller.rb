@@ -5,6 +5,20 @@ module Api
     class SessionsController < DeviseTokenAuth::SessionsController
       protect_from_forgery with: :null_session
 
+      api :POST, '/users/sign_in', 'Get client, token and uid for a new session'
+      error code: 400, desc: 'Wrong credentials'
+      param :user, Hash, desc: 'Credentials', required: true do
+        param :email, String, required: true
+        param :password, String, required: true
+      end
+      def create
+        super
+      end
+
+      api :POST, '/users/facebook', 'Login with facebook'
+      error code: 400, desc: 'User already registered with email/password'
+      error code: 403, desc: 'Not Authorized'
+      param :access_token, String, required: true
       def facebook
         user_params = FacebookService.new(params[:access_token]).profile
         @resource = User.from_social_provider 'facebook', user_params
