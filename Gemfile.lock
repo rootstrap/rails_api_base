@@ -104,6 +104,7 @@ GEM
     equalizer (0.0.11)
     erubis (2.7.0)
     excon (0.54.0)
+    execjs (2.7.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.5.0)
@@ -279,6 +280,9 @@ GEM
     tilt (2.0.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    uglifier (2.7.2)
+      execjs (>= 0.3.0)
+      json (>= 1.8.0)
     unparser (0.2.4)
       abstract_type (~> 0.0.7)
       adamantium (~> 0.2.0)
@@ -331,6 +335,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
+  uglifier (~> 2.7.2)
 
 RUBY VERSION
    ruby 2.3.1p112
