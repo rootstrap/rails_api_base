@@ -9,8 +9,14 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1, defaults: { format: :json } do
-      get :status, to: 'api#status'
-      resources :users, only: [:show, :update]
+      devise_scope :user do
+        get :status, to: 'api#status'
+        resources :users, only: [:show, :update] do
+          controller :sessions do
+            post :facebook, on: :collection
+          end
+        end
+      end
     end
   end
 end
