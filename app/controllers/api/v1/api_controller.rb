@@ -5,6 +5,7 @@ module Api
     class ApiController < ApplicationController
       protect_from_forgery with: :null_session
       include DeviseTokenAuth::Concerns::SetUserByToken
+      before_action :skip_session_storage
 
       layout false
       respond_to :json
@@ -32,6 +33,14 @@ module Api
       def render_record_invalid(exception)
         logger.info(exception) # for logging
         render json: { errors: exception.record.errors.as_json }, status: :bad_request
+      end
+
+      private
+
+      def skip_session_storage
+        # Devise stores the cookie by default, so in api requests, it is disabled
+        # http://stackoverflow.com/a/12205114/2394842
+        request.session_options[:skip] = true
       end
     end
   end
