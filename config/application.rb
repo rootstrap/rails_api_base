@@ -33,8 +33,8 @@ module App
       port: 25,
       domain: 'www.api.com',
       authentication: :plain,
-      user_name: ENV['SENGRID_USERNAME'],
-      password: ENV['SENGRID_PASSWORD']
+      user_name: ENV['SENDGRID_USERNAME'],
+      password: ENV['SENDGRID_PASSWORD']
     }
     config.action_mailer.default_url_options = { host: ENV['SERVER_URL'] }
     config.action_mailer.default_options = {
