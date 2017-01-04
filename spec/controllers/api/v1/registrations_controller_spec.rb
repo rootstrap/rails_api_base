@@ -47,7 +47,6 @@ describe Api::V1::RegistrationsController do
 
       it 'does not return a successful response' do
         post :create, params: { user: attrs, format: 'json' }
-
         expect(response.response_code).to eq(failed_response)
       end
     end

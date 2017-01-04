@@ -4,6 +4,7 @@ ruby '2.3.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 
+gem 'apipie-rails', '~> 0.3.7'
 gem 'carrierwave', '~> 0.11.2'
 gem 'delayed_job_active_record', '~> 4.1.1'
 gem 'activeadmin', '~> 1.0.0.pre4'
@@ -33,7 +34,6 @@ gem 'sendgrid', '~> 1.2.4'
 # gem 'rack-cors'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'pry-byebug', '~> 3.3.0', platform: :mri
   gem 'rails-controller-testing', '~> 1.0.1'
