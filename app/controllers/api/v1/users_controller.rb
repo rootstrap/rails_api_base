@@ -3,7 +3,6 @@
 module Api
   module V1
     class UsersController < Api::V1::ApiController
-      before_action :authenticate_user!
       def show
       end
 
