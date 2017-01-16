@@ -5,6 +5,8 @@ module Api
     class ApiController < ApplicationController
       protect_from_forgery with: :null_session
       include DeviseTokenAuth::Concerns::SetUserByToken
+
+      before_action :authenticate_user!, except: :status
       before_action :skip_session_storage
 
       layout false
