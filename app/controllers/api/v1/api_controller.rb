@@ -3,7 +3,8 @@
 module Api
   module V1
     class ApiController < ApplicationController
-      protect_from_forgery with: :null_session
+      skip_before_filter :verify_authenticity_token, if: :json_request?
+
       include DeviseTokenAuth::Concerns::SetUserByToken
 
       before_action :authenticate_user!, except: :status
@@ -38,6 +39,10 @@ module Api
       end
 
       private
+
+      def json_request?
+        request.format.json?
+      end
 
       def skip_session_storage
         # Devise stores the cookie by default, so in api requests, it is disabled
