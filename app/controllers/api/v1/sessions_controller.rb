@@ -4,6 +4,7 @@ module Api
   module V1
     class SessionsController < DeviseTokenAuth::SessionsController
       protect_from_forgery with: :null_session
+      skip_before_filter :verify_authenticity_token, if: :json_request?
 
       def facebook
         user_params = FacebookService.new(params[:access_token]).profile
@@ -20,6 +21,10 @@ module Api
       end
 
       private
+
+      def json_request?
+        request.format.json?
+      end
 
       def custom_sign_in
         sign_in(:api_v1_user, @resource)
