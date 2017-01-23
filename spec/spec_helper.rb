@@ -20,6 +20,8 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  config.filter_run_excluding on_refactor: true
+
   config.shared_context_metadata_behavior = :apply_to_host_groups
   config.order = 'random'
   config.expect_with :rspec do |c|
