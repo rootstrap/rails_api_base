@@ -3,7 +3,7 @@ module Helpers
   #
   # @return [Hash]
   def parsed_response
-    JSON.parse(response.body)
+    JSON.parse(response.body).with_indifferent_access
   end
 
   def auth_request(user)
