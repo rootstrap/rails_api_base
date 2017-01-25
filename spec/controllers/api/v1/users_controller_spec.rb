@@ -18,8 +18,8 @@ describe Api::V1::UsersController do
     it 'returns user\'s data' do
       get :show, params: { id: :me, format: :json }
 
-      expect(parsed_response['user']['id']).to eq user.id
-      expect(parsed_response['user']['first_name']).to eq user.first_name
+      expect(parsed_response[:user][:id]).to eq user.id
+      expect(parsed_response[:user][:first_name]).to eq user.first_name
     end
   end
 
@@ -40,8 +40,8 @@ describe Api::V1::UsersController do
       it 'returns the user' do
         put :update, params: { id: :me, user: params, format: 'json' }
 
-        expect(parsed_response['user']['id']).to eq user.id
-        expect(parsed_response['user']['first_name']).to eq user.first_name
+        expect(parsed_response[:user][:id]).to eq user.id
+        expect(parsed_response[:user][:first_name]).to eq user.first_name
       end
     end
 
@@ -60,7 +60,7 @@ describe Api::V1::UsersController do
 
       it 'returns the error' do
         put :update, params: { id: :me, user: params, format: 'json' }
-        expect(parsed_response['errors']['email']).to include('is not an email')
+        expect(parsed_response[:errors][:email]).to include('is not an email')
       end
     end
   end
