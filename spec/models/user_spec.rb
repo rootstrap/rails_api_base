@@ -32,6 +32,11 @@
 require 'rails_helper'
 
 describe User do
+  describe 'validations' do
+    it { should validate_presence_of(:email) }
+    it { should validate_uniqueness_of(:email).case_insensitive }
+  end
+
   context 'when was created with regular login' do
     let!(:user) { create(:user) }
     let(:full_name) { user.full_name }
