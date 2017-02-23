@@ -33,6 +33,10 @@ module Api
         response.headers.merge!(new_auth_header)
         render_create_success
       end
+
+      def render_create_success
+        render json: { user: resource_data }
+      end
     end
   end
 end

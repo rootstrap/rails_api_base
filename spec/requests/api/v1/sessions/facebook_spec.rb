@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'POST api/v1/users/facebook', type: :request do
   let(:user)              { create(:user) }
-  let(:facebook_path)     { facebook_api_v1_users_path }
+  let(:facebook_path)     { facebook_api_v1_user_path }
   let(:facebook_api_path) { 'https://graph.facebook.com/me' }
   let(:facebook_response) do
     {

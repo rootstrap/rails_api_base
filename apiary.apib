@@ -52,7 +52,7 @@ API BASE is an internal Rootstrap project created to facilitate and standardize 
             }
 
 
-## Current user's profile [/api/v1/user/{id}]
+## Current user's profile [/api/v1/user/]
 
 ### Get current user profile [GET]
 
@@ -83,8 +83,8 @@ API BASE is an internal Rootstrap project created to facilitate and standardize 
                 {
                   "email": "test@test.com",
                   "username": "test",
-                  "first_name": "Juanito",
-                  "last_name": "La Cruz"
+                  "first_name": "John",
+                  "last_name": "Doe"
                 }
             }
 
@@ -105,8 +105,8 @@ API BASE is an internal Rootstrap project created to facilitate and standardize 
                 {
                   "username": "test",
                   "password": "password",
-                  "first_name": "Juanito",
-                  "last_name": "La Cruz"
+                  "first_name": "John",
+                  "last_name": "Doe"
                 }
             }
 
@@ -126,10 +126,50 @@ API BASE is an internal Rootstrap project created to facilitate and standardize 
                 {
                   "email": "test@test.com",
                   "username": "test",
-                  "first_name": "Juanito",
-                  "last_name": "La Cruz"
+                  "first_name": "John",
+                  "last_name": "Doe"
                 }
             }
+
+## Get other user's profile [/api/v1/users/{id}]
+
+### Get user [GET]
+
++ Request (application/json)
+    + Parameters
+        + id (integer, required)
+
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            uid: test@test.com
+
+
++ Response 401
+
+
++ Response 200 (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            expiry: 1489009792
+            uid: test@test.com
+
+
+    + Body
+
+            {
+              "user":
+                {
+                  "email": "test@test.com",
+                  "username": "test",
+                  "first_name": "John",
+                  "last_name": "Doe"
+                }
+            }
+
 
 
 ## Login [/api/v1/users/sign_in]
@@ -164,7 +204,7 @@ API BASE is an internal Rootstrap project created to facilitate and standardize 
     + Body
 
             {
-              "data":
+              "user":
                 {
                   "id": 102,
                   "email": "test@test.com",
@@ -179,7 +219,7 @@ API BASE is an internal Rootstrap project created to facilitate and standardize 
             }
 
 
-## Login with Facebook [/api/v1/users/facebook]
+## Login with Facebook [/api/v1/user/facebook]
 
 ### Login with Facebook [POST]
 
@@ -195,7 +235,7 @@ API BASE is an internal Rootstrap project created to facilitate and standardize 
     + Body
 
             {
-              "data":
+              "user":
                 {
                   "id": 366,
                   "email": "test@facebook.com",
@@ -243,19 +283,7 @@ https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
 
             {
               "success": true,
-              "data":
-                {
-                  "id": 781,
-                  "provider": "email",
-                  "email": "wilma_farrell@reinger.info",
-                  "uid": "wilma_farrell@reinger.info",
-                  "first_name": "",
-                  "last_name": "",
-                  "username": "39kellen_bahringer",
-                  "created_at": "2017-03-01T18:58:42.223Z",
-                  "updated_at": "2017-03-01T18:58:42.439Z"
-                },
-              "message": "An email has been sent to 'wilma_farrell@reinger.info' containing instructions for resetting your password."
+              "message": "An email has been sent to 'example@mail.com' containing instructions for resetting your password."
             }
 
 ### Reset passowrd [PUT]
@@ -285,7 +313,7 @@ https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
     + Body
 
             {
-              "data":
+              "user":
                 {
                   "id": 366,
                   "email": "test@facebook.com",
