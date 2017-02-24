@@ -4,6 +4,8 @@ require File.expand_path('../../config/environment', __FILE__)
 
 require 'factory_girl_rails'
 require 'helpers'
+require 'webmock/rspec'
+require 'shoulda/matchers'
 
 FactoryGirl.factories.clear
 FactoryGirl.reload

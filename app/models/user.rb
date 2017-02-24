@@ -36,6 +36,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  validates :email, uniqueness: true
+
   def full_name
     return username unless first_name.present?
     "#{first_name} #{last_name}"
