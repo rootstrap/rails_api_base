@@ -133,6 +133,7 @@ GEM
       devise (> 3.5.2, <= 4.2)
       rails (< 6)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     draper (3.0.0.pre1)
       actionpack (~> 5.0)
       activemodel (~> 5.0)
@@ -341,6 +342,11 @@ GEM
     sexp_processor (4.4.5)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
+    simplecov (0.13.0)
+      docile (~> 1.1.0)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     slop (3.6.0)
     spring (2.0.0)
       activesupport (>= 4.2)
@@ -419,6 +425,7 @@ DEPENDENCIES
   rubocop (~> 0.32.1)
   sendgrid (~> 1.2.4)
   shoulda-matchers (~> 3.1.1)
+  simplecov (~> 0.13.0)
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
@@ -429,4 +436,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.5
+   1.14.2
