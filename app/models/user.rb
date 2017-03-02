@@ -38,6 +38,8 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true
 
+  before_validation :init_uid
+
   def full_name
     return username unless first_name.present?
     "#{first_name} #{last_name}"
@@ -48,5 +50,11 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       user.assign_attributes user_params.except('id')
     end
+  end
+
+  private
+
+  def init_uid
+    self.uid = email if uid.blank? && provider == 'email'
   end
 end
