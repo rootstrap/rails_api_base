@@ -23,11 +23,6 @@ module Api
         render json: { online: true }
       end
 
-      def render_forbidden_access(exception)
-        logger.info(exception) # for logging
-        render json: { error: 'Not Authorized' }, status: :forbidden
-      end
-
       def render_not_found(exception)
         logger.info(exception) # for logging
         render json: { error: "Couldn't find the record" }, status: :not_found
