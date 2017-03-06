@@ -3,7 +3,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  email                  :string           default(""), not null
+#  email                  :string
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
@@ -36,7 +36,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  validates :email, uniqueness: true
+  validates :uid, uniqueness: { scope: :provider }
+  validates :email, uniqueness: true, if: :uses_email?
 
   before_validation :init_uid
 
@@ -53,6 +54,10 @@ class User < ApplicationRecord
   end
 
   private
+
+  def uses_email?
+    provider == 'email' || email.present?
+  end
 
   def init_uid
     self.uid = email if uid.blank? && provider == 'email'
