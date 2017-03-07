@@ -11,3 +11,7 @@
 7. [Optional] Set your [frontend URL](https://github.com/cyu/rack-cors#origin) in `config/initializers/rack_cors.rb`
 8. [Optional] Set your mail sender in `config/initializers/devise.rb`
 9. `rails s`
+
+## Docs
+
+http://docs.rails5apibase.apiary.io

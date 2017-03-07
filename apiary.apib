@@ -1,0 +1,316 @@
+FORMAT: 1A
+HOST: http://rails5-api-base.herokuapp.com
+
+# API BASE
+
+API BASE is an internal TopTier project created to facilitate and standardize developers work.
+
+## Users Collection [/api/v1/users]
+
+### Signup [POST]
+
++ Request (application/json)
+    + Body
+
+            {
+              "user":
+                {
+                  "username": "test",
+                  "email": "test@gmail.com",
+                  "password": "password",
+                  "password_confirmation": "password"
+                }
+            }
+
+
++ Response 401
+
+
++ Response 200 (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            expiry: 1489009792
+            uid: test@test.com
+
+
+    + Body
+      
+            {
+              "id": 102,
+              "email": "test@test.com",
+              "provider": "email",
+              "uid": "test@test.com",
+              "first_name": "",
+              "last_name": "",
+              "username": "test",
+              "created_at": "2017-02-23T13:54:33.283Z",
+              "updated_at": "2017-02-23T13:54:33.425Z"
+            }
+
+
+## Current user's profile [/api/v1/user/{id}]
+
+### Get current user profile [GET]
+
++ Request (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            uid: test@test.com
+
+
++ Response 401
+
+
++ Response 200 (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            expiry: 1489009792
+            uid: test@test.com
+
+
+    + Body
+      
+            {
+              "user":
+                {
+                  "email": "test@test.com",
+                  "username": "test",
+                  "first_name": "Juanito",
+                  "last_name": "La Cruz"
+                }
+            }
+
+
+### Update current user profile [PUT]
+
++ Request (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            uid: test@test.com
+
+    + Body
+
+            {
+              "user":
+                {
+                  "username": "test",
+                  "password": "password",
+                  "first_name": "Juanito",
+                  "last_name": "La Cruz"
+                }
+            }
+
++ Response 200 (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            expiry: 1489009792
+            uid: test@test.com
+
+
+    + Body
+      
+            {
+              "user":
+                {
+                  "email": "test@test.com",
+                  "username": "test",
+                  "first_name": "Juanito",
+                  "last_name": "La Cruz"
+                }
+            }
+
+
+## Login [/api/v1/users/sign_in]
+  
+### Login [POST]
+
++ Request (application/json)
+
+    + Body
+
+            {
+              "user":
+                {
+                  "email": "test@gmail.com",
+                  "password": "password"
+                }
+            }
+
+
++ Response 401
+
+
++ Response 200 (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            expiry: 1489009792
+            uid: test@test.com
+
+
+    + Body
+      
+            {
+              "data":
+                {
+                  "id": 102,
+                  "email": "test@test.com",
+                  "provider": "email",
+                  "uid": "test@test.com",
+                  "first_name": "",
+                  "last_name": "",
+                  "username": "test",
+                  "created_at": "2017-02-23T13:54:33.283Z",
+                  "updated_at": "2017-02-23T13:54:33.425Z"
+                }
+            }
+
+
+## Login with Facebook [/api/v1/users/facebook]
+  
+### Login with Facebook [POST]
+
+
++ Response 200 (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            uid: test@test.com
+
+
+    + Body
+
+            {
+              "data":
+                {
+                  "id": 366,
+                  "email": "test@facebook.com",
+                  "first_name": "Test",
+                  "last_name": "test",
+                  "username": "",
+                  "provider": "facebook",
+                  "uid": "1234567890"
+                }
+            }
+
+
+## Logout [/api/v1/users/sign_out]
+
+### Logout [DELETE]
+
++ Request (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            expiry: 1489009792
+            uid: test@test.com
+
++ Response 200 (application/json)
+
+
+## Reset password [/api/v1/users/password]
+
+### Reset passowrd [POST]
+
+Use this route to send a password reset confirmation email
+https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
+
++ Request (application/json)
+    + Body
+
+            {
+              "email": "test@test.com",
+              "redirect_url": "http://www.example.com"
+            }
+
++ Response 200 (application/json)
+    + Body
+
+            { 
+              "success": true,
+              "data":
+                {
+                  "id": 781,
+                  "provider": "email",
+                  "email": "wilma_farrell@reinger.info",
+                  "uid": "wilma_farrell@reinger.info",
+                  "first_name": "",
+                  "last_name": "",
+                  "username": "39kellen_bahringer",
+                  "created_at": "2017-03-01T18:58:42.223Z",
+                  "updated_at": "2017-03-01T18:58:42.439Z"
+                },
+              "message": "An email has been sent to 'wilma_farrell@reinger.info' containing instructions for resetting your password."
+            }
+
+### Reset passowrd [PUT]
+
+Use this route to change user's passwords
+https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
+
++ Request (application/json)
+    + Parameters
+        + reset_password_token (string, required)
+
+    + Body
+
+            {
+              "password": "12345678",
+              "password_confirmation": "12345678"
+            }
+
++ Response 200 (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            expiry: 1489009792
+            uid: test@test.com
+
+    + Body
+
+            {
+              "data":
+                {
+                  "id": 366,
+                  "email": "test@facebook.com",
+                  "first_name": "Test",
+                  "last_name": "test",
+                  "username": "",
+                  "provider": "facebook",
+                  "uid": "1234567890"
+                }
+            }
+
+## Edit reset password [/api/v1/users/password/edit]
+
+### Edit reset password [GET]
+
+This route is the destination URL for password reset confirmation
+https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
+
++ Request (application/json)
+    + Parameters
+        + reset_password_token (string, required)
+        + redirect_url (string)
+
++ Response 200 (application/json)
+    + Headers
+
+            access-token: sO2bm_Bpdyoo8r78jZ-fqg
+            client: QADgNCWRJj0LyRruqzYbBg
+            expiry: 1489009792
+            uid: test@test.com
