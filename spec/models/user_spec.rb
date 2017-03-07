@@ -3,7 +3,7 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  email                  :string           default(""), not null
+#  email                  :string
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
@@ -33,8 +33,20 @@ require 'rails_helper'
 
 describe User do
   describe 'validations' do
-    it { should validate_presence_of(:email) }
-    it { should validate_uniqueness_of(:email).case_insensitive }
+    subject { build :user }
+    it { should validate_uniqueness_of(:uid).scoped_to(:provider) }
+
+    context 'when was created with facebook login' do
+      subject { build :user, :with_fb }
+      it { should_not validate_uniqueness_of(:email) }
+      it { should_not validate_presence_of(:email) }
+    end
+
+    context 'when was created with regular login' do
+      subject { build :user }
+      it { should validate_uniqueness_of(:email).case_insensitive }
+      it { should validate_presence_of(:email) }
+    end
   end
 
   context 'when was created with regular login' do
