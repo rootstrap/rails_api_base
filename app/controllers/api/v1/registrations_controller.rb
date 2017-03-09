@@ -3,8 +3,8 @@
 module Api
   module V1
     class RegistrationsController < DeviseTokenAuth::RegistrationsController
+      include Concerns::ActAsApiRequest
       protect_from_forgery with: :exception
-      skip_before_action :verify_authenticity_token, if: :json_request?
 
       def sign_up_params
         params.require(:user).permit(:email, :password, :password_confirmation, :username)
@@ -12,12 +12,6 @@ module Api
 
       def render_create_success
         render json: resource_data
-      end
-
-      private
-
-      def json_request?
-        request.format.json?
       end
     end
   end
