@@ -4,12 +4,13 @@ module Api
       extend ActiveSupport::Concern
 
       included do
-        skip_before_action :verify_authenticity_token, if: :json_request?
+        skip_before_action :verify_authenticity_token
         before_action :skip_session_storage
+        before_action :check_json_request
       end
 
-      def json_request?
-        request.format.json?
+      def check_json_request
+        head :not_acceptable unless request.content_type =~ /json/
       end
 
       def skip_session_storage

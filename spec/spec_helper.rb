@@ -38,6 +38,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :controller) do
+    @request.env['CONTENT_TYPE'] = 'application/json'
     @request.env['devise.mapping'] = Devise.mappings[:user]
   end
 
