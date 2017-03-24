@@ -3,6 +3,14 @@ require 'rails_helper'
 describe 'POST api/v1/users/facebook', type: :request do
   let(:user)          { create(:user) }
   let(:facebook_path) { facebook_api_v1_users_path }
+  let(:facebook_response) do
+    {
+      first_name: 'Test',
+      last_name: 'test',
+      email: 'test@facebook.com',
+      id: '1234567890'
+    }
+  end
 
   shared_context 'fail to login with facebook' do
     it 'does not returns a successful response' do
@@ -20,6 +28,10 @@ describe 'POST api/v1/users/facebook', type: :request do
       {
         access_token: '123456'
       }
+    end
+    before do
+      stub_request(:get, 'https://graph.facebook.com/me?access_token=123456&fields=email,first_name,last_name')
+        .to_return(status: 200, body: facebook_response.to_json)
     end
 
     it 'returns a successful response' do
@@ -63,6 +75,11 @@ describe 'POST api/v1/users/facebook', type: :request do
           access_token: 'without_email'
         }
       end
+      before do
+        facebook_response[:email] = ''
+        stub_request(:get, 'https://graph.facebook.com/me?access_token=without_email&fields=email,first_name,last_name')
+          .to_return(status: 200, body: facebook_response.to_json)
+      end
 
       it 'creates an user' do
         expect { post facebook_path, params: params, as: :json }.to change(User, :count).by(1)
@@ -95,6 +112,17 @@ describe 'POST api/v1/users/facebook', type: :request do
       {
         access_token: 'invalid'
       }
+    end
+    before do
+      facebook_response = {
+        error: {
+          message: 'Expired token',
+          type: 'OAuthException',
+          code: 190
+        }
+      }
+      stub_request(:get, 'https://graph.facebook.com/me?access_token=invalid&fields=email,first_name,last_name')
+        .to_return(status: 400, body: facebook_response.to_json)
     end
 
     it_behaves_like 'fail to login with facebook'
