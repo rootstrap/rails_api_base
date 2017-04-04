@@ -1,11 +1,7 @@
-# encoding: utf-8
-
 require 'rails_helper'
 
-describe Api::V1::RegistrationsController do
-  render_views
-
-  let!(:user) { create(:user) }
+describe 'POST api/v1/users/', type: :request do
+  let!(:user)           { create(:user) }
   let(:failed_response) { 422 }
 
   describe 'POST create' do
@@ -14,23 +10,25 @@ describe Api::V1::RegistrationsController do
     let(:password)              { '12345678' }
     let(:password_confirmation) { '12345678' }
 
-    let(:attrs) do
+    let(:params) do
       {
-        username: username,
-        email: email,
-        password: password,
-        password_confirmation: password_confirmation
+        user: {
+          username: username,
+          email: email,
+          password: password,
+          password_confirmation: password_confirmation
+        }
       }
     end
 
     it 'returns a successful response' do
-      post :create, params: { user: attrs, format: 'json' }
+      post user_registration_path, params: params, as: :json
 
       expect(response).to have_http_status(:success)
     end
 
     it 'creates the user' do
-      post :create, params: { user: attrs, format: 'json' }
+      post user_registration_path, params: params, as: :json
 
       new_user = User.find_by_email(email)
       expect(new_user).to_not be_nil
@@ -41,14 +39,14 @@ describe Api::V1::RegistrationsController do
 
       it 'does not create a user' do
         expect do
-          post :create, params: { user: attrs, format: 'json' }
+          post user_registration_path, params: params, as: :json
         end.not_to change { User.count }
       end
 
       it 'does not return a successful response' do
-        post :create, params: { user: attrs, format: 'json' }
+        post user_registration_path, params: params, as: :json
 
-        expect(response.response_code).to eq(failed_response)
+        expect(response.status).to eq(failed_response)
       end
     end
 
@@ -59,15 +57,15 @@ describe Api::V1::RegistrationsController do
       let(:new_user)              { User.find_by_email(email) }
 
       it 'does not create a user' do
-        post :create, params: { user: attrs, format: 'json' }
+        post user_registration_path, params: params, as: :json
 
         expect(new_user).to be_nil
       end
 
       it 'does not return a successful response' do
-        post :create, params: { user: attrs, format: 'json' }
+        post user_registration_path, params: params, as: :json
 
-        expect(response.response_code).to eq(failed_response)
+        expect(response.status).to eq(failed_response)
       end
     end
 
@@ -78,15 +76,15 @@ describe Api::V1::RegistrationsController do
       let(:new_user)              { User.find_by_email(email) }
 
       it 'does not create a user' do
-        post :create, params: { user: attrs, format: 'json' }
+        post user_registration_path, params: params, as: :json
 
         expect(new_user).to be_nil
       end
 
       it 'does not return a successful response' do
-        post :create, params: { user: attrs, format: 'json' }
+        post user_registration_path, params: params, as: :json
 
-        expect(response.response_code).to eq(failed_response)
+        expect(response.status).to eq(failed_response)
       end
     end
   end

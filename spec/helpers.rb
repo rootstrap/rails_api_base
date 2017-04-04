@@ -2,12 +2,11 @@ module Helpers
   # Helper method to parse a response
   #
   # @return [Hash]
-  def parsed_response
+  def json
     JSON.parse(response.body).with_indifferent_access
   end
 
-  def auth_request(user)
-    sign_in user
-    request.headers.merge!(user.create_new_auth_token)
+  def auth_headers
+    user.create_new_auth_token
   end
 end

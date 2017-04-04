@@ -37,11 +37,6 @@ RSpec.configure do |config|
     ActionMailer::Base.deliveries.clear
   end
 
-  config.before(:each, type: :controller) do
-    @request.env['CONTENT_TYPE'] = 'application/json'
-    @request.env['devise.mapping'] = Devise.mappings[:user]
-  end
-
   config.after do
     DatabaseCleaner.clean
   end
