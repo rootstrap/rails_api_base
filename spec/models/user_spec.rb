@@ -44,7 +44,8 @@ describe User do
 
     context 'when was created with regular login' do
       subject { build :user }
-      it { should validate_uniqueness_of(:email).case_insensitive }
+      # Pending test until https://github.com/lynndylanhurley/devise_token_auth/pull/865 is merged
+      xit { should validate_uniqueness_of(:email).case_insensitive.scoped_to(:provider) }
       it { should validate_presence_of(:email) }
     end
   end
