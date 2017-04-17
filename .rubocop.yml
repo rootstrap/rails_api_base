@@ -39,3 +39,7 @@ Metrics/ParameterLists:
 
 Metrics/PerceivedComplexity:
   Max: 12
+
+SingleSpaceBeforeFirstArg:
+ Exclude:
+   - app/views/api/**/**/*
