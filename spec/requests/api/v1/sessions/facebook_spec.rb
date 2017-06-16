@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 describe 'POST api/v1/users/facebook', type: :request do
-  let(:user)          { create(:user) }
-  let(:facebook_path) { facebook_api_v1_users_path }
+  let(:user)              { create(:user) }
+  let(:facebook_path)     { facebook_api_v1_users_path }
+  let(:facebook_api_path) { 'https://graph.facebook.com/me' }
   let(:facebook_response) do
     {
       first_name: 'Test',
@@ -30,7 +31,8 @@ describe 'POST api/v1/users/facebook', type: :request do
       }
     end
     before do
-      stub_request(:get, 'https://graph.facebook.com/me?access_token=123456&fields=email,first_name,last_name')
+      stub_request(:get, facebook_api_path)
+        .with(query: hash_including(access_token: '123456', fields: 'email,first_name,last_name'))
         .to_return(status: 200, body: facebook_response.to_json)
     end
 
@@ -77,7 +79,9 @@ describe 'POST api/v1/users/facebook', type: :request do
       end
       before do
         facebook_response[:email] = ''
-        stub_request(:get, 'https://graph.facebook.com/me?access_token=without_email&fields=email,first_name,last_name')
+        fields = 'email,first_name,last_name'
+        stub_request(:get, facebook_api_path)
+          .with(query: hash_including(access_token: 'without_email', fields: fields))
           .to_return(status: 200, body: facebook_response.to_json)
       end
 
@@ -121,7 +125,8 @@ describe 'POST api/v1/users/facebook', type: :request do
           code: 190
         }
       }
-      stub_request(:get, 'https://graph.facebook.com/me?access_token=invalid&fields=email,first_name,last_name')
+      stub_request(:get, facebook_api_path)
+        .with(query: hash_including(access_token: 'invalid', fields: 'email,first_name,last_name'))
         .to_return(status: 400, body: facebook_response.to_json)
     end
 

@@ -11,6 +11,7 @@ module Api
       layout false
       respond_to :json
 
+      rescue_from Exception,                           with: :render_error
       rescue_from ActiveRecord::RecordNotFound,        with: :render_not_found
       rescue_from ActiveRecord::RecordInvalid,         with: :render_record_invalid
       rescue_from ActionController::RoutingError,      with: :render_not_found
@@ -19,6 +20,11 @@ module Api
 
       def status
         render json: { online: true }
+      end
+
+      def render_error(_exception)
+        logger.error(exception) # Report to your error managment tool here
+        render json: { error: 'An error ocurred' }, status: 500 unless performed?
       end
 
       def render_not_found(exception)
