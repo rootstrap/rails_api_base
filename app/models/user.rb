@@ -37,7 +37,6 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   validates :uid, uniqueness: { scope: :provider }
-  validates :email, uniqueness: true, if: :uses_email?
 
   before_validation :init_uid
 
