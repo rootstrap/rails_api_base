@@ -9,6 +9,8 @@ describe 'POST api/v1/users/', type: :request do
     let(:email)                 { 'test@test.com' }
     let(:password)              { '12345678' }
     let(:password_confirmation) { '12345678' }
+    let(:first_name)            { 'Johnny' }
+    let(:last_name)             { 'Perez' }
 
     let(:params) do
       {
@@ -16,7 +18,9 @@ describe 'POST api/v1/users/', type: :request do
           username: username,
           email: email,
           password: password,
-          password_confirmation: password_confirmation
+          password_confirmation: password_confirmation,
+          first_name: first_name,
+          last_name: last_name
         }
       }
     end

@@ -7,7 +7,8 @@ module Api
       include Concerns::ActAsApiRequest
 
       def sign_up_params
-        params.require(:user).permit(:email, :password, :password_confirmation, :username)
+        params.require(:user).permit(:email, :password, :password_confirmation,
+                                     :username, :first_name, :last_name)
       end
 
       def render_create_success
