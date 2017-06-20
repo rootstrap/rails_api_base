@@ -22,7 +22,7 @@ module Api
         render json: { online: true }
       end
 
-      def render_error(_exception)
+      def render_error(exception)
         logger.error(exception) # Report to your error managment tool here
         render json: { error: 'An error ocurred' }, status: 500 unless performed?
       end
