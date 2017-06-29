@@ -9,9 +9,9 @@ gem 'carrierwave', '~> 0.11.2'
 gem 'delayed_job_active_record', '~> 4.1.2'
 gem 'devise', '~> 4.3.0'
 gem 'devise_token_auth', '~> 0.1.42'
-gem 'draper', '~> 3.0.0.pre'
+gem 'draper', '~> 3.0.0'
 gem 'fog-aws', '~> 0.12.0'
-gem 'haml', '~> 4.0.6'
+gem 'haml-rails', '~> 1.0.0'
 gem 'jbuilder', '~> 2.7.0'
 gem 'oj', '~> 2.17.5'
 gem 'koala', '~> 1.10.1'
@@ -20,6 +20,7 @@ gem 'pry-rails', '~> 0.3.4'
 gem 'puma', '~> 3.0'
 gem 'rack-cors', '~> 0.4.0'
 gem 'sendgrid', '~> 1.2.4'
+gem 'tilt', '~> 2.0.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -27,9 +28,6 @@ gem 'sendgrid', '~> 1.2.4'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
 
 group :development, :test do
   gem 'bullet', '~> 5.5.1'
