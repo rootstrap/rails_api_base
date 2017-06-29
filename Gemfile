@@ -2,18 +2,17 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '~> 5.1.2'
 
-gem 'activeadmin', '~> 1.0.0.pre4'
+gem 'activeadmin', '~> 1.0.0'
 gem 'carrierwave', '~> 0.11.2'
-gem 'delayed_job_active_record', '~> 4.1.1'
-gem 'devise', '~> 4.2.0'
-gem 'devise_token_auth', '~> 0.1.39'
+gem 'delayed_job_active_record', '~> 4.1.2'
+gem 'devise', '~> 4.3.0'
+gem 'devise_token_auth', '~> 0.1.42'
 gem 'draper', '~> 3.0.0.pre'
 gem 'fog-aws', '~> 0.12.0'
 gem 'haml', '~> 4.0.6'
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
-gem 'jbuilder', '~> 2.6.1'
+gem 'jbuilder', '~> 2.7.0'
 gem 'oj', '~> 2.17.5'
 gem 'koala', '~> 1.10.1'
 gem 'pg', '~> 0.18.2'
@@ -33,7 +32,7 @@ gem 'sendgrid', '~> 1.2.4'
 # gem 'rack-cors'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'bullet', '~> 5.5.1'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'pry-byebug', '~> 3.3.0', platform: :mri
   gem 'rails-controller-testing', '~> 1.0.1'
