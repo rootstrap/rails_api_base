@@ -12,7 +12,7 @@ module Api
       end
 
       def render_create_success
-        render json: resource_data
+        render json: { user: resource_data }
       end
     end
   end

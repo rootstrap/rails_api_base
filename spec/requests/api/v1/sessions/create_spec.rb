@@ -21,16 +21,13 @@ describe 'POST api/v1/users/sign_in', type: :request do
     end
 
     it 'returns the user' do
-      response_expected = {
-        id:         user.id,
-        email:      user.email,
-        username:   user.username,
-        uid:        user.email,
-        provider:   'email',
-        first_name: user.first_name,
-        last_name:  user.last_name
-      }.with_indifferent_access
-      expect(json[:data]).to eq(response_expected)
+      expect(json[:user][:id]).to eq(user.id)
+      expect(json[:user][:email]).to eq(user.email)
+      expect(json[:user][:username]).to eq(user.username)
+      expect(json[:user][:uid]).to eq(user.uid)
+      expect(json[:user][:provider]).to eq('email')
+      expect(json[:user][:first_name]).to eq(user.first_name)
+      expect(json[:user][:last_name]).to eq(user.last_name)
     end
 
     it 'returns a valid client and access token' do
