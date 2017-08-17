@@ -93,6 +93,8 @@ GEM
       json (>= 1.7)
       mime-types (>= 1.16)
       mimemagic (>= 0.3.0)
+    carrierwave-base64 (2.3.4)
+      carrierwave (>= 0.8.0)
     code_analyzer (0.4.5)
       sexp_processor
     coderay (1.1.1)
@@ -422,6 +424,7 @@ DEPENDENCIES
   brakeman (~> 3.4.0)
   bullet (~> 5.5.1)
   carrierwave (~> 0.11.2)
+  carrierwave-base64 (~> 2.3.4)
   database_cleaner (~> 1.4.1)
   delayed_job_active_record (~> 4.1.2)
   devise (~> 4.3.0)

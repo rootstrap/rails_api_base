@@ -6,6 +6,7 @@ gem 'rails', '~> 5.1.2'
 
 gem 'activeadmin', '~> 1.0.0'
 gem 'carrierwave', '~> 0.11.2'
+gem 'carrierwave-base64', '~> 2.3.4'
 gem 'delayed_job_active_record', '~> 4.1.2'
 gem 'devise', '~> 4.3.0'
 gem 'devise_token_auth', '~> 0.1.42'
