@@ -1,7 +1,7 @@
 require 'rails_helper'
 # This tests will be skipped while the following issue is being attended
 # https://github.com/toptier/rails5_api_base/issues/30
-describe 'PUT api/v1/users/passwords/', type: :request, on_refactor: true do
+describe 'PUT api/v1/users/passwords/', type: :request do
   let(:user)           { create(:user, password: 'mypass123') }
   let(:password_token) { user.send(:set_reset_password_token) }
   let(:headers) do
@@ -9,7 +9,7 @@ describe 'PUT api/v1/users/passwords/', type: :request, on_refactor: true do
       reset_password_token: password_token,
       redirect_url: ENV['PASSWORD_RESET_URL']
     }
-    get edit_user_password_path, params: params, headers: json_header
+    get edit_user_password_path, params: params, headers: auth_headers
     edit_response_params = Addressable::URI.parse(response.header['Location']).query_values
     {
       'access-token' => edit_response_params['token'],
