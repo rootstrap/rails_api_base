@@ -1,4 +1,39 @@
-# API Template
+# Rails API Template
+
+Rails Api Base is the base Rails application template used at Rootstrap. It's based on Rails 5 and Ruby 2.3
+
+## Gems
+
+- [ActiveAdmin](https://github.com/activeadmin/activeadmin) for easy administration
+- [Annotate](https://github.com/ctran/annotate_models) for doc the schema in the classes
+- [Better Errors](https://github.com/charliesome/better_errors) for a better error page
+- [Brakeman](https://github.com/presidentbeef/brakeman) for static analysis security
+- [Bullet](https://github.com/flyerhzm/bullet) help to kill N+1
+- [Byebug](https://github.com/deivid-rodriguez/byebug) for debugging
+- [Carrierwave](https://github.com/carrierwaveuploader/carrierwave) for file uploading
+- [Database Cleaner](https://github.com/DatabaseCleaner/database_cleaner) for cleaning test database
+- [DelayedJob](https://github.com/collectiveidea/delayed_job) for background processing
+- [Devise](https://github.com/plataformatec/devise) for basic auth
+- [Devise Token Auth](https://github.com/lynndylanhurley/devise_token_auth) for api auth
+- [Draper](https://github.com/drapergem/draper) for decorators
+- [Factory Girl](https://github.com/thoughtbot/factory_girl) for testing data
+- [Faker](https://github.com/stympy/faker) for generating test data
+- [Haml](https://github.com/haml/haml) for the template engine
+- [Jbuilder](https://github.com/rails/jbuilder) for json views
+- [Koala](https://github.com/arsduo/koala) for connecting with Facebook
+- [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
+- [Oj](https://github.com/ohler55/oj) for optimized json
+- [Pry](https://github.com/pry/pry) for enhancing the ruby shell
+- [Puma](https://github.com/puma/puma) for the server
+- [Rack CORS](https://github.com/cyu/rack-cors) for handling CORS
+- [Rails Best Practices](https://github.com/flyerhzm/rails_best_practices) for rails linting
+- [Reek](https://github.com/troessner/reek) for ruby linting
+- [RSpec](https://github.com/rspec/rspec) for testing
+- [Rubocop](https://github.com/bbatsov/rubocop/) for ruby linting
+- [Sendgrid](https://github.com/stephenb/sendgrid) for sending mails
+- [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) adds other testing matchers
+- [Simplecov](https://github.com/colszowka/simplecov) for code coverage
+- [Webmock](https://github.com/bblimke/webmock) for stubbing http requests
 
 ## Setup
 
@@ -15,10 +50,9 @@
 - Set your [frontend URL](https://github.com/cyu/rack-cors#origin) in `config/initializers/rack_cors.rb`
 - Set your mail sender in `config/initializers/devise.rb`
 - Decrease `token_lifespan` in `config/initializers/devise_token_auth.rb` if the frontend is a Web-app.
-- Remove Facebook code with `git revert a8319a37ab8d038399a7a6bd74fe3869bb3f3ddc`
 - Config your timezone accordingly in `application.rb`.
 
-## Docs
+## Api Docs
 
 http://docs.rails5apibase.apiary.io
 
@@ -32,3 +66,10 @@ With `rake code_analysis` you can run the code analysis tool, you can omit rules
 - [Rails Best Practices](https://github.com/flyerhzm/rails_best_practices#custom-configuration) Edit `config/rails_best_practices.yml`
 - [Brakeman](https://github.com/presidentbeef/brakeman) Run `brakeman -I` to generate `config/brakeman.ignore`
 - [Bullet](https://github.com/flyerhzm/bullet#whitelist) You can add exceptions to a bullet initializer or in the controller
+
+## Credits
+
+Rails Api Base is maintained by [Rootstrap](http://www.rootstrap.com) with the help of our
+[contributors](https://github.com/rootstrap/rails_api_base/contributors).
+
+[<img src="https://s3-us-west-1.amazonaws.com/rootstrap.com/img/rs.png" width="100"/>](http://www.rootstrap.com)

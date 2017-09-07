@@ -14,8 +14,8 @@ gem 'draper', '~> 3.0.0'
 gem 'fog-aws', '~> 0.12.0'
 gem 'haml-rails', '~> 1.0.0'
 gem 'jbuilder', '~> 2.7.0'
-gem 'oj', '~> 2.17.5'
 gem 'koala', '~> 1.10.1'
+gem 'oj', '~> 2.17.5'
 gem 'pg', '~> 0.18.2'
 gem 'pry-rails', '~> 0.3.4'
 gem 'puma', '~> 3.0'
@@ -34,7 +34,6 @@ group :development, :test do
   gem 'bullet', '~> 5.5.1'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'pry-byebug', '~> 3.3.0', platform: :mri
-  gem 'rails-controller-testing', '~> 1.0.1'
   gem 'rspec-rails', '~> 3.5.2'
   gem 'rspec-core', '~> 3.5.2'
 end
