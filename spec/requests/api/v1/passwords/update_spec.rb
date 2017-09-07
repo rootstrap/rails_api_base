@@ -1,6 +1,4 @@
 require 'rails_helper'
-# This tests will be skipped while the following issue is being attended
-# https://github.com/toptier/rails5_api_base/issues/30
 describe 'PUT api/v1/users/passwords/', type: :request do
   let(:user)           { create(:user, password: 'mypass123') }
   let(:password_token) { user.send(:set_reset_password_token) }
