@@ -17,7 +17,7 @@ gem 'jbuilder', '~> 2.7.0'
 gem 'koala', '~> 1.10.1'
 gem 'oj', '~> 2.17.5'
 gem 'pg', '~> 0.18.2'
-gem 'pry-rails', '~> 0.3.4'
+gem 'pry-rails', '~> 0.3.6'
 gem 'puma', '~> 3.0'
 gem 'rack-cors', '~> 0.4.0'
 gem 'sendgrid', '~> 1.2.4'
@@ -34,8 +34,8 @@ group :development, :test do
   gem 'bullet', '~> 5.5.1'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'pry-byebug', '~> 3.3.0', platform: :mri
-  gem 'rspec-rails', '~> 3.5.2'
   gem 'rspec-core', '~> 3.5.2'
+  gem 'rspec-rails', '~> 3.5.2'
 end
 
 group :development do
@@ -46,8 +46,8 @@ group :development do
   gem 'letter_opener', '~> 1.4.1'
   gem 'listen', '~> 3.0.5'
   gem 'rails_best_practices', '~> 1.16.0'
-  gem 'reek', '~> 3.4.0'
-  gem 'rubocop', '~> 0.32.1'
+  gem 'reek', '~> 4.7.2'
+  gem 'rubocop', '~> 0.49.1'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
@@ -65,4 +65,4 @@ group :assets do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

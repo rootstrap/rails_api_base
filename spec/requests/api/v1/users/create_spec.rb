@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'POST api/v1/users/', type: :request do
-  let(:user)           { User.last }
+  let(:user)            { User.last }
   let(:failed_response) { 422 }
 
   describe 'POST create' do

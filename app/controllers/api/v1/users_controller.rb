@@ -5,8 +5,7 @@ module Api
     class UsersController < Api::V1::ApiController
       helper_method :user
 
-      def show
-      end
+      def show; end
 
       def profile
         render :show

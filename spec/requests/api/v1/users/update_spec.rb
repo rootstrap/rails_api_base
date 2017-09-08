@@ -5,7 +5,7 @@ describe 'PUT api/v1/user/', type: :request do
   let(:api_v1_user_path) { '/api/v1/user' }
 
   context 'with valid params' do
-    let(:params) {  { user: { username: 'new username' } } }
+    let(:params) { { user: { username: 'new username' } } }
 
     it 'returns success' do
       put api_v1_user_path, params: params, headers: auth_headers, as: :json
