@@ -4,6 +4,8 @@ Metrics/AbcSize:
   # The ABC size is a calculated magnitude, so this number can be an Integer or
   # a Float.
   Max: 15
+  Exclude:
+    - 'app/controllers/api/v1/sessions_controller.rb'
 
 Metrics/BlockNesting:
   Max: 4
@@ -19,6 +21,8 @@ Metrics/ModuleLength:
 # Avoid complex methods.
 Metrics/CyclomaticComplexity:
   Max: 6
+  Exclude:
+    - 'app/controllers/api/v1/sessions_controller.rb'
 
 Metrics/LineLength:
   Max: 100
@@ -32,6 +36,8 @@ Metrics/LineLength:
 Metrics/MethodLength:
   CountComments: false  # count full line comments?
   Max: 24
+  Exclude:
+    - 'app/controllers/api/v1/sessions_controller.rb'
 
 Metrics/ParameterLists:
   Max: 5
@@ -39,6 +45,8 @@ Metrics/ParameterLists:
 
 Metrics/PerceivedComplexity:
   Max: 12
+  Exclude:
+    - 'app/controllers/api/v1/sessions_controller.rb'
 
 SingleSpaceBeforeFirstArg:
  Exclude:

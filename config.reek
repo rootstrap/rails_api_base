@@ -17,7 +17,7 @@ DataClump:
   min_clump_size: 2
 DuplicateMethodCall:
   enabled: true
-  exclude: []
+  exclude: [SessionsController#create]
   max_calls: 1
   allow_calls: []
 FeatureEnvy:
@@ -65,6 +65,7 @@ TooManyStatements:
   exclude:
   - initialize
   - ApplicationController#global_search
+  - SessionsController#create
   max_statements: 12
 UncommunicativeMethodName:
   enabled: true
@@ -92,7 +93,7 @@ UncommunicativeParameterName:
   accept: []
 UncommunicativeVariableName:
   enabled: true
-  exclude: []
+  exclude: [SessionsController#create]
   reject:
   - !ruby/regexp /^.$/
   - !ruby/regexp /[0-9]$/
