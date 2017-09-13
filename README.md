@@ -2,6 +2,23 @@
 
 Rails Api Base is the base Rails application template used at Rootstrap. It's based on Rails 5 and Ruby 2.3
 
+## Features
+This template comes with:
+- Schema
+  - Users table
+  - Admin users table
+- Endpoints
+  - Sign up with user credentials
+  - Sign up/in with Facebook
+  - Sign in with user credentials
+  - Sign out
+  - Reset password
+  - Get and update user profile
+- Administration panel for users
+- Rspec tests
+- Code quality tools
+- API documentation following https://apiblueprint.org/
+
 ## Gems
 
 - [ActiveAdmin](https://github.com/activeadmin/activeadmin) for easy administration
