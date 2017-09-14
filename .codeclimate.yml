@@ -1,0 +1,6 @@
+engines:
+  bundler-audit:
+    enabled: true
+    checks:
+      Insecure Source:
+        enabled: false
