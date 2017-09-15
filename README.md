@@ -1,8 +1,12 @@
 # Rails API Template
 
-Rails Api Base is the base Rails application template used at Rootstrap. It's based on Rails 5 and Ruby 2.3
+Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the community best practices in terms of standards, security and maintainability, integrating a variety of testing and code quality tools. It's based on Rails 5 and Ruby 2.3.
+
+Finally, it contains a plug an play Administration console (thanks to https://github.com/activeadmin/activeadmin).
+
 
 ## Features
+
 This template comes with:
 - Schema
   - Users table
@@ -18,6 +22,19 @@ This template comes with:
 - Rspec tests
 - Code quality tools
 - API documentation following https://apiblueprint.org/
+
+## How to use
+
+1. Clone this repo
+2. Install PostgreSQL in case you don't have it
+2. Create your `database.yml` and `application.yml` file
+3. `bundle install`
+4. Generate a secret key with `rake secret` and paste this value into the `application.yml`.
+5. `rake db:create`
+6. `rake db:migrate`
+7. `rspec` and make sure all tests pass
+8. `rails s`
+9. You can now try your REST services!
 
 ## Gems
 
@@ -52,26 +69,16 @@ This template comes with:
 - [Simplecov](https://github.com/colszowka/simplecov) for code coverage
 - [Webmock](https://github.com/bblimke/webmock) for stubbing http requests
 
-## Setup
-
-1. Clone this repo
-2. Create your `database.yml` and `application.yml` file
-3. `bundle install`
-4. Generate a secret key with `rake secret` and paste this value into the `application.yml`
-5. `rake db:create`
-6. `rake db:migrate`
-7. `rails s`
-
 ## Optional configuration
 
 - Set your [frontend URL](https://github.com/cyu/rack-cors#origin) in `config/initializers/rack_cors.rb`
 - Set your mail sender in `config/initializers/devise.rb`
-- Decrease `token_lifespan` in `config/initializers/devise_token_auth.rb` if the frontend is a Web-app.
+- Decrease `token_lifespan` in `config/initializers/devise_token_auth.rb` if the frontend is a Web-app. The token lifespan tells when the users will need to re-authenticate since their last login.
 - Config your timezone accordingly in `application.rb`.
 
 ## Api Docs
 
-http://docs.rails5apibase.apiary.io
+http://docs.railsapibase.apiary.io
 
 
 ## Code quality
