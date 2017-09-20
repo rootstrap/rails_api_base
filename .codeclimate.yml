@@ -1,6 +1,14 @@
 engines:
+  brakeman:
+    enabled: true
   bundler-audit:
     enabled: true
+  duplication:
+    enabled: true
+  flog:
+    enabled: true
+  rubocop:
+    enabled: true
     checks:
-      Insecure Source:
+      Rubocop/Style/FrozenStringLiteralComment:
         enabled: false
