@@ -1,9 +1,26 @@
 Documentation:
   Enabled: false
+
+Layout/SpaceBeforeFirstArg:
+  Exclude:
+    - app/views/api/**/**/*
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/*
+
 Metrics/AbcSize:
   # The ABC size is a calculated magnitude, so this number can be an Integer or
   # a Float.
   Max: 15
+
+Metrics/BlockLength:
+  CountComments: false  # count full line comments?
+  Max: 25
+  Exclude:
+    - config/**/*
+    - spec/**/*
+    - app/admin/**/*
 
 Metrics/BlockNesting:
   Max: 4
@@ -12,13 +29,17 @@ Metrics/ClassLength:
   CountComments: false  # count full line comments?
   Max: 200
 
-Metrics/ModuleLength:
-  CountComments: false  # count full line comments?
-  Max: 200
-
 # Avoid complex methods.
 Metrics/CyclomaticComplexity:
   Max: 6
+
+Metrics/MethodLength:
+  CountComments: false  # count full line comments?
+  Max: 24
+
+Metrics/ModuleLength:
+  CountComments: false  # count full line comments?
+  Max: 200
 
 Metrics/LineLength:
   Max: 100
@@ -29,10 +50,6 @@ Metrics/LineLength:
     - http
     - https
 
-Metrics/MethodLength:
-  CountComments: false  # count full line comments?
-  Max: 24
-
 Metrics/ParameterLists:
   Max: 5
   CountKeywordArgs: true
@@ -40,6 +57,5 @@ Metrics/ParameterLists:
 Metrics/PerceivedComplexity:
   Max: 12
 
-SingleSpaceBeforeFirstArg:
- Exclude:
-   - app/views/api/**/**/*
+Style/FrozenStringLiteralComment:
+  Enabled: false

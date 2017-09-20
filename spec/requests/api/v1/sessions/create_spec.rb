@@ -3,7 +3,8 @@ require 'rails_helper'
 describe 'POST api/v1/users/sign_in', type: :request do
   let(:password) { 'password' }
   let(:token) do
-    { '70crCAAYmNP1xLkKKM09zA' =>
+    {
+      '70crCAAYmNP1xLkKKM09zA' =>
       {
         'token' => '$2a$10$mSeRnpVMaaegCpn3AhORGe5wajFhgMoBjGIrMwq4Qq2mP6f/OHu1y',
         'expiry' => 153_574_356_4
@@ -18,7 +19,7 @@ describe 'POST api/v1/users/sign_in', type: :request do
       }
     }"
   end
-  let(:user)     { create(:user, password: password, tokens: token) }
+  let(:user) { create(:user, password: password, tokens: token) }
 
   context 'with correct params' do
     before do
