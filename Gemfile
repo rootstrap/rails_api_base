@@ -9,7 +9,7 @@ gem 'carrierwave', '~> 0.11.2'
 gem 'carrierwave-base64', '~> 2.3.4'
 gem 'delayed_job_active_record', '~> 4.1.2'
 gem 'devise', '~> 4.3.0'
-gem 'devise_token_auth', github: 'rootstrap/devise_token_auth'
+gem 'devise_token_auth', git: 'https://github.com/rootstrap/devise_token_auth'
 gem 'draper', '~> 3.0.0'
 gem 'fog-aws', '~> 0.12.0'
 gem 'haml-rails', '~> 1.0.0'
@@ -65,4 +65,4 @@ group :assets do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)
