@@ -13,7 +13,7 @@ describe 'POST api/v1/users/facebook', type: :request do
     }
   end
 
-  shared_context 'fail to login with facebook' do
+  shared_examples 'fail to login with facebook' do
     it 'does not returns a successful response' do
       post facebook_path, params: params, as: :json
       expect(response).to_not have_http_status(:success)
