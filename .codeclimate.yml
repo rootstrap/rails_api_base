@@ -20,3 +20,8 @@ engines:
     exclude_paths:
       - db/**/*
     channel: rubocop-0-49
+ratings:
+  paths:
+  - app/**
+  - lib/**
+  - "**.rb"
