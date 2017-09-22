@@ -1,6 +1,28 @@
 require 'rails_helper'
 
 describe 'POST api/v1/users/sign_in', type: :request do
+  shared_examples 'log in successfully' do
+    it 'returns success' do
+      expect(response).to be_success
+    end
+
+    it 'returns the user' do
+      expect(json[:user][:id]).to eq(user.id)
+      expect(json[:user][:email]).to eq(user.email)
+      expect(json[:user][:username]).to eq(user.username)
+      expect(json[:user][:uid]).to eq(user.uid)
+      expect(json[:user][:provider]).to eq('email')
+      expect(json[:user][:first_name]).to eq(user.first_name)
+      expect(json[:user][:last_name]).to eq(user.last_name)
+    end
+
+    it 'returns a valid client and access token' do
+      token = response.header['access-token']
+      client = response.header['client']
+      expect(user.reload.valid_token?(token, client)).to be_truthy
+    end
+  end
+
   let(:password) { 'password' }
   let(:token) do
     {
@@ -33,25 +55,7 @@ describe 'POST api/v1/users/sign_in', type: :request do
       post new_user_session_path, params: params, as: :json
     end
 
-    it 'returns success' do
-      expect(response).to be_success
-    end
-
-    it 'returns the user' do
-      expect(json[:user][:id]).to eq(user.id)
-      expect(json[:user][:email]).to eq(user.email)
-      expect(json[:user][:username]).to eq(user.username)
-      expect(json[:user][:uid]).to eq(user.uid)
-      expect(json[:user][:provider]).to eq('email')
-      expect(json[:user][:first_name]).to eq(user.first_name)
-      expect(json[:user][:last_name]).to eq(user.last_name)
-    end
-
-    it 'returns a valid client and access token' do
-      token = response.header['access-token']
-      client = response.header['client']
-      expect(user.reload.valid_token?(token, client)).to be_truthy
-    end
+    it_behaves_like 'log in successfully'
   end
 
   context 'with incorrect params' do
@@ -85,24 +89,6 @@ describe 'POST api/v1/users/sign_in', type: :request do
       post new_user_session_path, params: params, as: :json
     end
 
-    it 'returns success' do
-      expect(response).to be_success
-    end
-
-    it 'returns the user' do
-      expect(json[:user][:id]).to eq(user.id)
-      expect(json[:user][:email]).to eq(user.email)
-      expect(json[:user][:username]).to eq(user.username)
-      expect(json[:user][:uid]).to eq(user.uid)
-      expect(json[:user][:provider]).to eq('email')
-      expect(json[:user][:first_name]).to eq(user.first_name)
-      expect(json[:user][:last_name]).to eq(user.last_name)
-    end
-
-    it 'returns a valid client and access token' do
-      token = response.header['access-token']
-      client = response.header['client']
-      expect(user.reload.valid_token?(token, client)).to be_truthy
-    end
+    it_behaves_like 'log in successfully'
   end
 end
