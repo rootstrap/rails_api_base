@@ -69,6 +69,11 @@ describe 'POST api/v1/users/facebook', type: :request do
       end
 
       it_behaves_like 'fail to login with facebook'
+
+      it 'shows the right error' do
+        post facebook_path, params: params, as: :json
+        expect(json[:error]).to include 'already registered'
+      end
     end
 
     context 'without facebook email' do
@@ -131,5 +136,10 @@ describe 'POST api/v1/users/facebook', type: :request do
     end
 
     it_behaves_like 'fail to login with facebook'
+
+    it 'shows the right error' do
+      post facebook_path, params: params, as: :json
+      expect(json[:error]).to include 'Not Authorized'
+    end
   end
 end

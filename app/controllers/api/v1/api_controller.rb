@@ -24,12 +24,12 @@ module Api
 
       def render_error(exception)
         logger.error(exception) # Report to your error managment tool here
-        render json: { error: 'An error ocurred' }, status: 500 unless performed?
+        render json: { error: I18n.t('api.errors.server') }, status: 500 unless performed?
       end
 
       def render_not_found(exception)
         logger.info(exception) # for logging
-        render json: { error: "Couldn't find the record" }, status: :not_found
+        render json: { error: I18n.t('api.errors.not_found') }, status: :not_found
       end
 
       def render_record_invalid(exception)
