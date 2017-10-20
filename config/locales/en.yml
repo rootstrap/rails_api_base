@@ -20,4 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  api:
+    errors:
+      server: 'An error ocurred'
+      not_found: "Couldn't find the record"
+    facebook:
+      not_authorized: 'Not Authorized'
+      already_registerd: 'User already registered with email/password'
