@@ -14,9 +14,6 @@ Rails.application.routes.draw do
         resources :users, only: :show
         resource :user, only: :update do
           get :profile
-          controller :sessions do
-            post :facebook, on: :collection
-          end
         end
       end
     end
