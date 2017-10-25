@@ -26,6 +26,3 @@ en:
       not_found: "Couldn't find the record"
       missing_param: 'A required param is missing'
       invalid_content_type: 'Invalid content type header'
-    facebook:
-      not_authorized: 'Not Authorized'
-      already_registerd: 'User already registered with email/password'
