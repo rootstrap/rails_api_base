@@ -2,13 +2,13 @@
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 require 'helpers'
 require 'webmock/rspec'
 require 'shoulda/matchers'
 
-FactoryGirl.factories.clear
-FactoryGirl.reload
+FactoryBot.factories.clear
+FactoryBot.reload
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
 
@@ -29,7 +29,7 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   config.before :each do
     DatabaseCleaner.strategy = :transaction
