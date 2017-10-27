@@ -53,7 +53,7 @@ This template comes with:
 - [Devise](https://github.com/plataformatec/devise) for basic auth
 - [Devise Token Auth](https://github.com/lynndylanhurley/devise_token_auth) for api auth
 - [Draper](https://github.com/drapergem/draper) for decorators
-- [Factory Girl](https://github.com/thoughtbot/factory_girl) for testing data
+- [Factory Bot](https://github.com/thoughtbot/factory_bot) for testing data
 - [Faker](https://github.com/stympy/faker) for generating test data
 - [Haml](https://github.com/haml/haml) for the template engine
 - [Jbuilder](https://github.com/rails/jbuilder) for json views

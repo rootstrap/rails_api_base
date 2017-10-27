@@ -32,7 +32,7 @@ gem 'tilt', '~> 2.0.7'
 
 group :development, :test do
   gem 'bullet', '~> 5.5.1'
-  gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'factory_bot_rails', '~> 4.8.2'
   gem 'pry-byebug', '~> 3.3.0', platform: :mri
   gem 'rspec-core', '~> 3.5.2'
   gem 'rspec-rails', '~> 3.5.2'

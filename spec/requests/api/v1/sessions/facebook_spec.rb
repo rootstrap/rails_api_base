@@ -102,7 +102,7 @@ describe 'POST api/v1/users/facebook', type: :request do
           provider: 'facebook',
           uid: '1234567890'
         }
-        FactoryGirl.create :user, params
+        create :user, params
       end
 
       it 'returns a successful response' do
