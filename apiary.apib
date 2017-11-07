@@ -10,22 +10,8 @@ Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the co
 ### Sign Up [POST]
 
 + Request (application/json)
-    + Body
-
-            {
-              "user":
-                {
-                  "username": "test",
-                  "email": "test@gmail.com",
-                  "password": "password",
-                  "password_confirmation": "password",
-                  "first_name": "Johhny",
-                  "last_name": "Perez"
-                }
-            }
-
-
-+ Response 401
+    + Attributes
+      + user (Profile Edition, required)
 
 
 + Response 200 (application/json)
@@ -37,22 +23,13 @@ Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the co
             uid: test@test.com
 
 
-    + Body
+    + Attributes
+      + user (Profile Response, required)
 
-            {
-              "id": 102,
-              "email": "test@test.com",
-              "provider": "email",
-              "uid": "test@test.com",
-              "first_name": "",
-              "last_name": "",
-              "username": "test",
-              "created_at": "2017-02-23T13:54:33.283Z",
-              "updated_at": "2017-02-23T13:54:33.425Z"
-            }
++ Response 401
 
 
-## Current user's profile [/api/v1/user/]
+## Current user's profile [/api/v1/user/profile]
 
 ### Get current user profile [GET]
 
@@ -64,9 +41,6 @@ Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the co
             uid: test@test.com
 
 
-+ Response 401
-
-
 + Response 200 (application/json)
     + Headers
 
@@ -76,17 +50,11 @@ Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the co
             uid: test@test.com
 
 
-    + Body
+    + Attributes
+      + user (Profile Response, required)
 
-            {
-              "user":
-                {
-                  "email": "test@test.com",
-                  "username": "test",
-                  "first_name": "John",
-                  "last_name": "Doe"
-                }
-            }
+
++ Response 401
 
 
 ### Update current user profile [PUT]
@@ -98,17 +66,8 @@ Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the co
             client: QADgNCWRJj0LyRruqzYbBg
             uid: test@test.com
 
-    + Body
-
-            {
-              "user":
-                {
-                  "username": "test",
-                  "password": "password",
-                  "first_name": "John",
-                  "last_name": "Doe"
-                }
-            }
+    + Attributes
+      + user (Profile Edition, required)
 
 + Response 200 (application/json)
     + Headers
@@ -119,17 +78,8 @@ Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the co
             uid: test@test.com
 
 
-    + Body
-
-            {
-              "user":
-                {
-                  "email": "test@test.com",
-                  "username": "test",
-                  "first_name": "John",
-                  "last_name": "Doe"
-                }
-            }
+    + Attributes
+      + user (Profile Response, required)
 
 ## Get other user's profile [/api/v1/users/{id}]
 
@@ -146,8 +96,6 @@ Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the co
             uid: test@test.com
 
 
-+ Response 401
-
 
 + Response 200 (application/json)
     + Headers
@@ -158,18 +106,10 @@ Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the co
             uid: test@test.com
 
 
-    + Body
+    + Attributes
+      + user (User, required)
 
-            {
-              "user":
-                {
-                  "email": "test@test.com",
-                  "username": "test",
-                  "first_name": "John",
-                  "last_name": "Doe"
-                }
-            }
-
++ Response 401
 
 
 ## Login [/api/v1/users/sign_in]
@@ -189,9 +129,6 @@ Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the co
             }
 
 
-+ Response 401
-
-
 + Response 200 (application/json)
     + Headers
 
@@ -201,22 +138,10 @@ Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the co
             uid: test@test.com
 
 
-    + Body
+    + Attributes
+      + user (Profile Response, required)
 
-            {
-              "user":
-                {
-                  "id": 102,
-                  "email": "test@test.com",
-                  "provider": "email",
-                  "uid": "test@test.com",
-                  "first_name": "",
-                  "last_name": "",
-                  "username": "test",
-                  "created_at": "2017-02-23T13:54:33.283Z",
-                  "updated_at": "2017-02-23T13:54:33.425Z"
-                }
-            }
++ Response 401
 
 
 ## Login with Facebook [/api/v1/user/facebook]
@@ -232,20 +157,8 @@ Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the co
             uid: test@test.com
 
 
-    + Body
-
-            {
-              "user":
-                {
-                  "id": 366,
-                  "email": "test@facebook.com",
-                  "first_name": "Test",
-                  "last_name": "test",
-                  "username": "",
-                  "provider": "facebook",
-                  "uid": "1234567890"
-                }
-            }
+    + Attributes
+      + user (Profile Response, required)
 
 
 ## Logout [/api/v1/users/sign_out]
@@ -265,10 +178,11 @@ Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the co
 
 ## Reset password [/api/v1/users/password]
 
-### Reset passowrd [POST]
+More information of how reset password works: https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
+
+### Reset password [POST]
 
 Use this route to send a password reset confirmation email
-https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
 
 + Request (application/json)
     + Body
@@ -286,10 +200,9 @@ https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
               "message": "An email has been sent to 'example@mail.com' containing instructions for resetting your password."
             }
 
-### Reset passowrd [PUT]
+### Reset password [PUT]
 
 Use this route to change user's passwords
-https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
 
 + Request (application/json)
     + Parameters
@@ -310,27 +223,13 @@ https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
             expiry: 1489009792
             uid: test@test.com
 
-    + Body
-
-            {
-              "user":
-                {
-                  "id": 366,
-                  "email": "test@facebook.com",
-                  "first_name": "Test",
-                  "last_name": "test",
-                  "username": "",
-                  "provider": "facebook",
-                  "uid": "1234567890"
-                }
-            }
+    + Attributes (Profile Response)
 
 ## Edit reset password [/api/v1/users/password/edit]
 
 ### Edit reset password [GET]
 
 This route is the destination URL for password reset confirmation
-https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
 
 + Request (application/json)
     + Parameters
@@ -344,3 +243,28 @@ https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
             client: QADgNCWRJj0LyRruqzYbBg
             expiry: 1489009792
             uid: test@test.com
+
+# Data Structures
+
+## Profile Response (object)
++ id: 100 (number)
++ email: test@test.com (string)
++ provider: email, facebook, twitter (enum[string]) - it's way the user logins
++ uid: test@test.com (string) - the provider identifier
++ first_name: John (string)
++ last_name: Doe (string)
++ username: jdoe (string)
++ created_at: 2017-02-23T13:54:33.283Z (string)
+
+## Profile Edition (object)
++ email: test@test.com (string)
++ password: 12345678 (string)
++ first_name: John (string)
++ last_name: Doe (string)
++ username: jdoe (string)
+
+## User (object)
++ email: test@test.com (string)
++ first_name: John (string)
++ last_name: Doe (string)
++ username: jdoe (string)
