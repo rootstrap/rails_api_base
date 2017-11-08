@@ -76,7 +76,6 @@ This template comes with:
 
 - Set your [frontend URL](https://github.com/cyu/rack-cors#origin) in `config/initializers/rack_cors.rb`
 - Set your mail sender in `config/initializers/devise.rb`
-- Decrease `token_lifespan` in `config/initializers/devise_token_auth.rb` if the frontend is a Web-app. The token lifespan tells when the users will need to re-authenticate since their last login.
 - Config your timezone accordingly in `application.rb`.
 
 ## Api Docs
