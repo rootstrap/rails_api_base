@@ -16,7 +16,6 @@ This template comes with:
   - Admin users table
 - Endpoints
   - Sign up with user credentials
-  - Sign up/in with Facebook
   - Sign in with user credentials
   - Sign out
   - Reset password
@@ -57,7 +56,6 @@ This template comes with:
 - [Faker](https://github.com/stympy/faker) for generating test data
 - [Haml](https://github.com/haml/haml) for the template engine
 - [Jbuilder](https://github.com/rails/jbuilder) for json views
-- [Koala](https://github.com/arsduo/koala) for connecting with Facebook
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
 - [Oj](https://github.com/ohler55/oj) for optimized json
 - [Pry](https://github.com/pry/pry) for enhancing the ruby shell
