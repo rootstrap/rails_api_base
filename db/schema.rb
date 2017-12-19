@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20161027190856) do
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.boolean "allow_password_change", default: false
     t.datetime "remember_created_at"
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"

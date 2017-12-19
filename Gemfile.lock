@@ -1,8 +1,8 @@
 GIT
-  remote: https://github.com/rootstrap/devise_token_auth
-  revision: c1bb7120a6be2c71c635a04aa12605347588bca1
+  remote: https://github.com/lynndylanhurley/devise_token_auth
+  revision: f83ec1da912d033fe11eccc1efd9191fbbc143b0
   specs:
-    devise_token_auth (0.1.42)
+    devise_token_auth (0.1.43.beta1)
       devise (> 3.5.2, < 4.4)
       rails (< 6)
 
