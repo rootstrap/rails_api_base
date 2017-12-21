@@ -58,8 +58,7 @@ describe 'POST api/v1/users/sign_in', type: :request do
 
       expect(response).to be_unauthorized
       expected_response = {
-        success: false,
-        errors: ['Invalid login credentials. Please try again.']
+        error: 'Invalid login credentials. Please try again.'
       }.with_indifferent_access
       expect(json).to eq(expected_response)
     end
