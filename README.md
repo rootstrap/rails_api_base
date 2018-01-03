@@ -30,14 +30,14 @@ This template comes with:
 
 1. Clone this repo
 2. Install PostgreSQL in case you don't have it
-2. Create your `database.yml` and `application.yml` file
-3. `bundle install`
-4. Generate a secret key with `rake secret` and paste this value into the `application.yml`.
-5. `rake db:create`
-6. `rake db:migrate`
-7. `rspec` and make sure all tests pass
-8. `rails s`
-9. You can now try your REST services!
+3. Create your `database.yml` and `application.yml` file
+4. `bundle install`
+5. Generate a secret key with `rake secret` and paste this value into the `application.yml`.
+6. `rake db:create`
+7. `rake db:migrate`
+8. `rspec` and make sure all tests pass
+9. `rails s`
+10. You can now try your REST services!
 
 ## Gems
 
