@@ -18,6 +18,13 @@ module Api
         # http://stackoverflow.com/a/12205114/2394842
         request.session_options[:skip] = true
       end
+
+      def render_error(status, message, _data = nil)
+        response = {
+          error: message
+        }
+        render json: response, status: status
+      end
     end
   end
 end
