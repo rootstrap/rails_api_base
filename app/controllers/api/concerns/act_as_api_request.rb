@@ -10,7 +10,8 @@ module Api
       end
 
       def check_json_request
-        head :not_acceptable unless request.content_type =~ /json/
+        return if request.content_type =~ /json/
+        render json: { error: I18n.t('api.errors.invalid_content_type') }, status: :not_acceptable
       end
 
       def skip_session_storage
