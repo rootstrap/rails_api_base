@@ -26,6 +26,8 @@ module Api
       private
 
       def render_error(exception)
+        raise exception if Rails.env.test?
+
         logger.error(exception) # Report to your error managment tool here
         render json: { error: I18n.t('api.errors.server') }, status: 500 unless performed?
       end
