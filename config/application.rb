@@ -16,8 +16,6 @@ require 'rails/test_unit/railtie'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-require_relative 'env_variables'
-
 module App
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

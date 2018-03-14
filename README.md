@@ -55,6 +55,7 @@ This template comes with:
 - [Draper](https://github.com/drapergem/draper) for decorators
 - [Factory Bot](https://github.com/thoughtbot/factory_bot) for testing data
 - [Faker](https://github.com/stympy/faker) for generating test data
+- [Figaro](https://github.com/laserlemon/figaro) for handling environment variables
 - [Haml](https://github.com/haml/haml) for the template engine
 - [Jbuilder](https://github.com/rails/jbuilder) for json views
 - [Koala](https://github.com/arsduo/koala) for connecting with Facebook
