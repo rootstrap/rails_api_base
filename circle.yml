@@ -1,9 +1,0 @@
-machine:
-  environment:
-    SERVER_URL: 'localhost:3000'
-    PASSWORD_RESET_URL: 'http://127.0.0.1:3000'
-test:
-  override:
-    - bundle exec rspec --format progress
-  post:
-    - bundle exec rake code_analysis

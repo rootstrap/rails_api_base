@@ -1,0 +1,2 @@
+SERVER_URL: 'localhost:3000'
+PASSWORD_RESET_URL: 'http://localhost:3000'
