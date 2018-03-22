@@ -1,0 +1,42 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.4.1-node-browsers
+      - image: circleci/postgres:9.4
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      # Database setup
+      - run: cp .circleci/database.yml config/database.yml
+      - run: cp .circleci/application.yml config/application.yml
+      - run: RAILS_ENV=test bundle exec rake db:create
+      - run: RAILS_ENV=test bundle exec rake db:schema:load
+
+      - run:
+          name: run tests
+          command: RAILS_ENV=test bundle exec rspec
+
+      # run code_analysis!
+      - run:
+          name: run code analysis
+          command: RAILS_ENV=test bundle exec rake code_analysis
+
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
