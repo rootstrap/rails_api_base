@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.4.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.2'
+gem 'rails', '~> 5.1.5'
 
 gem 'activeadmin', '~> 1.2.0'
 gem 'carrierwave', '~> 1.2.2'
 gem 'carrierwave-base64', '~> 2.3.4'
 gem 'delayed_job_active_record', '~> 4.1.2'
 gem 'devise', '~> 4.3.0'
-gem 'devise_token_auth', git: 'https://github.com/lynndylanhurley/devise_token_auth'
+gem 'devise_token_auth', '~> 0.1.43'
 gem 'draper', '~> 3.0.0'
 gem 'figaro', '~> 1.1.1'
 gem 'fog-aws', '~> 2.0.0'
