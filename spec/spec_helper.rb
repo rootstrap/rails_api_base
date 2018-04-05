@@ -31,6 +31,10 @@ RSpec.configure do |config|
   end
   config.include FactoryBot::Syntax::Methods
 
+  config.before :suite do
+    FactoryBot.lint unless config.files_to_run.one?
+  end
+
   config.before :each do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start

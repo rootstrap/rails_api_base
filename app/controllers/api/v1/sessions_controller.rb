@@ -4,7 +4,7 @@ module Api
   module V1
     class SessionsController < DeviseTokenAuth::SessionsController
       protect_from_forgery with: :null_session
-      include Concerns::ActAsApiRequest
+      include Api::Concerns::ActAsApiRequest
 
       def facebook
         user_params = FacebookService.new(params[:access_token]).profile
