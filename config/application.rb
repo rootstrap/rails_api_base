@@ -38,5 +38,10 @@ module App
     config.action_mailer.default_options = {
       from: 'no-reply@api.com'
     }
+
+    config.generators do |g|
+      g.test_framework :rspec
+      g.fixture_replacement :factory_bot, dir: 'spec/factories'
+    end
   end
 end
