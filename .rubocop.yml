@@ -59,3 +59,6 @@ Metrics/PerceivedComplexity:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Style/ModuleFunction:
+  Enabled: false
