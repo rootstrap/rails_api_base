@@ -5,10 +5,4 @@ FactoryBot.define do
     username { Faker::Internet.unique.user_name }
     uid      { Faker::Number.unique.number(10) }
   end
-
-  trait :with_fb do
-    password nil
-    email nil
-    provider 'facebook'
-  end
 end
