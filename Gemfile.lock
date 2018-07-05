@@ -142,8 +142,6 @@ GEM
       railties (>= 3.0.0)
     faker (1.7.3)
       i18n (~> 0.5)
-    faraday (0.13.1)
-      multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     figaro (1.1.1)
       thor (~> 0.14)
@@ -215,10 +213,6 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
-    koala (1.10.1)
-      addressable
-      faraday
-      multi_json
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.4.1)
@@ -239,7 +233,6 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.12.2)
-    multipart-post (2.0.0)
     nio4r (2.3.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
@@ -424,7 +417,6 @@ DEPENDENCIES
   fog-aws (~> 2.0.0)
   haml-rails (~> 1.0.0)
   jbuilder (~> 2.7.0)
-  koala (~> 1.10.1)
   letter_opener (~> 1.4.1)
   listen (~> 3.0.5)
   oj (~> 2.17.5)
