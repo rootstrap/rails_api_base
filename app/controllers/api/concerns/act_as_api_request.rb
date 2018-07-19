@@ -10,7 +10,7 @@ module Api
       end
 
       def check_json_request
-        return if content_type && content_type.match?(/json/)
+        return if request_content_type && request_content_type.match?(/json/)
         render json: { error: I18n.t('api.errors.invalid_content_type') }, status: :not_acceptable
       end
 
@@ -27,7 +27,7 @@ module Api
         render json: response, status: status
       end
 
-      def content_type
+      def request_content_type
         request.content_type
       end
     end
