@@ -15,10 +15,6 @@ module Api
       def render_create_success
         render json: { user: resource_data }
       end
-
-      def json_request?
-        request.format.json?
-      end
     end
   end
 end
