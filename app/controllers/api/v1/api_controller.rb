@@ -28,6 +28,11 @@ module Api
       def render_error(exception)
         raise exception if Rails.env.test?
 
+        # To properly handle RecordNotFound errors in views
+        if exception.cause.is_a?(ActiveRecord::RecordNotFound)
+          return render_not_found(exception)
+        end
+
         logger.error(exception) # Report to your error managment tool here
         render json: { error: I18n.t('api.errors.server') }, status: 500 unless performed?
       end
