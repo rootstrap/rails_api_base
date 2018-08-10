@@ -2,13 +2,14 @@ source 'https://rubygems.org'
 ruby '2.4.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.2.0'
 
-gem 'activeadmin', '~> 1.2.0'
+gem 'activeadmin', '~> 1.3.0'
+gem 'bootsnap', '~> 1.3.0'
 gem 'carrierwave', '~> 1.2.2'
 gem 'carrierwave-base64', '~> 2.3.4'
-gem 'delayed_job_active_record', '~> 4.1.2'
-gem 'devise', '~> 4.3.0'
+gem 'delayed_job_active_record', '~> 4.1.3'
+gem 'devise', '~> 4.4.3'
 gem 'devise_token_auth', '~> 0.1.43'
 gem 'draper', '~> 3.0.0'
 gem 'figaro', '~> 1.1.1'
@@ -21,7 +22,6 @@ gem 'pry-rails', '~> 0.3.6'
 gem 'puma', '~> 3.0'
 gem 'rack-cors', '~> 0.4.0'
 gem 'sendgrid', '~> 1.2.4'
-gem 'tilt', '~> 2.0.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -31,21 +31,20 @@ gem 'tilt', '~> 2.0.7'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  gem 'bullet', '~> 5.5.1'
+  gem 'bullet', '~> 5.7.5'
   gem 'factory_bot_rails', '~> 4.8.2'
   gem 'pry-byebug', '~> 3.3.0', platform: :mri
-  gem 'rspec-core', '~> 3.5.2'
-  gem 'rspec-rails', '~> 3.5.2'
+  gem 'rspec-rails', '~> 3.8.0'
 end
 
 group :development do
   gem 'annotate', '~> 2.6.5'
   gem 'better_errors', '~> 2.1.1'
   gem 'binding_of_caller', '~> 0.7.2'
-  gem 'brakeman', '~> 3.4.0'
+  gem 'brakeman', '~> 4.3.1'
   gem 'letter_opener', '~> 1.4.1'
   gem 'listen', '~> 3.0.5'
-  gem 'rails_best_practices', '~> 1.16.0'
+  gem 'rails_best_practices', '~> 1.19.0'
   gem 'reek', '~> 4.7.2'
   gem 'rubocop', '~> 0.49.1'
   gem 'spring'
