@@ -3,15 +3,24 @@ require 'rails_helper'
 describe 'DELETE api/v1/users/sign_out', type: :request do
   let(:user) { create(:user) }
 
-  it 'returns a successful response' do
-    delete destroy_user_session_path, headers: auth_headers, as: :json
-    expect(response).to have_http_status(:success)
+  context 'with a valid token' do
+    it 'returns a successful response' do
+      delete destroy_user_session_path, headers: auth_headers, as: :json
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'decrements the amount of user tokens' do
+      headers = auth_headers
+      expect do
+        delete destroy_user_session_path, headers: headers, as: :json
+      end.to change { user.reload.tokens.size }.by(-1)
+    end
   end
 
-  it 'can not do twice' do
-    headers = auth_headers # TODO
-    delete destroy_user_session_path, headers: headers, as: :json
-    delete destroy_user_session_path, headers: headers, as: :json
-    expect(response).to_not have_http_status(:success)
+  context 'without a valid token' do
+    it 'returns not found response' do
+      delete destroy_user_session_path, headers: {}, as: :json
+      expect(response).to have_http_status(:not_found)
+    end
   end
 end
