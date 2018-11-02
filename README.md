@@ -46,7 +46,6 @@ This template comes with:
 - [Brakeman](https://github.com/presidentbeef/brakeman) for static analysis security
 - [Bullet](https://github.com/flyerhzm/bullet) help to kill N+1
 - [Byebug](https://github.com/deivid-rodriguez/byebug) for debugging
-- [Carrierwave](https://github.com/carrierwaveuploader/carrierwave) for file uploading
 - [Database Cleaner](https://github.com/DatabaseCleaner/database_cleaner) for cleaning test database
 - [DelayedJob](https://github.com/collectiveidea/delayed_job) for background processing
 - [Devise](https://github.com/plataformatec/devise) for basic auth
