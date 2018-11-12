@@ -70,7 +70,8 @@ TooManyStatements:
   max_statements: 12
 UncommunicativeMethodName:
   enabled: true
-  exclude: []
+  exclude:
+  - Base64Attach#attachment_from_base64
   reject:
   - !ruby/regexp /^[a-z]$/
   - !ruby/regexp /[0-9]$/

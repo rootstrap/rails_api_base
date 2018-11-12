@@ -9,6 +9,7 @@ capybara-*.html
 /public/system
 /coverage/
 /spec/tmp
+/storage
 .idea/
 .DS_Store
 **.orig

@@ -9,6 +9,7 @@ require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'action_view/railtie'
 require 'action_cable/engine'
+require 'active_storage/engine'
 require 'sprockets/railtie'
 require 'rails/test_unit/railtie'
 
