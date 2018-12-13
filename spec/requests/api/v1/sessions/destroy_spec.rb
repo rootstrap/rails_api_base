@@ -11,9 +11,9 @@ describe 'DELETE api/v1/users/sign_out', type: :request do
 
     it 'decrements the amount of user tokens' do
       headers = auth_headers
-      expect do
+      expect {
         delete destroy_user_session_path, headers: headers, as: :json
-      end.to change { user.reload.tokens.size }.by(-1)
+      }.to change { user.reload.tokens.size }.by(-1)
     end
   end
 
