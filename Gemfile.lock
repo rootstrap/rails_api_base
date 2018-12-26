@@ -119,7 +119,6 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
-    database_cleaner (1.4.1)
     debug_inspector (0.0.3)
     delayed_job (4.1.5)
       activesupport (>= 3.0, < 5.3)
@@ -405,7 +404,6 @@ DEPENDENCIES
   bootsnap (~> 1.3.0)
   brakeman (~> 4.3.1)
   bullet (~> 5.7.5)
-  database_cleaner (~> 1.4.1)
   delayed_job_active_record (~> 4.1.3)
   devise (~> 4.4.3)
   devise_token_auth (~> 0.1.43)
@@ -441,4 +439,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.17.1
+   1.17.2
