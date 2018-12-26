@@ -29,9 +29,9 @@ describe 'POST api/v1/users/passwords', type: :request do
     end
 
     it 'does not send an email' do
-      expect do
+      expect {
         post user_password_path, params: { email: 'notvalid@example.com' }, as: :json
-      end.to change { ActionMailer::Base.deliveries.count }.by(0)
+      }.to change { ActionMailer::Base.deliveries.count }.by(0)
     end
   end
 end
