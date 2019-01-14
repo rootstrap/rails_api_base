@@ -1,6 +1,9 @@
 version: 2
 jobs:
   build:
+    environment:
+      # You must replace the CC_TEST_REPORTER_ID with the one of your project
+      CC_TEST_REPORTER_ID: 89b5ee3c59b8aeeb88ddc2f5469410dc9e0fb800ec4346a54a759bfc4eccb6b3
     docker:
       - image: circleci/ruby:2.4.1-node-browsers
       - image: circleci/postgres:9.4
@@ -40,3 +43,12 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+
+      # run codeclimate!
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+            ./cc-test-reporter before-build
+            ./cc-test-reporter after-build
