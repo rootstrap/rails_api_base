@@ -1,4 +1,46 @@
-engines:
+version: '2'
+checks:
+  argument-count:
+    enabled: true
+    config:
+      threshold: 4
+  complex-logic:
+    enabled: true
+    config:
+      threshold: 4
+  file-lines:
+    enabled: true
+    config:
+      threshold: 250
+  method-complexity:
+    enabled: true
+    config:
+      threshold: 5
+  method-count:
+    enabled: true
+    config:
+      threshold: 20
+  method-lines:
+    enabled: true
+    config:
+      threshold: 25
+  nested-control-flow:
+    enabled: true
+    config:
+      threshold: 4
+  return-statements:
+    enabled: true
+    config:
+      threshold: 4
+  similar-code:
+    enabled: true
+    config:
+      threshold: #language-specific defaults. overrides affect all languages.
+  identical-code:
+    enabled: true
+    config:
+      threshold: #language-specific defaults. overrides affect all languages.
+plugins:
   brakeman:
     enabled: true
   bundler-audit:
@@ -7,21 +49,18 @@ engines:
     enabled: true
   duplication:
     enabled: true
-    exclude_paths:
+    exclude_patterns:
       - spec/**/*
   flog:
     enabled: true
-    exclude_paths:
+    exclude_patterns:
       - db/**/*
       - config/**/*
       - spec/**/*
   rubocop:
     enabled: true
-    exclude_paths:
-      - db/**/*
     channel: rubocop-0-49
-ratings:
-  paths:
-  - app/**
-  - lib/**
-  - "**.rb"
+    config:
+      file: '.rubocop.yml'
+    exclude_patterns:
+      - db/**/*
