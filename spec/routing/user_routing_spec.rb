@@ -7,7 +7,7 @@ describe Api::V1::UsersController, type: :routing do
     end
 
     it 'routes to #show' do
-      expect(get: '/api/v1/users/1').to route_to('api/v1/users#show', format: :json, id: '1')
+      expect(get: '/api/v1/user').to route_to('api/v1/users#show', format: :json)
     end
 
     it 'routes to #profile' do
