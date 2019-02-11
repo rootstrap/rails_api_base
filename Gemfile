@@ -4,6 +4,7 @@ ruby '2.4.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
 
+gem 'active_storage_base64', '~> 0.1.3'
 gem 'activeadmin', '~> 1.4.3'
 gem 'aws-sdk-s3', '~> 1', require: false
 gem 'bootsnap', '~> 1.3.0'

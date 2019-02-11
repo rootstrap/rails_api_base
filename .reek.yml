@@ -83,8 +83,7 @@ detectors:
     max_statements: 12
   UncommunicativeMethodName:
     enabled: true
-    exclude:
-      - Base64Attach#attachment_from_base64
+    exclude: []
     reject:
       - "/^[a-z]$/"
       - "/[0-9]$/"
