@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 module Api
   module V1
     class ApiController < ApplicationController
@@ -28,12 +26,13 @@ module Api
         raise exception if Rails.env.test?
 
         # To properly handle RecordNotFound errors in views
-        if exception.cause.is_a?(ActiveRecord::RecordNotFound)
-          return render_not_found(exception)
-        end
+        return render_not_found(exception) if exception.cause.is_a?(ActiveRecord::RecordNotFound)
 
         logger.error(exception) # Report to your error managment tool here
-        render json: { error: I18n.t('api.errors.server') }, status: 500 unless performed?
+
+        return if performed?
+
+        render json: { error: I18n.t('api.errors.server') }, status: :internal_server_error
       end
 
       def render_not_found(exception)

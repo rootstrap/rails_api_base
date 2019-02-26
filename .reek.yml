@@ -1,0 +1,129 @@
+detectors:
+  Attribute:
+    enabled: false
+    exclude: []
+  BooleanParameter:
+    enabled: true
+    exclude: []
+  ClassVariable:
+    enabled: false
+    exclude: []
+  ControlParameter:
+    enabled: true
+    exclude: []
+  DataClump:
+    enabled: true
+    exclude: []
+    max_copies: 2
+    min_clump_size: 2
+  DuplicateMethodCall:
+    enabled: true
+    exclude: []
+    max_calls: 1
+    allow_calls: []
+  FeatureEnvy:
+    enabled: true
+    exclude: []
+  InstanceVariableAssumption:
+    enabled: false
+  IrresponsibleModule:
+    enabled: false
+    exclude: []
+  LongParameterList:
+    enabled: true
+    exclude: []
+    max_params: 4
+    overrides:
+      initialize:
+        max_params: 5
+  LongYieldList:
+    enabled: true
+    exclude: []
+    max_params: 3
+  ManualDispatch:
+    enabled: true
+    exclude: []
+  MissingSafeMethod:
+    enabled: false
+    exclude: []
+  ModuleInitialize:
+    enabled: true
+    exclude: []
+  NestedIterators:
+    enabled: true
+    exclude: []
+    max_allowed_nesting: 2
+    ignore_iterators: []
+  NilCheck:
+    enabled: false
+    exclude: []
+  RepeatedConditional:
+    enabled: true
+    exclude: []
+    max_ifs: 3
+  SubclassedFromCoreClass:
+    enabled: true
+    exclude: []
+  TooManyConstants:
+    enabled: true
+    exclude: []
+    max_constants: 5
+  TooManyInstanceVariables:
+    enabled: true
+    exclude: []
+    max_instance_variables: 9
+  TooManyMethods:
+    enabled: true
+    exclude: []
+    max_methods: 25
+  TooManyStatements:
+    enabled: true
+    exclude:
+      - initialize
+      - ApplicationController#global_search
+    max_statements: 12
+  UncommunicativeMethodName:
+    enabled: true
+    exclude:
+      - Base64Attach#attachment_from_base64
+    reject:
+      - "/^[a-z]$/"
+      - "/[0-9]$/"
+      - "/[A-Z]/"
+    accept: []
+  UncommunicativeModuleName:
+    enabled: true
+    exclude: []
+    reject:
+      - "/^.$/"
+      - "/[0-9]$/"
+    accept:
+      - Inline::C
+      - "/V[0-9]/"
+  UncommunicativeParameterName:
+    enabled: true
+    exclude: []
+    reject:
+      - "/^.$/"
+      - "/[0-9]$/"
+      - "/[A-Z]/"
+    accept: []
+  UncommunicativeVariableName:
+    enabled: true
+    exclude: []
+    reject:
+      - "/^.$/"
+      - "/[0-9]$/"
+      - "/[A-Z]/"
+    accept:
+      - _
+  UnusedParameters:
+    enabled: true
+    exclude: []
+  UnusedPrivateMethod:
+    enabled: false
+  UtilityFunction:
+    enabled: false
+
+exclude_paths:
+  - config

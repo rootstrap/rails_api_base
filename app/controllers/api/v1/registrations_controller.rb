@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 module Api
   module V1
     class RegistrationsController < DeviseTokenAuth::RegistrationsController

@@ -1,6 +1,9 @@
 Documentation:
   Enabled: false
 
+Layout/ClassStructure:
+  Enabled: true
+
 Layout/SpaceBeforeFirstArg:
   Exclude:
     - app/views/api/**/**/*
@@ -57,11 +60,31 @@ Metrics/ParameterLists:
 Metrics/PerceivedComplexity:
   Max: 12
 
+Rails:
+  Enabled: true
+
+Rails/Delegate:
+  Enabled: true
+  Exclude:
+    - app/controllers/api/concerns/act_as_api_request.rb
+
+Rails/FilePath:
+  Enabled: false
+
+Rails/SaveBang:
+  Enabled: true
+
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining
+
+Style/ExpandPathArguments:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/ModuleFunction:
   Enabled: false
 
-Style/BlockDelimiters:
-  EnforcedStyle: braces_for_chaining
+Style/ReturnNil:
+  Enabled: true

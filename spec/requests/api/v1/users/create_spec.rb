@@ -68,7 +68,7 @@ describe 'POST api/v1/users/', type: :request do
     context 'when the password is incorrect' do
       let(:password)              { 'short' }
       let(:password_confirmation) { 'short' }
-      let(:new_user)              { User.find_by_email(email) }
+      let(:new_user)              { User.find_by(email: email) }
 
       it 'does not create a user' do
         post user_registration_path, params: params, as: :json
@@ -86,7 +86,7 @@ describe 'POST api/v1/users/', type: :request do
     context 'when passwords don\'t match' do
       let(:password)              { 'shouldmatch' }
       let(:password_confirmation) { 'dontmatch' }
-      let(:new_user)              { User.find_by_email(email) }
+      let(:new_user)              { User.find_by(email: email) }
 
       it 'does not create a user' do
         post user_registration_path, params: params, as: :json
