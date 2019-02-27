@@ -6,7 +6,7 @@ module App
         resource '*',
                  headers: :any,
                  methods: %i[get post options put delete],
-                 expose:  ['access-token', 'uid', 'client']
+                 expose: ['access-token', 'uid', 'client']
       end
     end
   end
