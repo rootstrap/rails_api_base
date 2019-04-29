@@ -8,7 +8,6 @@ Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the co
 
 Finally, it contains a plug an play Administration console (thanks to [ActiveAdmin](https://github.com/activeadmin/activeadmin)).
 
-
 ## Features
 
 This template comes with:
@@ -80,7 +79,6 @@ This template comes with:
 
 http://docs.railsapibase.apiary.io
 
-
 ## Code quality
 
 With `rake code_analysis` you can run the code analysis tool, you can omit rules with:
@@ -95,6 +93,12 @@ With `rake code_analysis` you can run the code analysis tool, you can omit rules
 1. After adding the project to CC, go to `Repo Settings`
 2. On the `Test Coverage` tab, copy the `Test Reporter ID`
 3. Replace the current value of `CC_TEST_REPORTER_ID` on the `config.yml file (.circleci/config.yml)` with the one you copied from CC
+
+## Code Owners
+
+You can use [CODEOWNERS](https://help.github.com/en/articles/about-code-owners) file to define individuals or teams that are responsible for code in the repository.
+
+Code owners are automatically requested for review when someone opens a pull request that modifies code that they own.
 
 ## Credits
 
