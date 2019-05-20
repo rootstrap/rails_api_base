@@ -80,7 +80,6 @@ detectors:
     enabled: true
     exclude:
       - initialize
-      - ApplicationController#global_search
     max_statements: 12
   UncommunicativeMethodName:
     enabled: true
