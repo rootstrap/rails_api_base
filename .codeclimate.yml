@@ -43,6 +43,7 @@ checks:
 plugins:
   brakeman:
     enabled: true
+    channel: brakeman-4-45
   bundler-audit:
     enabled: true
   csslint:
@@ -59,8 +60,14 @@ plugins:
       - spec/**/*
   rubocop:
     enabled: true
-    channel: rubocop-0-49
+    channel: rubocop-0-65
     config:
       file: '.rubocop.yml'
     exclude_patterns:
       - db/**/*
+      - bin/
+  reek:
+    enabled: true
+    channel: reek-5-3-1
+    config:
+      file: '.reek.yml'
