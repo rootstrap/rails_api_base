@@ -65,6 +65,7 @@ plugins:
       file: '.rubocop.yml'
     exclude_patterns:
       - db/**/*
+      - bin/
   reek:
     enabled: true
     channel: reek-5-3-1
