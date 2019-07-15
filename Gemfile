@@ -45,7 +45,8 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'rails_best_practices', '~> 1.19.4'
   gem 'reek', '~> 5.3.1'
-  gem 'rubocop', '~> 0.65.0'
+  gem 'rubocop', '~> 0.71.0'
+  gem 'rubocop-rails', '~> 2.0.1'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
@@ -62,4 +63,4 @@ group :assets do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
