@@ -60,12 +60,9 @@ plugins:
       - spec/**/*
   rubocop:
     enabled: true
-    channel: rubocop-0-65
+    channel: rubocop-0-71
     config:
       file: '.rubocop.yml'
-    exclude_patterns:
-      - db/**/*
-      - bin/
   reek:
     enabled: true
     channel: reek-5-3-1
