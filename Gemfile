@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
-ruby '2.5.1'
+ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
 
 gem 'active_storage_base64', '~> 0.1.3'
-gem 'activeadmin', '~> 1.4.3'
+gem 'activeadmin', '~> 2.2'
 gem 'aws-sdk-s3', '~> 1', require: false
 gem 'bootsnap', '~> 1.3.0'
 gem 'delayed_job_active_record', '~> 4.1.3'
@@ -44,8 +44,7 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'rails_best_practices', '~> 1.19.4'
   gem 'reek', '~> 5.3.1'
-  gem 'rubocop', '~> 0.71.0'
-  gem 'rubocop-rails', '~> 2.0.1'
+  gem 'rubocop-rails', '~> 2.3'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
