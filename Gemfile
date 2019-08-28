@@ -2,38 +2,39 @@ source 'https://rubygems.org'
 ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.2'
+gem 'rails', '~> 6.0.0'
 
-gem 'active_storage_base64', '~> 0.1.3'
+gem 'active_storage_base64', '~> 1.0.0'
 gem 'activeadmin', '~> 2.2'
 gem 'aws-sdk-s3', '~> 1', require: false
 gem 'bootsnap', '~> 1.3.0'
 gem 'delayed_job_active_record', '~> 4.1.3'
-gem 'devise', '~> 4.4.3'
-gem 'devise_token_auth', '~> 1.1.0'
-gem 'draper', '~> 3.0.0'
+gem 'devise', '~> 4.7.0'
+gem 'devise_token_auth', github: 'lynndylanhurley/devise_token_auth'
+gem 'draper', '~> 3.1'
 gem 'figaro', '~> 1.1.1'
 gem 'haml-rails', '~> 1.0.0'
-gem 'jbuilder', '~> 2.7.0'
+gem 'jbuilder', '~> 2.9.1'
 gem 'oj', '~> 3.7', '>= 3.7.12'
 gem 'pg', '~> 0.18.2'
 gem 'pry-rails', '~> 0.3.6'
 gem 'puma', '~> 3.0'
 gem 'rack-cors', '~> 0.4.0'
 gem 'sendgrid', '~> 1.2.4'
+gem 'webpacker', '~> 4.0'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
+# gem 'redis', '~> 4.0'
+# Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+# Use Active Storage variant
+# gem 'image_processing', '~> 1.2'
 
 group :development, :test do
-  gem 'bullet', '~> 5.7.5'
+  gem 'bullet', '~> 6.0.2'
   gem 'factory_bot_rails', '~> 4.8.2'
   gem 'pry-byebug', '~> 3.3.0', platform: :mri
-  gem 'rspec-rails', '~> 3.8.0'
+  gem 'rspec-rails', '~> 3.8.2'
 end
 
 group :development do
@@ -46,7 +47,7 @@ group :development do
   gem 'reek', '~> 5.3.1'
   gem 'rubocop-rails', '~> 2.3'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen', '~> 2.0.1'
 end
 
 group :test do
