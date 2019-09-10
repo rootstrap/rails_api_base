@@ -68,3 +68,5 @@ plugins:
     channel: reek-5-3-1
     config:
       file: '.reek.yml'
+exclude_patterns:
+  - 'babel.config.js'
