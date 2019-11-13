@@ -5,23 +5,24 @@ ruby '2.6.3'
 gem 'rails', '~> 6.0.0'
 
 gem 'active_storage_base64', '~> 1.0.0'
-gem 'activeadmin', '~> 2.2'
+gem 'activeadmin', '~> 2.4'
 gem 'aws-sdk-s3', '~> 1', require: false
-gem 'bootsnap', '~> 1.3.0'
-gem 'delayed_job_active_record', '~> 4.1.3'
+gem 'bootsnap', '~> 1.4', '>= 1.4.5'
+gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.4'
 gem 'devise', '~> 4.7.1'
-gem 'devise_token_auth', '~> 1.1.2'
+gem 'devise_token_auth', '~> 1.1', '>= 1.1.3'
 gem 'draper', '~> 3.1'
 gem 'figaro', '~> 1.1.1'
-gem 'haml-rails', '~> 1.0.0'
+gem 'haml-rails', '~> 2.0', '>= 2.0.1'
 gem 'jbuilder', '~> 2.9.1'
-gem 'oj', '~> 3.7', '>= 3.7.12'
-gem 'pg', '~> 0.18.2'
-gem 'pry-rails', '~> 0.3.6'
-gem 'puma', '~> 3.0'
-gem 'rack-cors', '~> 0.4.0'
+gem 'oj', '~> 3.9', '>= 3.9.2'
+gem 'pg', '~> 1.1', '>= 1.1.4'
+gem 'pry-rails', '~> 0.3.9'
+gem 'puma', '~> 4.3'
+gem 'rack-cors', '~> 1.0', '>= 1.0.6'
 gem 'sendgrid', '~> 1.2.4'
-gem 'webpacker', '~> 4.0'
+gem 'sprockets', '~> 3.7.2'
+gem 'webpacker', '~> 4.2'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -32,33 +33,33 @@ gem 'webpacker', '~> 4.0'
 
 group :development, :test do
   gem 'bullet', '~> 6.0.2'
-  gem 'factory_bot_rails', '~> 4.8.2'
-  gem 'pry-byebug', '~> 3.3.0', platform: :mri
-  gem 'rspec-rails', '~> 3.8.2'
+  gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
+  gem 'pry-byebug', '~> 3.7', platform: :mri
+  gem 'rspec-rails', '~> 3.9'
 end
 
 group :development do
-  gem 'annotate', '~> 2.6.5'
-  gem 'better_errors', '~> 2.1.1'
-  gem 'brakeman', '~> 4.4.0'
-  gem 'letter_opener', '~> 1.4.1'
-  gem 'listen', '~> 3.0.5'
+  gem 'annotate', '~> 3.0', '>= 3.0.3'
+  gem 'better_errors', '~> 2.5', '>= 2.5.1'
+  gem 'brakeman', '~> 4.7', '>= 4.7.1'
+  gem 'letter_opener', '~> 1.7'
+  gem 'listen', '~> 3.2'
   gem 'rails_best_practices', '~> 1.19.4'
-  gem 'reek', '~> 5.3.1'
-  gem 'rubocop-rails', '~> 2.3'
-  gem 'spring'
+  gem 'reek', '~> 5.5'
+  gem 'rubocop-rails', '~> 2.3', '>= 2.3.2'
+  gem 'spring', '~> 2.1'
   gem 'spring-watcher-listen', '~> 2.0.1'
 end
 
 group :test do
-  gem 'faker', '~> 1.7.3'
-  gem 'shoulda-matchers', '~> 3.1.1'
+  gem 'faker', '~> 2.7'
+  gem 'shoulda-matchers', '~> 4.1', '>= 4.1.2'
   gem 'simplecov', '~> 0.13.0', require: false
-  gem 'webmock', '~> 2.3.2'
+  gem 'webmock', '~> 3.7', '>= 3.7.6'
 end
 
 group :assets do
-  gem 'uglifier', '~> 2.7.2'
+  gem 'uglifier', '~> 4.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
