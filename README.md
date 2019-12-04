@@ -32,11 +32,10 @@ This template comes with:
 3. Create your `database.yml` and `application.yml` file
 4. `bundle install`
 5. Generate a secret key with `rake secret` and paste this value into the `application.yml`.
-6. `rake db:create`
-7. `rake db:migrate`
-8. `rspec` and make sure all tests pass
-9. `rails s`
-10. You can now try your REST services!
+6. `rails db:create db:migrate`
+7. `rspec` and make sure all tests pass
+8. `rails s`
+9. You can now try your REST services!
 
 ## Gems
 
