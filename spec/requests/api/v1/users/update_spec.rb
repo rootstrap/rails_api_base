@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe 'PUT api/v1/user/', type: :request do
   let(:user)             { create(:user) }
   let(:api_v1_user_path) { '/api/v1/user' }

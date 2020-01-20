@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe 'POST api/v1/users/passwords', type: :request do
   let!(:user) { create(:user, password: 'mypass123') }
 
