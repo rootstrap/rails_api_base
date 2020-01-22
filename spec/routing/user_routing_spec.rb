@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Api::V1::UsersController, type: :routing do
   describe 'routing' do
     it 'routes to #update' do

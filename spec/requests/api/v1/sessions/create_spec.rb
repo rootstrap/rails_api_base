@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe 'POST api/v1/users/sign_in', type: :request do
   let(:password) { 'password' }
   let(:token) do

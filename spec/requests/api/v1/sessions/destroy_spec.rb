@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe 'DELETE api/v1/users/sign_out', type: :request do
   let(:user) { create(:user) }
 

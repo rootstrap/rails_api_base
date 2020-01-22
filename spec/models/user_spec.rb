@@ -30,8 +30,6 @@
 #  index_users_on_uid_and_provider      (uid,provider) UNIQUE
 #
 
-require 'rails_helper'
-
 describe User do
   describe 'validations' do
     subject { build :user }
