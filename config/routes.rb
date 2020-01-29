@@ -16,6 +16,9 @@ Rails.application.routes.draw do
           get :profile
         end
       end
+      resources :settings, only: [] do
+        get :must_update, on: :collection
+      end
     end
   end
 end
