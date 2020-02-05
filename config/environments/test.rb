@@ -44,7 +44,8 @@ Rails.application.configure do
   # Store uploaded files on the local file system in a temporary directory.
   config.active_storage.service = :test
 
-  Delayed::Worker.delay_jobs = false
+  # Use test adapter for ActiveJob
+  config.active_job.queue_adapter = :test
 
   config.after_initialize do
     Bullet.enable = true

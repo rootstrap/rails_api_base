@@ -45,6 +45,9 @@ Rails.application.configure do
   # Store files locally.
   config.active_storage.service = :local
 
+  # Use async adapter for ActiveJob
+  config.active_job.queue_adapter = :async
+
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
