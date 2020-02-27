@@ -49,6 +49,7 @@ group :development do
   gem 'rubocop-rails', '~> 2.3', '>= 2.3.2'
   gem 'spring', '~> 2.1'
   gem 'spring-watcher-listen', '~> 2.0.1'
+  gem 'i18n-tasks', '~> 0.9.30'
 end
 
 group :test do
