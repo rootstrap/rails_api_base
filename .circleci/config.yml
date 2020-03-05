@@ -34,6 +34,10 @@ jobs:
       - run: RAILS_ENV=test bundle exec rake db:schema:load
 
       - run:
+          name: I18n Health
+          command: bundle exec i18n-tasks health
+
+      - run:
           name: run tests
           command: RAILS_ENV=test bundle exec rspec
 

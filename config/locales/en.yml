@@ -1,10 +1,10 @@
 ---
 en:
   active_admin:
-    dashboard: 'Main page'
+    dashboard: Main page
     dashboard_welcome:
-      call_to_action: 'Actions'
-      welcome: 'Welcome to your first admin'
+      call_to_action: Actions
+      welcome: Welcome to your first admin
   api:
     errors:
       invalid_content_type: Invalid content type header
