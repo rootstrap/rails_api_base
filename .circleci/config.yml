@@ -7,6 +7,9 @@ jobs:
     docker:
       - image: circleci/ruby:2.6.3-node-browsers
       - image: circleci/postgres:9.4
+        environment:
+          POSTGRES_USER: 'postgres'
+          POSTGRES_HOST_AUTH_METHOD: trust
 
     steps:
       - checkout
@@ -29,6 +32,10 @@ jobs:
       - run: cp .circleci/application.yml config/application.yml
       - run: RAILS_ENV=test bundle exec rake db:create
       - run: RAILS_ENV=test bundle exec rake db:schema:load
+
+      - run:
+          name: I18n Health
+          command: bundle exec i18n-tasks health
 
       - run:
           name: run tests
