@@ -9,8 +9,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1, defaults: { format: :json } do
+      get :status, to: 'api#status'
+
       devise_scope :user do
-        get :status, to: 'api#status'
         resource :user, only: %i[update show] do
           get :profile
         end
