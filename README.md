@@ -24,6 +24,7 @@ This template comes with:
 - Rspec tests
 - Code quality tools
 - API documentation following https://apiblueprint.org/
+- Docker support
 
 ## How to use
 
@@ -36,6 +37,13 @@ This template comes with:
 7. `rspec` and make sure all tests pass
 8. `rails s`
 9. You can now try your REST services!
+
+## How to use with docker
+
+1. Have docker and docker-compose installed
+2. build and run the application with `docker-compose up`
+3. Run `docker-compose exec web bash -c "rails db:create db:migrate"`
+4. You can now try your REST services!
 
 ## Gems
 

@@ -4,12 +4,18 @@ services:
   web:
     image: rails_api_base
     build: .
-    command: rm -f tmp/pids/server.pid &&  bundle exec rails s -b 0.0.0.0 -p 3000
+    entrypoint: >
+      bash -c "
+      rm -f tmp/pids/server.pid
+      && bundle exec rails s -b 0.0.0.0 -p 3000"
     ports:
       - 3000:3000
     volumes:
       - .:/app
       - gems:/gems:z
+      - node_modules:/app/node_modules
+    depends_on:
+      - db
     links:
       - "db:db"
   db:
@@ -23,3 +29,4 @@ services:
 volumes:
   db_data:
   gems:
+  node_modules:
