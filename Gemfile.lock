@@ -437,6 +437,9 @@ GEM
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
+    yaaf (0.1.1)
+      activemodel (>= 4, < 7)
+      activerecord (>= 4, < 7)
     zeitwerk (2.3.0)
 
 PLATFORMS
@@ -484,9 +487,10 @@ DEPENDENCIES
   uglifier (~> 4.2)
   webmock (~> 3.7, >= 3.7.6)
   webpacker (~> 4.2, >= 4.2.2)
+  yaaf (~> 0.1)
 
 RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   2.0.2
+   2.1.4
