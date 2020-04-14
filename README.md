@@ -64,6 +64,7 @@ This template comes with:
 - [Jbuilder](https://github.com/rails/jbuilder) for json views
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
 - [Oj](https://github.com/ohler55/oj) for optimized json
+- [Pagy](https://github.com/ddnexus/pagy) for pagination
 - [Pry](https://github.com/pry/pry) for enhancing the ruby shell
 - [Puma](https://github.com/puma/puma) for the server
 - [Rack CORS](https://github.com/cyu/rack-cors) for handling CORS

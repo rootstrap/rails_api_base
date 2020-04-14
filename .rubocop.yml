@@ -3,6 +3,7 @@ require: rubocop-rails
 AllCops:
   Exclude:
     - db/schema.rb
+    - config/initializers/pagy.rb
 
 Documentation:
   Enabled: false
