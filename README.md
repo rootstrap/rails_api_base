@@ -67,6 +67,7 @@ This template comes with:
 - [Pagy](https://github.com/ddnexus/pagy) for pagination
 - [Pry](https://github.com/pry/pry) for enhancing the ruby shell
 - [Puma](https://github.com/puma/puma) for the server
+- [Pundit](https://github.com/varvet/pundit) for authorization management
 - [Rack CORS](https://github.com/cyu/rack-cors) for handling CORS
 - [Rails Best Practices](https://github.com/flyerhzm/rails_best_practices) for rails linting
 - [Reek](https://github.com/troessner/reek) for ruby linting
