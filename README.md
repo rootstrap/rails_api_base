@@ -29,21 +29,22 @@ This template comes with:
 ## How to use
 
 1. Clone this repo
-2. Install PostgreSQL in case you don't have it
-3. Create your `database.yml` and `application.yml` file
-4. `bundle install`
-5. Generate a secret key with `rake secret` and paste this value into the `application.yml`.
-6. `rails db:create db:migrate`
-7. `rspec` and make sure all tests pass
-8. `rails s`
-9. You can now try your REST services!
+1. Install PostgreSQL in case you don't have it
+1. Create your `database.yml` and `application.yml` file
+1. `bundle install`
+1. Generate a secret key with `rake secret` and paste this value into the `application.yml`.
+1. Run `yarn` to install webpack needs
+1. `rails db:create db:migrate`
+1. `rspec` and make sure all tests pass
+1. `rails s`
+1. You can now try your REST services!
 
 ## How to use with docker
 
 1. Have docker and docker-compose installed
-2. build and run the application with `docker-compose up`
-3. Run `docker-compose exec web bash -c "rails db:create db:migrate"`
-4. You can now try your REST services!
+1. build and run the application with `docker-compose up`
+1. Run `docker-compose exec web bash -c "rails db:create db:migrate"`
+1. You can now try your REST services!
 
 ## Gems
 
@@ -100,8 +101,8 @@ With `rake code_analysis` you can run the code analysis tool, you can omit rules
 
 ## Configuring Code Climate
 1. After adding the project to CC, go to `Repo Settings`
-2. On the `Test Coverage` tab, copy the `Test Reporter ID`
-3. Replace the current value of `CC_TEST_REPORTER_ID` on the `config.yml file (.circleci/config.yml)` with the one you copied from CC
+1. On the `Test Coverage` tab, copy the `Test Reporter ID`
+1. Replace the current value of `CC_TEST_REPORTER_ID` on the `config.yml file (.circleci/config.yml)` with the one you copied from CC
 
 ## Code Owners
 
