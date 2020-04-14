@@ -75,6 +75,7 @@ This template comes with:
 - [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) adds other testing matchers
 - [Simplecov](https://github.com/colszowka/simplecov) for code coverage
 - [Webmock](https://github.com/bblimke/webmock) for stubbing http requests
+- [YAAF](https://github.com/rootstrap/yaaf) for form objects
 
 ## Optional configuration
 

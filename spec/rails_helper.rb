@@ -17,6 +17,14 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
+
+  # Form objects specs
+  config.define_derived_metadata(file_path: Regexp.new('/spec/forms/')) do |metadata|
+    metadata[:type] = :form
+  end
+
+  config.include Shoulda::Matchers::ActiveModel, type: :form
+  config.include Shoulda::Matchers::ActiveRecord, type: :form
 end
 
 Shoulda::Matchers.configure do |config|
