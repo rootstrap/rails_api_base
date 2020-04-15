@@ -61,7 +61,6 @@ This template comes with:
 - [Factory Bot](https://github.com/thoughtbot/factory_bot) for testing data
 - [Faker](https://github.com/stympy/faker) for generating test data
 - [Figaro](https://github.com/laserlemon/figaro) for handling environment variables
-- [Haml](https://github.com/haml/haml) for the template engine
 - [Jbuilder](https://github.com/rails/jbuilder) for json views
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
 - [Oj](https://github.com/ohler55/oj) for optimized json
