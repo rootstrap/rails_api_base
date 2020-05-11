@@ -25,6 +25,7 @@ gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets', '~> 3.7.2'
 gem 'webpacker', '~> 4.2', '>= 4.2.2'
 gem 'yaaf', '~> 0.1'
+gem 'goldiloader', '~> 3.1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
