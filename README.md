@@ -57,7 +57,6 @@ This template comes with:
 - [DelayedJob](https://github.com/collectiveidea/delayed_job) for background processing
 - [Devise](https://github.com/plataformatec/devise) for basic auth
 - [Devise Token Auth](https://github.com/lynndylanhurley/devise_token_auth) for api auth
-- [Draper](https://github.com/drapergem/draper) for decorators
 - [Factory Bot](https://github.com/thoughtbot/factory_bot) for testing data
 - [Faker](https://github.com/stympy/faker) for generating test data
 - [Figaro](https://github.com/laserlemon/figaro) for handling environment variables
