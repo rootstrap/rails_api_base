@@ -42,23 +42,6 @@ describe User do
     end
   end
 
-  context 'when was created with regular login' do
-    let!(:user) { create(:user) }
-    let(:full_name) { user.full_name }
-
-    it 'returns the correct name' do
-      expect(full_name).to eq(user.username)
-    end
-  end
-
-  context 'when user has first_name' do
-    let!(:user) { create(:user, first_name: 'John', last_name: 'Doe') }
-
-    it 'returns the correct name' do
-      expect(user.full_name).to eq('John Doe')
-    end
-  end
-
   describe '.from_social_provider' do
     context 'when user does not exists' do
       let(:params) { attributes_for(:user) }

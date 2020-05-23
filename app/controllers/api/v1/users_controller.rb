@@ -3,14 +3,18 @@ module Api
     class UsersController < Api::V1::ApiController
       before_action :auth_user
 
-      def show; end
+      def show
+        @user = UserPresenter.new(current_user)
+      end
 
       def profile
+        @user = UserPresenter.new(current_user)
         render :show
       end
 
       def update
         current_user.update!(user_params)
+        @user = UserPresenter.new(current_user)
         render :show
       end
 
