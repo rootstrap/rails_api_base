@@ -23,6 +23,15 @@
 #   end
 #
 class BasePresenter
+  include ActiveadminPoroDecorator
+
+  delegate_missing_to :record
+  delegate :to_param, to: :record
+
+  def initialize(record)
+    @record = record
+  end
+
   # Wraps each record in the collection in
   # a presenter
   #
@@ -30,4 +39,8 @@ class BasePresenter
   def self.wrap_collection(collection)
     collection.map { |record| new(record) }
   end
+
+  private
+
+  attr_reader :record
 end
