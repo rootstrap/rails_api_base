@@ -43,7 +43,7 @@ end
 group :development do
   gem 'annotate', '~> 3.0', '>= 3.0.3'
   gem 'better_errors', '~> 2.5', '>= 2.5.1'
-  gem 'brakeman', '~> 4.7', '>= 4.7.1'
+  gem 'brakeman', '4.3.1' # don't upgrade because of licesing
   gem 'letter_opener', '~> 1.7'
   gem 'listen', '~> 3.2'
   gem 'rails_best_practices', '~> 1.19.4'
