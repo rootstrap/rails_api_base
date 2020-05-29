@@ -2,10 +2,12 @@
   "name": "rails_api_base",
   "private": true,
   "dependencies": {
+    "@activeadmin/activeadmin": "^2.7.0",
     "@rails/actioncable": "^6.0.0-alpha",
     "@rails/activestorage": "^6.0.0-alpha",
     "@rails/ujs": "^6.0.0-alpha",
     "@rails/webpacker": "^4.2.2",
+    "arctic_admin": "3.2.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",

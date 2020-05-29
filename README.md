@@ -49,6 +49,7 @@ This template comes with:
 ## Gems
 
 - [ActiveAdmin](https://github.com/activeadmin/activeadmin) for easy administration
+- [Arctic Admin] (https://github.com/cprodhomme/arctic_admin) for responsive active admin
 - [Annotate](https://github.com/ctran/annotate_models) for doc the schema in the classes
 - [Better Errors](https://github.com/charliesome/better_errors) for a better error page
 - [Brakeman](https://github.com/presidentbeef/brakeman) for static analysis security
