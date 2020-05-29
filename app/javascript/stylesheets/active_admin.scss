@@ -8,8 +8,7 @@
 // $sidebar-width: 242px;
 
 // Active Admin's got SASS!
-@import "active_admin/mixins";
-@import "active_admin/base";
+@import "~arctic_admin/src/scss/main";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
