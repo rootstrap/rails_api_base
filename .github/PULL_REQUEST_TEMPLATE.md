@@ -1,4 +1,3 @@
-## Title of the PR
 #### Board:
 * [Ticket #NUMBER_OF_THE_TICKET](link_goes_here)
 ---
