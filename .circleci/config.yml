@@ -37,10 +37,6 @@ jobs:
           name: I18n Health
           command: bundle exec i18n-tasks health
 
-      - run:
-          name: run tests
-          command: RAILS_ENV=test bundle exec rspec
-
       # run code_analysis!
       - run:
           name: run code analysis
@@ -51,6 +47,11 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+
+      # run tests
+      - run:
+          name: run tests
+          command: RAILS_ENV=test bundle exec rspec
 
       # run codeclimate!
       - run:
