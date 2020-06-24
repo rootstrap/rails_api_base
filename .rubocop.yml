@@ -4,6 +4,8 @@ AllCops:
   Exclude:
     - db/schema.rb
     - config/initializers/pagy.rb
+    - bin/bundle
+    - bin/yarn
 
 Documentation:
   Enabled: false
