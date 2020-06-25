@@ -45,6 +45,7 @@ group :development do
   gem 'annotate', '~> 3.0', '>= 3.0.3'
   gem 'better_errors', '~> 2.5', '>= 2.5.1'
   gem 'binding_of_caller', '~> 0.8.0'
+  gem 'brakeman', '~> 4.7', '>= 4.7.1'
   gem 'i18n-tasks', '~> 0.9.30'
   gem 'letter_opener', '~> 1.7'
   gem 'listen', '~> 3.2'
