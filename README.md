@@ -52,6 +52,7 @@ This template comes with:
 - [Arctic Admin](https://github.com/cprodhomme/arctic_admin) for responsive active admin
 - [Annotate](https://github.com/ctran/annotate_models) for doc the schema in the classes
 - [Better Errors](https://github.com/charliesome/better_errors) for a better error page
+- [Brakeman](https://github.com/presidentbeef/brakeman) for static analysis security
 - [Bullet](https://github.com/flyerhzm/bullet) help to kill N+1
 - [Byebug](https://github.com/deivid-rodriguez/byebug) for debugging
 - [DelayedJob](https://github.com/collectiveidea/delayed_job) for background processing
@@ -96,6 +97,7 @@ With `rake code_analysis` you can run the code analysis tool, you can omit rules
 - [Rubocop](https://github.com/bbatsov/rubocop/blob/master/config/default.yml) Edit `.rubocop.yml`
 - [Reek](https://github.com/troessner/reek#configuration-file) Edit `config.reek`
 - [Rails Best Practices](https://github.com/flyerhzm/rails_best_practices#custom-configuration) Edit `config/rails_best_practices.yml`
+- [Brakeman](https://github.com/presidentbeef/brakeman) Run `brakeman -I` to generate `config/brakeman.ignore`
 - [Bullet](https://github.com/flyerhzm/bullet#whitelist) You can add exceptions to a bullet initializer or in the controller
 
 ## Configuring Code Climate
