@@ -13,6 +13,17 @@ AllCops:
     - bin/bundle
     - bin/yarn
 
+Layout/ClassStructure:
+  Enabled: true
+
+Layout/SpaceBeforeFirstArg:
+  Exclude:
+    - app/views/api/**/**/*
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/*
+
 Metrics/AbcSize:
   Exclude:
     - db/migrate/20161011151353_devise_create_users.rb
@@ -27,3 +38,27 @@ Layout/LineLength:
 Rails/Delegate:
   Exclude:
     - app/controllers/api/concerns/act_as_api_request.rb
+
+Style/Documentation:
+  Enabled: false
+
+Rails/FilePath:
+  Enabled: false
+
+Rails/SaveBang:
+  Enabled: true
+
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining
+
+Style/ExpandPathArguments:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/ModuleFunction:
+  Enabled: false
+
+Style/ReturnNil:
+  Enabled: true

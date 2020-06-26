@@ -125,3 +125,4 @@ detectors:
 
 exclude_paths:
   - config
+  - db/migrate
