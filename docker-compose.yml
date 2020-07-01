@@ -2,7 +2,6 @@ version: '3.0'
 
 services:
   web:
-    image: rails_api_base
     build: .
     entrypoint: >
       bash -c "
@@ -11,9 +10,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - .:/app
-      - gems:/gems:z
-      - node_modules:/app/node_modules
+      - .:/src/myapp
     depends_on:
       - db
     links:
@@ -28,5 +25,3 @@ services:
       - 5432:5432
 volumes:
   db_data:
-  gems:
-  node_modules:
