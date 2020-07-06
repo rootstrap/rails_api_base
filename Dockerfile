@@ -1,50 +1,35 @@
 FROM ruby:2.6.3
 
-LABEL Name=rails_api_base Version=1.0
+RUN apt-get update -qq && \
+    apt-get install -y build-essential libssl-dev nodejs libpq-dev less vim nano libsasl2-dev
 
-ENV PATH=/app/bin:$PATH
-
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client libxml2
-
-# Install heroku cli
-RUN curl https://cli-assets.heroku.com/install.sh | sh
-
-RUN mkdir /gems
-ENV BUNDLE_PATH "/gems"
-
-RUN mkdir /app
-WORKDIR /app
-
-# Install Node.js with npm
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
-RUN apt -y install nodejs
-RUN apt -y install gcc g++ make cmake
-
-# Install yarn
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt update && apt install yarn
 
-# Install bundler
-RUN gem install bundler:2.0.2
+ENV WORK_ROOT /src
+ENV APP_HOME $WORK_ROOT/myapp/
+ENV LANG C.UTF-8
+ENV GEM_HOME $WORK_ROOT/bundle
+ENV BUNDLE_BIN $GEM_HOME/gems/bin
+ENV PATH $GEM_HOME/bin:$BUNDLE_BIN:$PATH
 
-# Install nano text editor
-RUN apt install nano
+RUN gem install bundler
 
-WORKDIR /app
+RUN mkdir -p $APP_HOME
 
-# Add application binaries
-ADD ./bin /app/bin
+RUN bundle config --path=$GEM_HOME
 
-# Install gems
-ADD Gemfile Gemfile.lock ./
-RUN ./bin/bundle install
+WORKDIR $APP_HOME
 
-# Install node modules
+ADD Gemfile ./
+ADD Gemfile.lock ./
+RUN bundle install
+
 ADD package.json yarn.lock ./
 RUN yarn install --check-files
 
-ADD . /app/
+ADD . $APP_HOME
 
 EXPOSE 3000
 
