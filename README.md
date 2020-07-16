@@ -25,6 +25,7 @@ This template comes with:
 - Code quality tools
 - API documentation following https://apiblueprint.org/
 - Docker support
+- Exception Tracking
 
 ## How to use
 
@@ -59,6 +60,7 @@ This template comes with:
 - [Devise](https://github.com/plataformatec/devise) for basic auth
 - [Devise Token Auth](https://github.com/lynndylanhurley/devise_token_auth) for api auth
 - [Draper](https://github.com/drapergem/draper) for decorators
+- [ExceptionHunter](https://github.com/rootstrap/exception_hunter) for exception tracking
 - [Factory Bot](https://github.com/thoughtbot/factory_bot) for testing data
 - [Faker](https://github.com/stympy/faker) for generating test data
 - [Figaro](https://github.com/laserlemon/figaro) for handling environment variables
