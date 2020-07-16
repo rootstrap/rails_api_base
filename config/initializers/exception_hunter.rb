@@ -29,7 +29,7 @@ ExceptionHunter.setup do |config|
   # Exception Hunter will try to include the attributes defined here
   # as part of the user information that is kept from the request.
   #
-  config.user_attributes = [:id, :email]
+  config.user_attributes = %i[id email]
 
   # == Stale errors
   #
