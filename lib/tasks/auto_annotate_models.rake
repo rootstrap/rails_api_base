@@ -13,6 +13,7 @@ if Rails.env.development?
       'position_in_factory' => 'before',
       'show_indexes' => 'true',
       'simple_indexes' => 'false',
+      'models' => 'true',
       'model_dir' => 'app/models',
       'include_version' => 'false',
       'require' => '',
