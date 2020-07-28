@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_28_183708) do
+ActiveRecord::Schema.define(version: 2020_07_16_171441) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -68,6 +69,31 @@ ActiveRecord::Schema.define(version: 2020_01_28_183708) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+  create_table "exception_hunter_error_groups", force: :cascade do |t|
+    t.string "error_class_name", null: false
+    t.string "message"
+    t.integer "status", default: 0
+    t.text "tags", default: [], array: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["message"], name: "index_exception_hunter_error_groups_on_message", opclass: :gin_trgm_ops, using: :gin
+    t.index ["status"], name: "index_exception_hunter_error_groups_on_status"
+  end
+
+  create_table "exception_hunter_errors", force: :cascade do |t|
+    t.string "class_name", null: false
+    t.string "message"
+    t.datetime "occurred_at", null: false
+    t.json "environment_data"
+    t.json "custom_data"
+    t.json "user_data"
+    t.string "backtrace", default: [], array: true
+    t.bigint "error_group_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["error_group_id"], name: "index_exception_hunter_errors_on_error_group_id"
+  end
+
   create_table "settings", force: :cascade do |t|
     t.string "key", null: false
     t.string "value"
@@ -99,4 +125,5 @@ ActiveRecord::Schema.define(version: 2020_01_28_183708) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "exception_hunter_errors", "exception_hunter_error_groups", column: "error_group_id"
 end
