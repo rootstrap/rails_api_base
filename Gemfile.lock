@@ -376,6 +376,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    semantic_range (2.3.0)
     sendgrid (1.2.4)
       json
     sexp_processor (4.13.0)
@@ -419,10 +420,11 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    webpacker (4.2.2)
-      activesupport (>= 4.2)
+    webpacker (5.1.1)
+      activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
-      railties (>= 4.2)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
     websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -480,7 +482,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (~> 4.2)
   webmock (~> 3.7, >= 3.7.6)
-  webpacker (~> 4.2, >= 4.2.2)
+  webpacker (~> 5.1, >= 5.1.1)
   yaaf (~> 0.1)
 
 RUBY VERSION
