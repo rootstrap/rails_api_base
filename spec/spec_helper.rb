@@ -11,7 +11,7 @@ require 'pundit/rspec'
 FactoryBot.factories.clear
 FactoryBot.reload
 
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
+Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |file| require file }
 
 RSpec.configure do |config|
   config.include Helpers
