@@ -2,11 +2,11 @@
 set -exu
 
 die () {
-    echo >&2 "$@"
-    exit 1
+  echo >&2 "$@"
+  exit 1
 }
 
-[ "$#" -eq 1 ] || die "1 argument required, $# provided. Pleas add the project name"
+[ "$#" -eq 1 ] || die "1 argument required, $# provided. Please add the project name"
 
 project_name=$1
 
@@ -24,4 +24,4 @@ sed "s/SECRET_KEY_BASE:/SECRET_KEY_BASE: ${application_secret}/g" config/applica
 sed "s/sample_project/${project_name}/g" config/database.yml.example > config/database.yml
 
 # setup database
-bundle exec rails db:create db:migrate db:seed
+bundle exec rails db:setup
