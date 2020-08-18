@@ -14,8 +14,6 @@ module App
     # the framework and any gems in your application.
     config.load_defaults 6.0
 
-    config.secret_key_base = ENV['SECRET_KEY_BASE']
-
     config.autoload_paths += %W[#{config.root}/lib]
 
     ActionMailer::Base.smtp_settings = {
