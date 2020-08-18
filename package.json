@@ -6,12 +6,16 @@
     "@rails/actioncable": "^6.0.0-alpha",
     "@rails/activestorage": "^6.0.0-alpha",
     "@rails/ujs": "^6.0.0-alpha",
-    "@rails/webpacker": "^4.2.2",
+    "@rails/webpacker": "^5.1.1",
     "arctic_admin": "3.2.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3.8.0"
+  },
+  "resolutions": {
+    "compression-webpack-plugin": "^4.0.0",
+    "dot-prop": ">=5.2.0"
   }
 }
