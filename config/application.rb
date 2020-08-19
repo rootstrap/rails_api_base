@@ -14,7 +14,7 @@ module App
     # the framework and any gems in your application.
     config.load_defaults 6.0
 
-    config.autoload_paths += %W[#{config.root}/lib]
+    config.add_autoload_paths_to_load_path = false
 
     ActionMailer::Base.smtp_settings = {
       address: 'smtp.sendgrid.net',
