@@ -5,7 +5,7 @@
 # courtesy of @timcour: https://gist.github.com/timcour/5e8d25e4fc0dd62365da2aa8fbd48b9c
 #
 
-CMD="bin/rspec"
+CMD="bundle exec rspec"
 
 function usage {
     echo "Usage: $0 [match terms]"
