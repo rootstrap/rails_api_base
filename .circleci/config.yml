@@ -16,6 +16,7 @@ jobs:
       - restore_cache:
           keys:
           - v1-bundle-dependencies-{{ checksum "Gemfile.lock" }}
+          - v1-bundle-dependencies-
 
       - run:
           name: install dependencies
