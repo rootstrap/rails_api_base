@@ -55,10 +55,6 @@ class User < ApplicationRecord
 
   private
 
-  def uses_email?
-    provider == 'email' || email.present?
-  end
-
   def init_uid
     self.uid = email if uid.blank? && provider == 'email'
   end
