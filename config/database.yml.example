@@ -10,12 +10,12 @@ default: &default
 
 development:
  <<: *default
- database:
+ database: sample_project_development
 
 test:
  <<: *default
- database:
+ database: sample_project_test
 
 production:
  <<: *default
- database:
+ url: <%= ENV['DATABASE_URL'] %>
