@@ -3,7 +3,7 @@ describe ActiveAdmin::PagePolicy do
 
   permissions :show? do
     let!(:user) { create(:user) }
-    let(:record) { OpenStruct.new(name: 'Dashboard') }
+    let(:record) { double('DashboardRecord', name: 'Dashboard') }
 
     it 'allow access if record.name is Dashboard' do
       expect(subject).to permit(user, record)
