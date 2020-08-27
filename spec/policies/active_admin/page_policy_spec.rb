@@ -2,7 +2,7 @@ describe ActiveAdmin::PagePolicy do
   subject { described_class }
 
   permissions :show? do
-    let!(:user) { create(:user) }
+    let(:user) { create(:user) }
     let(:record) { double('DashboardRecord', name: 'Dashboard') }
 
     it 'allow access if record.name is Dashboard' do
