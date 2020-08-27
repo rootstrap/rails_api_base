@@ -10,7 +10,7 @@ describe ActiveAdmin::PagePolicy do
     end
 
     context 'when the record name is distinct to Dashboard' do
-      let(:record) { OpenStruct.new(name: 'not-valid') }
+      let(:record) { double('NoneDashboardRecord', name: 'not-valid') }
 
       it 'denies access' do
         expect(subject).not_to permit(user, record)
