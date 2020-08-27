@@ -43,7 +43,7 @@ class ApplicationPolicy
     end
 
     def resolve
-      scope.all if user.is_a?(AdminUser)
+      scope.all
     end
   end
 end

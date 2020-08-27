@@ -20,23 +20,12 @@ describe ApplicationPolicy do
   end
 
   describe 'scope' do
+    let(:user) { create(:user) }
     let(:mock_model) { OpenStruct.new(all: true) }
     subject { ApplicationPolicy::Scope.new(user, mock_model).resolve }
 
-    context 'when is an user' do
-      let!(:user) { create(:user) }
-
-      it 'hides all models' do
-        expect(subject).to be_nil
-      end
-    end
-
-    context 'when is an admin' do
-      let!(:user) { create(:admin_user) }
-
-      it 'shows all models' do
-        expect(subject).to_not be_nil
-      end
+    it 'shows all models' do
+      expect(subject).to be(true)
     end
   end
 end
