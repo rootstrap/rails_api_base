@@ -11,7 +11,7 @@ describe ApplicationPolicy do
     end
 
     context 'when is an admin' do
-      let!(:admin) { create(:admin_user) }
+      let(:admin) { build(:admin_user) }
 
       it 'permits access' do
         expect(subject).to permit(admin, admin)
