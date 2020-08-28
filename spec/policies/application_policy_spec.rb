@@ -21,7 +21,7 @@ describe ApplicationPolicy do
 
   describe 'scope' do
     let(:user) { create(:user) }
-    let(:mock_model) { OpenStruct.new(all: true) }
+    let(:mock_model) { double('MockModel', all: true) }
     subject { ApplicationPolicy::Scope.new(user, mock_model).resolve }
 
     it 'shows all models' do
