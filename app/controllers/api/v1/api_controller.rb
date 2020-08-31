@@ -13,8 +13,6 @@ module Api
       rescue_from Exception,                           with: :render_error
       rescue_from ActiveRecord::RecordNotFound,        with: :render_not_found
       rescue_from ActiveRecord::RecordInvalid,         with: :render_record_invalid
-      rescue_from ActionController::RoutingError,      with: :render_not_found
-      rescue_from AbstractController::ActionNotFound,  with: :render_not_found
       rescue_from ActionController::ParameterMissing,  with: :render_parameter_missing
 
       def status
