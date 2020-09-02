@@ -17,7 +17,7 @@ Metrics/AbcSize:
   Exclude:
     - db/migrate/20161011151353_devise_create_users.rb
 
-Metrics/LineLength:
+Layout/LineLength:
   Exclude:
     - db/migrate/20161011184702_devise_create_admin_users.rb
     - db/migrate/20161011151353_devise_create_users.rb

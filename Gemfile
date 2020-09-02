@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '~> 2.6.3'
+ruby '~> 2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
@@ -12,10 +12,10 @@ gem 'bootsnap', '~> 1.4', '>= 1.4.5'
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.4'
 gem 'devise', '~> 4.7.1'
 gem 'devise_token_auth', '~> 1.1', '>= 1.1.3'
-gem 'draper', '~> 3.1'
+gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'exception_hunter', '~> 0.4'
 gem 'figaro', '~> 1.1.1'
-gem 'jbuilder', '~> 2.9.1'
+gem 'jbuilder', '~> 2.10'
 gem 'oj', '~> 3.9', '>= 3.9.2'
 gem 'pagy', '~> 3.7', '>= 3.7.5'
 gem 'pg', '~> 1.1', '>= 1.1.4'
@@ -36,7 +36,7 @@ gem 'yaaf', '~> 0.1'
 # gem 'image_processing', '~> 1.2'
 
 group :development, :test do
-  gem 'bullet', '~> 6.0.2'
+  gem 'bullet', '~> 6.1'
   gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
   gem 'pry-byebug', '~> 3.7', platform: :mri
   gem 'rspec-rails', '~> 3.9'
@@ -59,7 +59,7 @@ group :development do
 end
 
 group :test do
-  gem 'faker', '~> 2.7'
+  gem 'faker', '~> 2.13'
   gem 'shoulda-matchers', '~> 4.1', '>= 4.1.2'
   gem 'simplecov', '~> 0.13.0', require: false
   gem 'webmock', '~> 3.7', '>= 3.7.6'
