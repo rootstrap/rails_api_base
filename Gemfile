@@ -10,8 +10,8 @@ gem 'arctic_admin', '~> 3.2'
 gem 'aws-sdk-s3', '~> 1', require: false
 gem 'bootsnap', '~> 1.4', '>= 1.4.5'
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.4'
-gem 'devise', '~> 4.7.1'
-gem 'devise_token_auth', '~> 1.1', '>= 1.1.3'
+gem 'devise', '~> 4.7', '>= 4.7.2'
+gem 'devise_token_auth', '~> 1.1', '>= 1.1.4'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'exception_hunter', '~> 0.4'
 gem 'figaro', '~> 1.1.1'
@@ -19,7 +19,6 @@ gem 'jbuilder', '~> 2.10'
 gem 'oj', '~> 3.9', '>= 3.9.2'
 gem 'pagy', '~> 3.7', '>= 3.7.5'
 gem 'pg', '~> 1.1', '>= 1.1.4'
-gem 'pry-rails', '~> 0.3.9'
 gem 'puma', '~> 4.3'
 gem 'pundit', '~> 2.1'
 gem 'rack-cors', '~> 1.0', '>= 1.0.6'
@@ -38,7 +37,8 @@ gem 'yaaf', '~> 0.1'
 group :development, :test do
   gem 'bullet', '~> 6.1'
   gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
-  gem 'pry-byebug', '~> 3.7', platform: :mri
+  gem 'pry-byebug', '~> 3.9', platform: :mri
+  gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 3.9'
 end
 
