@@ -19,7 +19,6 @@ gem 'jbuilder', '~> 2.10'
 gem 'oj', '~> 3.9', '>= 3.9.2'
 gem 'pagy', '~> 3.7', '>= 3.7.5'
 gem 'pg', '~> 1.1', '>= 1.1.4'
-gem 'pry-rails', '~> 0.3.9'
 gem 'puma', '~> 4.3'
 gem 'pundit', '~> 2.1'
 gem 'rack-cors', '~> 1.0', '>= 1.0.6'
@@ -38,7 +37,8 @@ gem 'yaaf', '~> 0.1'
 group :development, :test do
   gem 'bullet', '~> 6.1'
   gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
-  gem 'pry-byebug', '~> 3.7', platform: :mri
+  gem 'pry-byebug', '~> 3.9', platform: :mri
+  gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 3.9'
 end
 
