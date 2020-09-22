@@ -1,4 +1,24 @@
-version: 2
+version: 2.1
+
+commands:
+  check_untracked_files:
+    description: Check un-tracked changes using git porcelain command
+    parameters:
+      path:
+        description: Path to check
+        type: string
+        default: "."
+    steps:
+      - run:
+          name: Check un-tracked changes
+          command: |
+            if [[ `git status <<parameters.path>> --porcelain` ]]
+            then
+              echo "ERROR: running the previous command has introduced changes. Hence, Failing the build."
+              git status --porcelain
+              exit 1
+            fi
+
 jobs:
   build:
     environment:
@@ -23,6 +43,10 @@ jobs:
           command: |
             gem install bundler
             bundle install --clean --jobs=4 --retry=3 --path vendor/bundle
+
+      - check_untracked_files:
+          path: "Gemfile.lock"
+
       - save_cache:
           paths:
             - vendor/bundle
@@ -32,7 +56,10 @@ jobs:
       - run: cp .circleci/database.yml config/database.yml
       - run: cp .circleci/application.yml config/application.yml
       - run: RAILS_ENV=test bundle exec rake db:create
-      - run: RAILS_ENV=test bundle exec rake db:schema:load
+      - run: RAILS_ENV=test bundle exec rake db:migrate
+
+      - check_untracked_files:
+          path: "db/schema.rb"
 
       - run:
           name: I18n Health
