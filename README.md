@@ -101,7 +101,7 @@ With `rake code_analysis` you can run the code analysis tool, you can omit rules
 ## Configuring Code Climate
 1. After adding the project to CC, go to `Repo Settings`
 1. On the `Test Coverage` tab, copy the `Test Reporter ID`
-1. Replace the current value of `CC_TEST_REPORTER_ID` on the `config.yml file (.circleci/config.yml)` with the one you copied from CC
+1. Set the current value of `CC_TEST_REPORTER_ID` in the [circle-ci project env variables](https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project)
 
 ## Code Owners
 
