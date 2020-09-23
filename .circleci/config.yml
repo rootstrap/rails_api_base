@@ -86,3 +86,11 @@ jobs:
             chmod +x ./cc-test-reporter
             ./cc-test-reporter before-build
             ./cc-test-reporter after-build
+
+      - run:
+          name: Check for missing annotations
+          command: RAILS_ENV=test bundle exec annotate
+      
+      # Check if running annotate changed any file
+      - check_untracked_files:
+          path: "app/ spec/"
