@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+# Automatically find and run specs corresponding to new and changed files or
+# terms passed in.
+# courtesy of @timcour: https://gist.github.com/timcour/5e8d25e4fc0dd62365da2aa8fbd48b9c
+#
+
+CMD="bundle exec rspec"
+
+function usage {
+    echo "Usage: $0 [match terms]"
+}
+
+function changed_files {
+    git diff --find-renames --find-copies --diff-filter=d --name-only HEAD
+}
+
+function changed_rb_files {
+    changed_files |  grep '\.rb$'
+}
+
+function new_files {
+  git ls-files --others --exclude-standard
+}
+
+function new_rb_files {
+    new_files |  grep '\.rb$'
+}
+
+function find_spec {
+    if [ $(echo $1 | grep -E "_spec.rb$") ]; then
+        f=$(basename $1)
+    else
+        f=$(basename $1 | sed -e 's/.rb/_spec.rb/')
+    fi
+    find . -name $f
+}
+
+spec_files=''
+for f in $(changed_rb_files); do
+    spec_files="$spec_files $(find_spec $f)"
+done
+
+for f in $(new_rb_files); do
+    spec_files="$spec_files $(find_spec $f)"
+done
+
+for f in $@; do
+    found_files=$(find . -name "*$f*_spec.rb")
+    spec_files="$spec_files $found_files"
+done
+
+spec_files=$(echo -e "${spec_files// /\\n}" | sort -u)
+
+if [[ -z $spec_files ]]; then
+    echo "No matching specs found.  Change more files or pass in words and run again."
+    usage
+    exit 1
+fi
+
+echo "Running specs:"
+for f in $spec_files; do
+    echo "  $f"
+done
+
+$CMD $spec_files
+
