@@ -85,4 +85,26 @@ jobs:
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             chmod +x ./cc-test-reporter
             ./cc-test-reporter before-build
-            ./cc-test-reporter after-build
+
+  # upload_test_results:
+  #   docker:
+  #       - image: circleci/ruby:2.7.1-node-browsers
+  #       - image: circleci/postgres:9.4
+  #         environment:
+  #           POSTGRES_USER: 'postgres'
+  #           POSTGRES_HOST_AUTH_METHOD: trust
+  #   steps:
+  #     # upload codeclimate!
+  #     - run:
+  #         name: Upload Code Climate test-reporter
+  #         command: ./cc-test-reporter after-build
+
+# workflows:
+#   jobs:
+#     build-test:
+#       - build
+#       - hold:
+#           type: approval # presents manual approval button in the UI
+#           requires:
+#             - build
+#       - upload_test_results
