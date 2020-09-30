@@ -8,6 +8,10 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_settings_on_key  (key) UNIQUE
+#
 
 FactoryBot.define do
   factory :setting do

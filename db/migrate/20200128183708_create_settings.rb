@@ -5,6 +5,8 @@ class CreateSettings < ActiveRecord::Migration[6.0]
       t.string :value
 
       t.timestamps
+
+      t.index :key, unique: true
     end
   end
 end

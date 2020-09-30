@@ -16,6 +16,7 @@ AllCops:
 Metrics/AbcSize:
   Exclude:
     - db/migrate/20161011151353_devise_create_users.rb
+    - db/migrate/20181102142200_create_active_storage_tables.active_storage.rb
 
 Layout/LineLength:
   Exclude:
@@ -27,3 +28,6 @@ Layout/LineLength:
 Rails/Delegate:
   Exclude:
     - app/controllers/api/concerns/act_as_api_request.rb
+
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining
