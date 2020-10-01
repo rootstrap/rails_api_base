@@ -50,11 +50,11 @@ This template comes with:
     host: db
     port: 5432
   ```
-3. Generate a secret key for the app by running `docker-compose run --entrypoint="" web rake secret`, copy it and add it in your environment variables.
-4. Run `docker-compose run --entrypoint="" web rails db:create db:migrate`.
-   1. (Optional) Seed the database with an AdminUser for use with ActiveAdmin by running `docker-compose run --entrypoint="" web rails db:seed`. The credentials for this user are: email: `admin@example.com` ; password: `password`.
+3. Generate a secret key for the app by running `docker-compose run --rm --entrypoint="" web rake secret`, copy it and add it in your environment variables.
+4. Run `docker-compose run --rm --entrypoint="" web rails db:create db:migrate`.
+   1. (Optional) Seed the database with an AdminUser for use with ActiveAdmin by running `docker-compose run --rm --entrypoint="" web rails db:seed`. The credentials for this user are: email: `admin@example.com` ; password: `password`.
 5. (Optional) If you want to deny access to the database from outside of the `docker-compose` network, remove the `ports` key in the `docker-compose.yml` from the `db` service.
-6. (Optional) Run the tests to make sure everything is working with: `docker-compose run --entrypoint="" web rspec .`.
+6. (Optional) Run the tests to make sure everything is working with: `docker-compose run --rm --entrypoint="" web rspec .`.
 7. Run the application with `docker-compose up`.
 8. You can now try your REST services!
 
