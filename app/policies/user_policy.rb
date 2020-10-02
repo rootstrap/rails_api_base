@@ -1,9 +1,5 @@
 class UserPolicy < ApplicationPolicy
   def show?
-    true
-  end
-
-  def profile?
     update?
   end
 
