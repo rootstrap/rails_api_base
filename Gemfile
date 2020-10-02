@@ -7,7 +7,7 @@ gem 'rails', '~> 6.0.0'
 gem 'activeadmin', '~> 2.8'
 gem 'active_storage_base64', '~> 1.0.0'
 gem 'arctic_admin', '~> 3.2'
-gem 'aws-sdk-s3', '~> 1', require: false
+gem 'aws-sdk-s3', '~> 1.75', require: false
 gem 'bootsnap', '~> 1.4', '>= 1.4.5'
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.4'
 gem 'devise', '~> 4.7', '>= 4.7.2'
@@ -39,6 +39,7 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
   gem 'pry-byebug', '~> 3.9', platform: :mri
   gem 'pry-rails', '~> 0.3.9'
+  gem 'rspec_api_documentation', '~> 6.1.0'
   gem 'rspec-rails', '~> 3.9'
 end
 

@@ -1,0 +1,72 @@
+FORMAT: 1A
+# Rails API Template
+
+# Group Users
+
+## Show Profile [/api/v1/user/profile]
+
+### Profile [GET]
+
++ Request Ok
+
+    + Headers
+
+            Access-Token: OQag94I37p6pbOhtoserog
+            Client: 1hAj5o2GXtUYd6D40ldtKA
+            Uid: isis@smitham.biz
+
++ Response 200 ()
+
+    + Headers
+
+            access-token: OQag94I37p6pbOhtoserog
+            token-type: Bearer
+            client: 1hAj5o2GXtUYd6D40ldtKA
+            expiry: 1664737319
+            uid: isis@smitham.biz
+
+    + Body
+
+            {
+              "user": {
+                "id": 103,
+                "email": "isis@smitham.biz",
+                "name": "brant_kub",
+                "first_name": "",
+                "username": "brant_kub"
+              }
+            }
+
+## Show User [api/v1/user]
+
+### Show [GET]
+
++ Request Ok
+
+    + Headers
+
+            Access-Token: ukMN9YUdihWHRF2aFxX6lA
+            Client: aDgqKLuOH8jFuVLhHAzjHA
+            Uid: william@hyatt.info
+
++ Response 200 ()
+
+    + Headers
+
+            access-token: ukMN9YUdihWHRF2aFxX6lA
+            token-type: Bearer
+            client: aDgqKLuOH8jFuVLhHAzjHA
+            expiry: 1664737319
+            uid: william@hyatt.info
+
+    + Body
+
+            {
+              "user": {
+                "id": 104,
+                "email": "william@hyatt.info",
+                "name": "pete.greenfelder",
+                "first_name": "",
+                "username": "pete.greenfelder"
+              }
+            }
