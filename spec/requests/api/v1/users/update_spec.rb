@@ -19,7 +19,7 @@ describe 'PUT api/v1/user/', type: :request do
       put api_v1_user_path, params: params, headers: auth_headers, as: :json
 
       expect(json[:user][:id]).to eq user.id
-      expect(json[:user][:first_name]).to eq user.first_name
+      expect(json[:user][:name]).to eq user.full_name
     end
   end
 

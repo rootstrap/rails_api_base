@@ -11,7 +11,7 @@ describe 'GET api/v1/users/:id', type: :request do
     subject
 
     expect(json[:user][:id]).to eq(user.id)
-    expect(json[:user][:first_name]).to eq(user.first_name)
+    expect(json[:user][:name]).to eq(user.full_name)
   end
 
   context 'when record is not found' do

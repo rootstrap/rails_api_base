@@ -1,4 +1,4 @@
-describe 'POST api/v1/users/passwords', type: :request do
+describe 'POST api/v1/users/password', type: :request do
   let!(:user) { create(:user, password: 'mypass123') }
 
   context 'with valid params' do

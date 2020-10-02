@@ -42,7 +42,7 @@ describe User do
   end
 
   context 'when was created with regular login' do
-    let!(:user) { create(:user) }
+    let!(:user) { create(:user, first_name: nil, last_name: nil) }
     let(:full_name) { user.full_name }
 
     it 'returns the correct name' do
