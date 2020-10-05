@@ -109,7 +109,7 @@ With [Rspec API Doc Generator](https://github.com/zipmark/rspec_api_documentatio
 
 Just run:
 
-` sh ./bin/docs `
+`./bin/docs `
 
 An `apiary.apib` file will be generated at the root directory of the project.
 
