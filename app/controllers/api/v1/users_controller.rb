@@ -5,10 +5,6 @@ module Api
 
       def show; end
 
-      def profile
-        render :show
-      end
-
       def update
         current_user.update!(user_params)
         render :show

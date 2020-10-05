@@ -29,7 +29,7 @@ Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the co
 + Response 401
 
 
-## Current user's profile [/api/v1/user/profile]
+## Current user's profile [/api/v1/user]
 
 ### Get current user profile [GET]
 
@@ -80,34 +80,6 @@ Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the co
 
     + Attributes
       + user (Profile Response, required)
-
-## Get current user info [/api/v1/user]
-
-### Get user [GET]
-
-+ Request (application/json)
-    + Headers
-
-            access-token: sO2bm_Bpdyoo8r78jZ-fqg
-            client: QADgNCWRJj0LyRruqzYbBg
-            uid: test@test.com
-
-
-
-+ Response 200 (application/json)
-    + Headers
-
-            access-token: sO2bm_Bpdyoo8r78jZ-fqg
-            client: QADgNCWRJj0LyRruqzYbBg
-            expiry: 1489009792
-            uid: test@test.com
-
-
-    + Attributes
-      + user (User, required)
-
-+ Response 401
-
 
 ## Login [/api/v1/users/sign_in]
 
