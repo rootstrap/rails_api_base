@@ -55,6 +55,12 @@ resource 'Passwords' do
 
         expect(status).to eq 200
       end
+
+      example 'Bad' do
+        do_request({ password: new_password, password_confirmation: '' })
+
+        expect(status).to eq 422
+      end
     end
   end
 end

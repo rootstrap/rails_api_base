@@ -15,6 +15,13 @@ resource 'Users' do
 
         expect(status).to eq 200
       end
+
+      example 'Bad' do
+        request[:user][:email] = 'not-valid'
+        do_request(request)
+
+        expect(status).to eq 422
+      end
     end
   end
 

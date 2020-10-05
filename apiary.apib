@@ -1,249 +1,458 @@
 FORMAT: 1A
-HOST: http://rails5-api-base.herokuapp.com
+# Rails API Template
 
-# API BASE
+# Group Passwords
 
-Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the community best practices in terms of standards, security and maintainability, integrating a variety of testing and code quality tools.
+## Update Password [api/v1/users/password]
 
-## Users Collection [/api/v1/users]
+### Update [PUT]
 
-### Sign Up [POST]
++ Request Bad
 
-+ Request (application/json)
-    + Attributes
-      + user (Profile Edition, required)
-
-
-+ Response 200 (application/json)
     + Headers
 
-            access-token: sO2bm_Bpdyoo8r78jZ-fqg
-            client: QADgNCWRJj0LyRruqzYbBg
-            expiry: 1489009792
-            uid: test@test.com
+            Access-Token: JIucjpQuNsr7OfqGZCdqeA
+            Client: yjT8JhtIHYEVlWTpImTSQA
+            Uid: gavin_koelpin@roberts.co
 
+    + Body
 
-    + Attributes
-      + user (Profile Response, required)
+            {"password":"123456789","password_confirmation":""}
 
-+ Response 401
++ Response 422 ()
 
-
-## Current user's profile [/api/v1/user/profile]
-
-### Get current user profile [GET]
-
-+ Request (application/json)
     + Headers
 
-            access-token: sO2bm_Bpdyoo8r78jZ-fqg
-            client: QADgNCWRJj0LyRruqzYbBg
-            uid: test@test.com
-
-
-+ Response 200 (application/json)
-    + Headers
-
-            access-token: sO2bm_Bpdyoo8r78jZ-fqg
-            client: QADgNCWRJj0LyRruqzYbBg
-            expiry: 1489009792
-            uid: test@test.com
-
-
-    + Attributes
-      + user (Profile Response, required)
-
-
-+ Response 401
-
-
-### Update current user profile [PUT]
-
-+ Request (application/json)
-    + Headers
-
-            access-token: sO2bm_Bpdyoo8r78jZ-fqg
-            client: QADgNCWRJj0LyRruqzYbBg
-            uid: test@test.com
-
-    + Attributes
-      + user (Profile Edition, required)
-
-+ Response 200 (application/json)
-    + Headers
-
-            access-token: sO2bm_Bpdyoo8r78jZ-fqg
-            client: QADgNCWRJj0LyRruqzYbBg
-            expiry: 1489009792
-            uid: test@test.com
-
-
-    + Attributes
-      + user (Profile Response, required)
-
-## Get current user info [/api/v1/user]
-
-### Get user [GET]
-
-+ Request (application/json)
-    + Headers
-
-            access-token: sO2bm_Bpdyoo8r78jZ-fqg
-            client: QADgNCWRJj0LyRruqzYbBg
-            uid: test@test.com
-
-
-
-+ Response 200 (application/json)
-    + Headers
-
-            access-token: sO2bm_Bpdyoo8r78jZ-fqg
-            client: QADgNCWRJj0LyRruqzYbBg
-            expiry: 1489009792
-            uid: test@test.com
-
-
-    + Attributes
-      + user (User, required)
-
-+ Response 401
-
-
-## Login [/api/v1/users/sign_in]
-
-### Login [POST]
-
-+ Request (application/json)
+            access-token: JIucjpQuNsr7OfqGZCdqeA
+            token-type: Bearer
+            client: yjT8JhtIHYEVlWTpImTSQA
+            expiry: 1664984351
+            uid: gavin_koelpin@roberts.co
 
     + Body
 
             {
-              "user":
-                {
-                  "email": "test@gmail.com",
-                  "password": "password"
-                }
+              "success": false,
+              "errors": {
+                "password_confirmation": [
+                  "doesn't match Password"
+                ],
+                "full_messages": [
+                  "Password confirmation doesn't match Password"
+                ]
+              }
             }
 
++ Request Ok
 
-+ Response 200 (application/json)
     + Headers
 
-            access-token: sO2bm_Bpdyoo8r78jZ-fqg
-            client: QADgNCWRJj0LyRruqzYbBg
-            expiry: 1489009792
-            uid: test@test.com
+            Access-Token: 6wLKSXKKUQ7_6GUJugfMBg
+            Client: BkyouMFF_GFwZcg7P2iaVQ
+            Uid: williams_botsford@jenkins.info
 
-
-    + Attributes
-      + user (Profile Response, required)
-
-+ Response 401
-
-## Logout [/api/v1/users/sign_out]
-
-### Logout [DELETE]
-
-+ Request (application/json)
-    + Headers
-
-            access-token: sO2bm_Bpdyoo8r78jZ-fqg
-            client: QADgNCWRJj0LyRruqzYbBg
-            expiry: 1489009792
-            uid: test@test.com
-
-+ Response 200 (application/json)
-
-
-## Reset password [/api/v1/users/password]
-
-More information of how reset password works: https://github.com/lynndylanhurley/devise_token_auth/wiki/Reset-Password-Flow
-
-### Reset password [POST]
-
-Use this route to send a password reset confirmation email
-
-+ Request (application/json)
     + Body
 
-            {
-              "email": "test@test.com",
-              "redirect_url": "http://www.example.com"
-            }
+            {"password":"123456789","password_confirmation":"123456789"}
 
-+ Response 200 (application/json)
++ Response 200 ()
+
+    + Headers
+
+            access-token: 6wLKSXKKUQ7_6GUJugfMBg
+            token-type: Bearer
+            client: BkyouMFF_GFwZcg7P2iaVQ
+            expiry: 1664984351
+            uid: williams_botsford@jenkins.info
+
     + Body
 
             {
               "success": true,
-              "message": "An email has been sent to 'example@mail.com' containing instructions for resetting your password."
+              "data": {
+                "id": 12,
+                "provider": "email",
+                "allow_password_change": false,
+                "email": "williams_botsford@jenkins.info",
+                "uid": "williams_botsford@jenkins.info",
+                "first_name": "Herbert Lesch",
+                "last_name": "Koss",
+                "username": "gilbert.sporer",
+                "created_at": "2020-10-05T15:39:11.555Z",
+                "updated_at": "2020-10-05T15:39:11.694Z"
+              },
+              "message": "Your password has been successfully updated."
             }
 
-### Reset password [PUT]
+## Create Password [api/v1/users/password]
 
-Use this route to change user's passwords
+### Create [POST]
 
-+ Request (application/json)
-    + Parameters
-        + reset_password_token (string, required)
++ Request Bad
+
+    + Headers
+
+            Access-Token: buWv7Xt0Yh6r7lUApLDrng
+            Client: g7pGGskKUmlKAZWDCbFugg
+            Uid: russel@bergnaum.com
+
+    + Body
+
+            {"email":"notvalid@example.com"}
+
++ Response 404 ()
 
     + Body
 
             {
-              "password": "12345678",
-              "password_confirmation": "12345678"
+              "error": "Unable to find user with email 'notvalid@example.com'."
             }
 
-+ Response 200 (application/json)
++ Request Ok
+
     + Headers
 
-            access-token: sO2bm_Bpdyoo8r78jZ-fqg
-            client: QADgNCWRJj0LyRruqzYbBg
-            expiry: 1489009792
-            uid: test@test.com
+            Access-Token: cvqS-uGbzGzUPSLMXPd5Qw
+            Client: 1p_1WSwQIv5ZMPMChGlDGw
+            Uid: mathilda@lind-beer.org
 
-    + Attributes (Profile Response)
+    + Body
 
-## Edit reset password [/api/v1/users/password/edit]
+            {"email":"mathilda@lind-beer.org"}
 
-### Edit reset password [GET]
++ Response 200 ()
 
-This route is the destination URL for password reset confirmation
+    + Body
 
-+ Request (application/json)
-    + Parameters
-        + reset_password_token (string, required)
-        + redirect_url (string)
+            {
+              "success": true,
+              "message": "An email has been sent to 'mathilda@lind-beer.org' containing instructions for resetting your password."
+            }
 
-+ Response 200 (application/json)
+## Edit Password [api/v1/users/password/edit]
+
+### Edit [GET]
+
++ Request Ok
+
     + Headers
 
-            access-token: sO2bm_Bpdyoo8r78jZ-fqg
-            client: QADgNCWRJj0LyRruqzYbBg
-            expiry: 1489009792
-            uid: test@test.com
+            Access-Token: tRUh_RlyZOSIHY1gBSYyVw
+            Client: OTxrp9kTCMW16s98fyYcRw
+            Uid: joanna@powlowski.com
 
-# Data Structures
++ Response 302 ()
 
-## Profile Response (object)
-+ id: 100 (number)
-+ email: test@test.com (string)
-+ provider: email, facebook, twitter (enum[string]) - it's way the user logins
-+ uid: test@test.com (string) - the provider identifier
-+ first_name: John (string)
-+ last_name: Doe (string)
-+ username: jdoe (string)
-+ created_at: 2017-02-23T13:54:33.283Z (string)
+    + Body
 
-## Profile Edition (object)
-+ email: test@test.com (string)
-+ password: 12345678 (string)
-+ first_name: John (string)
-+ last_name: Doe (string)
-+ username: jdoe (string)
+            <html><body>You are being <a href="http://127.0.0.1:3000?access-token=R9qp7Y6HUs3wuikM5buWSQ&amp;client=0QzveEBpZq_9RFTsooAQWw&amp;client_id=0QzveEBpZq_9RFTsooAQWw&amp;config=&amp;expiry=1664984352&amp;reset_password=true&amp;token=R9qp7Y6HUs3wuikM5buWSQ&amp;uid=joanna%40powlowski.com">redirected</a>.</body></html>
 
-## User (object)
-+ email: test@test.com (string)
-+ first_name: John (string)
-+ last_name: Doe (string)
-+ username: jdoe (string)
+# Group Sessions
+
+## Session [api/v1/users/sign_out]
+
+### Delete [DELETE]
+
++ Request Bad
+
+    + Headers
+
+            Access-Token: notvalidtoken
+            Client: Zf7haNWIj7HeU5FBpxhi_A
+            Uid: marth@durgan.com
+
++ Response 404 ()
+
+    + Body
+
+            {
+              "error": "User was not found or was not logged in."
+            }
+
++ Request Ok
+
+    + Headers
+
+            Access-Token: hYO-GCQ8QSpxCBt9m0fySA
+            Client: zKDZHX9bTgKCtUBscF4XEg
+            Uid: kendall.pagac@moore-stracke.com
+
++ Response 200 ()
+
+    + Body
+
+            {
+              "success": true
+            }
+
+## Session [api/v1/users/sign_in]
+
+### Create [POST]
+
++ Request Bad
+
+    + Headers
+
+            Access-Token: 3etewBpFPZUJvGRDgnuB5w
+            Client: 2bW_xq12Y2_q-96noxTVOw
+            Uid: harold@heller-zieme.name
+
+    + Body
+
+            {"user":{"email":"harold@heller-zieme.name","password":"wrong-password"}}
+
++ Response 401 ()
+
+    + Body
+
+            {
+              "error": "Invalid login credentials. Please try again."
+            }
+
++ Request Ok
+
+    + Headers
+
+            Access-Token: VPxMtJ2-tBaL5YZyt1gc1g
+            Client: EIapbZBQlvisnkujpd31Yg
+            Uid: justin@murazik-trantow.io
+
+    + Body
+
+            {"user":{"email":"justin@murazik-trantow.io","password":"Kt8EbKyTe15L6"}}
+
++ Response 200 ()
+
+    + Headers
+
+            access-token: gi5LA-Ek_VWo4vGFua03Dg
+            token-type: Bearer
+            client: Lj1tZdkImdgg_muJWCqeRg
+            expiry: 1664984350
+            uid: justin@murazik-trantow.io
+
+    + Body
+
+            {
+              "user": {
+                "id": 5,
+                "email": "justin@murazik-trantow.io",
+                "uid": "justin@murazik-trantow.io",
+                "provider": "email",
+                "allow_password_change": false,
+                "first_name": "Clara Mosciski",
+                "last_name": "Zemlak",
+                "username": "gwyn",
+                "created_at": "2020-10-05T15:39:10.746Z",
+                "updated_at": "2020-10-05T15:39:10.886Z"
+              }
+            }
+
+# Group Settings
+
+## Must Update [api/v1/settings/must_update]
+
+### Get [GET]
+
++ Request Bad
+
+    + Headers
+
+            Access-Token: _zPCPcOil70otXeQb41TTw
+            Client: OrDUtqKoqsp-qh1ieVU-MQ
+            Uid: greta.fritsch@fadel-cormier.biz
+
++ Response 200 ()
+
+    + Body
+
+            {
+              "must_update": true
+            }
+
++ Request Ok
+
+    + Headers
+
+            Access-Token: xATaK8Eqfj27XC5-TtoqIw
+            Client: hXxf-LLhxUUFCGdg_Uhxag
+            Uid: danelle@schulist.biz
+
++ Response 200 ()
+
+    + Body
+
+            {
+              "must_update": false
+            }
+
+# Group Status
+
+## Status [api/v1/status]
+
+### Get [GET]
+
++ Request Ok
+
++ Response 200 ()
+
+    + Body
+
+            {
+              "online": true
+            }
+
+# Group Users
+
+## Create User [api/v1/users]
+
+### Create [POST]
+
++ Request Bad
+
+    + Headers
+
+            Access-Token: JLgKtfZQjgCRlnd6z6iivw
+            Client: SvP5P4rumI3scGdyJXWVDA
+            Uid: gregorio_champlin@davis.name
+
+    + Body
+
+            {"user":{"email":"not-valid","password":"Eh3JoF7lS0dFr0X","username":"leo","first_name":"Delois Bode","last_name":"Hettinger","uid":"bb9b76fc-6656-4079-8fa0-88ea35a8e8b0"}}
+
++ Response 422 ()
+
+    + Body
+
+            {
+              "status": "error",
+              "data": {
+                "id": null,
+                "email": "not-valid",
+                "allow_password_change": false,
+                "first_name": "Delois Bode",
+                "last_name": "Hettinger",
+                "username": "leo",
+                "created_at": null,
+                "updated_at": null,
+                "provider": "email",
+                "uid": "not-valid"
+              },
+              "errors": {
+                "email": [
+                  "is not an email"
+                ],
+                "full_messages": [
+                  "Email is not an email"
+                ]
+              }
+            }
+
++ Request Ok
+
+    + Headers
+
+            Access-Token: o-UOsN9L66bh101fQL-clA
+            Client: ArBl4LrPKexwtlk11EDYvg
+            Uid: brook.kohler@cummerata.org
+
+    + Body
+
+            {"user":{"email":"francesco.hartmann@kris.name","password":"XdT8oAuN9lW8b0","username":"jon_beer","first_name":"Diedre Abshire","last_name":"Bashirian","uid":"4fc5e37c-25e1-4f00-b13b-ebb9b1b4630f"}}
+
++ Response 200 ()
+
+    + Headers
+
+            access-token: EQEYdev82rC2EOSxERTvIg
+            token-type: Bearer
+            client: 3qL16lBFjOdYa8rtMa_qmg
+            expiry: 1664984351
+            uid: francesco.hartmann@kris.name
+
+    + Body
+
+            {
+              "user": {
+                "id": 9,
+                "email": "francesco.hartmann@kris.name",
+                "allow_password_change": false,
+                "first_name": "Diedre Abshire",
+                "last_name": "Bashirian",
+                "username": "jon_beer",
+                "created_at": "2020-10-05T15:39:11.229Z",
+                "updated_at": "2020-10-05T15:39:11.288Z",
+                "provider": "email",
+                "uid": "francesco.hartmann@kris.name"
+              }
+            }
+
+## Update User [api/v1/user]
+
+### Update [PUT]
+
++ Request Ok
+
+    + Headers
+
+            Access-Token: hLnBPHZ0UyLTVFvGm9Wneg
+            Client: 6G72NEZ3PKElH0yk_2k8Ow
+            Uid: earleen@ohara.biz
+
+    + Body
+
+            {"user":{"username":"new username"}}
+
++ Response 200 ()
+
+    + Headers
+
+            access-token: hLnBPHZ0UyLTVFvGm9Wneg
+            token-type: Bearer
+            client: 6G72NEZ3PKElH0yk_2k8Ow
+            expiry: 1664984351
+            uid: earleen@ohara.biz
+
+    + Body
+
+            {
+              "user": {
+                "id": 7,
+                "email": "earleen@ohara.biz",
+                "name": "Prof. Neal Runolfsdottir Donnelly",
+                "username": "new username"
+              }
+            }
+
+## Show User [api/v1/user]
+
+### Show [GET]
+
++ Request Ok
+
+    + Headers
+
+            Access-Token: Wws7EL9GWvDHrAQzkneRtw
+            Client: GTYpCLTkDhgA2foNkZda-g
+            Uid: ahmad@treutel.co
+
++ Response 200 ()
+
+    + Headers
+
+            access-token: Wws7EL9GWvDHrAQzkneRtw
+            token-type: Bearer
+            client: GTYpCLTkDhgA2foNkZda-g
+            expiry: 1664984351
+            uid: ahmad@treutel.co
+
+    + Body
+
+            {
+              "user": {
+                "id": 11,
+                "email": "ahmad@treutel.co",
+                "name": "Emma McCullough Hayes",
+                "username": "perry.walker"
+              }
+            }
