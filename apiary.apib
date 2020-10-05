@@ -11,9 +11,9 @@ FORMAT: 1A
 
     + Headers
 
-            Access-Token: UKbQD61T64pYPg98xUsOng
-            Client: 0zt8TiSYKKwhCplSsLIj0g
-            Uid: cory@schumm.org
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: kendrick@hayes.name
 
     + Body
 
@@ -31,13 +31,13 @@ FORMAT: 1A
 
     + Headers
 
-            Access-Token: vYsxWf4qWfEMBhq865tQ9Q
-            Client: OyXpxSQYZAItx4Ds6n8_qw
-            Uid: katelyn.lockman@weber-weissnat.io
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: allen@keebler.net
 
     + Body
 
-            {"email":"katelyn.lockman@weber-weissnat.io"}
+            {"email":"allen@keebler.net"}
 
 + Response 200 ()
 
@@ -45,7 +45,7 @@ FORMAT: 1A
 
             {
               "success": true,
-              "message": "An email has been sent to 'katelyn.lockman@weber-weissnat.io' containing instructions for resetting your password."
+              "message": "An email has been sent to 'allen@keebler.net' containing instructions for resetting your password."
             }
 
 ## Update Password [api/v1/users/password]
@@ -56,9 +56,9 @@ FORMAT: 1A
 
     + Headers
 
-            Access-Token: p4MOyBb6k8KXIzsu5N4tSg
-            Client: i16yvrJFxnY-giI-JuIl8w
-            Uid: clayton_terry@auer.org
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: simone@kiehn.net
 
     + Body
 
@@ -68,11 +68,11 @@ FORMAT: 1A
 
     + Headers
 
-            access-token: p4MOyBb6k8KXIzsu5N4tSg
+            access-token: 1234567890123456789012
             token-type: Bearer
-            client: i16yvrJFxnY-giI-JuIl8w
-            expiry: 1664985544
-            uid: clayton_terry@auer.org
+            client: abcdefghijklmnopqrstuv
+            expiry: 1664993493
+            uid: simone@kiehn.net
 
     + Body
 
@@ -92,9 +92,9 @@ FORMAT: 1A
 
     + Headers
 
-            Access-Token: ILBM0ACf-LE1oxBn4-R68Q
-            Client: ivf4SFXWQJoyHXTdXx3CYQ
-            Uid: marshall.buckridge@watsica.org
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: debroah.heidenreich@wilkinson-rutherford.net
 
     + Body
 
@@ -104,27 +104,27 @@ FORMAT: 1A
 
     + Headers
 
-            access-token: ILBM0ACf-LE1oxBn4-R68Q
+            access-token: 1234567890123456789012
             token-type: Bearer
-            client: ivf4SFXWQJoyHXTdXx3CYQ
-            expiry: 1664985544
-            uid: marshall.buckridge@watsica.org
+            client: abcdefghijklmnopqrstuv
+            expiry: 1664993493
+            uid: debroah.heidenreich@wilkinson-rutherford.net
 
     + Body
 
             {
               "success": true,
               "data": {
-                "id": 9,
+                "id": 14,
                 "provider": "email",
                 "allow_password_change": false,
-                "email": "marshall.buckridge@watsica.org",
-                "uid": "marshall.buckridge@watsica.org",
-                "first_name": "Wai Hahn",
-                "last_name": "Funk",
-                "username": "delpha",
-                "created_at": "2020-10-05T15:59:04.280Z",
-                "updated_at": "2020-10-05T15:59:04.408Z"
+                "email": "debroah.heidenreich@wilkinson-rutherford.net",
+                "uid": "debroah.heidenreich@wilkinson-rutherford.net",
+                "first_name": "Anitra Wunsch",
+                "last_name": "Treutel",
+                "username": "jeanne_koepp",
+                "created_at": "2020-10-05T18:11:32.928Z",
+                "updated_at": "2020-10-05T18:11:33.179Z"
               },
               "message": "Your password has been successfully updated."
             }
@@ -137,53 +137,17 @@ FORMAT: 1A
 
     + Headers
 
-            Access-Token: viHNOystDLtVhdJtRxhbqg
-            Client: uLQAzASlWUU2CgTegZFvMw
-            Uid: vicente@hartmann-emmerich.name
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: rayford.tillman@medhurst-kris.biz
 
 + Response 302 ()
 
     + Body
 
-            <html><body>You are being <a href="http://127.0.0.1:3000?access-token=Ka9TXMNgDs7-KZtA4Y-_jQ&amp;client=DR-KBtlZgNjxZtyBkSn9Nw&amp;client_id=DR-KBtlZgNjxZtyBkSn9Nw&amp;config=&amp;expiry=1664985544&amp;reset_password=true&amp;token=Ka9TXMNgDs7-KZtA4Y-_jQ&amp;uid=vicente%40hartmann-emmerich.name">redirected</a>.</body></html>
+            <html><body>You are being <a href="http://127.0.0.1:3000?access-token=1234567890123456789012&amp;client=abcdefghijklmnopqrstuv&amp;client_id=abcdefghijklmnopqrstuv&amp;config=&amp;expiry=1664993493&amp;reset_password=true&amp;token=1234567890123456789012&amp;uid=rayford.tillman%40medhurst-kris.biz">redirected</a>.</body></html>
 
 # Group Sessions
-
-## Session [api/v1/users/sign_out]
-
-### Delete [DELETE]
-
-+ Request Bad
-
-    + Headers
-
-            Access-Token: notvalidtoken
-            Client: 3HfQ0pkhPBDG0IBC9WiwNA
-            Uid: birdie.rau@tillman.net
-
-+ Response 404 ()
-
-    + Body
-
-            {
-              "error": "User was not found or was not logged in."
-            }
-
-+ Request Ok
-
-    + Headers
-
-            Access-Token: Iis9s-QPmwKWvOS4ZG_hpQ
-            Client: -Ro0Q6h-Ck2l1uqYbQQYNg
-            Uid: genny.leffler@hamill.info
-
-+ Response 200 ()
-
-    + Body
-
-            {
-              "success": true
-            }
 
 ## Session [api/v1/users/sign_in]
 
@@ -193,13 +157,13 @@ FORMAT: 1A
 
     + Headers
 
-            Access-Token: Z1adE_uXn4NB5Z1Jg3PGGg
-            Client: CcZrnZGYIHxeNC3Z6184Pw
-            Uid: nicholas_mueller@lueilwitz-russel.org
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: whitney_schultz@mraz-jakubowski.com
 
     + Body
 
-            {"user":{"email":"nicholas_mueller@lueilwitz-russel.org","password":"wrong-password"}}
+            {"user":{"email":"whitney_schultz@mraz-jakubowski.com","password":"wrong-password"}}
 
 + Response 401 ()
 
@@ -213,39 +177,75 @@ FORMAT: 1A
 
     + Headers
 
-            Access-Token: VrcLJDXlJ4BK2tleKxU9zQ
-            Client: KZJBhs6fxHsnRNLkHTOyBw
-            Uid: valerie.klein@kunze.io
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: saul.wolff@simonis.org
 
     + Body
 
-            {"user":{"email":"valerie.klein@kunze.io","password":"4Fc9WaIkB38qQqGz"}}
+            {"user":{"email":"saul.wolff@simonis.org","password":"0DgM3wJv"}}
 
 + Response 200 ()
 
     + Headers
 
-            access-token: KOAiRm8plzHJSLk-KBKwyA
+            access-token: 1234567890123456789012
             token-type: Bearer
-            client: pYV0nbH9RR_8sI3TYAIWBQ
-            expiry: 1664985543
-            uid: valerie.klein@kunze.io
+            client: abcdefghijklmnopqrstuv
+            expiry: 1664993490
+            uid: saul.wolff@simonis.org
 
     + Body
 
             {
               "user": {
-                "id": 3,
-                "email": "valerie.klein@kunze.io",
-                "uid": "valerie.klein@kunze.io",
+                "id": 1,
+                "email": "saul.wolff@simonis.org",
+                "uid": "saul.wolff@simonis.org",
                 "provider": "email",
                 "allow_password_change": false,
-                "first_name": "Jessia Hane",
-                "last_name": "Cruickshank",
-                "username": "dalton_hettinger",
-                "created_at": "2020-10-05T15:59:03.385Z",
-                "updated_at": "2020-10-05T15:59:03.518Z"
+                "first_name": "Rep. Vito Blick",
+                "last_name": "Blick",
+                "username": "alda.quigley",
+                "created_at": "2020-10-05T18:11:29.974Z",
+                "updated_at": "2020-10-05T18:11:30.288Z"
               }
+            }
+
+## Session [api/v1/users/sign_out]
+
+### Delete [DELETE]
+
++ Request Bad
+
+    + Headers
+
+            Access-Token: notvalidtoken
+            Client: abcdefghijklmnopqrstuv
+            Uid: rob_schaden@bartell.name
+
++ Response 404 ()
+
+    + Body
+
+            {
+              "error": "User was not found or was not logged in."
+            }
+
++ Request Ok
+
+    + Headers
+
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: joaquin.pagac@weissnat-botsford.info
+
++ Response 200 ()
+
+    + Body
+
+            {
+              "success": true
             }
 
 # Group Settings
@@ -258,9 +258,9 @@ FORMAT: 1A
 
     + Headers
 
-            Access-Token: KWJd5F_JbU8wzg3v_uo94Q
-            Client: 2XA2nlfD7t7FzQhKUXygXg
-            Uid: dee_bayer@prohaska-pagac.io
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: leigh@schamberger.net
 
 + Response 200 ()
 
@@ -274,9 +274,9 @@ FORMAT: 1A
 
     + Headers
 
-            Access-Token: 1ftmIL3rhmdzyjye6E5eHA
-            Client: gpY13JepweWCOT_XCQEKvw
-            Uid: darryl_jast@macgyver.org
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: stephen.prosacco@glover.info
 
 + Response 200 ()
 
@@ -312,13 +312,13 @@ FORMAT: 1A
 
     + Headers
 
-            Access-Token: fFYcpFWz6h7txo_7UQxTXA
-            Client: U50_YZSoL16c0cBpgr-Qmg
-            Uid: chrissy.cormier@herzog.name
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: chassidy_roob@willms.com
 
     + Body
 
-            {"user":{"email":"not-valid","password":"ThLwAkDoR","username":"michaele.boyle","first_name":"Fr. Josue Mante","last_name":"Towne","uid":"76142394-7e8c-4c5d-a876-616543107187"}}
+            {"user":{"email":"not-valid","password":"HtOnJ6cH1dHo","username":"rosaria.anderson","first_name":"Milly Lang","last_name":"Rohan","uid":"9f4a3eea-9f7f-42fd-8dc1-5eca51131f1d"}}
 
 + Response 422 ()
 
@@ -330,9 +330,9 @@ FORMAT: 1A
                 "id": null,
                 "email": "not-valid",
                 "allow_password_change": false,
-                "first_name": "Fr. Josue Mante",
-                "last_name": "Towne",
-                "username": "michaele.boyle",
+                "first_name": "Milly Lang",
+                "last_name": "Rohan",
+                "username": "rosaria.anderson",
                 "created_at": null,
                 "updated_at": null,
                 "provider": "email",
@@ -352,71 +352,38 @@ FORMAT: 1A
 
     + Headers
 
-            Access-Token: RF2kjjH1rS30gqI8MC64Vw
-            Client: TlsYt_JhZugvFvtGJGNJiw
-            Uid: cliff@wintheiser-schuppe.co
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: dallas@anderson.io
 
     + Body
 
-            {"user":{"email":"blake.corkery@reilly.name","password":"Ap1Q96nA69wQ","username":"halley_heaney","first_name":"Odell Ledner","last_name":"Klein","uid":"379a8669-eab0-48c4-93bf-c63af224d030"}}
+            {"user":{"email":"ladonna@beier-kuvalis.co","password":"HjVvQzAh","username":"audrea","first_name":"Everett Brown","last_name":"Kirlin","uid":"cd14597d-91d4-4ae5-93b2-d8c6b4b12fd1"}}
 
 + Response 200 ()
 
     + Headers
 
-            access-token: uLnc0hqhFbIOgZCx6G_yag
+            access-token: 1234567890123456789012
             token-type: Bearer
-            client: 1lhuj6r36G4B_uJxO5NynA
-            expiry: 1664985544
-            uid: blake.corkery@reilly.name
+            client: abcdefghijklmnopqrstuv
+            expiry: 1664993492
+            uid: ladonna@beier-kuvalis.co
 
     + Body
 
             {
               "user": {
-                "id": 14,
-                "email": "blake.corkery@reilly.name",
+                "id": 11,
+                "email": "ladonna@beier-kuvalis.co",
                 "allow_password_change": false,
-                "first_name": "Odell Ledner",
-                "last_name": "Klein",
-                "username": "halley_heaney",
-                "created_at": "2020-10-05T15:59:04.939Z",
-                "updated_at": "2020-10-05T15:59:04.997Z",
+                "first_name": "Everett Brown",
+                "last_name": "Kirlin",
+                "username": "audrea",
+                "created_at": "2020-10-05T18:11:32.258Z",
+                "updated_at": "2020-10-05T18:11:32.363Z",
                 "provider": "email",
-                "uid": "blake.corkery@reilly.name"
-              }
-            }
-
-## Show User [api/v1/user]
-
-### Show [GET]
-
-+ Request Ok
-
-    + Headers
-
-            Access-Token: 94GILoEGsjELT3Hw1PtRHg
-            Client: 5CAIctWHf1ckBCEKIGUjOg
-            Uid: stephen_wiegand@swaniawski.org
-
-+ Response 200 ()
-
-    + Headers
-
-            access-token: 94GILoEGsjELT3Hw1PtRHg
-            token-type: Bearer
-            client: 5CAIctWHf1ckBCEKIGUjOg
-            expiry: 1664985544
-            uid: stephen_wiegand@swaniawski.org
-
-    + Body
-
-            {
-              "user": {
-                "id": 10,
-                "email": "stephen_wiegand@swaniawski.org",
-                "name": "Hershel Daniel Hyatt",
-                "username": "clair.von"
+                "uid": "ladonna@beier-kuvalis.co"
               }
             }
 
@@ -428,9 +395,9 @@ FORMAT: 1A
 
     + Headers
 
-            Access-Token: HwdPtMx9RjcW8bk2_NwzpA
-            Client: WQ6koMHmhxCKvtcauQVFRw
-            Uid: jere_carter@okuneva-denesik.io
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: pasty@bosco.co
 
     + Body
 
@@ -440,19 +407,52 @@ FORMAT: 1A
 
     + Headers
 
-            access-token: HwdPtMx9RjcW8bk2_NwzpA
+            access-token: 1234567890123456789012
             token-type: Bearer
-            client: WQ6koMHmhxCKvtcauQVFRw
-            expiry: 1664985544
-            uid: jere_carter@okuneva-denesik.io
+            client: abcdefghijklmnopqrstuv
+            expiry: 1664993491
+            uid: pasty@bosco.co
 
     + Body
 
             {
               "user": {
-                "id": 11,
-                "email": "jere_carter@okuneva-denesik.io",
-                "name": "Yetta Hansen Williamson",
+                "id": 7,
+                "email": "pasty@bosco.co",
+                "name": "Olin Senger Reilly",
                 "username": "new username"
+              }
+            }
+
+## Show User [api/v1/user]
+
+### Show [GET]
+
++ Request Ok
+
+    + Headers
+
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: armando@purdy.co
+
++ Response 200 ()
+
+    + Headers
+
+            access-token: 1234567890123456789012
+            token-type: Bearer
+            client: abcdefghijklmnopqrstuv
+            expiry: 1664993491
+            uid: armando@purdy.co
+
+    + Body
+
+            {
+              "user": {
+                "id": 8,
+                "email": "armando@purdy.co",
+                "name": "Sherie Cartwright CPA Schoen",
+                "username": "tai_kuvalis"
               }
             }

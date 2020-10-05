@@ -1,12 +1,13 @@
-module RspecApiDocumentation
-  class RackTestClient < ClientBase
-    def response_body
-      last_response.body.encode('utf-8')
+unless Rails.env.production?
+
+  module RspecApiDocumentation
+    class RackTestClient < ClientBase
+      def response_body
+        last_response.body.encode('utf-8')
+      end
     end
   end
-end
 
-unless Rails.env.production?
   # Values listed are the default values
   RspecApiDocumentation.configure do |config|
     # Set the application that Rack::Test uses

@@ -1,3 +1,5 @@
+require_relative '../support/acceptance_tests_helper'
+
 resource 'Sessions' do
   header 'Content-Type', 'application/json'
   header 'access-token', :access_token_header
