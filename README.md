@@ -111,7 +111,7 @@ Just run:
 
 ` sh ./bin/docs `
 
-And an `apiary.apib` file will be generated.
+An `apiary.apib` file will be generated at the root directory of the project.
 
 
 ## Code quality
