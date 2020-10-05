@@ -1,7 +1,7 @@
 describe UserPolicy do
   subject { described_class }
 
-  permissions :update?, :profile? do
+  permissions :update? do
     let(:user1) { create(:user) }
     let(:user2) { create(:user) }
 
