@@ -1,5 +1,4 @@
 unless Rails.env.production?
-
   module RspecApiDocumentation
     class RackTestClient < ClientBase
       def response_body
