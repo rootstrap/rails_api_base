@@ -1,12 +1,11 @@
-describe AdminUserPolicy do
+describe ActiveAdmin::AdminUserPolicy do
   subject { described_class }
 
   permissions :update?, :index?, :show?, :create?, :new?, :edit?, :destroy? do
     let(:admin) { create(:admin_user) }
-    let(:user)  { create(:user) }
 
-    it 'denies access' do
-      expect(subject).not_to permit(user, admin)
+    it 'allows access' do
+      expect(subject).to permit(admin, admin)
     end
   end
 end

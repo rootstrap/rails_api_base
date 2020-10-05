@@ -115,6 +115,7 @@ detectors:
       - "/[A-Z]/"
     accept:
       - _
+      - e
   UnusedParameters:
     enabled: true
     exclude:
