@@ -13,7 +13,7 @@ describe ActiveAdmin::ApplicationPolicy do
     context 'when is a user' do
       let(:user) { build(:user) }
 
-      it 'allows access' do
+      it 'denies access' do
         expect(subject).not_to permit(user, user)
       end
     end
