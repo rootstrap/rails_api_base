@@ -26,6 +26,7 @@ This template comes with:
 - API documentation following https://apiblueprint.org/
 - Docker support
 - Exception Tracking
+- RSpec API Doc Generator
 
 ## How to use
 
@@ -86,6 +87,7 @@ This template comes with:
 - [Rails Best Practices](https://github.com/flyerhzm/rails_best_practices) for rails linting
 - [Reek](https://github.com/troessner/reek) for ruby linting
 - [RSpec](https://github.com/rspec/rspec) for testing
+- [Rspec API Doc Generator](https://github.com/zipmark/rspec_api_documentation) for API documentation
 - [Rubocop](https://github.com/bbatsov/rubocop/) for ruby linting
 - [Sendgrid](https://github.com/stephenb/sendgrid) for sending mails
 - [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) adds other testing matchers
@@ -102,6 +104,15 @@ This template comes with:
 ## Api Docs
 
 http://docs.railsapibase.apiary.io
+
+With [Rspec API Doc Generator](https://github.com/zipmark/rspec_api_documentation) you can generate the docs after writing the acceptance specs.
+
+Just run:
+
+` sh ./bin/docs `
+
+And an `apiary.apib` file will be generated.
+
 
 ## Code quality
 
