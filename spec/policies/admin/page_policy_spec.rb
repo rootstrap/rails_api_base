@@ -1,4 +1,4 @@
-describe ActiveAdmin::PagePolicy do
+describe Admin::PagePolicy do
   subject { described_class }
 
   permissions :show? do
