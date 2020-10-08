@@ -1,4 +1,4 @@
-module ActiveAdmin
+module Admin
   class ApplicationPolicy
     attr_reader :user, :record
 

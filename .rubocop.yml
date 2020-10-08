@@ -17,7 +17,6 @@ Metrics/AbcSize:
   Exclude:
     - db/migrate/20161011151353_devise_create_users.rb
     - db/migrate/20181102142200_create_active_storage_tables.active_storage.rb
-    - app/models/adapters/admin_pundit_adapter.rb
 
 Lint/UnusedMethodArgument:
   Exclude:

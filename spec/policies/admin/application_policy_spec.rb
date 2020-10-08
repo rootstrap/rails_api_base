@@ -1,4 +1,4 @@
-describe ActiveAdmin::ApplicationPolicy do
+describe Admin::ApplicationPolicy do
   subject { described_class }
 
   permissions :update?, :index?, :show?, :create?, :new?, :edit?, :destroy? do

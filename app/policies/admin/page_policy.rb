@@ -1,5 +1,5 @@
-module ActiveAdmin
-  class PagePolicy < ActiveAdmin::ApplicationPolicy
+module Admin
+  class PagePolicy < Admin::ApplicationPolicy
     def show?
       case record.name
       when 'Dashboard'
