@@ -103,7 +103,7 @@ This template comes with:
 
 ## Api Docs
 
-http://docs.railsapibase.apiary.io
+https://railsapibasers.docs.apiary.io/
 
 With [Rspec API Doc Generator](https://github.com/zipmark/rspec_api_documentation) you can generate the docs after writing the acceptance specs.
 
