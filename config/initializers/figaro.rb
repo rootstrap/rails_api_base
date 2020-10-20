@@ -1,1 +1,1 @@
-Figaro.require_keys(%w[SERVER_URL PASSWORD_RESET_URL])
+Figaro.require_keys(%w[SERVER_HOST PASSWORD_RESET_URL])
