@@ -54,7 +54,7 @@ unless Rails.env.production?
     # config.keep_source_order = false
 
     # Change the name of the API on index pages
-    config.api_name = 'Rails API Template'
+    config.api_name = 'Rails API Base'
 
     # Change the description of the API on index pages
     # config.api_explanation = "API Description"
