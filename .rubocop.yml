@@ -1,6 +1,6 @@
 inherit_gem:
   rubocop-rootstrap:
-    - config/rails.yml
+    - config/rails_edge.yml
 
 inherit_mode:
   merge:
