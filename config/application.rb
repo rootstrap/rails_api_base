@@ -25,7 +25,7 @@ module App
       password: ENV['SENDGRID_PASSWORD']
     }
     config.action_mailer.default_url_options = { host: ENV['SERVER_HOST'],
-                                                 port: ENV.fetch('PORT') { 3000 } }
+                                                 port: ENV.fetch('PORT', 3000) }
     config.action_mailer.default_options = {
       from: 'no-reply@api.com'
     }
