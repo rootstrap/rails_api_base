@@ -24,16 +24,4 @@ describe 'GET api/v1/users/:id', type: :request do
       expect(response).to have_http_status(:not_found)
     end
   end
-
-  context 'when an unexpected error occurs' do
-    it 'returns status 500 internal server error' do
-      allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new('production'))
-      allow_any_instance_of(Api::V1::UsersController).to receive(
-        :current_user
-      ).and_raise(Exception)
-      subject
-
-      expect(json[:error]).to eq I18n.t('api.errors.server')
-    end
-  end
 end

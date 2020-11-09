@@ -10,7 +10,6 @@ module Api
       layout false
       respond_to :json
 
-      rescue_from Exception,                           with: :render_error
       rescue_from ActiveRecord::RecordNotFound,        with: :render_not_found
       rescue_from ActiveRecord::RecordInvalid,         with: :render_record_invalid
       rescue_from ActionController::ParameterMissing,  with: :render_parameter_missing
@@ -20,19 +19,6 @@ module Api
       end
 
       private
-
-      def render_error(exception)
-        raise exception if Rails.env.test?
-
-        # To properly handle RecordNotFound errors in views
-        return render_not_found(exception) if exception.cause.is_a?(ActiveRecord::RecordNotFound)
-
-        logger.error { exception } # Report to your error managment tool here
-
-        return if performed?
-
-        render json: { error: I18n.t('api.errors.server') }, status: :internal_server_error
-      end
 
       def render_not_found(exception)
         logger.info { exception } # for logging
