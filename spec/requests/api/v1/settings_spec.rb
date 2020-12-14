@@ -6,7 +6,7 @@ describe 'GET api/v1/settings/must_update', type: :request do
       device_version: '1.0'
     }
   end
-  subject { get must_update_api_v1_settings_path, params: params, as: :json }
+  subject { get must_update_api_v1_settings_path, params: params }
 
   context 'with correct settings' do
     let!(:setting_version) { create(:setting_version) }
