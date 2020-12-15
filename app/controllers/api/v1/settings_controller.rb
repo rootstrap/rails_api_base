@@ -5,7 +5,7 @@ module Api
       skip_after_action :verify_authorized, :verify_policy_scoped
 
       def must_update
-        return head(:no_content) unless setting
+        return head(:not_found) unless setting
 
         render jsonapi: setting
       end

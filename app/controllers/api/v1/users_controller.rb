@@ -22,7 +22,7 @@ module Api
       end
 
       def user_params
-        jsonapi_deserialize(params, only: [:username, :first_name, :last_name, :email])
+        jsonapi_deserialize(params, only: %i[username first_name last_name email])
       end
     end
   end

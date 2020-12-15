@@ -8,8 +8,4 @@ describe 'GET api/v1/status', type: :request do
   it 'returns status 200 ok' do
     expect(response).to be_successful
   end
-
-  it 'returns the api status' do
-    expect(json['online']).to be true
-  end
 end
