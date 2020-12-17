@@ -1,6 +1,6 @@
-describe 'GET api/v1/users/:id', type: :request do
+describe 'GET api/v1/user', type: :request do
   let(:user) { create(:user) }
-  subject { get api_v1_user_path, headers: auth_headers, as: :json }
+  subject { get api_v1_user_path, headers: auth_headers }
 
   it 'returns success' do
     subject
@@ -10,8 +10,7 @@ describe 'GET api/v1/users/:id', type: :request do
   it "returns the logged in user's data" do
     subject
 
-    expect(json[:user][:id]).to eq(user.id)
-    expect(json[:user][:name]).to eq(user.full_name)
+    expect(attributes[:id]).to eq(user.id)
   end
 
   context 'when record is not found' do

@@ -1,5 +1,13 @@
 # frozen_string_literal: true
 
 class UserSerializer < ApplicationSerializer
-  attributes :email, :first_name, :last_name, :username, :created_at, :updated_at
+  attributes :created_at,
+             :email,
+             :first_name,
+             :id,
+             :last_name,
+             :provider,
+             :uid,
+             :updated_at,
+             :username
 end

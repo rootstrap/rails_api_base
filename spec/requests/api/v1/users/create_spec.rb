@@ -38,13 +38,13 @@ describe 'POST api/v1/users/', type: :request do
     it 'returns the user' do
       post user_registration_path, params: params, as: :json
 
-      expect(json[:user][:id]).to eq(user.id)
-      expect(json[:user][:email]).to eq(user.email)
-      expect(json[:user][:username]).to eq(user.username)
-      expect(json[:user][:uid]).to eq(user.uid)
-      expect(json[:user][:provider]).to eq('email')
-      expect(json[:user][:first_name]).to eq(user.first_name)
-      expect(json[:user][:last_name]).to eq(user.last_name)
+      expect(attributes[:id]).to eq(user.id)
+      expect(attributes[:email]).to eq(user.email)
+      expect(attributes[:username]).to eq(user.username)
+      expect(attributes[:uid]).to eq(user.uid)
+      expect(attributes[:provider]).to eq('email')
+      expect(attributes[:firstName]).to eq(user.first_name)
+      expect(attributes[:lastName]).to eq(user.last_name)
     end
 
     context 'when the email is not correct' do

@@ -2,7 +2,7 @@
 
 module ResponseHelper
   def json_response
-    JSON.parse(response.body)
+    JSON.parse(response.body)&.with_indifferent_access
   end
 
   def data
@@ -14,6 +14,6 @@ module ResponseHelper
   end
 
   def errors
-    json_response['errors'].map { |error| error['detail'] }
+    json_response['errors'].map { |error| error['detail'] }.compact
   end
 end
