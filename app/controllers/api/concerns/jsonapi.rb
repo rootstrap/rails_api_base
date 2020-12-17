@@ -31,9 +31,9 @@ module Api
       #
       #
       def permitted_include
-        return '' unless permitted_inclusions && include_params[:include]
+        return '' unless permitted_inclusions && include_params
 
-        include_params[:include].split(',') & permitted_inclusions
+        include_params.split(',') & permitted_inclusions
       end
 
       private
@@ -45,7 +45,7 @@ module Api
       end
 
       def include_params
-        params.permit(:include)
+        params.permit(:include)[:include]
       end
 
       # To provide a different naming scheme implement the jsonapi_serializer_class method in your
