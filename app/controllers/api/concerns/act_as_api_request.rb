@@ -7,13 +7,6 @@ module Api
         include Api::Concerns::Jsonapi
         skip_before_action :verify_authenticity_token
         before_action :skip_session_storage
-        before_action :check_json_request
-      end
-
-      def check_json_request
-        return if !request_with_body? || request_content_type.match?(/json/)
-
-        head(:not_acceptable)
       end
 
       def skip_session_storage
