@@ -1,52 +1,7 @@
 FORMAT: 1A
-# Rails API Template
+# Rails API Base
 
 # Group Passwords
-
-## Create Password [api/v1/users/password]
-
-### Create [POST]
-
-+ Request Bad
-
-    + Headers
-
-            Access-Token: 1234567890123456789012
-            Client: abcdefghijklmnopqrstuv
-            Uid: kendrick@hayes.name
-
-    + Body
-
-            {"email":"notvalid@example.com"}
-
-+ Response 404 ()
-
-    + Body
-
-            {
-              "error": "Unable to find user with email 'notvalid@example.com'."
-            }
-
-+ Request Ok
-
-    + Headers
-
-            Access-Token: 1234567890123456789012
-            Client: abcdefghijklmnopqrstuv
-            Uid: allen@keebler.net
-
-    + Body
-
-            {"email":"allen@keebler.net"}
-
-+ Response 200 ()
-
-    + Body
-
-            {
-              "success": true,
-              "message": "An email has been sent to 'allen@keebler.net' containing instructions for resetting your password."
-            }
 
 ## Update Password [api/v1/users/password]
 
@@ -58,7 +13,7 @@ FORMAT: 1A
 
             Access-Token: 1234567890123456789012
             Client: abcdefghijklmnopqrstuv
-            Uid: simone@kiehn.net
+            Uid: ira@bartoletti.net
 
     + Body
 
@@ -71,8 +26,8 @@ FORMAT: 1A
             access-token: 1234567890123456789012
             token-type: Bearer
             client: abcdefghijklmnopqrstuv
-            expiry: 1664993493
-            uid: simone@kiehn.net
+            expiry: 1671637128
+            uid: ira@bartoletti.net
 
     + Body
 
@@ -94,7 +49,7 @@ FORMAT: 1A
 
             Access-Token: 1234567890123456789012
             Client: abcdefghijklmnopqrstuv
-            Uid: debroah.heidenreich@wilkinson-rutherford.net
+            Uid: korey@hamill-torphy.name
 
     + Body
 
@@ -107,26 +62,74 @@ FORMAT: 1A
             access-token: 1234567890123456789012
             token-type: Bearer
             client: abcdefghijklmnopqrstuv
-            expiry: 1664993493
-            uid: debroah.heidenreich@wilkinson-rutherford.net
+            expiry: 1671637127
+            uid: korey@hamill-torphy.name
 
     + Body
 
             {
               "success": true,
               "data": {
-                "id": 14,
+                "id": 11,
                 "provider": "email",
                 "allow_password_change": false,
-                "email": "debroah.heidenreich@wilkinson-rutherford.net",
-                "uid": "debroah.heidenreich@wilkinson-rutherford.net",
-                "first_name": "Anitra Wunsch",
-                "last_name": "Treutel",
-                "username": "jeanne_koepp",
-                "created_at": "2020-10-05T18:11:32.928Z",
-                "updated_at": "2020-10-05T18:11:33.179Z"
+                "email": "korey@hamill-torphy.name",
+                "uid": "korey@hamill-torphy.name",
+                "first_name": "Jerry Hodkiewicz",
+                "last_name": "King",
+                "username": "cami",
+                "created_at": "2020-12-21T15:38:47.912Z",
+                "updated_at": "2020-12-21T15:38:48.045Z"
               },
               "message": "Your password has been successfully updated."
+            }
+
+## Create Password [api/v1/users/password]
+
+### Create [POST]
+
++ Request Bad
+
+    + Headers
+
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: kym_batz@sawayn.org
+
+    + Body
+
+            {"email":"notvalid@example.com"}
+
++ Response 404 ()
+
+    + Body
+
+            {
+              "success": false,
+              "errors": [
+                "Unable to find user with email 'notvalid@example.com'."
+              ]
+            }
+
++ Request Ok
+
+    + Headers
+
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: zana.crona@pacocha.name
+
+    + Body
+
+            {"email":"zana.crona@pacocha.name"}
+
++ Response 200 ()
+
+    + Body
+
+            {
+              "success": true,
+              "message": "An email has been sent to 'zana.crona@pacocha.name' containing instructions for resetting your password."
             }
 
 ## Edit Password [api/v1/users/password/edit]
@@ -139,13 +142,13 @@ FORMAT: 1A
 
             Access-Token: 1234567890123456789012
             Client: abcdefghijklmnopqrstuv
-            Uid: rayford.tillman@medhurst-kris.biz
+            Uid: darnell_hoppe@hilll.co
 
 + Response 302 ()
 
     + Body
 
-            <html><body>You are being <a href="http://127.0.0.1:3000?access-token=1234567890123456789012&amp;client=abcdefghijklmnopqrstuv&amp;client_id=abcdefghijklmnopqrstuv&amp;config=&amp;expiry=1664993493&amp;reset_password=true&amp;token=1234567890123456789012&amp;uid=rayford.tillman%40medhurst-kris.biz">redirected</a>.</body></html>
+            <html><body>You are being <a href="http://127.0.0.1:3000?access-token=1234567890123456789012&amp;client=abcdefghijklmnopqrstuv&amp;client_id=abcdefghijklmnopqrstuv&amp;config=&amp;expiry=1671637127&amp;reset_password=true&amp;token=1234567890123456789012&amp;uid=darnell_hoppe%40hilll.co">redirected</a>.</body></html>
 
 # Group Sessions
 
@@ -159,18 +162,21 @@ FORMAT: 1A
 
             Access-Token: 1234567890123456789012
             Client: abcdefghijklmnopqrstuv
-            Uid: whitney_schultz@mraz-jakubowski.com
+            Uid: kristan_cronin@kovacek.biz
 
     + Body
 
-            {"user":{"email":"whitney_schultz@mraz-jakubowski.com","password":"wrong-password"}}
+            {"user":{"email":"kristan_cronin@kovacek.biz","password":"wrong-password"}}
 
 + Response 401 ()
 
     + Body
 
             {
-              "error": "Invalid login credentials. Please try again."
+              "success": false,
+              "errors": [
+                "Invalid login credentials. Please try again."
+              ]
             }
 
 + Request Ok
@@ -179,11 +185,11 @@ FORMAT: 1A
 
             Access-Token: 1234567890123456789012
             Client: abcdefghijklmnopqrstuv
-            Uid: saul.wolff@simonis.org
+            Uid: sergio@rutherford.name
 
     + Body
 
-            {"user":{"email":"saul.wolff@simonis.org","password":"0DgM3wJv"}}
+            {"user":{"email":"sergio@rutherford.name","password":"KpMaPeDmByQgR"}}
 
 + Response 200 ()
 
@@ -192,23 +198,29 @@ FORMAT: 1A
             access-token: 1234567890123456789012
             token-type: Bearer
             client: abcdefghijklmnopqrstuv
-            expiry: 1664993490
-            uid: saul.wolff@simonis.org
+            expiry: 1671637126
+            uid: sergio@rutherford.name
 
     + Body
 
             {
-              "user": {
-                "id": 1,
-                "email": "saul.wolff@simonis.org",
-                "uid": "saul.wolff@simonis.org",
-                "provider": "email",
-                "allow_password_change": false,
-                "first_name": "Rep. Vito Blick",
-                "last_name": "Blick",
-                "username": "alda.quigley",
-                "created_at": "2020-10-05T18:11:29.974Z",
-                "updated_at": "2020-10-05T18:11:30.288Z"
+              "data": {
+                "id": "2",
+                "type": "user",
+                "attributes": {
+                  "createdAt": "2020-12-21T15:38:46.726Z",
+                  "email": "sergio@rutherford.name",
+                  "firstName": "Eulah Goodwin",
+                  "id": 2,
+                  "lastName": "Hansen",
+                  "provider": "email",
+                  "uid": "sergio@rutherford.name",
+                  "updatedAt": "2020-12-21T15:38:46.862Z",
+                  "username": "denice"
+                }
+              },
+              "links": {
+                "self": "http://example.org/api/v1/users/sign_in"
               }
             }
 
@@ -222,14 +234,17 @@ FORMAT: 1A
 
             Access-Token: notvalidtoken
             Client: abcdefghijklmnopqrstuv
-            Uid: rob_schaden@bartell.name
+            Uid: travis@stamm.io
 
 + Response 404 ()
 
     + Body
 
             {
-              "error": "User was not found or was not logged in."
+              "success": false,
+              "errors": [
+                "User was not found or was not logged in."
+              ]
             }
 
 + Request Ok
@@ -238,7 +253,7 @@ FORMAT: 1A
 
             Access-Token: 1234567890123456789012
             Client: abcdefghijklmnopqrstuv
-            Uid: joaquin.pagac@weissnat-botsford.info
+            Uid: sid_kutch@kulas-ondricka.biz
 
 + Response 200 ()
 
@@ -260,14 +275,34 @@ FORMAT: 1A
 
             Access-Token: 1234567890123456789012
             Client: abcdefghijklmnopqrstuv
-            Uid: leigh@schamberger.net
+            Uid: weston.abbott@schamberger-price.info
 
 + Response 200 ()
+
+    + Headers
+
+            access-token: 1234567890123456789012
+            token-type: Bearer
+            client: abcdefghijklmnopqrstuv
+            expiry: 1671637128
+            uid: weston.abbott@schamberger-price.info
 
     + Body
 
             {
-              "must_update": true
+              "data": {
+                "id": "1",
+                "type": "setting",
+                "attributes": {
+                  "key": "min_version",
+                  "value": "2.0",
+                  "createdAt": "2020-12-21T15:38:48.496Z",
+                  "mustUpdate": true
+                }
+              },
+              "links": {
+                "self": "http://example.org/api/v1/settings/must_update?device_version=1.0"
+              }
             }
 
 + Request Ok
@@ -276,14 +311,34 @@ FORMAT: 1A
 
             Access-Token: 1234567890123456789012
             Client: abcdefghijklmnopqrstuv
-            Uid: stephen.prosacco@glover.info
+            Uid: samantha@roberts-mraz.name
 
 + Response 200 ()
+
+    + Headers
+
+            access-token: 1234567890123456789012
+            token-type: Bearer
+            client: abcdefghijklmnopqrstuv
+            expiry: 1671637128
+            uid: samantha@roberts-mraz.name
 
     + Body
 
             {
-              "must_update": false
+              "data": {
+                "id": "2",
+                "type": "setting",
+                "attributes": {
+                  "key": "min_version",
+                  "value": "0.0",
+                  "createdAt": "2020-12-21T15:38:48.645Z",
+                  "mustUpdate": false
+                }
+              },
+              "links": {
+                "self": "http://example.org/api/v1/settings/must_update?device_version=1.0"
+              }
             }
 
 # Group Status
@@ -295,12 +350,6 @@ FORMAT: 1A
 + Request Ok
 
 + Response 200 ()
-
-    + Body
-
-            {
-              "online": true
-            }
 
 # Group Users
 
@@ -314,11 +363,11 @@ FORMAT: 1A
 
             Access-Token: 1234567890123456789012
             Client: abcdefghijklmnopqrstuv
-            Uid: chassidy_roob@willms.com
+            Uid: val@harris-labadie.info
 
     + Body
 
-            {"user":{"email":"not-valid","password":"HtOnJ6cH1dHo","username":"rosaria.anderson","first_name":"Milly Lang","last_name":"Rohan","uid":"9f4a3eea-9f7f-42fd-8dc1-5eca51131f1d"}}
+            {"user":{"email":"not-valid","password":"1YqE4qSt563","username":"shay_buckridge","first_name":"Chae Quigley","last_name":"Champlin","uid":"70d431d5-d270-4bfb-bae7-73507a1fad2a"}}
 
 + Response 422 ()
 
@@ -330,9 +379,9 @@ FORMAT: 1A
                 "id": null,
                 "email": "not-valid",
                 "allow_password_change": false,
-                "first_name": "Milly Lang",
-                "last_name": "Rohan",
-                "username": "rosaria.anderson",
+                "first_name": "Chae Quigley",
+                "last_name": "Champlin",
+                "username": "shay_buckridge",
                 "created_at": null,
                 "updated_at": null,
                 "provider": "email",
@@ -354,11 +403,11 @@ FORMAT: 1A
 
             Access-Token: 1234567890123456789012
             Client: abcdefghijklmnopqrstuv
-            Uid: dallas@anderson.io
+            Uid: mohamed@heathcote-gleichner.co
 
     + Body
 
-            {"user":{"email":"ladonna@beier-kuvalis.co","password":"HjVvQzAh","username":"audrea","first_name":"Everett Brown","last_name":"Kirlin","uid":"cd14597d-91d4-4ae5-93b2-d8c6b4b12fd1"}}
+            {"user":{"email":"renna.orn@schmitt.name","password":"9YmXkAg9","username":"efren.blick","first_name":"Yvonne Littel","last_name":"Bins","uid":"5cadd148-7a16-4910-bca8-5b82b196d22d"}}
 
 + Response 200 ()
 
@@ -367,60 +416,29 @@ FORMAT: 1A
             access-token: 1234567890123456789012
             token-type: Bearer
             client: abcdefghijklmnopqrstuv
-            expiry: 1664993492
-            uid: ladonna@beier-kuvalis.co
+            expiry: 1671637127
+            uid: renna.orn@schmitt.name
 
     + Body
 
             {
-              "user": {
-                "id": 11,
-                "email": "ladonna@beier-kuvalis.co",
-                "allow_password_change": false,
-                "first_name": "Everett Brown",
-                "last_name": "Kirlin",
-                "username": "audrea",
-                "created_at": "2020-10-05T18:11:32.258Z",
-                "updated_at": "2020-10-05T18:11:32.363Z",
-                "provider": "email",
-                "uid": "ladonna@beier-kuvalis.co"
-              }
-            }
-
-## Update User [api/v1/user]
-
-### Update [PUT]
-
-+ Request Ok
-
-    + Headers
-
-            Access-Token: 1234567890123456789012
-            Client: abcdefghijklmnopqrstuv
-            Uid: pasty@bosco.co
-
-    + Body
-
-            {"user":{"username":"new username"}}
-
-+ Response 200 ()
-
-    + Headers
-
-            access-token: 1234567890123456789012
-            token-type: Bearer
-            client: abcdefghijklmnopqrstuv
-            expiry: 1664993491
-            uid: pasty@bosco.co
-
-    + Body
-
-            {
-              "user": {
-                "id": 7,
-                "email": "pasty@bosco.co",
-                "name": "Olin Senger Reilly",
-                "username": "new username"
+              "data": {
+                "id": "7",
+                "type": "user",
+                "attributes": {
+                  "createdAt": "2020-12-21T15:38:47.375Z",
+                  "email": "renna.orn@schmitt.name",
+                  "firstName": "Yvonne Littel",
+                  "id": 7,
+                  "lastName": "Bins",
+                  "provider": "email",
+                  "uid": "renna.orn@schmitt.name",
+                  "updatedAt": "2020-12-21T15:38:47.430Z",
+                  "username": "efren.blick"
+                }
+              },
+              "links": {
+                "self": "http://example.org/api/v1/users"
               }
             }
 
@@ -434,7 +452,7 @@ FORMAT: 1A
 
             Access-Token: 1234567890123456789012
             Client: abcdefghijklmnopqrstuv
-            Uid: armando@purdy.co
+            Uid: annabel.mcdermott@greenfelder.biz
 
 + Response 200 ()
 
@@ -443,16 +461,77 @@ FORMAT: 1A
             access-token: 1234567890123456789012
             token-type: Bearer
             client: abcdefghijklmnopqrstuv
-            expiry: 1664993491
-            uid: armando@purdy.co
+            expiry: 1671637127
+            uid: annabel.mcdermott@greenfelder.biz
 
     + Body
 
             {
-              "user": {
-                "id": 8,
-                "email": "armando@purdy.co",
-                "name": "Sherie Cartwright CPA Schoen",
-                "username": "tai_kuvalis"
+              "data": {
+                "id": "5",
+                "type": "user",
+                "attributes": {
+                  "createdAt": "2020-12-21T15:38:47.149Z",
+                  "email": "annabel.mcdermott@greenfelder.biz",
+                  "firstName": "Clarinda Schulist",
+                  "id": 5,
+                  "lastName": "Miller",
+                  "provider": "email",
+                  "uid": "annabel.mcdermott@greenfelder.biz",
+                  "updatedAt": "2020-12-21T15:38:47.204Z",
+                  "username": "damon.streich"
+                }
+              },
+              "links": {
+                "self": "http://example.org/api/v1/user"
+              }
+            }
+
+## Update User [api/v1/user]
+
+### Update [PUT]
+
++ Request Ok
+
+    + Headers
+
+            Access-Token: 1234567890123456789012
+            Client: abcdefghijklmnopqrstuv
+            Uid: darius_zemlak@willms.io
+
+    + Body
+
+            {"data":{"type":"user","id":9,"attributes":{"username":"new username"}}}
+
++ Response 200 ()
+
+    + Headers
+
+            access-token: 1234567890123456789012
+            token-type: Bearer
+            client: abcdefghijklmnopqrstuv
+            expiry: 1671637127
+            uid: darius_zemlak@willms.io
+
+    + Body
+
+            {
+              "data": {
+                "id": "9",
+                "type": "user",
+                "attributes": {
+                  "createdAt": "2020-12-21T15:38:47.529Z",
+                  "email": "darius_zemlak@willms.io",
+                  "firstName": "Javier Leffler II",
+                  "id": 9,
+                  "lastName": "Hudson",
+                  "provider": "email",
+                  "uid": "darius_zemlak@willms.io",
+                  "updatedAt": "2020-12-21T15:38:47.661Z",
+                  "username": "new username"
+                }
+              },
+              "links": {
+                "self": "http://example.org/api/v1/user"
               }
             }
