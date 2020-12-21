@@ -34,6 +34,7 @@ RSpec.configure do |config|
 
   config.include Shoulda::Matchers::ActiveModel, type: :form
   config.include Shoulda::Matchers::ActiveRecord, type: :form
+  config.include ResponseHelper, type: :request
 end
 
 Shoulda::Matchers.configure do |config|

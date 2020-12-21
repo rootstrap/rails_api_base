@@ -27,6 +27,7 @@ This template comes with:
 - Docker support
 - Exception Tracking
 - RSpec API Doc Generator
+- JSON:API standard support
 
 ## How to use
 
@@ -76,10 +77,8 @@ This template comes with:
 - [Factory Bot](https://github.com/thoughtbot/factory_bot) for testing data
 - [Faker](https://github.com/stympy/faker) for generating test data
 - [Figaro](https://github.com/laserlemon/figaro) for handling environment variables
-- [Jbuilder](https://github.com/rails/jbuilder) for json views
+- [jsonapi.rb](https://github.com/stas/jsonapi.rb) for [json:api specification](https://jsonapi.org/) support
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
-- [Oj](https://github.com/ohler55/oj) for optimized json
-- [Pagy](https://github.com/ddnexus/pagy) for pagination
 - [Pry](https://github.com/pry/pry) for enhancing the ruby shell
 - [Puma](https://github.com/puma/puma) for the server
 - [Pundit](https://github.com/varvet/pundit) for authorization management

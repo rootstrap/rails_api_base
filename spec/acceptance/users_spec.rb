@@ -38,7 +38,17 @@ resource 'Users' do
   end
 
   route 'api/v1/user', 'Update User' do
-    let(:request) { { user: { username: 'new username' } } }
+    let(:request) do
+      {
+        data: {
+          type: 'user',
+          id: user.id,
+          attributes: {
+            username: 'new username'
+          }
+        }
+      }
+    end
 
     put 'Update' do
       example 'Ok' do

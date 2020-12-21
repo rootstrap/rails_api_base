@@ -5,16 +5,21 @@ module Api
       skip_after_action :verify_authorized, :verify_policy_scoped
 
       def must_update
-        current_version = Gem::Version.new(params[:device_version])
-        min_version = version ? Gem::Version.new(version) : Gem::Version.new('0.0.0')
-        must_update = min_version > current_version
-        render json: { 'must_update': must_update }
+        return head(:not_found) unless setting
+
+        render jsonapi: setting
       end
 
       private
 
-      def version
-        Setting.find_by(key: 'min_version').try(:value)
+      def setting
+        Setting.find_by(key: 'min_version')
+      end
+
+      def jsonapi_serializer_params
+        super.merge(
+          current_version: Gem::Version.new(params[:device_version] || '')
+        )
       end
     end
   end
