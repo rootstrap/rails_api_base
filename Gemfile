@@ -14,7 +14,6 @@ gem 'devise', '~> 4.7', '>= 4.7.2'
 gem 'devise_token_auth', '~> 1.1', '>= 1.1.4'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'exception_hunter', '~> 1.0', '>= 1.0.1'
-gem 'figaro', '~> 1.1.1'
 gem 'jbuilder', '~> 2.10'
 gem 'oj', '~> 3.9', '>= 3.9.2'
 gem 'pagy', '~> 3.7', '>= 3.7.5'
@@ -36,6 +35,7 @@ gem 'yaaf', '~> 0.1'
 
 group :development, :test do
   gem 'bullet', '~> 6.1'
+  gem 'dotenv-rails', '~> 2.7.6'
   gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
   gem 'pry-byebug', '~> 3.9', platform: :mri
   gem 'pry-rails', '~> 0.3.9'

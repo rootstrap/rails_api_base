@@ -13,11 +13,11 @@ project_name=$1
 # install ruby gems
 bundle install
 
-#install node packages
+# install node packages
 yarn
 
-# generate an application.yml from the example file
-cp config/application.yml.example config/application.yml
+# generate a .env from the sample file
+cp .env.sample .env
 
 # copy database configuration and change the project name with the given one
 sed "s/sample_project/${project_name}/g" config/database.yml.example > config/database.yml
