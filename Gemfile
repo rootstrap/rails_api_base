@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '~> 2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.0'
+gem 'rails', '~> 6.0.3.5'
 
 gem 'activeadmin', '~> 2.8'
 gem 'active_storage_base64', '~> 1.0.0'
