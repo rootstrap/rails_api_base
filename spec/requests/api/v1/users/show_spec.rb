@@ -2,10 +2,9 @@ describe 'GET api/v1/users/:id', type: :request do
   let(:user) { create(:user) }
   subject { get api_v1_user_path, headers: auth_headers, as: :json }
 
-
   it 'there must not be a Set-Cookie in Header' do
     subject
-    expect(response.headers.keys).not_to include("Set-Cookie")
+    expect(response.headers.keys).not_to include('Set-Cookie')
   end
 
   it 'returns success' do
