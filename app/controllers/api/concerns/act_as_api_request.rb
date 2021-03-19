@@ -4,7 +4,6 @@ module Api
       extend ActiveSupport::Concern
 
       included do
-        skip_before_action :verify_authenticity_token
         before_action :skip_session_storage
         before_action :check_json_request
       end
