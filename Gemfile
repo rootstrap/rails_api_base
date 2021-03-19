@@ -2,16 +2,16 @@ source 'https://rubygems.org'
 ruby '~> 2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.3.5'
+gem 'rails', '~> 6.1.3'
 
-gem 'activeadmin', '~> 2.8'
+gem 'activeadmin', '~> 2.9'
 gem 'active_storage_base64', '~> 1.0.0'
-gem 'arctic_admin', '~> 3.2'
+gem 'arctic_admin', '~> 3.2.1'
 gem 'aws-sdk-s3', '~> 1.75', require: false
 gem 'bootsnap', '~> 1.4', '>= 1.4.5'
-gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.4'
+gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.5'
 gem 'devise', '~> 4.7', '>= 4.7.2'
-gem 'devise_token_auth', '~> 1.1', '>= 1.1.4'
+gem 'devise_token_auth', '~> 1.1', '>= 1.1.5'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'exception_hunter', '~> 1.0', '>= 1.0.1'
 gem 'jbuilder', '~> 2.10'
@@ -34,13 +34,13 @@ gem 'yaaf', '~> 0.1'
 # gem 'image_processing', '~> 1.2'
 
 group :development, :test do
-  gem 'bullet', '~> 6.1'
+  gem 'bullet', '~> 6.1.1'
   gem 'dotenv-rails', '~> 2.7.6'
   gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
   gem 'pry-byebug', '~> 3.9', platform: :mri
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec_api_documentation', '~> 6.1.0'
-  gem 'rspec-rails', '~> 3.9'
+  gem 'rspec-rails', '~> 4.0'
 end
 
 group :development do
