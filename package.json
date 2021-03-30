@@ -16,8 +16,11 @@
     "webpack-dev-server": "^3.8.0"
   },
   "resolutions": {
-    "compression-webpack-plugin": "^4.0.0",
+    "compression-webpack-plugin": ">=4.0.0",
     "dot-prop": ">=5.2.0",
-    "node-forge": ">=0.10.0"
+    "is-svg": ">=4.2.2",
+    "node-forge": ">=0.10.0",
+    "ssri": ">=8.0.1",
+    "y18n": ">=4.0.1"
   }
 }
