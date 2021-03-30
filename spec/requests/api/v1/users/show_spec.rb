@@ -2,6 +2,11 @@ describe 'GET api/v1/users/:id', type: :request do
   let(:user) { create(:user) }
   subject { get api_v1_user_path, headers: auth_headers, as: :json }
 
+  it 'there must not be a Set-Cookie in Header' do
+    subject
+    expect(response.headers.keys).not_to include('Set-Cookie')
+  end
+
   it 'returns success' do
     subject
     expect(response).to have_http_status(:success)
@@ -9,7 +14,6 @@ describe 'GET api/v1/users/:id', type: :request do
 
   it "returns the logged in user's data" do
     subject
-
     expect(json[:user][:id]).to eq(user.id)
     expect(json[:user][:name]).to eq(user.full_name)
   end

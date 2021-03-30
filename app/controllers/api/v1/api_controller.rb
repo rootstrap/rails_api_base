@@ -1,6 +1,7 @@
 module Api
   module V1
     class ApiController < ActionController::API
+      include Api::Concerns::ActAsApiRequest
       include Pundit
       include DeviseTokenAuth::Concerns::SetUserByToken
 
