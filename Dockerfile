@@ -1,4 +1,4 @@
-FROM ruby:2.7.1
+FROM ruby:2.7.2
 
 RUN apt-get update -qq && \
     apt-get install -y build-essential libssl-dev nodejs libpq-dev less vim nano libsasl2-dev
