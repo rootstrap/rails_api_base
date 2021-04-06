@@ -64,7 +64,7 @@ jobs:
       # run code_analysis!
       - run:
           name: run code analysis
-          command: RAILS_ENV=test bundle exec rake code_analysis
+          command: RAILS_ENV=test bundle exec rake code:analysis
 
       - store_test_results:
           path: /tmp/test-results
