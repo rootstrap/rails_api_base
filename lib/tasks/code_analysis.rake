@@ -1,5 +1,5 @@
 namespace :code do
-  desc 'Execute code quality'
+  desc 'Run code quality tools'
   task analysis: :environment do
     sh 'bundle exec brakeman . -z -q'
     sh 'bundle exec rubocop .'
