@@ -116,7 +116,7 @@ An `apiary.apib` file will be generated at the root directory of the project.
 
 ## Code quality
 
-With `rake code_analysis` you can run the code analysis tool, you can omit rules with:
+With `bundle exec rails code:analysis` you can run the code analysis tool, you can omit rules with:
 
 - [Rubocop](https://github.com/bbatsov/rubocop/blob/master/config/default.yml) Edit `.rubocop.yml`
 - [Reek](https://github.com/troessner/reek#configuration-file) Edit `config.reek`
