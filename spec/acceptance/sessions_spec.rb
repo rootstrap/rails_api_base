@@ -15,7 +15,8 @@ resource 'Sessions' do
           {
             email: user.email,
             password: user.password
-          }
+          },
+        format: :json
       }
     end
 

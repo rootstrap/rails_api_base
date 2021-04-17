@@ -9,7 +9,7 @@ resource 'Users' do
   let(:user) { create(:user) }
 
   route 'api/v1/users', 'Create User' do
-    let(:request) { { user: attributes_for(:user) } }
+    let(:request) { { user: attributes_for(:user), format: :json } }
 
     post 'Create' do
       example 'Ok' do
