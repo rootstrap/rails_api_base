@@ -22,6 +22,7 @@ ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!(allow_localhost: true)
 
 RSpec.configure do |config|
+  config.render_views = true
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include ActiveJob::TestHelper
   config.use_transactional_fixtures = true
