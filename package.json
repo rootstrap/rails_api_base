@@ -8,6 +8,7 @@
     "@rails/activestorage": "^6.0.3-5",
     "@rails/ujs": "^6.0.3-5",
     "@rails/webpacker": "^5.1.1",
+    "activeadmin_addons": "^1.0.0",
     "arctic_admin": "3.2.0",
     "turbolinks": "^5.2.0"
   },

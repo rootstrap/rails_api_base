@@ -1131,6 +1131,14 @@ acorn@^6.4.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.1.tgz#531e58ba3f51b9dacb9a6646ca4debf5b14ca474"
   integrity sha512-ZVA9k326Nwrj3Cj9jlh3wGFutC2ZornPNARZwsNYqQYgN0EsV2d53w5RN/co65Ohn4sUAUtb1rSUAOD6XN9idA==
 
+activeadmin_addons@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/activeadmin_addons/-/activeadmin_addons-1.0.0.tgz#e271913d7d4e971398ac102202f5038be08439b0"
+  integrity sha512-t0aCFCh8EJO5pJJTnSBQCTgQr+eAhZ+naomFdJxzvku76IANRM1NT8Ox8q+SGA+hf9DTSJLfUwLSRBRc6z63Cw==
+  dependencies:
+    jquery-datetimepicker "^2.5.21"
+    select2 "^4.0.13"
+
 aggregate-error@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/aggregate-error/-/aggregate-error-3.0.1.tgz#db2fe7246e536f40d9b5442a39e117d7dd6a24e0"
@@ -3988,6 +3996,20 @@ jest-worker@^25.4.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
+jquery-datetimepicker@^2.5.21:
+  version "2.5.21"
+  resolved "https://registry.yarnpkg.com/jquery-datetimepicker/-/jquery-datetimepicker-2.5.21.tgz#00c388a78df2732fedfdb5c6529b6e84d53e0235"
+  integrity sha512-wDTpZ4f1PWd1XGaIIE0n6jLynlm+akBJ7/NjaB1bk2UJSS593CHJPZ3+FNEXoyvNVUeBlBC0oX6WTfCyfUhX/w==
+  dependencies:
+    jquery ">= 1.7.2"
+    jquery-mousewheel ">= 3.1.13"
+    php-date-formatter "^1.3.4"
+
+"jquery-mousewheel@>= 3.1.13":
+  version "3.1.13"
+  resolved "https://registry.yarnpkg.com/jquery-mousewheel/-/jquery-mousewheel-3.1.13.tgz#06f0335f16e353a695e7206bf50503cb523a6ee5"
+  integrity sha1-BvAzXxbjU6aV5yBr9QUDy1I6buU=
+
 jquery-ui@^1.12.1:
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
@@ -3999,6 +4021,11 @@ jquery-ujs@^1.2.2:
   integrity sha1-ao7xAg5rbdo4W5CkvdwSjCHFY5c=
   dependencies:
     jquery ">=1.8.0"
+
+"jquery@>= 1.7.2":
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
+  integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
 
 jquery@>=1.8.0, jquery@^3.4.1:
   version "3.5.1"
@@ -5109,6 +5136,11 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
+
+php-date-formatter@^1.3.4:
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/php-date-formatter/-/php-date-formatter-1.3.6.tgz#6d67359da890c742005fa89d20be3ded31cc1d2a"
+  integrity sha512-/CKsZYmAwXeNh8KpD/CF9hcJDZNhdb2ICN8+qgqOt5sUu9liZIxZ1R284TNj5MtPt8RjG5X0xn6WSqL0kcKMBg==
 
 picomatch@^2.0.4, picomatch@^2.2.1:
   version "2.2.2"
@@ -6342,6 +6374,11 @@ select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
   integrity sha1-Yl2GWPhlr0Psliv8N2o3NZpJlMo=
+
+select2@^4.0.13:
+  version "4.0.13"
+  resolved "https://registry.yarnpkg.com/select2/-/select2-4.0.13.tgz#0dbe377df3f96167c4c1626033e924372d8ef44d"
+  integrity sha512-1JeB87s6oN/TDxQQYCvS5EFoQyvV6eYMZZ0AeA4tdFDYWN3BAGZ8npr17UBFddU0lgAt3H0yjX3X6/ekOj1yjw==
 
 selfsigned@^1.10.7:
   version "1.10.7"

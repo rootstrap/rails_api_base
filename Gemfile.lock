@@ -37,6 +37,7 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_material (1.5.2)
     active_storage_base64 (1.0.0)
       rails (~> 6.0)
     activeadmin (2.8.0)
@@ -50,6 +51,13 @@ GEM
       ransack (~> 2.1, >= 2.1.1)
       sassc-rails (~> 2.1)
       sprockets (>= 3.0, < 4.1)
+    activeadmin_addons (1.8.3)
+      active_material
+      railties
+      require_all
+      sassc
+      sassc-rails
+      xdan-datetimepicker-rails (~> 2.5.1)
     activejob (6.0.3.5)
       activesupport (= 6.0.3.5)
       globalid (>= 0.3.6)
@@ -454,6 +462,9 @@ GEM
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    xdan-datetimepicker-rails (2.5.4)
+      jquery-rails
+      rails (>= 3.2.16)
     yaaf (0.1.1)
       activemodel (>= 4, < 7)
       activerecord (>= 4, < 7)
@@ -465,6 +476,7 @@ PLATFORMS
 DEPENDENCIES
   active_storage_base64 (~> 1.0.0)
   activeadmin (~> 2.8)
+  activeadmin_addons (~> 1.8, >= 1.8.3)
   annotate (~> 3.0, >= 3.0.3)
   arctic_admin (~> 3.2)
   aws-sdk-s3 (~> 1.75)
