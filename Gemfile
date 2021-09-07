@@ -45,7 +45,7 @@ end
 
 group :development do
   gem 'annotate', '~> 3.0', '>= 3.0.3'
-  gem 'better_errors', '~> 2.5', '>= 2.5.1'
+  gem 'better_errors', '~> 2.8'
   gem 'binding_of_caller', '~> 0.8.0'
   gem 'brakeman', '~> 4.8'
   gem 'i18n-tasks', '~> 0.9.30'
