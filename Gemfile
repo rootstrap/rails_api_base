@@ -2,16 +2,16 @@ source 'https://rubygems.org'
 ruby '~> 2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.3.5'
+gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 
-gem 'activeadmin', '~> 2.8'
+gem 'activeadmin', '~> 2.9'
 gem 'active_storage_base64', '~> 1.0.0'
-gem 'arctic_admin', '~> 3.2'
+gem 'arctic_admin', '~> 3.3.0'
 gem 'aws-sdk-s3', '~> 1.75', require: false
 gem 'bootsnap', '~> 1.4', '>= 1.4.5'
-gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.4'
+gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.5'
 gem 'devise', '~> 4.7', '>= 4.7.2'
-gem 'devise_token_auth', '~> 1.1', '>= 1.1.4'
+gem 'devise_token_auth', '~> 1.2'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'exception_hunter', '~> 1.0', '>= 1.0.1'
 gem 'jbuilder', '~> 2.10'
@@ -40,20 +40,20 @@ group :development, :test do
   gem 'pry-byebug', '~> 3.9', platform: :mri
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec_api_documentation', '~> 6.1.0'
-  gem 'rspec-rails', '~> 3.9'
+  gem 'rspec-rails', '~> 4.1'
 end
 
 group :development do
   gem 'annotate', '~> 3.0', '>= 3.0.3'
   gem 'better_errors', '~> 2.5', '>= 2.5.1'
   gem 'binding_of_caller', '~> 0.8.0'
-  gem 'brakeman', '~> 4.8'
+  gem 'brakeman', '~> 5.1'
   gem 'i18n-tasks', '~> 0.9.30'
   gem 'letter_opener', '~> 1.7'
   gem 'listen', '~> 3.2'
   gem 'rails_best_practices', '~> 1.20'
   gem 'reek', '~> 5.5'
-  gem 'rubocop-rails', '~> 2.3', '>= 2.3.2', require: false
+  gem 'rubocop-rails', '~> 2.12', require: false
   gem 'rubocop-rootstrap', '~> 1.2'
   gem 'spring', '~> 2.1'
   gem 'spring-watcher-listen', '~> 2.0.1'
