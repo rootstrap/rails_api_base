@@ -36,6 +36,10 @@ module Api
       def request_with_body?
         request.post? || request.put? || request.patch?
       end
+
+      def json_request?
+        request.format.json?
+      end
     end
   end
 end
