@@ -18,7 +18,7 @@ describe 'GET api/v1/settings/must_update', type: :request do
 
     it 'returns no need to update' do
       subject
-      expect(json['must_update']).to be(false)
+      expect(attributes['mustUpdate']).to be(false)
     end
   end
 
@@ -27,14 +27,14 @@ describe 'GET api/v1/settings/must_update', type: :request do
 
     it 'returns it needs to update' do
       subject
-      expect(json['must_update']).to be(true)
+      expect(attributes['mustUpdate']).to be(true)
     end
   end
 
   context 'without setting min version record' do
     it 'returns no need to update' do
       subject
-      expect(json['must_update']).to be(false)
+      expect(response.status).to eq 404
     end
   end
 end

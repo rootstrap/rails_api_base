@@ -1,5 +1,5 @@
 describe 'POST api/v1/users/sign_in', type: :request do
-  subject { post new_user_session_path, params: params, as: :json }
+  subject { post new_user_session_path, params: params }
 
   let(:password) { 'password' }
   let(:user) { create(:user, password: password) }
@@ -26,13 +26,13 @@ describe 'POST api/v1/users/sign_in', type: :request do
     end
 
     it 'returns the user' do
-      expect(json[:user][:id]).to eq(user.id)
-      expect(json[:user][:email]).to eq(user.email)
-      expect(json[:user][:username]).to eq(user.username)
-      expect(json[:user][:uid]).to eq(user.uid)
-      expect(json[:user][:provider]).to eq('email')
-      expect(json[:user][:first_name]).to eq(user.first_name)
-      expect(json[:user][:last_name]).to eq(user.last_name)
+      expect(attributes[:id]).to eq(user.id)
+      expect(attributes[:email]).to eq(user.email)
+      expect(attributes[:username]).to eq(user.username)
+      expect(attributes[:uid]).to eq(user.uid)
+      expect(attributes[:provider]).to eq('email')
+      expect(attributes[:firstName]).to eq(user.first_name)
+      expect(attributes[:lastName]).to eq(user.last_name)
     end
 
     it 'returns a valid client and access token' do
@@ -57,7 +57,7 @@ describe 'POST api/v1/users/sign_in', type: :request do
 
       expect(response).to be_unauthorized
       expected_response = {
-        error: 'Invalid login credentials. Please try again.'
+        errors: ['Invalid login credentials. Please try again.'], success: false
       }.with_indifferent_access
       expect(json).to eq(expected_response)
     end

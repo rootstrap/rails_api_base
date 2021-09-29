@@ -1,7 +1,7 @@
 module Api
   module V1
     class RegistrationsController < DeviseTokenAuth::RegistrationsController
-      protect_from_forgery with: :exception, unless: :json_request?
+      protect_from_forgery with: :exception
       include Api::Concerns::ActAsApiRequest
 
       private
@@ -12,7 +12,7 @@ module Api
       end
 
       def render_create_success
-        render :create
+        render jsonapi: current_user
       end
     end
   end
