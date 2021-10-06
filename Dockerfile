@@ -1,11 +1,14 @@
 FROM ruby:2.7.2
 
-RUN apt-get update -qq && \
-    apt-get install -y build-essential libssl-dev nodejs libpq-dev less vim nano libsasl2-dev
-
+RUN apt-get update -qq
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt update && apt install yarn
+
+RUN apt-get update -qq
+RUN apt-get install -y git-core zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev \
+    libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev software-properties-common \
+    libffi-dev nodejs libpq-dev less vim nano libsasl2-dev yarn
 
 ENV WORK_ROOT /src
 ENV APP_HOME $WORK_ROOT/myapp/
