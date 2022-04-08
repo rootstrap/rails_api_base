@@ -53,8 +53,6 @@ jobs:
       - name: Install packages
         run: |
           yarn install --pure-lockfile          
-      - name: Install dependencies
-        run: bundle install
       - name: Setup Code Climate test-reporter
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
