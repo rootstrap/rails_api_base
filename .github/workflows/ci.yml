@@ -44,10 +44,10 @@ jobs:
           bundle config path vendor/bundle
           bundle install --clean --jobs 4 --retry 3
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 14.16.0
-          cache: yarn
+          cache: 'yarn'
       - name: Find yarn cache location
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
