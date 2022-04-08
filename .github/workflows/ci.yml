@@ -24,14 +24,6 @@ jobs:
       RAILS_ENV: test
 
     steps:
-      - name: Check un-tracked changes
-        run: |
-          if [[ `git status <<parameters.path>> --porcelain` ]]
-          then
-            echo "ERROR: running the previous command has introduced changes. Hence, Failing the build."
-            git status --porcelain
-            exit 1
-          fi
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Setup Ruby and gem cache
