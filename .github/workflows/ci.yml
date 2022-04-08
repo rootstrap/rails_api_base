@@ -34,17 +34,11 @@ jobs:
           fi
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Setup Ruby
+      - name: Setup Ruby and gem cache
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.2
-      - name: Ruby gem cache
-        uses: actions/cache@v2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
+          bundler-cache: true
       - name: Install gems
         run: |
           bundle config path vendor/bundle
