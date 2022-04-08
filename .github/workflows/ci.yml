@@ -70,7 +70,7 @@ jobs:
           ./cc-test-reporter before-build
       - name: Setup Database
         run: |
-          cp .workflows/config/database.yml config/database.yml
+          cp .github/test_db/config/database.yml config/database.yml
           bundle exec rails db:setup
       - name: I18n Health
         run: bundle exec i18n-tasks health
