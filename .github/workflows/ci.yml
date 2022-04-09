@@ -22,6 +22,7 @@ jobs:
     
     env:
       RAILS_ENV: test
+      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
     steps:
       - name: Checkout code
@@ -61,7 +62,7 @@ jobs:
       - name: Setup Database
         run: |
           cp .github/test_db/config/database.yml config/database.yml
-          bundle exec rails db:setup
+          bundle exec rails db:create db:migrate
       - name: I18n Health
         run: bundle exec i18n-tasks health
       - name: Run Code Analysis
