@@ -40,7 +40,7 @@ jobs:
         run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
-      - name: Check for untracked chanfges in Gemfile.lock
+      - name: Check for untracked changes in Gemfile.lock
         uses: ./.github/actions/check_untracked_changes
         with:
           path: "Gemfile.lock"
@@ -71,7 +71,7 @@ jobs:
         run: |
           cp .github/test_db/config/database.yml config/database.yml
           bundle exec rails db:create db:migrate
-      - name: Check for untracked chanfges in Gemfile.lock
+      - name: Check for untracked changes in schema.db
         uses: ./.github/actions/check_untracked_changes
         with:
           path: "db/schema.rb"
@@ -85,7 +85,7 @@ jobs:
           bundle exec rspec
       - name: Check for missing annotations
         run: bundle exec annotate
-      - name: Check for untracked chanfges in Gemfile.lock
+      - name: Check for untracked changes in app and spec directories
         uses: ./.github/actions/check_untracked_changes
         with:
           path: "app/ spec/"
