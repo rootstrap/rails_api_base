@@ -32,10 +32,14 @@ jobs:
         with:
           ruby-version: 2.7.2
           bundler-cache: true
+      - name: Configure Ruby env
+        run: |
+          echo "gem: --no-document" > ~/.gemrc # Disable gem docs
+          bundle config set clean 'true'
       - name: Install gems
         run: |
           bundle config path vendor/bundle
-          bundle install --clean --jobs 4 --retry 3
+          bundle install --jobs 4 --retry 3
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
