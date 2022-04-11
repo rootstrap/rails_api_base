@@ -58,11 +58,6 @@ jobs:
       - name: Install packages
         run: |
           yarn install --pure-lockfile          
-      - name: Setup Code Climate test-reporter
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
       - name: Setup Database
         run: |
           cp .github/test_db/config/database.yml config/database.yml
@@ -74,6 +69,11 @@ jobs:
             echo "Build failed, git status . --porcelain result: $status"
             exit 1
           fi
+      - name: Setup Code Climate test-reporter
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
       - name: I18n Health
         run: bundle exec i18n-tasks health
       - name: Run Code Analysis
