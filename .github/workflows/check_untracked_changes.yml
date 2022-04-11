@@ -1,0 +1,22 @@
+name: Check un-tracked changes using git porcelain command
+
+on:
+  workflow_call:
+    inputs:
+      path:
+        description: Path to check
+        type: string
+        default: "."
+
+jobs:
+  check_untracked_changes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check un-tracked changes using git porcelain command
+        run: |
+          status=$(`git status <<inputs.path>> --porcelain`)
+          if [ -n "$status" ]; then
+            echo "Build failed, git status . --porcelain result: $status"
+            exit 1
+          fi

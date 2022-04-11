@@ -40,6 +40,9 @@ jobs:
         run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
+      - uses: ./.github/workflows/check_untracked_changes
+        with:
+          path: "Gemfile.lock"
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -57,23 +60,19 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: Install packages
         run: |
-          yarn install --pure-lockfile          
-      - name: Setup Database
-        run: |
-          cp .github/test_db/config/database.yml config/database.yml
-          bundle exec rails db:create db:migrate
-      - name: Check un-tracked changes using git porcelain command
-        run: |
-          status=$(git status . --porcelain)
-          if [ -n "$status" ]; then
-            echo "Build failed, git status . --porcelain result: $status"
-            exit 1
-          fi
+          yarn install --pure-lockfile
       - name: Setup Code Climate test-reporter
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
+          ./cc-test-reporter before-build        
+      - name: Setup Database
+        run: |
+          cp .github/test_db/config/database.yml config/database.yml
+          bundle exec rails db:create db:migrate
+      - uses: ./.github/workflows/check_untracked_changes
+        with:
+          path: "db/schema.rb"
       - name: I18n Health
         run: bundle exec i18n-tasks health
       - name: Run Code Analysis
@@ -84,6 +83,9 @@ jobs:
           bundle exec rspec
       - name: Check for missing annotations
         run: bundle exec annotate
+      - uses: ./.github/workflows/check_untracked_changes
+        with:
+          path: "app/ spec/"
       - name: Report to CodeClimate
         run: |
           ./cc-test-reporter after-build --exit-code 0
