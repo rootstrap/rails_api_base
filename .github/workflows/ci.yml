@@ -27,6 +27,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Check un-tracked changes using git porcelain command
+        run: |
+          status=$(git status . --porcelain)
+          if [ -n "$status" ]; then
+            echo "Build failed, git status . --porcelain result: $status"
+            exit 1
+          fi
       - name: Setup Ruby and gem cache
         uses: ruby/setup-ruby@v1
         with:
