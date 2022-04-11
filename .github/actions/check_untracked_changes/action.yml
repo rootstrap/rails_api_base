@@ -13,6 +13,7 @@ runs:
   using: "composite"
   steps:
     - name: Check un-tracked changes using git porcelain command
+      shell: bash
       run: |
         status=$(`git status ${{ inputs.path }} --porcelain`)
         if [ -n "$status" ]; then
