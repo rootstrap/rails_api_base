@@ -27,13 +27,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Check un-tracked changes using git porcelain command
-        run: |
-          status=$(git status . --porcelain)
-          if [ -n "$status" ]; then
-            echo "Build failed, git status . --porcelain result: $status"
-            exit 1
-          fi
       - name: Setup Ruby and gem cache
         uses: ruby/setup-ruby@v1
         with:
@@ -74,6 +67,13 @@ jobs:
         run: |
           cp .github/test_db/config/database.yml config/database.yml
           bundle exec rails db:create db:migrate
+      - name: Check un-tracked changes using git porcelain command
+        run: |
+          status=$(git status . --porcelain)
+          if [ -n "$status" ]; then
+            echo "Build failed, git status . --porcelain result: $status"
+            exit 1
+          fi
       - name: I18n Health
         run: bundle exec i18n-tasks health
       - name: Run Code Analysis
