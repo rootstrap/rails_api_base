@@ -40,7 +40,7 @@ jobs:
         run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
-      - uses: ./.github/workflows/check_untracked_changes@feature/add-github-actions-ci
+      - uses: rootstrap/rails_api_base/.github/workflows/check_untracked_changes@feature/add-github-actions-ci
         with:
           path: "Gemfile.lock"
       - name: Setup Node
@@ -70,7 +70,7 @@ jobs:
         run: |
           cp .github/test_db/config/database.yml config/database.yml
           bundle exec rails db:create db:migrate
-      - uses: ./.github/workflows/check_untracked_changes@feature/add-github-actions-ci
+      - uses: rootstrap/rails_api_base/.github/workflows/check_untracked_changes@feature/add-github-actions-ci
         with:
           path: "db/schema.rb"
       - name: I18n Health
@@ -83,7 +83,7 @@ jobs:
           bundle exec rspec
       - name: Check for missing annotations
         run: bundle exec annotate
-      - uses: ./.github/workflows/check_untracked_changes@feature/add-github-actions-ci
+      - uses:  rootstrap/rails_api_base/.github/workflows/check_untracked_changes@feature/add-github-actions-ci
         with:
           path: "app/ spec/"
       - name: Report to CodeClimate
