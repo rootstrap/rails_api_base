@@ -32,14 +32,6 @@ jobs:
         with:
           ruby-version: 2.7.2
           bundler-cache: true
-      - name: Configure Ruby env
-        run: |
-          echo "gem: --no-document" > ~/.gemrc # Disable gem docs
-          bundle config set clean 'true'
-      - name: Install gems
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
       - name: Check for untracked changes in Gemfile.lock
         uses: ./.github/actions/check_untracked_changes
         with:
