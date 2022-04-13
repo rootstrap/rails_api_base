@@ -43,7 +43,7 @@ jobs:
       - name: Check for untracked changes in Gemfile.lock
         uses: ./.github/actions/check_untracked_changes
         with:
-          path: "Gemfile.lock"
+          path: "./Gemfile.lock"
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
@@ -71,10 +71,10 @@ jobs:
         run: |
           cp .github/test_db/config/database.yml config/database.yml
           bundle exec rails db:create db:migrate
-      - name: Check for untracked changes in schema.db
+      - name: Check for untracked changes in schema.rb
         uses: ./.github/actions/check_untracked_changes
         with:
-          path: "db/schema.rb"
+          path: "./db/schema.rb"
       - name: I18n Health
         run: bundle exec i18n-tasks health
       - name: Run Code Analysis
@@ -88,7 +88,7 @@ jobs:
       - name: Check for untracked changes in app and spec directories
         uses: ./.github/actions/check_untracked_changes
         with:
-          path: "app/ spec/"
+          path: "./app/ ./spec/"
       - name: Report to CodeClimate
         run: |
           ./cc-test-reporter after-build --exit-code 0
