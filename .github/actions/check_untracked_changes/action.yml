@@ -1,0 +1,22 @@
+name: Check for untracked changes
+
+description: Uses git status --porcelain command to check for untracked changes
+
+inputs:
+  path:
+    description: Path to check
+    type: string
+    default: "."
+    required: false
+
+runs:
+  using: "composite"
+  steps:
+    - name: Check un-tracked changes using git porcelain command
+      shell: bash
+      run: |
+        status=$(git status ${{ inputs.path }} --porcelain)
+        if [ -n "$status" ]; then
+          echo "Build failed, git status ${{ inputs.path }} --porcelain result: $status"
+          exit 1
+        fi

@@ -34,6 +34,7 @@ gem 'yaaf', '~> 0.1'
 # gem 'image_processing', '~> 1.2'
 
 group :development, :test do
+  gem 'annotate', '~> 3.0', '>= 3.0.3'
   gem 'bullet', '~> 6.1'
   gem 'dotenv-rails', '~> 2.7.6'
   gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
@@ -44,7 +45,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'annotate', '~> 3.0', '>= 3.0.3'
   gem 'better_errors', '~> 2.5', '>= 2.5.1'
   gem 'binding_of_caller', '~> 0.8.0'
   gem 'brakeman', '~> 5.1'

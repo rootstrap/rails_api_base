@@ -1,0 +1,81 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:9.4
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
+    env:
+      RAILS_ENV: test
+      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.16.0
+          cache: 'yarn'
+      - name: Find yarn cache location
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: JS package cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install packages
+        run: |
+          yarn install --pure-lockfile
+      - name: Setup Code Climate test-reporter
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build        
+      - name: Setup Database
+        run: |
+          cp .github/test_db/config/database.yml config/database.yml
+          bundle exec rails db:create db:migrate
+      - name: Check for untracked changes in schema.rb
+        uses: ./.github/actions/check_untracked_changes
+        with:
+          path: "./db/schema.rb"
+      - name: I18n Health
+        run: bundle exec i18n-tasks health
+      - name: Run Code Analysis
+        run: |
+          bundle exec rake code:analysis
+      - name: Run Tests
+        run: |
+          bundle exec rspec
+      - name: Check for missing annotations
+        run: bundle exec annotate
+      - name: Check for untracked changes in app and spec directories
+        uses: ./.github/actions/check_untracked_changes
+        with:
+          path: "./app/ ./spec/"
+      - name: Report to CodeClimate
+        run: |
+          ./cc-test-reporter after-build --exit-code 0
