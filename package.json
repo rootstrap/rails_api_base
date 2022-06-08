@@ -4,9 +4,9 @@
   "dependencies": {
     "@activeadmin/activeadmin": "^2.9.0",
     "@fortawesome/fontawesome-free": "^5.14.0",
-    "@rails/actioncable": "^6.0.3-5",
-    "@rails/activestorage": "^6.0.3-5",
-    "@rails/ujs": "^6.0.3-5",
+    "@rails/actioncable": "^6.1.6",
+    "@rails/activestorage": "^6.1.6",
+    "@rails/ujs": "^6.1.6",
     "@rails/webpacker": "5.4.2",
     "arctic_admin": "3.2.2",
     "turbolinks": "^5.2.0",
