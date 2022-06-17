@@ -16,13 +16,5 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^4.3.0"
-  },
-  "resolutions": {
-    "compression-webpack-plugin": ">=4.0.0",
-    "dot-prop": ">=5.2.0",
-    "is-svg": ">=4.2.2",
-    "node-forge": ">=0.10.0",
-    "ssri": ">=8.0.1",
-    "y18n": ">=4.0.1"
   }
 }
