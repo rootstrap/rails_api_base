@@ -59,7 +59,7 @@ jobs:
           cp .github/test_db/config/database.yml config/database.yml
           bundle exec rails db:create db:migrate
       - name: Check for untracked changes in schema.rb
-        uses: ./.github/actions/check_untracked_changes
+        uses: rootstrap/check_untracked_changes@v1
         with:
           path: "./db/schema.rb"
       - name: I18n Health
@@ -73,7 +73,7 @@ jobs:
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories
-        uses: ./.github/actions/check_untracked_changes
+        uses: rootstrap/check_untracked_changes@v1
         with:
           path: "./app/ ./spec/"
       - name: Report to CodeClimate
