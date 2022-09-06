@@ -11,7 +11,7 @@ gem 'aws-sdk-s3', '~> 1.75', require: false
 gem 'bootsnap', '~> 1.4', '>= 1.4.5'
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.5'
 gem 'devise', '~> 4.7', '>= 4.7.2'
-gem 'devise_token_auth', '~> 1.2', git: "https://github.com/lynndylanhurley/devise_token_auth"
+gem 'devise_token_auth', '~> 1.2', git: 'https://github.com/lynndylanhurley/devise_token_auth'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'exception_hunter', '~> 1.0', '>= 1.0.1'
 gem 'jbuilder', '~> 2.10'
