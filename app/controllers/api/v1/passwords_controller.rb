@@ -8,17 +8,13 @@ module Api
       def edit
         # if a user is not found, return nil
         @resource = resource_class.with_reset_password_token(resource_params[:reset_password_token])
-
-        if @resource && @resource.reset_password_period_valid?
+        if @resource&.reset_password_period_valid?
           token = @resource.create_token unless require_client_password_reset_token?
-
           # ensure that user is confirmed
           @resource.skip_confirmation! if confirmable_enabled? && !@resource.confirmed_at
           # allow user to change password once without current_password
           @resource.allow_password_change = true if recoverable_enabled?
-
           @resource.save!
-
           yield @resource if block_given?
 
           if require_client_password_reset_token?
@@ -26,10 +22,7 @@ module Api
                                                       reset_password_token: resource_params[:reset_password_token]),
                         allow_other_host: true
           else
-            if DeviseTokenAuth.cookie_enabled
-              set_token_in_cookie(@resource, token)
-            end
-
+            set_token_in_cookie(@resource, token) if DeviseTokenAuth.cookie_enabled
             redirect_header_options = { reset_password: true }
             redirect_headers = build_redirect_headers(token.token,
                                                       token.client,
