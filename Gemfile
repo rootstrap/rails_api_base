@@ -2,16 +2,16 @@ source 'https://rubygems.org'
 ruby '~> 2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1.6'
+gem 'rails', '~> 7.0.3'
 
 gem 'activeadmin', '~> 2.9'
-gem 'active_storage_base64', '~> 1.0.0'
+gem 'active_storage_base64', '~> 2.0.0'
 gem 'arctic_admin', '~> 3.3.0'
 gem 'aws-sdk-s3', '~> 1.75', require: false
 gem 'bootsnap', '~> 1.4', '>= 1.4.5'
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.5'
 gem 'devise', '~> 4.7', '>= 4.7.2'
-gem 'devise_token_auth', '~> 1.2'
+gem 'devise_token_auth', '~> 1.2', git: 'https://github.com/lynndylanhurley/devise_token_auth'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'exception_hunter', '~> 1.0', '>= 1.0.1'
 gem 'jbuilder', '~> 2.10'
@@ -25,7 +25,7 @@ gem 'sass-rails', '~> 6.0.0'
 gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets', '~> 3.7.2'
 gem 'webpacker', '~> 5.1', '>= 5.1.1'
-gem 'yaaf', '~> 0.1'
+gem 'yaaf', '~> 2.2'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -35,8 +35,8 @@ gem 'yaaf', '~> 0.1'
 # gem 'image_processing', '~> 1.2'
 
 group :development, :test do
-  gem 'annotate', '~> 3.0', '>= 3.0.3'
-  gem 'bullet', '~> 6.1'
+  gem 'annotate', '~> 3.2', '>= 3.0.3'
+  gem 'bullet', '~> 7.0.3'
   gem 'dotenv-rails', '~> 2.7.6'
   gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
   gem 'pry-byebug', '~> 3.9', platform: :mri
@@ -56,8 +56,7 @@ group :development do
   gem 'reek', '~> 5.5'
   gem 'rubocop-rails', '~> 2.12', require: false
   gem 'rubocop-rootstrap', '~> 1.2'
-  gem 'spring', '~> 2.1'
-  gem 'spring-watcher-listen', '~> 2.0.1'
+  gem 'spring', '~> 4.0'
 end
 
 group :test do
