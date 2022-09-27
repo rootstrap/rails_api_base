@@ -3,7 +3,6 @@
   "private": true,
   "dependencies": {
     "@activeadmin/activeadmin": "^2.9.0",
-    "@fortawesome/fontawesome-free": "^5.14.0",
     "@rails/actioncable": "^7.0.3",
     "@rails/activestorage": "^7.0.3",
     "@rails/ujs": "^7.0.3",
