@@ -287,5 +287,5 @@ ActiveAdmin.setup do |config|
   #
   # Enable and disable use of webpacker
   #
-  config.use_webpacker = true
+  config.use_webpacker = false
 end
