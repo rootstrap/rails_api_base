@@ -1,4 +1,4 @@
-class AdminUserPolicy < ApplicationPolicyq
+class AdminUserPolicy < ApplicationPolicy
   def index?
     user.is_a?(AdminUser)
   end
