@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '~> 2.7.2'
+ruby '~> 3.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 7.0.3'
@@ -46,14 +46,14 @@ end
 
 group :development do
   gem 'better_errors', '~> 2.5', '>= 2.5.1'
-  gem 'binding_of_caller', '~> 0.8.0'
+  gem 'binding_of_caller', '~> 1.0'
   gem 'brakeman', '~> 5.1'
   gem 'i18n-tasks', '~> 0.9.30'
   gem 'letter_opener', '~> 1.7'
   gem 'listen', '~> 3.2'
   gem 'rails_best_practices', '~> 1.20'
-  gem 'reek', '~> 5.5'
-  gem 'rubocop-rails', '~> 2.12', require: false
+  gem 'reek', '~> 6.1', '>= 6.1.1'
+  gem 'rubocop-rails', '~> 2.16', '>= 2.16.1', require: false
   gem 'rubocop-rootstrap', '~> 1.2'
   gem 'spring', '~> 4.0'
 end
