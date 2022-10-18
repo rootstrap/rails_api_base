@@ -1,5 +1,5 @@
 describe 'POST api/v1/users/password', type: :request do
-  subject { post user_password_path, params: params, as: :json }
+  subject { post user_password_path, params:, as: :json }
 
   let!(:user) { create(:user, password: 'mypass123') }
 

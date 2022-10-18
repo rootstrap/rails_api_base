@@ -24,7 +24,7 @@ module Api
         response = {
           error: message
         }
-        render json: response, status: status
+        render json: response, status:
       end
 
       private

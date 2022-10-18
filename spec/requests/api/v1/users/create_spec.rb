@@ -3,7 +3,7 @@ describe 'POST api/v1/users/', type: :request do
   let(:failed_response) { 422 }
 
   describe 'POST create' do
-    subject { post user_registration_path, params: params, as: :json }
+    subject { post user_registration_path, params:, as: :json }
 
     let(:username)              { 'test' }
     let(:email)                 { 'test@test.com' }
@@ -15,12 +15,12 @@ describe 'POST api/v1/users/', type: :request do
     let(:params) do
       {
         user: {
-          username: username,
-          email: email,
-          password: password,
-          password_confirmation: password_confirmation,
-          first_name: first_name,
-          last_name: last_name
+          username:,
+          email:,
+          password:,
+          password_confirmation:,
+          first_name:,
+          last_name:
         }
       }
     end
@@ -65,7 +65,7 @@ describe 'POST api/v1/users/', type: :request do
     context 'when the password is incorrect' do
       let(:password)              { 'short' }
       let(:password_confirmation) { 'short' }
-      let(:new_user)              { User.find_by(email: email) }
+      let(:new_user)              { User.find_by(email:) }
 
       it 'does not create a user' do
         subject
@@ -81,7 +81,7 @@ describe 'POST api/v1/users/', type: :request do
     context 'when passwords don\'t match' do
       let(:password)              { 'shouldmatch' }
       let(:password_confirmation) { 'dontmatch' }
-      let(:new_user)              { User.find_by(email: email) }
+      let(:new_user)              { User.find_by(email:) }
 
       it 'does not create a user' do
         subject

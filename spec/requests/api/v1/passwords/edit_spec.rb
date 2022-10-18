@@ -4,7 +4,7 @@ describe 'GET api/v1/users/passwords/edit', type: :request do
   let(:params) do
     {
       reset_password_token: password_token,
-      redirect_url: ENV['PASSWORD_RESET_URL']
+      redirect_url: ENV.fetch('PASSWORD_RESET_URL', nil)
     }
   end
 
