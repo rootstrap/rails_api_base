@@ -37,13 +37,13 @@ module App
     ActionMailer::Base.smtp_settings = {
       address: 'smtp.sendgrid.net',
       authentication: :plain,
-      domain: ENV['SERVER_HOST'],
+      domain: ENV.fetch('SERVER_HOST', nil),
       enable_starttls_auto: true,
-      password: ENV['SENDGRID_API_KEY'],
+      password: ENV.fetch('SENDGRID_API_KEY', nil),
       port: 587,
       user_name: 'apikey'
     }
-    config.action_mailer.default_url_options = { host: ENV['SERVER_HOST'],
+    config.action_mailer.default_url_options = { host: ENV.fetch('SERVER_HOST', nil),
                                                  port: ENV.fetch('PORT', 3000) }
     config.action_mailer.default_options = {
       from: 'no-reply@api.com'

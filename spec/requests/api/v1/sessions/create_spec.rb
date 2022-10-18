@@ -1,14 +1,14 @@
 describe 'POST api/v1/users/sign_in', type: :request do
-  subject { post new_user_session_path, params: params, as: :json }
+  subject { post new_user_session_path, params:, as: :json }
 
   let(:password) { 'password' }
-  let(:user) { create(:user, password: password) }
+  let(:user) { create(:user, password:) }
   let(:params) do
     {
       user:
         {
           email: user.email,
-          password: password
+          password:
         }
     }
   end
