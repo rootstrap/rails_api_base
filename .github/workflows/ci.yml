@@ -62,20 +62,13 @@ jobs:
         uses: rootstrap/check_untracked_changes@v1
         with:
           path: "./db/schema.rb"
-      - name: I18n Health
-        run: bundle exec i18n-tasks health
-      - name: Run Code Analysis
+      - name: Run Rubocop
         run: |
-          bundle exec rake code:analysis
+          bundle exec rubocop
       - name: Run Tests
         run: |
           bundle exec rspec
-      - name: Check for missing annotations
-        run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories
         uses: rootstrap/check_untracked_changes@v1
         with:
           path: "./app/ ./spec/"
-      - name: Report to CodeClimate
-        run: |
-          ./cc-test-reporter after-build --exit-code 0
