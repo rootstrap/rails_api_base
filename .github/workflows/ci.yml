@@ -1,4 +1,4 @@
-name: CI
+name: THIS IS A BASIC CI FOR RUBY LINTER AND RSPEC
 
 on: [push]
 
