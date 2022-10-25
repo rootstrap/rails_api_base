@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password: postgres
+  # If you using docker the host should be "db"
+  host: localhost
+  port: 5432
+
+development:
+ <<: *default
+ database: sample_project_development
+
+test:
+ <<: *default
+ database: sample_project_test
+
+production:
+ <<: *default
+ url: <%= ENV['DATABASE_URL'] %>
