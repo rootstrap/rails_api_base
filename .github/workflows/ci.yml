@@ -32,7 +32,7 @@ jobs:
           bundler-cache: true
       - name: Setup Database
         run: |
-          cp .github/test_db/config/database.yml config/database.yml
+          cp config/database.yml config/database.yml
           bundle exec rails db:create db:migrate
       - name: Run Rubocop
         run: |
