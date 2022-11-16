@@ -9,6 +9,8 @@
 #
 
 require 'rubygems'
+require 'shellwords'
+require_relative 'helpers'
 
 m = Module.new do
     module_function
@@ -101,5 +103,9 @@ end
 m.load_bundler!
 
 if m.invoked_as_script?
-  load Gem.bin_path('bundler', 'bundle')
+  if running_with_docker?
+    exec "bin/web 'bin/bundle #{Shellwords.join(ARGV)}'"
+  else
+    load Gem.bin_path('bundler', 'bundle')
+  end
 end
