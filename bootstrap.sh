@@ -11,10 +11,10 @@ die () {
 project_name=$1
 
 # install ruby gems
-bundle install
+bin/bundle install
 
 # install node packages
-yarn
+bin/web yarn
 
 # generate a .env from the sample file
 cp .env.sample .env
@@ -23,4 +23,4 @@ cp .env.sample .env
 sed "s/sample_project/${project_name}/g" config/database.yml.example > config/database.yml
 
 # setup database
-bundle exec rails db:setup
+bin/bundle exec rails db:setup
