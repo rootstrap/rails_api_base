@@ -8,20 +8,25 @@ services:
       rm -f tmp/pids/server.pid
       && bundle exec rails s -b 0.0.0.0 -p 3000"
     ports:
-      - 3000:3000
+      - ${RAILS_PORT-3000}:3000
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST: db
     volumes:
       - .:/src/myapp
     depends_on:
       - db
     links:
-      - "db:db"
+      - db:db
   db:
     image: postgres:11
     environment:
-      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     volumes:
       - db_data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - ${POSTGRES_PORT-5432}:5432
 volumes:
   db_data:
