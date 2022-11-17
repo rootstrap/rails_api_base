@@ -1,7 +1,7 @@
 require 'open3'
 
 def running_with_docker?
-  !run_rails_locally? && docker_compose_installed? && web_service_running?
+  run_rails_with_docker? && docker_compose_installed? && web_service_running?
 end
 
 def docker_compose_installed?
@@ -18,6 +18,6 @@ def web_service
   out.strip
 end
 
-def run_rails_locally?
-  ENV['RAILS_LOCAL']
+def run_rails_with_docker?
+  !ENV['RAILS_DOCKER'].to_s.empty?
 end
