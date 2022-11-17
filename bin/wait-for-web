@@ -16,7 +16,7 @@ def web_container_up?
 end
 
 def web_server_up?
-  out, _ = Open3.capture2("curl -s -o /dev/null -I -w '%{http_code}' 0.0.0.0:${RAILS_PORT-3001}")
+  out, _ = Open3.capture2("curl -s -o /dev/null -I -w '%{http_code}' 0.0.0.0:${RAILS_PORT-3000}")
   out.strip == '200'
 end
 
