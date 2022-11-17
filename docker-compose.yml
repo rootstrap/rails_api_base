@@ -10,8 +10,8 @@ services:
     ports:
       - ${RAILS_PORT-3000}:3000
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: ${POSTGRES_USER-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD-postgres}
       POSTGRES_HOST: db
     volumes:
       - .:/src/myapp
@@ -22,8 +22,8 @@ services:
   db:
     image: postgres:11
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: ${POSTGRES_USER-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD-postgres}
     volumes:
       - db_data:/var/lib/postgresql/data
     ports:
