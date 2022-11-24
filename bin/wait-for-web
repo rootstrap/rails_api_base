@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require 'open3'
+
+SLEEP_TIME = 5
+TIMEOUT = 180
+
+elapsed = 0
+
+# puts "\n== Waiting for Web to start =="
+
+def web_container_up?
+  status_lines = %x(docker-compose ps web)
+  status = status_lines.lines.last.force_encoding(Encoding::UTF_8).split(' ')
+  status.include?('running')
+end
+
+def web_server_up?
+  out, _ = Open3.capture2("curl -s -o /dev/null -I -w '%{http_code}' 0.0.0.0:${RAILS_PORT-3000}")
+  out.strip == '200'
+end
+
+until web_container_up? && web_server_up? do
+  if elapsed >= TIMEOUT
+    puts "Timed out. Exiting..."
+    exit 1
+  end
+
+  sleep SLEEP_TIME
+
+  elapsed += SLEEP_TIME
+end

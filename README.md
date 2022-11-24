@@ -32,7 +32,7 @@ This template comes with:
 
 1. Clone this repo
 1. Install PostgreSQL in case you don't have it
-1. Run `bootstrap.sh` with the name of your project like `./bootstrap.sh my_awesome_project`
+1. Run `bootstrap.sh` with the name of your project like `./bootstrap.sh --name=my_awesome_project`
 1. `rspec` and make sure all tests pass
 1. `rails s`
 1. You can now try your REST services!
@@ -40,28 +40,28 @@ This template comes with:
 ## How to use with docker
 
 1. Have `docker` and `docker-compose` installed (You can check this by doing `docker -v` and `docker-compose -v`)
-1. Modify the following lines in the `database.yml` file:
-  ``` yaml
-  default: &default
-    adapter: postgresql
-    encoding: unicode
-    pool: 5
-    username: postgres
-    password: postgres
-    host: db
-    port: 5432
-  ```
-1. Generate a secret key for the app by running `docker-compose run --rm --entrypoint="" web rake secret`, copy it and add it in your environment variables.
-1. Update the default database configuration in the `config/database.yml` file to point to the `docker-compose` database:
-   1. Set `username: postgres`
-   1. Set `password: postgres`
-   1. Set `host: db`
-1. Run `docker-compose run --rm --entrypoint="" web rails db:create db:migrate`.
-   1. (Optional) Seed the database with an AdminUser for use with ActiveAdmin by running `docker-compose run --rm --entrypoint="" web rails db:seed`. The credentials for this user are: email: `admin@example.com` ; password: `password`.
+1. Run `bootstrap.sh` with the name of your project and the `-d` or `--for-docker` flag like `./bootstrap.sh --name=my_awesome_project -d`
+  1. This will add the `RAILS_DOCKER` var to your local .env file. If you wish to run the project locally just remove it.
+  1. Run `./bootstrap.sh --help` for the full details.
+1. Generate a secret key for the app by running `bin/web rake secret`, copy it and add it in your environment variables.
 1. (Optional) If you want to deny access to the database from outside of the `docker-compose` network, remove the `ports` key in the `docker-compose.yml` from the `db` service.
-1. (Optional) Run the tests to make sure everything is working with: `docker-compose run --rm --entrypoint="" web rspec .`.
-1. Run the application with `docker-compose up`.
+1. (Optional) Run the tests to make sure everything is working with: `bin/rspec .`.
 1. You can now try your REST services!
+
+## Dev scripts
+This template provides a handful of scripts to make your dev experience better!
+
+- bin/bundle to run any `bundle` commands.
+  - `bin/bundle install`
+- bin/rails to run any `rails` commands
+  - `bin/rails console`
+- bin/web to run any `bash` commands
+  - `bin/web yarn`
+- bin/rspec to run specs
+  - `bin/rspec .`
+
+You don't have to use these but they are designed to run the same when running with docker or not.
+To illustrate, `bin/rails console` will run the console in the docker container when running with docker and locally when not.
 
 ## Gems
 

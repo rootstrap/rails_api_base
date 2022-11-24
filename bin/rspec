@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+require 'shellwords'
+require_relative 'helpers'
+
+if running_with_docker?
+  exec "bin/web 'ITERATIONS=#{ENV['ITERATIONS']} bin/rspec #{Shellwords.join(ARGV)}'"
+else
+  require 'bundler/setup'
+  load Gem.bin_path('rspec-core', 'rspec')
+end

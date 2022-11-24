@@ -24,10 +24,8 @@ WORKDIR $APP_HOME
 
 ADD Gemfile ./
 ADD Gemfile.lock ./
+RUN bundle update --bundler
 RUN bundle install
-
-ADD package.json yarn.lock ./
-RUN yarn install --check-files
 
 ADD . $APP_HOME
 
