@@ -65,14 +65,10 @@ sed "s/sample_project/${project_name}/g" config/database.yml.example > config/da
 if [[ $docker -eq 1 ]]; then
   echo "RAILS_DOCKER=1" >> .env
   docker-compose up --detach
-  bin/wait-for-web
 fi
 
 # install ruby gems
 bin/bundle install
-
-# install node packages
-bin/web yarn
 
 # setup database
 bin/rails db:setup
