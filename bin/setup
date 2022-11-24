@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'fileutils'
+require_relative 'bundler'
 
 # path to your application root.
 APP_ROOT = File.expand_path('..', __dir__)
@@ -14,7 +15,7 @@ FileUtils.chdir APP_ROOT do
   # Add necessary setup steps to this file.
 
   puts '== Installing dependencies =='
-  system! "bin/web 'gem install bundler --conservative'"
+  system! "bin/web 'gem install bundler -v '#{bundler_version}''"
   system('bin/bundle check') || system!('bin/bundle install')
 
   # puts "\n== Copying sample files =="

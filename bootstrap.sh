@@ -67,7 +67,4 @@ if [[ $docker -eq 1 ]]; then
 fi
 
 # install ruby gems
-bin/bundle install
-
-# setup database
-bin/rails db:setup
+bin/setup
