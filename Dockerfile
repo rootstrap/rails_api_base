@@ -26,7 +26,7 @@ ADD Gemfile ./
 ADD Gemfile.lock ./
 RUN bundle install
 
-ADD package.json yarn.lock ./
+ADD yarn.lock ./
 RUN yarn install --check-files
 
 ADD . $APP_HOME
