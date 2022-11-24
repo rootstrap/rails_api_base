@@ -15,6 +15,7 @@ ENV BUNDLE_BIN $GEM_HOME/gems/bin
 ENV PATH $GEM_HOME/bin:$BUNDLE_BIN:$PATH
 
 RUN gem install bundler
+RUN bundle update --bundler
 
 RUN mkdir -p $APP_HOME
 
@@ -25,9 +26,6 @@ WORKDIR $APP_HOME
 ADD Gemfile ./
 ADD Gemfile.lock ./
 RUN bundle install
-
-ADD yarn.lock ./
-RUN yarn install --check-files
 
 ADD . $APP_HOME
 
