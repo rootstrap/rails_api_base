@@ -63,7 +63,6 @@ sed "s/sample_project/${project_name}/g" config/database.yml.example > config/da
 
 # spin up docker services if flag is specified for the setup to take place inside the containers
 if [[ $docker -eq 1 ]]; then
-  echo "RAILS_DOCKER=1" >> .env
   docker-compose up --build --detach
 fi
 
