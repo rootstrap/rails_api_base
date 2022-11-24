@@ -41,8 +41,7 @@ This template comes with:
 
 1. Have `docker` and `docker-compose` installed (You can check this by doing `docker -v` and `docker-compose -v`)
 1. Run `bootstrap.sh` with the name of your project and the `-d` or `--for-docker` flag like `./bootstrap.sh --name=my_awesome_project -d`
-  1. This will add the `RAILS_DOCKER` var to your local .env file. If you wish to run the project locally just remove it.
-  1. Run `./bootstrap.sh --help` for the full details.
+    1. Run `./bootstrap.sh --help` for the full details.
 1. Generate a secret key for the app by running `bin/web rake secret`, copy it and add it in your environment variables.
 1. (Optional) If you want to deny access to the database from outside of the `docker-compose` network, remove the `ports` key in the `docker-compose.yml` from the `db` service.
 1. (Optional) Run the tests to make sure everything is working with: `bin/rspec .`.
@@ -56,7 +55,7 @@ This template provides a handful of scripts to make your dev experience better!
 - bin/rails to run any `rails` commands
   - `bin/rails console`
 - bin/web to run any `bash` commands
-  - `bin/web yarn`
+  - `bin/web ls`
 - bin/rspec to run specs
   - `bin/rspec .`
 
