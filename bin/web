@@ -4,7 +4,7 @@ require 'shellwords'
 require_relative 'helpers'
 
 command = if running_with_docker?
-  puts "Running in service #{web_service}"
+  puts "Running in service #{web_service}...\n"
 
   "docker-compose exec #{web_service} sh -c "
 else
