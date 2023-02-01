@@ -7,9 +7,11 @@ require 'helpers'
 require 'webmock/rspec'
 require 'shoulda/matchers'
 require 'pundit/rspec'
+require 'knapsack'
 
 FactoryBot.factories.clear
 FactoryBot.reload
+Knapsack::Adapters::RSpecAdapter.bind
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
 

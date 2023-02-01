@@ -23,6 +23,7 @@ jobs:
     env:
       RAILS_ENV: test
       CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+      KNAPSACK_GENERATE_REPORT: true
 
     steps:
       - name: Checkout code
@@ -51,7 +52,7 @@ jobs:
           bundle exec rake code:analysis
       - name: Run Tests
         run: |
-          bundle exec rspec
+          bundle exec rspec spec
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories
