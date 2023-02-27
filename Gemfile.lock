@@ -7,6 +7,14 @@ GIT
       devise (> 3.5.2, < 5)
       rails (>= 4.2.0, < 7.1)
 
+GIT
+  remote: https://github.com/rootstrap/exception_hunter.git
+  revision: b6f7cab9e9a9157147c5a165d0b79762c6158664
+  specs:
+    exception_hunter (1.1.0)
+      pagy (~> 4)
+      slack-notifier (~> 2.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -169,9 +177,6 @@ GEM
       ruby2_keywords
     erubi (1.11.0)
     erubis (2.7.0)
-    exception_hunter (1.1.0)
-      pagy (~> 3)
-      slack-notifier (~> 2.3)
     execjs (2.8.1)
     factory_bot (5.2.0)
       activesupport (>= 4.2.0)
@@ -269,7 +274,7 @@ GEM
       racc (~> 1.4)
     oj (3.13.21)
     orm_adapter (0.5.0)
-    pagy (3.11.0)
+    pagy (4.11.0)
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
@@ -432,8 +437,6 @@ GEM
     timeout (0.3.1)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2022.7)
-      tzinfo (>= 1.0.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.8.0)
@@ -471,7 +474,7 @@ DEPENDENCIES
   devise_token_auth (~> 1.2)!
   dotenv-rails (~> 2.7.6)
   draper (~> 4.0, >= 4.0.1)
-  exception_hunter (~> 1.0, >= 1.0.1)
+  exception_hunter!
   factory_bot_rails (~> 5.1, >= 5.1.1)
   faker (~> 2.13)
   i18n-tasks (~> 0.9.30)
@@ -479,7 +482,7 @@ DEPENDENCIES
   letter_opener (~> 1.7)
   listen (~> 3.2)
   oj (~> 3.9, >= 3.9.2)
-  pagy (~> 3.7, >= 3.7.5)
+  pagy (~> 4.0)
   pg (~> 1.1, >= 1.1.4)
   pry-byebug (~> 3.9)
   pry-rails (~> 0.3.9)
