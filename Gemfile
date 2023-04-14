@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 ruby '~> 3.1.2'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.0.4.1'
+gem 'rails', '~> 7.0.4.3'
 
 gem 'activeadmin', '~> 2.9'
 gem 'active_storage_base64', '~> 2.0.0'
@@ -29,7 +28,6 @@ gem 'yaaf', '~> 2.2'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
