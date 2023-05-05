@@ -191,6 +191,10 @@ GEM
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
     formtastic_i18n (0.7.0)
+    geokit (1.14.0)
+    geokit-rails (2.5.0)
+      geokit (~> 1.5)
+      rails (>= 3.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     has_scope (0.8.0)
@@ -437,8 +441,6 @@ GEM
     timeout (0.3.2)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2023.3)
-      tzinfo (>= 1.0.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.8.0)
@@ -479,6 +481,7 @@ DEPENDENCIES
   exception_hunter!
   factory_bot_rails (~> 5.1, >= 5.1.1)
   faker (~> 2.13)
+  geokit-rails
   i18n-tasks (~> 0.9.30)
   jbuilder (~> 2.10)
   letter_opener (~> 1.7)
