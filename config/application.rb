@@ -67,6 +67,7 @@ module App
     config.middleware.use ActionDispatch::Flash
     config.middleware.use Rack::MethodOverride
 
+    ENV['RAILS_STRICT_LOADING'] ||= 'false' if defined?(Rails::Console)
     config.active_record.strict_loading_by_default = ENV.fetch('RAILS_STRICT_LOADING', 'true') == 'true'
     config.active_record.action_on_strict_loading_violation = :raise
   end
