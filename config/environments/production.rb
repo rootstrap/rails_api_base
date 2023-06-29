@@ -98,5 +98,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Don't raise N+1 errors in production
-  config.active_record.action_on_strict_loading_violation = :raise
+  config.active_record.action_on_strict_loading_violation = :log
 end
