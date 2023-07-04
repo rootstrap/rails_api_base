@@ -66,5 +66,10 @@ module App
     config.middleware.use ActionDispatch::Session::CookieStore
     config.middleware.use ActionDispatch::Flash
     config.middleware.use Rack::MethodOverride
+
+    # Log N+1s using Rails strict_loading feature
+    ENV['DISABLE_RAILS_STRICT_LOADING'] ||= 'true' if defined?(Rails::Console)
+    config.active_record.strict_loading_by_default = ENV['DISABLE_RAILS_STRICT_LOADING'] != 'true'
+    config.active_record.action_on_strict_loading_violation = :log
   end
 end
