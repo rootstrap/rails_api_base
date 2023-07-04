@@ -32,6 +32,9 @@ config/master.key
 # Ignore byebug history
 .byebug_history
 
+# Ignore irb history
+.irb_history
+
 /node_modules
 /yarn-error.log
 yarn-debug.log*
