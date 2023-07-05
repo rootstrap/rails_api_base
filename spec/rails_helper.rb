@@ -17,6 +17,7 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/core'
 require 'spec_helper'
 require 'rspec/rails'
+require 'rspec/openapi'
 
 ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!(allow_localhost: true)
@@ -40,6 +41,18 @@ RSpec.configure do |config|
   config.before { Prosopite.scan }
   config.after { Prosopite.finish }
 end
+
+# API doc
+# https://github.com/exoego/rspec-openapi#configuration
+RSpec::OpenAPI.path = 'api-docs/openapi.yaml'
+RSpec::OpenAPI.info = {
+  description: 'Sample Project API',
+  license: {
+    'name': 'Apache 2.0',
+    'url': 'https://www.apache.org/licenses/LICENSE-2.0.html'
+  }
+}
+RSpec::OpenAPI.description_builder = -> (example) { example.full_description }
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

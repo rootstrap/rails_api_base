@@ -20,6 +20,8 @@ gem 'pg', '~> 1.1', '>= 1.1.4'
 gem 'puma', '~> 5.6'
 gem 'pundit', '~> 2.1'
 gem 'rack-cors', '~> 1.0', '>= 1.0.6'
+gem 'rswag-api', '~> 2.9'
+gem 'rswag-ui', '~> 2.9'
 gem 'sass-rails', '~> 6.0.0'
 gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets', '~> 3.7.2'
@@ -39,6 +41,7 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec_api_documentation', '~> 6.1.0'
   gem 'rspec-rails', '~> 4.1'
+  gem 'rspec-openapi', '~> 0.8.1'
 end
 
 group :development do
