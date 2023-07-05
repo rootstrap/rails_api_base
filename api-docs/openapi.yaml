@@ -1,0 +1,766 @@
+---
+openapi: 3.0.3
+info:
+  title: rails_api_base
+  version: 1.0.0
+  description: Sample Project API
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers: []
+paths:
+  "/api/v1/user":
+    put:
+      summary: update
+      tags:
+      - Api::V1::User
+      responses:
+        '422':
+          description: PUT api/v1/user/ with missing params returns the missing params
+            error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: A required param is missing
+        '200':
+          description: PUT api/v1/user/ with valid params returns the user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      email:
+                        type: string
+                      name:
+                        type: string
+                      username:
+                        type: string
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      uid:
+                        type: string
+                      provider:
+                        type: string
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+                    required:
+                    - id
+                    - email
+                    - name
+                    - username
+                    - first_name
+                    - last_name
+                    - uid
+                    - provider
+                    - created_at
+                    - updated_at
+                required:
+                - user
+              example:
+                user:
+                  id: 69
+                  email: marisha.hodkiewicz@damore.net
+                  name: Herbert Stark Daniel
+                  username: new username
+                  first_name: Herbert Stark
+                  last_name: Daniel
+                  uid: marisha.hodkiewicz@damore.net
+                  provider: email
+                  created_at: '2023-07-05T23:14:50.717Z'
+                  updated_at: '2023-07-05T23:14:50.870Z'
+        '400':
+          description: PUT api/v1/user/ with invalid data returns the error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      email:
+                        type: array
+                        items:
+                          type: string
+                    required:
+                    - email
+                required:
+                - errors
+              example:
+                errors:
+                  email:
+                  - is not an email
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+              required:
+              - user
+            example:
+              user:
+                username: new username
+                email: notanemail
+    get:
+      summary: show
+      tags:
+      - Api::V1::User
+      responses:
+        '200':
+          description: GET api/v1/users/:id behaves like there must not be a Set-Cookie
+            in Header does not return a Set-Cookie Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      email:
+                        type: string
+                      name:
+                        type: string
+                      username:
+                        type: string
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      uid:
+                        type: string
+                      provider:
+                        type: string
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+                    required:
+                    - id
+                    - email
+                    - name
+                    - username
+                    - first_name
+                    - last_name
+                    - uid
+                    - provider
+                    - created_at
+                    - updated_at
+                required:
+                - user
+              example:
+                user:
+                  id: 121
+                  email: rocio@dare.info
+                  name: Miguelina Littel Sauer
+                  username: my
+                  first_name: Miguelina Littel
+                  last_name: Sauer
+                  uid: rocio@dare.info
+                  provider: email
+                  created_at: '2023-07-05T23:14:55.966Z'
+                  updated_at: '2023-07-05T23:14:56.034Z'
+        '404':
+          description: GET api/v1/users/:id when record is not found returns status
+            404 not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: Couldn't find the record
+  "/api/v1/users":
+    post:
+      summary: create
+      tags:
+      - Api::V1::Registration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                  required:
+                  - username
+                  - email
+                  - password
+                  - password_confirmation
+                  - first_name
+                  - last_name
+              required:
+              - user
+            example:
+              user:
+                username: test
+                email: test@test.com
+                password: '12345678'
+                password_confirmation: '12345678'
+                first_name: Johnny
+                last_name: Perez
+      responses:
+        '200':
+          description: POST api/v1/users/ POST create behaves like does not check
+            authenticity token with forgery protection enabled does not raise an error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      email:
+                        type: string
+                      name:
+                        type: string
+                      username:
+                        type: string
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      uid:
+                        type: string
+                      provider:
+                        type: string
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+                    required:
+                    - id
+                    - email
+                    - name
+                    - username
+                    - first_name
+                    - last_name
+                    - uid
+                    - provider
+                    - created_at
+                    - updated_at
+                required:
+                - user
+              example:
+                user:
+                  id: 77
+                  email: test@test.com
+                  name: Johnny Perez
+                  username: test
+                  first_name: Johnny
+                  last_name: Perez
+                  uid: test@test.com
+                  provider: email
+                  created_at: '2023-07-05T23:14:51.896Z'
+                  updated_at: '2023-07-05T23:14:51.967Z'
+        '422':
+          description: POST api/v1/users/ POST create when the password is incorrect
+            does not return a successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        nullable: true
+                      email:
+                        type: string
+                      allow_password_change:
+                        type: boolean
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      username:
+                        type: string
+                      created_at:
+                        nullable: true
+                      updated_at:
+                        nullable: true
+                      provider:
+                        type: string
+                      uid:
+                        type: string
+                    required:
+                    - id
+                    - email
+                    - allow_password_change
+                    - first_name
+                    - last_name
+                    - username
+                    - created_at
+                    - updated_at
+                    - provider
+                    - uid
+                  errors:
+                    type: object
+                    properties:
+                      password_confirmation:
+                        type: array
+                        items:
+                          type: string
+                      full_messages:
+                        type: array
+                        items:
+                          type: string
+                      email:
+                        type: array
+                        items:
+                          type: string
+                      password:
+                        type: array
+                        items:
+                          type: string
+                    required:
+                    - full_messages
+                required:
+                - status
+                - data
+                - errors
+              example:
+                status: error
+                data:
+                  id:
+                  email: test@test.com
+                  allow_password_change: false
+                  first_name: Johnny
+                  last_name: Perez
+                  username: test
+                  created_at:
+                  updated_at:
+                  provider: email
+                  uid: test@test.com
+                errors:
+                  password_confirmation:
+                  - doesn't match Password
+                  full_messages:
+                  - Password is too short (minimum is 8 characters)
+                  email:
+                  - is not an email
+                  password:
+                  - is too short (minimum is 8 characters)
+  "/api/v1/settings/must_update":
+    get:
+      summary: must_update
+      tags:
+      - Api::V1::Setting
+      parameters:
+      - name: device_version
+        in: query
+        schema:
+          type: string
+        example: '1.0'
+      responses:
+        '200':
+          description: GET api/v1/settings/must_update without setting min version
+            record returns no need to update
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  must_update:
+                    type: boolean
+                required:
+                - must_update
+              example:
+                must_update: false
+  "/api/v1/users/password/edit":
+    get:
+      summary: edit
+      tags:
+      - Api::V1::Password
+      parameters:
+      - name: redirect_url
+        in: query
+        schema:
+          type: string
+        example: "/"
+      - name: reset_password_token
+        in: query
+        schema:
+          type: string
+        example: dgqjuRZQWcZ6HN5KqtoK
+      responses:
+        '302':
+          description: GET api/v1/users/passwords/edit returns a the access token,
+            uid and client id
+          content:
+            text/html:
+              schema:
+                type: string
+              example: <html><body>You are being <a href="http://www.example.com:///?access-token=1234567890123456789012&amp;client=abcdefghijklmnopqrstuv&amp;client_id=abcdefghijklmnopqrstuv&amp;config=&amp;expiry=1751757292&amp;reset_password=true&amp;token=1234567890123456789012&amp;uid=sherika%40considine.org">redirected</a>.</body></html>
+  "/api/v1/users/sign_out":
+    delete:
+      summary: destroy
+      tags:
+      - Api::V1::Session
+      responses:
+        '404':
+          description: DELETE api/v1/users/sign_out without a valid token returns
+            not found response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: User was not found or was not logged in.
+        '200':
+          description: DELETE api/v1/users/sign_out with a valid token returns a successful
+            response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                required:
+                - success
+              example:
+                success: true
+  "/api/v1/users/password":
+    put:
+      summary: update
+      tags:
+      - Api::V1::Password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+              required:
+              - password
+              - password_confirmation
+            example:
+              password: '123456789'
+              password_confirmation: '123456789'
+      responses:
+        '422':
+          description: PUT api/v1/users/passwords/ with invalid params does not change
+            the password if confirmation does not match
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  errors:
+                    type: object
+                    properties:
+                      password_confirmation:
+                        type: array
+                        items:
+                          type: string
+                      full_messages:
+                        type: array
+                        items:
+                          type: string
+                    required:
+                    - password_confirmation
+                    - full_messages
+                required:
+                - success
+                - errors
+              example:
+                success: false
+                errors:
+                  password_confirmation:
+                  - doesn't match Password
+                  full_messages:
+                  - Password confirmation doesn't match Password
+        '200':
+          description: PUT api/v1/users/passwords/ with valid params returns a successful
+            response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                      provider:
+                        type: string
+                      uid:
+                        type: string
+                      id:
+                        type: integer
+                      allow_password_change:
+                        type: boolean
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      username:
+                        type: string
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+                    required:
+                    - email
+                    - provider
+                    - uid
+                    - id
+                    - allow_password_change
+                    - first_name
+                    - last_name
+                    - username
+                    - created_at
+                    - updated_at
+                  message:
+                    type: string
+                required:
+                - success
+                - data
+                - message
+              example:
+                success: true
+                data:
+                  email: arlen@dach-jaskolski.biz
+                  provider: email
+                  uid: arlen@dach-jaskolski.biz
+                  id: 96
+                  allow_password_change: false
+                  first_name: Florinda Morar
+                  last_name: King
+                  username: broderick_mclaughlin
+                  created_at: '2023-07-05T23:14:54.510Z'
+                  updated_at: '2023-07-05T23:14:54.746Z'
+                message: Your password has been successfully updated.
+    post:
+      summary: create
+      tags:
+      - Api::V1::Password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+              required:
+              - email
+            example:
+              email: dannie.osinski@turcotte.biz
+      responses:
+        '404':
+          description: POST api/v1/users/password with invalid params does not send
+            an email
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: Unable to find user with email 'notvalid@example.com'.
+        '200':
+          description: POST api/v1/users/password with valid params behaves like there
+            must not be a Set-Cookie in Header does not return a Set-Cookie Header
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                required:
+                - success
+                - message
+              example:
+                success: true
+                message: An email has been sent to 'dannie.osinski@turcotte.biz' containing
+                  instructions for resetting your password.
+  "/api/v1/users/sign_in":
+    post:
+      summary: create
+      tags:
+      - Api::V1::Session
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                  required:
+                  - email
+                  - password
+              required:
+              - user
+            example:
+              user:
+                email: maxwell_schaefer@will.co
+                password: wrong_password!
+      responses:
+        '200':
+          description: POST api/v1/users/sign_in with correct params behaves like
+            does not check authenticity token with forgery protection enabled does
+            not raise an error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      email:
+                        type: string
+                      name:
+                        type: string
+                      username:
+                        type: string
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      uid:
+                        type: string
+                      provider:
+                        type: string
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+                    required:
+                    - id
+                    - email
+                    - name
+                    - username
+                    - first_name
+                    - last_name
+                    - uid
+                    - provider
+                    - created_at
+                    - updated_at
+                required:
+                - user
+              example:
+                user:
+                  id: 107
+                  email: bella@greenholt.info
+                  name: Lorie Mueller Gleason
+                  username: julian
+                  first_name: Lorie Mueller
+                  last_name: Gleason
+                  uid: bella@greenholt.info
+                  provider: email
+                  created_at: '2023-07-05T23:14:55.312Z'
+                  updated_at: '2023-07-05T23:14:55.395Z'
+        '401':
+          description: POST api/v1/users/sign_in with incorrect params return errors
+            upon failure
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: Invalid login credentials. Please try again.
+  "/api/v1/status":
+    get:
+      summary: status
+      tags:
+      - Api::V1::Api
+      responses:
+        '200':
+          description: GET api/v1/status returns the api status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  online:
+                    type: boolean
+                required:
+                - online
+              example:
+                online: true
