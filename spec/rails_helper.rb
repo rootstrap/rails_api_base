@@ -35,6 +35,10 @@ RSpec.configure do |config|
 
   config.include Shoulda::Matchers::ActiveModel, type: :form
   config.include Shoulda::Matchers::ActiveRecord, type: :form
+
+  # Detects N+1 queries
+  config.before { Prosopite.scan }
+  config.after { Prosopite.finish }
 end
 
 Shoulda::Matchers.configure do |config|

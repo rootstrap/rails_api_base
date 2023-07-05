@@ -69,7 +69,6 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Annotate](https://github.com/ctran/annotate_models) for doc the schema in the classes
 - [Better Errors](https://github.com/charliesome/better_errors) for a better error page
 - [Brakeman](https://github.com/presidentbeef/brakeman) for static analysis security
-- [Bullet](https://github.com/flyerhzm/bullet) help to kill N+1
 - [Byebug](https://github.com/deivid-rodriguez/byebug) for debugging
 - [DelayedJob](https://github.com/collectiveidea/delayed_job) for background processing
 - [Devise](https://github.com/plataformatec/devise) for basic auth
@@ -83,6 +82,7 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
 - [Oj](https://github.com/ohler55/oj) for optimized json
 - [Pagy](https://github.com/ddnexus/pagy) for pagination
+- [Prosopite](https://github.com/charkost/prosopite) to detect N+1 queries
 - [Pry](https://github.com/pry/pry) for enhancing the ruby shell
 - [Puma](https://github.com/puma/puma) for the server
 - [Pundit](https://github.com/varvet/pundit) for authorization management
@@ -125,7 +125,6 @@ With `bundle exec rails code:analysis` you can run the code analysis tool, you c
 - [Reek](https://github.com/troessner/reek#configuration-file) Edit `config.reek`
 - [Rails Best Practices](https://github.com/flyerhzm/rails_best_practices#custom-configuration) Edit `config/rails_best_practices.yml`
 - [Brakeman](https://github.com/presidentbeef/brakeman) Run `brakeman -I` to generate `config/brakeman.ignore`
-- [Bullet](https://github.com/flyerhzm/bullet#whitelist) You can add exceptions to a bullet initializer or in the controller
 
 ## Configuring Code Climate
 1. After adding the project to CC, go to `Repo Settings`
