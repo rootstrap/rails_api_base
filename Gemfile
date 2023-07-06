@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '~> 3.1.2'
 
-gem 'rails', '~> 7.0.4.3'
+gem 'rails', '~> 7.0.6'
 
 gem 'activeadmin', '~> 2.9'
 gem 'active_storage_base64', '~> 2.0.0'
