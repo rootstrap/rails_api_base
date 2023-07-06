@@ -21,6 +21,7 @@ This template comes with:
   - Reset password
   - Get and update user profile
 - Administration panel for users
+- Feature flags support with a UI for management.
 - RSpec tests
 - Code quality tools
 - API documentation following https://apiblueprint.org/
@@ -79,6 +80,9 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [ExceptionHunter](https://github.com/rootstrap/exception_hunter) for exception tracking
 - [Factory Bot](https://github.com/thoughtbot/factory_bot) for testing data
 - [Faker](https://github.com/stympy/faker) for generating test data
+- [flipper](https://github.com/jnunemaker/flipper) for feature flag support
+- [flipper-active_record](https://github.com/jnunemaker/flipper) for Flipper active_record support
+- [flipper-ui](https://github.com/jnunemaker/flipper) for UI-based feature flag management
 - [Jbuilder](https://github.com/rails/jbuilder) for json views
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
 - [Oj](https://github.com/ohler55/oj) for optimized json
