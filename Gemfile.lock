@@ -493,9 +493,9 @@ DEPENDENCIES
   exception_hunter!
   factory_bot_rails (~> 5.1, >= 5.1.1)
   faker (~> 2.13)
-  flipper
-  flipper-active_record
-  flipper-ui
+  flipper (~> 0.28.0)
+  flipper-active_record (~> 0.28.0)
+  flipper-ui (~> 0.28.0)
   i18n-tasks (~> 0.9.30)
   jbuilder (~> 2.10)
   letter_opener (~> 1.7)
