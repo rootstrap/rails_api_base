@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  namespace :admin do
+    authenticate(:admin_user) do
+      mount Flipper::UI.app(Flipper) => '/feature-flags'
+    end
+  end
   ExceptionHunter.routes(self)
   mount_devise_token_auth_for 'User', at: '/api/v1/users', controllers: {
     registrations: 'api/v1/registrations',
