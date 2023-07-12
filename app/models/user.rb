@@ -35,7 +35,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
-  include Flipper::Identifier
 
   validates :uid, uniqueness: { scope: :provider }
 
