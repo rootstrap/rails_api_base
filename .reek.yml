@@ -125,5 +125,11 @@ detectors:
     enabled: false
 
 exclude_paths:
+  - bin
   - config
+  - coverage
   - db/migrate
+  - log
+  - public
+  - tmp
+  - vendor
