@@ -4,3 +4,5 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+Knapsack.load_tasks if defined?(Knapsack)
