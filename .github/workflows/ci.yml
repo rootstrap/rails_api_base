@@ -53,7 +53,7 @@ jobs:
           bundle exec rake code:analysis
       - name: Run Tests
         run: |
-          bundle exec rspec
+          bundle exec rake knapsack:rspec
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories
