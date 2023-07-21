@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Form objects is a design pattern that will help you build models and
 # keep business validations and callbacks away from the models.
 # To learn more about form objects check out https://github.com/rootstrap/yaaf#links

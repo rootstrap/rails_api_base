@@ -1,97 +1,117 @@
-describe 'POST api/v1/users/', type: :request do
-  let(:user)            { User.last }
-  let(:failed_response) { 422 }
+# frozen_string_literal: true
 
-  describe 'POST create' do
-    subject { post user_registration_path, params:, as: :json }
+describe 'POST api/v1/users' do
+  subject(:endpoint) { post user_registration_path, params:, as: :json }
 
-    let(:username)              { 'test' }
-    let(:email)                 { 'test@test.com' }
-    let(:password)              { '12345678' }
-    let(:password_confirmation) { '12345678' }
-    let(:first_name)            { 'Johnny' }
-    let(:last_name)             { 'Perez' }
+  let(:user) { User.last }
+  let(:email) { 'test@test.com' }
 
-    let(:params) do
-      {
-        user: {
-          username:,
-          email:,
-          password:,
-          password_confirmation:,
-          first_name:,
-          last_name:
-        }
+  let(:params) do
+    {
+      user: {
+        username: 'test',
+        email:,
+        password: '12345678',
+        password_confirmation: '12345678',
+        first_name: 'Johnny',
+        last_name: 'Perez'
       }
+    }
+  end
+
+  it_behaves_like 'does not check authenticity token'
+  it_behaves_like 'there must not be a Set-Cookie in Header'
+
+  it 'returns a successful response' do
+    endpoint
+    expect(response).to have_http_status(:success)
+  end
+
+  it 'creates the user' do
+    expect { endpoint }.to change(User, :count).by(1)
+  end
+
+  it 'returns the user id' do
+    endpoint
+    expect(json[:user][:id]).to eq(user.id)
+  end
+
+  it 'returns the user email' do
+    endpoint
+    expect(json[:user][:email]).to eq(user.email)
+  end
+
+  it 'returns the user username' do
+    endpoint
+    expect(json[:user][:username]).to eq(user.username)
+  end
+
+  it 'returns the user uid' do
+    endpoint
+    expect(json[:user][:uid]).to eq(user.uid)
+  end
+
+  it 'returns the user provider' do
+    endpoint
+    expect(json[:user][:provider]).to eq('email')
+  end
+
+  it 'returns the user first name' do
+    endpoint
+    expect(json[:user][:first_name]).to eq(user.first_name)
+  end
+
+  it 'returns the user last name' do
+    endpoint
+    expect(json[:user][:last_name]).to eq(user.last_name)
+  end
+
+  context 'when the email is not correct' do
+    let(:email) { 'invalid_email' }
+
+    it 'does not create a user' do
+      expect { endpoint }.not_to change(User, :count)
     end
 
-    it_behaves_like 'does not check authenticity token'
-    it_behaves_like 'there must not be a Set-Cookie in Header'
+    it 'does not return a successful response' do
+      endpoint
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+  end
 
-    it 'returns a successful response' do
-      subject
-      expect(response).to have_http_status(:success)
+  context 'when the password is incorrect' do
+    let(:new_user) { User.find_by(email:) }
+
+    before do
+      params[:user].merge!({ password: 'short', password_confirmation: 'short' })
     end
 
-    it 'creates the user' do
-      expect { subject }.to change(User, :count).by(1)
+    it 'does not create a user' do
+      endpoint
+      expect(new_user).to be_nil
     end
 
-    it 'returns the user' do
-      subject
+    it 'does not return a successful response' do
+      endpoint
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+  end
 
-      expect(json[:user][:id]).to eq(user.id)
-      expect(json[:user][:email]).to eq(user.email)
-      expect(json[:user][:username]).to eq(user.username)
-      expect(json[:user][:uid]).to eq(user.uid)
-      expect(json[:user][:provider]).to eq('email')
-      expect(json[:user][:first_name]).to eq(user.first_name)
-      expect(json[:user][:last_name]).to eq(user.last_name)
+  context 'when passwords don\'t match' do
+    let(:new_user) { User.find_by(email:) }
+
+    before do
+      params[:user].merge!({ password: 'shouldmatch', password_confirmation: 'dontmatch' })
     end
 
-    context 'when the email is not correct' do
-      let(:email) { 'invalid_email' }
-
-      it 'does not create a user' do
-        expect { subject }.not_to change { User.count }
-      end
-
-      it 'does not return a successful response' do
-        subject
-        expect(response.status).to eq(failed_response)
-      end
+    it 'does not create a user' do
+      endpoint
+      expect(new_user).to be_nil
     end
 
-    context 'when the password is incorrect' do
-      let(:password)              { 'short' }
-      let(:password_confirmation) { 'short' }
-      let(:new_user)              { User.find_by(email:) }
-
-      it 'does not create a user' do
-        subject
-        expect(new_user).to be_nil
-      end
-
-      it 'does not return a successful response' do
-        subject
-        expect(response.status).to eq(failed_response)
-      end
-    end
-
-    context 'when passwords don\'t match' do
-      let(:password)              { 'shouldmatch' }
-      let(:password_confirmation) { 'dontmatch' }
-      let(:new_user)              { User.find_by(email:) }
-
-      it 'does not create a user' do
-        subject
-        expect(new_user).to be_nil
-      end
-
-      it 'does not return a successful response' do
-        subject
-        expect(response.status).to eq(failed_response)
-      end
+    it 'does not return a successful response' do
+      endpoint
+      expect(response).to have_http_status(:unprocessable_entity)
     end
   end
 end

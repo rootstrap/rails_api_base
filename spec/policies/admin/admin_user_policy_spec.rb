@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 describe Admin::AdminUserPolicy do
-  subject { described_class }
+  subject(:policy) { described_class }
 
   permissions :update?, :index?, :show?, :create?, :new?, :edit?, :destroy? do
     let(:admin) { create(:admin_user) }
 
     it 'allows access' do
-      expect(subject).to permit(admin, admin)
+      expect(policy).to permit(admin, admin)
     end
   end
 end

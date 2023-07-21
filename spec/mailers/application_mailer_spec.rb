@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MockMailer
   class UserMailer < ApplicationMailer
     def test_email; end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 ruby '~> 3.1.2'
 
@@ -54,10 +56,11 @@ group :development do
   gem 'rails_best_practices', '~> 1.20'
   gem 'reek', '~> 6.1', '>= 6.1.1'
   gem 'rubocop', '~> 1.54', '>= 1.54.2', require: false
-  gem 'rubocop-rails', '~> 2.20', '>= 2.20.2', require: false
   gem 'rubocop-factory_bot', '~> 2.23', '>= 2.23.1', require: false
-  gem 'rubocop-rspec', '~> 2.22', require: false
   gem 'rubocop-performance', '~> 1.18', require: false
+  gem 'rubocop-rails', '~> 2.20', '>= 2.20.2', require: false
+  gem 'rubocop-rake', '~> 0.6.0', require: false
+  gem 'rubocop-rspec', '~> 2.22', require: false
   gem 'spring', '~> 4.0'
 end
 
