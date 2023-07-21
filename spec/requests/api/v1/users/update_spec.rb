@@ -1,4 +1,8 @@
-describe 'PUT api/v1/user/', type: :request do
+# frozen_string_literal: true
+
+describe 'PUT api/v1/user/' do
+  subject(:endpoint) { put api_v1_user_path, params:, headers: auth_headers, as: :json }
+
   let(:user)             { create(:user) }
   let(:api_v1_user_path) { '/api/v1/user' }
 
@@ -6,19 +10,22 @@ describe 'PUT api/v1/user/', type: :request do
     let(:params) { { user: { username: 'new username' } } }
 
     it 'returns success' do
-      put api_v1_user_path, params: params, headers: auth_headers, as: :json
+      endpoint
       expect(response).to have_http_status(:success)
     end
 
     it 'updates the user' do
-      put api_v1_user_path, params: params, headers: auth_headers, as: :json
+      endpoint
       expect(user.reload.username).to eq(params[:user][:username])
     end
 
-    it 'returns the user' do
-      put api_v1_user_path, params: params, headers: auth_headers, as: :json
-
+    it 'returns the user id' do
+      endpoint
       expect(json[:user][:id]).to eq user.id
+    end
+
+    it 'returns the user full name' do
+      endpoint
       expect(json[:user][:name]).to eq user.full_name
     end
   end
@@ -27,24 +34,26 @@ describe 'PUT api/v1/user/', type: :request do
     let(:params) { { user: { email: 'notanemail' } } }
 
     it 'does not return success' do
-      put api_v1_user_path, params: params, headers: auth_headers, as: :json
-      expect(response).to_not have_http_status(:success)
+      endpoint
+      expect(response).not_to have_http_status(:success)
     end
 
     it 'does not update the user' do
-      put api_v1_user_path, params: params, headers: auth_headers, as: :json
-      expect(user.reload.email).to_not eq(params[:email])
+      endpoint
+      expect(user.reload.email).not_to eq(params[:email])
     end
 
     it 'returns the error' do
-      put api_v1_user_path, params: params, headers: auth_headers, as: :json
+      endpoint
       expect(json[:errors][:email]).to include('is not an email')
     end
   end
 
   context 'with missing params' do
+    let(:params) { {} }
+
     it 'returns the missing params error' do
-      put api_v1_user_path, params: {}, headers: auth_headers, as: :json
+      endpoint
       expect(json[:error]).to eq 'A required param is missing'
     end
   end

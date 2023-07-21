@@ -1,0 +1,46 @@
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/*
+
+Layout/LineLength:
+  Exclude:
+    - db/migrate/20161011184702_devise_create_admin_users.rb
+    - db/migrate/20161011151353_devise_create_users.rb
+    - db/migrate/20161027190856_create_delayed_jobs.rb
+    - db/migrate/20181102142200_create_active_storage_tables.active_storage.rb
+
+Layout/SpaceBeforeFirstArg:
+  Exclude:
+    - app/views/api/**/**/*
+
+Lint/UnusedMethodArgument:
+  Exclude:
+    - spec/support/devise_token_auth_overrides.rb
+
+Metrics/AbcSize:
+  Exclude:
+    - db/migrate/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+    - spec/**/*
+    - app/admin/**/*
+
+Rails/Delegate:
+  Exclude:
+    - app/controllers/api/concerns/act_as_api_request.rb
+
+Rails/LexicallyScopedActionFilter:
+  Exclude:
+    - app/controllers/api/v1/api_controller.rb
+
+RSpec/AnyInstance:
+  Exclude:
+    - spec/requests/api/v1/users/show_spec.rb
+
+RSpec/VerifiedDoubleReference:
+  Exclude:
+    - spec/policies/admin/application_policy_spec.rb
+    - spec/policies/admin/page_policy_spec.rb
+    - spec/policies/application_policy_spec.rb

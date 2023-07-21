@@ -1,17 +1,24 @@
-describe 'GET api/v1/users/:id', type: :request do
+# frozen_string_literal: true
+
+describe 'GET api/v1/users/:id' do
+  subject(:endpoint) { get api_v1_user_path, headers: auth_headers, as: :json }
+
   let(:user) { create(:user) }
-  subject { get api_v1_user_path, headers: auth_headers, as: :json }
 
   it_behaves_like 'there must not be a Set-Cookie in Header'
 
   it 'returns success' do
-    subject
+    endpoint
     expect(response).to have_http_status(:success)
   end
 
-  it "returns the logged in user's data" do
-    subject
+  it "returns the logged in user's id" do
+    endpoint
     expect(json[:user][:id]).to eq(user.id)
+  end
+
+  it "returns the logged in user's full_name" do
+    endpoint
     expect(json[:user][:name]).to eq(user.full_name)
   end
 
@@ -20,7 +27,7 @@ describe 'GET api/v1/users/:id', type: :request do
       allow_any_instance_of(Api::V1::UsersController).to receive(
         :current_user
       ).and_raise(ActiveRecord::RecordNotFound)
-      subject
+      endpoint
 
       expect(response).to have_http_status(:not_found)
     end
