@@ -41,6 +41,7 @@ group :development, :test do
   gem 'dotenv-rails', '~> 2.7.6'
   gem 'factory_bot_rails', '~> 6.2'
   gem 'knapsack', '~> 4.0.0', '>= 4.0.0'
+  gem 'parallel_tests', '~> 4.2'
   gem 'pry-byebug', '~> 3.9', platform: :mri
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec_api_documentation', '~> 6.1.0'
