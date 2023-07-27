@@ -15,7 +15,6 @@ require:
 AllCops:
   NewCops: enable
   Exclude:
-    - db/migrate/*
     - db/schema.rb
     - config/initializers/pagy.rb
     - bin/bundle
