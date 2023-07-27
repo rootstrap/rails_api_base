@@ -1,6 +1,5 @@
 inherit_from:
-  - .rubocop-rs-config.yml
-  - .rubocop-excludes.yml
+  - .rubocop_todo.yml
 
 inherit_mode:
   merge:
@@ -9,15 +8,120 @@ inherit_mode:
 require:
   - rubocop-factory_bot
   - rubocop-performance
-  - rubocop-rails 
+  - rubocop-rails
   - rubocop-rake
   - rubocop-rspec
 
 AllCops:
   NewCops: enable
   Exclude:
+    - db/migrate/*
     - db/schema.rb
     - config/initializers/pagy.rb
     - bin/bundle
     - bin/yarn
     - node_modules/**/*
+
+Layout/ClassStructure:
+  Enabled: true
+
+Layout/LineLength:
+  Max: 100
+
+Layout/SpaceBeforeFirstArg:
+  Exclude:
+    - app/views/api/**/**/*
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/*
+
+Lint/BinaryOperatorWithIdenticalOperands:
+  Enabled: false
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: false
+
+Lint/RaiseException:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 15
+
+Metrics/BlockLength:
+  Exclude:
+    - app/admin/**/*
+    - config/**/*
+    - spec/**/*
+
+Metrics/BlockNesting:
+  Max: 4
+
+Metrics/ClassLength:
+  Max: 200
+
+Metrics/CyclomaticComplexity:
+  Max: 6
+
+Metrics/MethodLength:
+  Max: 24
+
+Metrics/ModuleLength:
+  Max: 200
+
+Metrics/PerceivedComplexity:
+  Max: 12
+
+Rails/FilePath:
+  Enabled: false
+
+Rails/SaveBang:
+  Enabled: true
+
+Style/ArrayCoercion:
+  Enabled: true
+
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining
+
+Style/Documentation:
+  Enabled: false
+
+Style/ExpandPathArguments:
+  Enabled: false
+
+Style/GlobalStdStream:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: false
+
+Style/HashLikeCase:
+  MinBranchesCount: 4
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
+  Enabled: false
+
+Style/ModuleFunction:
+  Enabled: false
+
+Style/RedundantFetchBlock:
+  Enabled: false
+
+Style/RedundantFileExtensionInRequire:
+  Enabled: false
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: false
+
+Style/ReturnNil:
+  Enabled: true
+
+Style/SlicingWithRange:
+  Enabled: false
+
+Style/StringConcatenation:
+  Enabled: false
