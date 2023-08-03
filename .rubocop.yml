@@ -25,7 +25,8 @@ Layout/ClassStructure:
   Enabled: true
 
 Layout/LineLength:
-  Max: 100
+  Exclude:
+    - db/**/*
 
 Layout/SpaceBeforeFirstArg:
   Exclude:
@@ -46,6 +47,8 @@ Lint/RaiseException:
 
 Metrics/AbcSize:
   Max: 15
+  Exclude:
+    - db/**/*
 
 Metrics/BlockLength:
   Exclude:
