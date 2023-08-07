@@ -52,7 +52,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'listen', '~> 3.2'
   gem 'rails_best_practices', '~> 1.20'
-  gem 'reek', '~> 6.1', '>= 6.1.1'
+  gem 'reek', '~> 6.1'
   gem 'rubocop-rails', '~> 2.16', '>= 2.16.1', require: false
   gem 'rubocop-rootstrap', '~> 1.2'
   gem 'spring', '~> 4.0'
