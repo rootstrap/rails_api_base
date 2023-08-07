@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe 'POST api/v1/users/sign_in' do
-  subject(:endpoint) { post new_user_session_path, params:, as: :json }
+  subject { post new_user_session_path, params:, as: :json }
 
   let(:password) { 'password' }
   let(:user) { create(:user, password:) }
@@ -17,7 +17,7 @@ describe 'POST api/v1/users/sign_in' do
 
   context 'with correct params' do
     before do
-      endpoint
+      subject
     end
 
     it_behaves_like 'there must not be a Set-Cookie in Header'
@@ -27,31 +27,13 @@ describe 'POST api/v1/users/sign_in' do
       expect(response).to be_successful
     end
 
-    it 'returns the user id' do
+    it 'returns the user' do
       expect(json[:user][:id]).to eq(user.id)
-    end
-
-    it 'returns the user email' do
       expect(json[:user][:email]).to eq(user.email)
-    end
-
-    it 'returns the user username' do
       expect(json[:user][:username]).to eq(user.username)
-    end
-
-    it 'returns the user uid' do
       expect(json[:user][:uid]).to eq(user.uid)
-    end
-
-    it 'returns the user provider' do
       expect(json[:user][:provider]).to eq('email')
-    end
-
-    it 'returns the user first name' do
       expect(json[:user][:first_name]).to eq(user.first_name)
-    end
-
-    it 'returns the user last name' do
       expect(json[:user][:last_name]).to eq(user.last_name)
     end
 
@@ -73,12 +55,12 @@ describe 'POST api/v1/users/sign_in' do
     end
 
     it 'returns to be unauthorized' do
-      endpoint
+      subject
       expect(response).to be_unauthorized
     end
 
     it 'return errors upon failure' do
-      endpoint
+      subject
       expected_response = {
         error: 'Invalid login credentials. Please try again.'
       }.with_indifferent_access

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe 'POST api/v1/users' do
-  subject(:endpoint) { post user_registration_path, params:, as: :json }
+  subject { post user_registration_path, params:, as: :json }
 
   let(:user) { User.last }
   let(:email) { 'test@test.com' }
@@ -23,46 +23,22 @@ describe 'POST api/v1/users' do
   it_behaves_like 'there must not be a Set-Cookie in Header'
 
   it 'returns a successful response' do
-    endpoint
+    subject
     expect(response).to have_http_status(:success)
   end
 
   it 'creates the user' do
-    expect { endpoint }.to change(User, :count).by(1)
+    expect { subject }.to change(User, :count).by(1)
   end
 
-  it 'returns the user id' do
-    endpoint
+  it 'returns the user data', :aggregate_failures do
+    subject
     expect(json[:user][:id]).to eq(user.id)
-  end
-
-  it 'returns the user email' do
-    endpoint
     expect(json[:user][:email]).to eq(user.email)
-  end
-
-  it 'returns the user username' do
-    endpoint
     expect(json[:user][:username]).to eq(user.username)
-  end
-
-  it 'returns the user uid' do
-    endpoint
     expect(json[:user][:uid]).to eq(user.uid)
-  end
-
-  it 'returns the user provider' do
-    endpoint
     expect(json[:user][:provider]).to eq('email')
-  end
-
-  it 'returns the user first name' do
-    endpoint
     expect(json[:user][:first_name]).to eq(user.first_name)
-  end
-
-  it 'returns the user last name' do
-    endpoint
     expect(json[:user][:last_name]).to eq(user.last_name)
   end
 
@@ -70,11 +46,11 @@ describe 'POST api/v1/users' do
     let(:email) { 'invalid_email' }
 
     it 'does not create a user' do
-      expect { endpoint }.not_to change(User, :count)
+      expect { subject }.not_to change(User, :count)
     end
 
     it 'does not return a successful response' do
-      endpoint
+      subject
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
@@ -87,12 +63,12 @@ describe 'POST api/v1/users' do
     end
 
     it 'does not create a user' do
-      endpoint
+      subject
       expect(new_user).to be_nil
     end
 
     it 'does not return a successful response' do
-      endpoint
+      subject
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
@@ -105,12 +81,12 @@ describe 'POST api/v1/users' do
     end
 
     it 'does not create a user' do
-      endpoint
+      subject
       expect(new_user).to be_nil
     end
 
     it 'does not return a successful response' do
-      endpoint
+      subject
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end

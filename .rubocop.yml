@@ -15,10 +15,10 @@ require:
 AllCops:
   NewCops: enable
   Exclude:
-    - db/schema.rb
-    - config/initializers/pagy.rb
     - bin/bundle
     - bin/yarn
+    - config/initializers/pagy.rb
+    - db/schema.rb
     - node_modules/**/*
 
 Layout/ClassStructure:
@@ -33,8 +33,7 @@ Layout/SpaceBeforeFirstArg:
     - app/views/api/**/**/*
 
 Lint/AmbiguousBlockAssociation:
-  Exclude:
-    - spec/**/*
+  AllowedMethods: change
 
 Lint/BinaryOperatorWithIdenticalOperands:
   Enabled: false
@@ -79,6 +78,15 @@ Rails/FilePath:
 
 Rails/SaveBang:
   Enabled: true
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
 
 Style/ArrayCoercion:
   Enabled: true

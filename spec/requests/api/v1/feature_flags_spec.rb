@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe 'GET admin/feature-flags' do
-  subject(:endpoint) { get '/admin/feature-flags' }
+  subject { get '/admin/feature-flags' }
 
   context 'with an admin_user account' do
     let(:user) { create(:admin_user) }
@@ -10,13 +10,13 @@ describe 'GET admin/feature-flags' do
       before { sign_in user }
 
       it 'shows the feature flags page' do
-        expect(endpoint).to redirect_to('/admin/feature-flags/features')
+        expect(subject).to redirect_to('/admin/feature-flags/features')
       end
     end
 
     context 'without a valid session' do
       it 'redirects the user to the admin login page' do
-        expect(endpoint).to redirect_to('/admin/login')
+        expect(subject).to redirect_to('/admin/login')
       end
     end
   end
@@ -28,7 +28,7 @@ describe 'GET admin/feature-flags' do
       before { sign_in user }
 
       it 'blocks user access to the feature flags page' do
-        expect(endpoint).not_to redirect_to('/admin/feature-flags/features')
+        expect(subject).not_to redirect_to('/admin/feature-flags/features')
       end
     end
   end
