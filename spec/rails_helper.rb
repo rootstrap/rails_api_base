@@ -48,3 +48,6 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+ActiveStorage::Current.url_options = { host: ENV.fetch('SERVER_HOST', nil),
+                                       port: ENV.fetch('PORT', 3000) }
