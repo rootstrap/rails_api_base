@@ -23,7 +23,7 @@ jobs:
     env:
       RAILS_ENV: test
       CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      CI_NODE_TOTAL: ${{ secrets.CI_NODE_TOTAL }}
+      CI_NODE_TOTAL: 1
       CI_NODE_INDEX: 0
 
     steps:
