@@ -499,7 +499,7 @@ DEPENDENCIES
   flipper-ui (~> 0.28.0)
   i18n-tasks (~> 0.9.30)
   jbuilder (~> 2.10)
-  knapsack (~> 4.0.0, >= 4.0.0)
+  knapsack (~> 4.0.0)
   letter_opener (~> 1.7)
   listen (~> 3.2)
   oj (~> 3.9, >= 3.9.2)
