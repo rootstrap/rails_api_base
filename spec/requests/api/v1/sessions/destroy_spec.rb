@@ -1,4 +1,6 @@
-describe 'DELETE api/v1/users/sign_out', type: :request do
+# frozen_string_literal: true
+
+describe 'DELETE api/v1/users/sign_out' do
   let(:user) { create(:user) }
 
   context 'with a valid token' do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DeviseTokenAuth
   module TokenFactory
     def self.create(client: nil, lifespan: nil, cost: nil)
