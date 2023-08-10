@@ -6,6 +6,8 @@ jobs:
   linters:
     name: Linters
     runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -13,11 +15,12 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: I18n Health
-        run: bundle exec i18n-tasks health
+      - name: Setup Database
+        run: |
+          cp .github/test_db/config/database.yml config/database.yml
       - name: Run Code Analysis
         run: |
-          bundle exec rake code_analysis
+          bundle exec rake code:analysis
   tests:
     name: Tests
     runs-on: ubuntu-latest
