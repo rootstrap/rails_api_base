@@ -62,9 +62,10 @@ jobs:
         env:
           KNAPSACK_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           KNAPSACK_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
-          KNAPSACK_PRO_LOG_LEVEL: info
+          KNAPSACK_FIXED_QUEUE_SPLIT: true
+          KNAPSACK_LOG_LEVEL: info
         run: |
-          bundle exec rake knapsack:rspec
+          bundle exec rake knapsack:queue:rspec
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories
