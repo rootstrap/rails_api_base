@@ -10,7 +10,6 @@ require 'shoulda/matchers'
 require 'pundit/rspec'
 
 Knapsack.tracker.config(enable_time_offset_warning: false)
-
 Knapsack::Adapters::RSpecAdapter.bind
 
 FactoryBot.factories.clear
