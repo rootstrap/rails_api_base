@@ -1,1 +1,1 @@
-release: rake db:migrate
+release: ./bin/release.sh
