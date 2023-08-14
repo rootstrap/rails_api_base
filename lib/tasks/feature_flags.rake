@@ -5,7 +5,7 @@ namespace :feature_flags do
   task initialize: :environment do
     YAML.load_file(FEATURES_YML_PATH, fallback: {}).each do |key, _options|
       next if Flipper.exist?(key)
-      
+
       Flipper.add key
     end
   end
