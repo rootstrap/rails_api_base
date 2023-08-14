@@ -183,7 +183,7 @@ GEM
     faker (2.23.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
-    flipper (0.28.0)
+    flipper (0.28.3)
       concurrent-ruby (< 2)
     flipper-active_record (0.28.0)
       activerecord (>= 4.2, < 8)
@@ -508,7 +508,7 @@ DEPENDENCIES
   exception_hunter!
   factory_bot_rails (~> 6.2)
   faker (~> 2.13)
-  flipper (~> 0.28.0)
+  flipper (~> 0.28.3)
   flipper-active_record (~> 0.28.0)
   flipper-ui (~> 0.28.0)
   i18n-tasks (~> 0.9.30)
