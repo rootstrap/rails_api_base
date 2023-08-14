@@ -3,7 +3,26 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  linters:
+    name: Linters
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Setup Database
+        run: |
+          cp .github/test_db/config/database.yml config/database.yml
+      - name: Run Code Analysis
+        run: |
+          bundle exec rake code:analysis
+  tests:
+    name: Tests
     runs-on: ubuntu-latest
 
     services:
@@ -46,7 +65,7 @@ jobs:
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build        
+          ./cc-test-reporter before-build
       - name: Setup Database
         run: |
           cp .github/test_db/config/database.yml config/database.yml
@@ -55,11 +74,6 @@ jobs:
         uses: rootstrap/check_untracked_changes@v1
         with:
           path: "./db/schema.rb"
-      - name: I18n Health
-        run: bundle exec i18n-tasks health
-      - name: Run Code Analysis
-        run: |
-          bundle exec rake code:analysis
       - name: Run Tests
         env:
           CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
