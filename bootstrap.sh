@@ -58,8 +58,13 @@ fi
 # generate a .env from the sample file
 cp .env.sample .env
 
-# copy database configuration and change the project name with the given one
-sed "s/sample_project/${project_name}/g" config/database.yml.example > config/database.yml
+# update project name in database.yml
+# sed command implementation is different for GNU and macOS
+if [[ $OSTYPE == 'darwin'* ]]; then
+  sed -i '' "s/rails_api_base/${project_name}/g" config/database.yml
+else
+  sed -i "s/rails_api_base/${project_name}/g" config/database.yml
+fi
 
 # spin up docker services if flag is specified for the setup to take place inside the containers
 if [[ $docker -eq 1 ]]; then
