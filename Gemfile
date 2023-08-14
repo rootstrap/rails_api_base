@@ -50,7 +50,7 @@ group :development do
   gem 'better_errors', '~> 2.5', '>= 2.5.1'
   gem 'binding_of_caller', '~> 1.0'
   gem 'brakeman', '~> 5.1'
-  gem 'i18n-tasks', '~> 0.9.30'
+  gem 'i18n-tasks', '~> 1.0.12'
   gem 'letter_opener', '~> 1.7'
   gem 'listen', '~> 3.8'
   gem 'rails_best_practices', '~> 1.20'
