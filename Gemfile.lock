@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/lynndylanhurley/devise_token_auth
-  revision: ec68e47f2a3e743bd51293369d059508974aed14
+  revision: eeed6422a025813010ac1dcb922661d05266e36e
   specs:
-    devise_token_auth (1.2.1)
+    devise_token_auth (1.2.2)
       bcrypt (~> 3.0)
       devise (> 3.5.2, < 5)
       rails (>= 4.2.0, < 7.1)
@@ -127,7 +127,7 @@ GEM
       aws-sigv4 (~> 1.4)
     aws-sigv4 (1.5.2)
       aws-eventstream (~> 1, >= 1.0.2)
-    bcrypt (3.1.18)
+    bcrypt (3.1.19)
     better_errors (2.9.1)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -272,12 +272,12 @@ GEM
       net-smtp
     marcel (1.0.2)
     method_source (1.0.0)
-    mini_mime (1.1.2)
+    mini_mime (1.1.5)
     mini_portile2 (2.8.4)
     minitest (5.19.0)
     msgpack (1.7.2)
     mustache (1.1.1)
-    net-imap (0.3.6)
+    net-imap (0.3.7)
       date
       net-protocol
     net-pop (0.1.2)
@@ -286,7 +286,7 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    nio4r (2.5.8)
+    nio4r (2.5.9)
     nokogiri (1.15.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -488,7 +488,7 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    websocket-driver (0.7.5)
+    websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     yaaf (2.2.0)
