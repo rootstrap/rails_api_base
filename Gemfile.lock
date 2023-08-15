@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/lynndylanhurley/devise_token_auth
-  revision: ec68e47f2a3e743bd51293369d059508974aed14
-  specs:
-    devise_token_auth (1.2.1)
-      bcrypt (~> 3.0)
-      devise (> 3.5.2, < 5)
-      rails (>= 4.2.0, < 7.1)
-
-GIT
   remote: https://github.com/rootstrap/exception_hunter.git
   revision: b6f7cab9e9a9157147c5a165d0b79762c6158664
   specs:
@@ -166,6 +157,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise_token_auth (1.2.2)
+      bcrypt (~> 3.0)
+      devise (> 3.5.2, < 5)
+      rails (>= 4.2.0, < 7.1)
     diff-lcs (1.5.0)
     docile (1.1.5)
     dotenv (2.7.6)
@@ -511,7 +506,7 @@ DEPENDENCIES
   brakeman (~> 5.1)
   delayed_job_active_record (~> 4.1, >= 4.1.5)
   devise (~> 4.7, >= 4.7.2)
-  devise_token_auth (~> 1.2)!
+  devise_token_auth (~> 1.2.2)
   dotenv-rails (~> 2.7.6)
   draper (~> 4.0, >= 4.0.1)
   exception_hunter!
