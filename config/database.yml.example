@@ -13,7 +13,7 @@ development:
 
 test:
  <<: *default
- database: sample_project_test
+ database: sample_project_test<%= ENV['TEST_ENV_NUMBER'] %>
 
 production:
  <<: *default
