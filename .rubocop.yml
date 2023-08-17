@@ -1,33 +1,137 @@
-inherit_gem:
-  rubocop-rootstrap:
-    - config/rails_edge.yml
+inherit_from:
+  - .rubocop_todo.yml
 
 inherit_mode:
   merge:
     - Exclude
 
+require:
+  - rubocop-factory_bot
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
+
 AllCops:
+  NewCops: enable
   Exclude:
-    - db/schema.rb
-    - config/initializers/pagy.rb
     - bin/bundle
     - bin/yarn
+    - config/initializers/pagy.rb
+    - db/schema.rb
+    - node_modules/**/*
 
-Lint/UnusedMethodArgument:
-  Exclude:
-    - spec/support/devise_token_auth_overrides.rb
+Layout/ClassStructure:
+  Enabled: true
 
 Layout/LineLength:
   Exclude:
-    - db/migrate/20161011184702_devise_create_admin_users.rb
-    - db/migrate/20161011151353_devise_create_users.rb
-    - db/migrate/20161027190856_create_delayed_jobs.rb
-    - db/migrate/20181102142200_create_active_storage_tables.active_storage.rb
+    - db/**/*
 
-Rails/Delegate:
+Layout/SpaceBeforeFirstArg:
   Exclude:
-    - app/controllers/api/concerns/act_as_api_request.rb
+    - app/views/api/**/**/*
 
-Rails/LexicallyScopedActionFilter:
+Lint/AmbiguousBlockAssociation:
+  AllowedMethods: change
+
+Lint/BinaryOperatorWithIdenticalOperands:
+  Enabled: false
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: false
+
+Lint/RaiseException:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 15
   Exclude:
-    - app/controllers/api/v1/api_controller.rb
+    - db/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - app/admin/**/*
+    - config/**/*
+    - spec/**/*
+
+Metrics/BlockNesting:
+  Max: 4
+
+Metrics/ClassLength:
+  Max: 200
+
+Metrics/CyclomaticComplexity:
+  Max: 6
+
+Metrics/MethodLength:
+  Max: 24
+
+Metrics/ModuleLength:
+  Max: 200
+
+Metrics/PerceivedComplexity:
+  Max: 12
+
+Rails/FilePath:
+  Enabled: false
+
+Rails/SaveBang:
+  Enabled: true
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+Style/ArrayCoercion:
+  Enabled: true
+
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining
+
+Style/Documentation:
+  Enabled: false
+
+Style/ExpandPathArguments:
+  Enabled: false
+
+Style/GlobalStdStream:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: false
+
+Style/HashLikeCase:
+  MinBranchesCount: 4
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
+  Enabled: false
+
+Style/ModuleFunction:
+  Enabled: false
+
+Style/RedundantFetchBlock:
+  Enabled: false
+
+Style/RedundantFileExtensionInRequire:
+  Enabled: false
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: false
+
+Style/ReturnNil:
+  Enabled: true
+
+Style/SlicingWithRange:
+  Enabled: false
+
+Style/StringConcatenation:
+  Enabled: false

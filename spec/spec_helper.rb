@@ -1,12 +1,18 @@
+# frozen_string_literal: true
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 
 require 'factory_bot_rails'
 require 'helpers'
+require 'knapsack'
 require 'webmock/rspec'
 require 'shoulda/matchers'
 require 'pundit/rspec'
+
+Knapsack.tracker.config(enable_time_offset_warning: false)
+Knapsack::Adapters::RSpecAdapter.bind
 
 FactoryBot.factories.clear
 FactoryBot.reload
@@ -30,7 +36,7 @@ RSpec.configure do |config|
   end
   config.include FactoryBot::Syntax::Methods
 
-  config.before :each do
+  config.before do
     ActionMailer::Base.deliveries.clear
   end
 end

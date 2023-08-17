@@ -17,7 +17,7 @@ jobs:
           bundler-cache: true
       - name: Setup Database
         run: |
-          cp .github/test_db/config/database.yml config/database.yml
+          bundle exec rails db:create db:migrate
       - name: Run Code Analysis
         run: |
           bundle exec rake code:analysis
@@ -38,6 +38,17 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        # Set N number of parallel jobs you want to run tests on.
+        # Use higher number if you have slow tests to split them on more parallel jobs.
+        # Remember to update ci_node_index below to 0..N-1
+        ci_node_total: [4]
+        # set N-1 indexes for parallel jobs
+        # When you run 2 parallel jobs then first job will have index 0, the second job will have index 1 etc
+        ci_node_index: [0, 1, 2, 3]
 
     env:
       RAILS_ENV: test
@@ -56,16 +67,18 @@ jobs:
           chmod +x ./cc-test-reporter
           ./cc-test-reporter before-build
       - name: Setup Database
-        run: |
-          cp .github/test_db/config/database.yml config/database.yml
-          bundle exec rails db:create db:migrate
+        run: bundle exec rails db:create db:migrate
       - name: Check for untracked changes in schema.rb
         uses: rootstrap/check_untracked_changes@v1
         with:
           path: "./db/schema.rb"
       - name: Run Tests
+        env:
+          CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+          CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+          KNAPSACK_LOG_LEVEL: info
         run: |
-          bundle exec rspec
+          bundle exec rake knapsack:rspec
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories

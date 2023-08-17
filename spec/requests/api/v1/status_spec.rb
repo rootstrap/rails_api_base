@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe 'GET api/v1/status', type: :request do
+describe 'GET api/v1/status' do
   before do
     get api_v1_status_path, as: :json
   end
