@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Admin::ApplicationPolicy do
   subject { described_class }
 
@@ -20,9 +22,10 @@ describe Admin::ApplicationPolicy do
   end
 
   describe 'scope' do
-    let(:admin) { create(:admin_user) }
-    let(:mock_model) { double('MockModel', all: true) }
     subject { ApplicationPolicy::Scope.new(admin, mock_model).resolve }
+
+    let(:admin) { create(:admin_user) }
+    let(:mock_model) { instance_double('MockModel', all: true) }
 
     it 'shows all models' do
       expect(subject).to be(true)

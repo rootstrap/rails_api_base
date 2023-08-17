@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateExceptionHunterErrors < ActiveRecord::Migration[6.0]
   def change
     create_table :exception_hunter_errors do |t|

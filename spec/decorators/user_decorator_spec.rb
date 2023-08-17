@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe UserDecorator do
   let(:user) { create(:user) }
   let(:decorated_user) { user.decorate }
