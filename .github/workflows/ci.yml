@@ -17,7 +17,7 @@ jobs:
           bundler-cache: true
       - name: Setup Database
         run: |
-          cp .github/test_db/config/database.yml config/database.yml
+          bundle exec rails db:create db:migrate
       - name: Run Code Analysis
         run: |
           bundle exec rake code:analysis
@@ -67,9 +67,7 @@ jobs:
           chmod +x ./cc-test-reporter
           ./cc-test-reporter before-build
       - name: Setup Database
-        run: |
-          cp .github/test_db/config/database.yml config/database.yml
-          bundle exec rails db:create db:migrate
+        run: bundle exec rails db:create db:migrate
       - name: Check for untracked changes in schema.rb
         uses: rootstrap/check_untracked_changes@v1
         with:

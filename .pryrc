@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Add command aliases
 if defined?(PryByebug)
   Pry.commands.alias_command 'c', 'continue'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ExceptionHunter.setup do |config|
   # == Enabling
   #

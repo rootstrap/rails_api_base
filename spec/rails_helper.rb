@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
 require 'simplecov'
@@ -11,7 +13,7 @@ SimpleCov.start 'rails' do
   add_filter 'spec'
 end
 
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/core'
@@ -48,3 +50,6 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+ActiveStorage::Current.url_options = { host: ENV.fetch('SERVER_HOST', nil),
+                                       port: ENV.fetch('PORT', 3000) }

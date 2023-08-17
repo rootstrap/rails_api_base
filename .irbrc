@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Add color coding based on Rails environment for safety
 if defined?(Rails)
   banner_color = Rails.env.production? ? 41 : 42
