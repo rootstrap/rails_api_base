@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :feature_flags do
   desc 'Register new feature flags from config/feature-flags.yml'
   task initialize: :environment do
