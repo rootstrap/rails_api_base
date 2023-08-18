@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Admin::AdminUserPolicy do
   subject { described_class }
 

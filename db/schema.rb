@@ -131,7 +131,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_04_182448) do
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at", precision: nil
-    t.boolean "allow_password_change", default: false
+    t.boolean "allow_password_change", default: false, null: false
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at", precision: nil
     t.datetime "last_sign_in_at", precision: nil

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 ruby '~> 3.1.2'
 
@@ -7,22 +9,22 @@ gem 'activeadmin', '~> 2.9'
 gem 'active_storage_base64', '~> 2.0.0'
 gem 'arctic_admin', '~> 3.3.0'
 gem 'aws-sdk-s3', '~> 1.75', require: false
-gem 'bootsnap', '~> 1.4', '>= 1.4.5'
+gem 'bootsnap', '~> 1.16'
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.5'
 gem 'devise', '~> 4.7', '>= 4.7.2'
-gem 'devise_token_auth', '~> 1.2', git: 'https://github.com/lynndylanhurley/devise_token_auth'
+gem 'devise_token_auth', '~> 1.2.2'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'exception_hunter', github: 'rootstrap/exception_hunter'
-gem 'flipper', '~> 0.28.0'
+gem 'flipper', '~> 0.28.3'
 gem 'flipper-active_record', '~> 0.28.0'
 gem 'flipper-ui', '~> 0.28.0'
 gem 'jbuilder', '~> 2.10'
 gem 'oj', '~> 3.9', '>= 3.9.2'
 gem 'pagy', '~> 4.0'
-gem 'pg', '~> 1.1', '>= 1.1.4'
+gem 'pg', '~> 1.5'
 gem 'puma', '~> 5.6'
 gem 'pundit', '~> 2.1'
-gem 'rack-cors', '~> 1.0', '>= 1.0.6'
+gem 'rack-cors', '~> 2.0'
 gem 'sass-rails', '~> 6.0.0'
 gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets', '~> 3.7.2'
@@ -37,7 +39,7 @@ gem 'yaaf', '~> 2.2'
 group :development, :test do
   gem 'annotate', '~> 3.2', '>= 3.0.3'
   gem 'dotenv-rails', '~> 2.7.6'
-  gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
+  gem 'factory_bot_rails', '~> 6.2'
   gem 'pry-byebug', '~> 3.9', platform: :mri
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec_api_documentation', '~> 6.1.0'
@@ -48,13 +50,17 @@ group :development do
   gem 'better_errors', '~> 2.5', '>= 2.5.1'
   gem 'binding_of_caller', '~> 1.0'
   gem 'brakeman', '~> 5.1'
-  gem 'i18n-tasks', '~> 0.9.30'
+  gem 'i18n-tasks', '~> 1.0.12'
   gem 'letter_opener', '~> 1.7'
-  gem 'listen', '~> 3.2'
+  gem 'listen', '~> 3.8'
   gem 'rails_best_practices', '~> 1.20'
   gem 'reek', '~> 6.1', '>= 6.1.1'
-  gem 'rubocop-rails', '~> 2.16', '>= 2.16.1', require: false
-  gem 'rubocop-rootstrap', '~> 1.2'
+  gem 'rubocop', '~> 1.55', require: false
+  gem 'rubocop-factory_bot', '~> 2.23', '>= 2.23.1', require: false
+  gem 'rubocop-performance', '~> 1.18', require: false
+  gem 'rubocop-rails', '~> 2.20', '>= 2.20.2', require: false
+  gem 'rubocop-rake', '~> 0.6.0', require: false
+  gem 'rubocop-rspec', '~> 2.23', require: false
   gem 'spring', '~> 4.0'
 end
 

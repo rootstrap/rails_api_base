@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe UserPolicy do
   subject { described_class }
 
