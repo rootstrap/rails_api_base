@@ -60,6 +60,14 @@ describe User do
     it 'returns the correct name' do
       expect(user.full_name).to eq('John Doe')
     end
+
+    context 'when test_feature feature flag is on' do
+      before { Flipper.enable(:test_feature) }
+
+      it 'returns the last_name first' do
+        expect(user.full_name).to eq('Doe John')
+      end
+    end
   end
 
   describe '.from_social_provider' do
@@ -70,6 +78,7 @@ describe User do
         expect {
           described_class.from_social_provider('provider', params)
         }.to change(described_class, :count).by(1)
+        expect(Flipper).not_to be_enabled(:test_feature)
       end
     end
 

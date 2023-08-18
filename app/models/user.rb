@@ -52,7 +52,11 @@ class User < ApplicationRecord
   def full_name
     return username if first_name.blank?
 
-    "#{first_name} #{last_name}"
+    if Flipper.enabled?(:test_feature)
+      "#{last_name} #{first_name}"
+    else
+      "#{first_name} #{last_name}"
+    end
   end
 
   private
