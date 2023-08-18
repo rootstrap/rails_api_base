@@ -1,11 +1,6 @@
 require 'rake'
 
 RSpec.describe 'Feature Flags', :rake do
-  before(:all) do
-    task_defined = Rake::Task.task_defined?('feature_flags:initialize')
-    Rails.application.load_tasks unless task_defined
-  end
-
   describe 'initialize' do
     let(:feature_flags) do
       {
