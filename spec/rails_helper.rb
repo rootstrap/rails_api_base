@@ -42,6 +42,9 @@ RSpec.configure do |config|
   # Detects N+1 queries
   config.before { Prosopite.scan }
   config.after { Prosopite.finish }
+
+  # Reset previous flipper instance
+  config.before { Flipper.instance = nil }
 end
 
 Shoulda::Matchers.configure do |config|
@@ -53,3 +56,7 @@ end
 
 ActiveStorage::Current.url_options = { host: ENV.fetch('SERVER_HOST', nil),
                                        port: ENV.fetch('PORT', 3000) }
+
+Flipper.configure do |config|
+  config.default { Flipper.new(Flipper::Adapters::Memory.new) }
+end
