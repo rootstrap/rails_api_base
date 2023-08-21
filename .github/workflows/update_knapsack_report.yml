@@ -1,0 +1,40 @@
+name: Create Knapsack Report
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby 3.1.2
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 3.1
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Generate new Knapsack report
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        KNAPSACK=true KNAPSACK_GENERATE_REPORT=true bundle exec rspec
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add knapsack_rspec_report.json
+        git commit -m "Update knapsack_rspec_report.json"
+    - name: Push changes
+      run: git push origin HEAD:update-knapsack-report
+    - name: Initialize Pull Request
+      uses: gha-utilities/init-pull-request@v0.1.2
+      with:
+        verbose: true
+        pull_request_token: ${{ secrets.GITHUB_TOKEN }}
+        head: update-knapsack-report
+        base: release/improve-ci
+        title: 'Update Knapsack report'
+        maintainer_can_modify: true
+        debug: true
+        draft: false
+        body: >
+          This is a automated PR
