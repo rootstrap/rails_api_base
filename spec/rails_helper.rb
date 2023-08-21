@@ -44,9 +44,7 @@ RSpec.configure do |config|
   config.after { Prosopite.finish }
 
   # Reset previous flipper instance
-  config.before do
-    Flipper.instance = nil # Reset previous flipper instance
-  end
+  config.before { Flipper.instance = nil }
 end
 
 Shoulda::Matchers.configure do |config|
