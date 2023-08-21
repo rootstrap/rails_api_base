@@ -8,7 +8,7 @@ gem 'rails', '~> 7.0.6'
 gem 'activeadmin', '~> 2.9'
 gem 'active_storage_base64', '~> 2.0.0'
 gem 'arctic_admin', '~> 3.3.0'
-gem 'aws-sdk-s3', '~> 1.75', require: false
+gem 'aws-sdk-s3', '~> 1.132', require: false
 gem 'bootsnap', '~> 1.16'
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.5'
 gem 'devise', '~> 4.7', '>= 4.7.2'
