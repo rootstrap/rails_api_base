@@ -77,7 +77,7 @@ jobs:
           PARALLEL_TESTS_CONCURRENCY: 2
           RAILS_ENV: test
         run: |
-          bundle exec parallel_test -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
+          bundle exec parallel:test -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories
