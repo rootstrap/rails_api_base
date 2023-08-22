@@ -68,7 +68,7 @@ jobs:
           RAILS_ENV: test
         run: |
           bundle exec rails parallel:create
-          bundle exec rails db:create db:migrate
+          bundle exec rails db:migrate
       - name: Install dependencies
         run: bundle install
       - name: Check for untracked changes in schema.rb
