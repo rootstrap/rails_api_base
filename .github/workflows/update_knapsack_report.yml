@@ -47,7 +47,7 @@ jobs:
     - name: Push changes
       run: git push origin HEAD:update-knapsack-report
     - name: Initialize Pull Request
-      uses: gha-utilities/init-pull-request
+      uses: peter-evans/create-pull-request@v3
       with:
         verbose: true
         pull_request_token: ${{ secrets.GITHUB_TOKEN }}
