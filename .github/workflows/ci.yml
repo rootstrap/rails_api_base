@@ -65,6 +65,8 @@ jobs:
           ./cc-test-reporter before-build
       - name: Setup Database
         run: bundle exec rails db:create db:migrate
+      - name: Install dependencies
+        run: bundle install
       - name: Check for untracked changes in schema.rb
         uses: rootstrap/check_untracked_changes@v1
         with:
@@ -77,7 +79,7 @@ jobs:
           PARALLEL_TESTS_CONCURRENCY: 2
           RAILS_ENV: test
         run: |
-          bundle exec parallel:test -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
+          bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories
