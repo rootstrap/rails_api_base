@@ -64,7 +64,12 @@ jobs:
           chmod +x ./cc-test-reporter
           ./cc-test-reporter before-build
       - name: Setup Database
-        run: bundle exec rails db:create db:migrate
+        env:
+          RAILS_ENV: test
+        run: |
+          bundle exec rails parallel:create
+          bundle exec rails parallel:load_schema
+          bundle exec rails db:create db:migrate
       - name: Install dependencies
         run: bundle install
       - name: Check for untracked changes in schema.rb
