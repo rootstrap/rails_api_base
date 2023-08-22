@@ -56,7 +56,7 @@ jobs:
         verbose: true
         pull_request_token: ${{ secrets.GITHUB_TOKEN }}
         head: update-knapsack-report
-        base: release/improve-ci
+        base: main
         title: 'Update Knapsack report'
         maintainer_can_modify: true
         debug: true
