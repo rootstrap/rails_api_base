@@ -76,7 +76,7 @@ jobs:
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           KNAPSACK_LOG_LEVEL: info
         run: |
-          bundle exec parallel_rspec --first-is-1 -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
+          bundle exec parallel_test -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories
