@@ -2,6 +2,10 @@ name: CI
 
 on: [push]
 
+env:
+  RAILS_ENV: test
+  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+
 jobs:
   linters:
     name: Linters
@@ -46,10 +50,6 @@ jobs:
         # set N-1 indexes for parallel jobs
         # When you run 2 parallel jobs then first job will have index 0, the second job will have index 1 etc
         ci_node_index: [0, 1, 2, 3]
-
-    env:
-      RAILS_ENV: test
-      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
     steps:
       - name: Checkout code
@@ -103,6 +103,8 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: coverage
+          path: coverage/coverage.*.json
       - name: report coverage
         run: |
-          ./cc-test-reporter sum-coverage --output coverage/coverage.*.json | ./cc-test-reporter upload-coverage
+          ./cc-test-reporter sum-coverage coverage/**/*.json -o coverage/report.total.json
+          ./cc-test-reporter upload-coverage -i coverage/report.total.json
