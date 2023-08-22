@@ -15,9 +15,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: Setup Database
-        run: |
-          bundle exec rails db:create db:migrate
       - name: Run Code Analysis
         run: |
           bundle exec rake code:analysis
