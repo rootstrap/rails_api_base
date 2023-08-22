@@ -66,6 +66,8 @@ jobs:
       - name: Install dependencies
         run: bundle install
       - name: Setup Database
+        env:
+          RAILS_ENV: test
         run: bundle exec rails db:create db:migrate
       - name: Check for untracked changes in schema.rb
         uses: rootstrap/check_untracked_changes@v1
