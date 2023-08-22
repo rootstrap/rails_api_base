@@ -71,12 +71,13 @@ jobs:
           path: "./db/schema.rb"
       - name: Run Tests
         env:
-          PARALLEL_TESTS_CONCURRENCY: 2
           CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           KNAPSACK_LOG_LEVEL: info
+          PARALLEL_TESTS_CONCURRENCY: 2
+          RAILS_ENV: test
         run: |
-          RAILS_ENV=test bundle exec rake parallel:spec -n $PARALLEL_TESTS_CONCURRENCY -e 'bin/parallel_tests'
+          bundle exec parallel_test -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories
