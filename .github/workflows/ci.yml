@@ -62,7 +62,7 @@ jobs:
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
+          ./cc-test-reporter
       - name: Setup Database
         run: bundle exec rails db:create db:migrate
       - name: Check for untracked changes in schema.rb
@@ -106,5 +106,5 @@ jobs:
           path: coverage/coverage.*.json
       - name: report coverage
         run: |
-          ./cc-test-reporter sum-coverage coverage/**/*.json -o coverage/report.total.json
-          ./cc-test-reporter upload-coverage -i coverage/report.total.json
+          ./cc-test-reporter sum-coverage coverage/**/*.json
+          ./cc-test-reporter upload-coverage
