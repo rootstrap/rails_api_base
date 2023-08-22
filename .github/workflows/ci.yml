@@ -2,6 +2,10 @@ name: CI
 
 on: [push]
 
+env:
+  RAILS_ENV: test
+  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+
 jobs:
   linters:
     name: Linters
@@ -35,7 +39,7 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-    
+
     strategy:
       fail-fast: false
       matrix:
@@ -46,10 +50,6 @@ jobs:
         # set N-1 indexes for parallel jobs
         # When you run 2 parallel jobs then first job will have index 0, the second job will have index 1 etc
         ci_node_index: [0, 1, 2, 3]
-
-    env:
-      RAILS_ENV: test
-      CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
     steps:
       - name: Checkout code
@@ -84,4 +84,27 @@ jobs:
           path: "./app/ ./spec/"
       - name: Report to CodeClimate
         run: |
-          ./cc-test-reporter after-build --exit-code 0
+          ./cc-test-reporter format-coverage --output "coverage/coverage.${{ matrix.ci_node_index }}.json"
+      - name: Upload partial converage
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: "coverage/coverage.${{ matrix.ci_node_index }}.json"
+  coverage:
+    name: Coverage
+    runs-on: ubuntu-latest
+    needs: tests
+    steps:
+      - name: Setup Code Climate test-reporter
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+      - name: download coverage reports
+        uses: actions/download-artifact@v2
+        with:
+          name: coverage
+          path: coverage/coverage.*.json
+      - name: report coverage
+        run: |
+          ./cc-test-reporter sum-coverage coverage/**/*.json -o coverage/report.total.json
+          ./cc-test-reporter upload-coverage -i coverage/report.total.json
