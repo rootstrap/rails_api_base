@@ -68,7 +68,6 @@ jobs:
           RAILS_ENV: test
         run: |
           bundle exec rails parallel:create
-          bundle exec rails parallel:load_schema
           bundle exec rails db:create db:migrate
       - name: Install dependencies
         run: bundle install
