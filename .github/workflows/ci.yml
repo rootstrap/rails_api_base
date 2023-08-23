@@ -79,7 +79,8 @@ jobs:
           KNAPSACK_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           KNAPSACK_LOG_LEVEL: info
           PARALLEL_TESTS_CONCURRENCY: 2
-        run: bundle exec parallel_rspec --first-is-1 -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests' --verbose
+        run: |
+          bundle exec rake parallel:spec
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories
