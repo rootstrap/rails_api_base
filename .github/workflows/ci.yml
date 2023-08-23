@@ -67,7 +67,8 @@ jobs:
         run: bundle install
       - name: Setup Database
         run: |
-          rake parallel:setup
+          bundle exec rails db:create db:migrate
+          bundle exec rake parallel:setup
       - name: Check for untracked changes in schema.rb
         uses: rootstrap/check_untracked_changes@v1
         with:
@@ -79,7 +80,7 @@ jobs:
           KNAPSACK_LOG_LEVEL: info
           PARALLEL_TESTS_CONCURRENCY: 2
         run: |
-          bundle exec rake knapsack:rspec
+          bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories
