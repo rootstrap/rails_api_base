@@ -79,7 +79,7 @@ jobs:
           KNAPSACK_LOG_LEVEL: info
           PARALLEL_TESTS_CONCURRENCY: 2
         run: |
-          bundle exec parallel_rspec --first-is-1 -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests' --verbose
+          bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests' --verbose
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories
