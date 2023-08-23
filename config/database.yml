@@ -13,7 +13,7 @@ development:
 
 test:
   <<: *default
-  database: rails_api_base_test
+  database: rails_api_base_test<%= ENV['TEST_ENV_NUMBER'] %>
 
 # For production is recommended to set DATABASE_URL env variable.
 # It will take precedence over the config defined here.
