@@ -67,7 +67,8 @@ jobs:
         run: bundle install
       - name: Setup Database
         run: |
-          rake parallel:migrate
+          bundle exec rails db:create db:migrate
+          bundle exec rake parallel:setup
       - name: Check for untracked changes in schema.rb
         uses: rootstrap/check_untracked_changes@v1
         with:
