@@ -80,7 +80,7 @@ jobs:
           KNAPSACK_LOG_LEVEL: info
           PARALLEL_TESTS_CONCURRENCY: 2
         run: |
-          bundle exec rake parallel:spec -n $PARALLEL_TESTS_CONCURRENCY
+          bundle exec rake parallel:spec -n $PARALLEL_TESTS_CONCURRENCY --exec './bin/parallel_tests'
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories
