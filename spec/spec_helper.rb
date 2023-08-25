@@ -20,10 +20,6 @@ FactoryBot.reload
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
 
 RSpec.configure do |config|
-  ### REMOVE ME
-  config.before(:suite) do
-    puts "RSpec is using the #{ ActiveRecord::Base.connection_db_config.configuration_hash[:database] } database."
-  end
   config.include Helpers
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
