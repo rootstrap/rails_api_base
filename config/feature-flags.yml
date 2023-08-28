@@ -1,0 +1,9 @@
+# Current Schema requires
+#   description: <String> required
+#   owner: <String> required
+#   removal_ticket: <String> optional
+
+# feature_flag_test:
+#   description: "This is a feature flag for demo purposes"
+#   owner: "@github/team"
+#   removal_ticket: "Link to the feature flag removal ticket"
