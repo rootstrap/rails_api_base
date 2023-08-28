@@ -49,7 +49,7 @@ end
 group :development do
   gem 'better_errors', '~> 2.5', '>= 2.5.1'
   gem 'binding_of_caller', '~> 1.0'
-  gem 'brakeman', '~> 5.1'
+  gem 'brakeman', '~> 6.0'
   gem 'i18n-tasks', '~> 1.0.12'
   gem 'letter_opener', '~> 1.7'
   gem 'listen', '~> 3.8'
