@@ -69,7 +69,7 @@ group :test do
   gem 'pg_query', '~> 4.2.1'
   gem 'prosopite', '~> 1.3.2'
   gem 'shoulda-matchers', '~> 5.3'
-  gem 'simplecov', '~> 0.13.0', require: false
+  gem 'simplecov', '~> 0.22.0', require: false
   gem 'webmock', '~> 3.7', '>= 3.7.6'
 end
 
