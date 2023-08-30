@@ -78,8 +78,8 @@ jobs:
           KNAPSACK_LOG_LEVEL: info
           PARALLEL_TESTS_CONCURRENCY: 2
         run: |
-          bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
           ./cc-test-reporter before-build
+          bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
           echo "KNAPSACK_CI_NODE_INDEX=$KNAPSACK_CI_NODE_INDEX" >> $GITHUB_ENV
       - name: Check for missing annotations
         run: bundle exec annotate
