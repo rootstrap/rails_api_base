@@ -1,0 +1,67 @@
+name: Update Knapsack Report
+
+# This workflow should be scheduled at certain intervals
+# for example, the following configuration would schedule it every 3 months
+# on:
+#  schedule:
+#    - cron: '0 0 1 */3 *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: postgres:9.4
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
+    env:
+      RAILS_ENV: test
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby 3.1
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 3.1
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Ruby gems
+      run: |
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+    - name: Setup Database
+      run: bundle exec rails db:create db:migrate
+    - name: Update Knapsack Report
+      run: KNAPSACK=true KNAPSACK_GENERATE_REPORT=true bundle exec rspec
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add knapsack_rspec_report.json
+        git commit -m "Update knapsack_rspec_report.json"
+    - name: Push changes
+      run: git push origin HEAD:update-knapsack-report
+    - name: Initialize Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        verbose: true
+        pull_request_token: ${{ secrets.GITHUB_TOKEN }}
+        head: update-knapsack-report
+        base: main
+        title: 'Update Knapsack report'
+        maintainer_can_modify: true
+        debug: true
+        draft: false
+        body: >
+          This is a automated PR. Knapsack uses the report file to distribute tests across different nodes
+          so that they all have similar execution times. It's advisable to update the report periodically, 
+          especially if many test files have been added, for better distribution.
