@@ -57,3 +57,4 @@ plugins:
       - spec/**/*
 exclude_patterns:
   - 'babel.config.js'
+  - 'lib/tasks/feature_flags.rake'
