@@ -10,7 +10,10 @@ SimpleCov.start 'rails' do
   add_filter 'app/admin'
   add_filter 'config'
   add_filter 'spec'
-  add_filter 'app/policies'
+  add_filter 'lib/tasks/code_analysis.rake'
+  add_filter 'lib/tasks/auto_annotate_models.rake'
+  add_filter 'app/controllers/application_controller.rb'
+  add_filter 'app/policies/admin/application_policy.rb'
 end
 
 require File.expand_path('../config/environment', __dir__)
