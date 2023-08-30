@@ -51,7 +51,7 @@ end
 group :development do
   gem 'better_errors', '~> 2.5', '>= 2.5.1'
   gem 'binding_of_caller', '~> 1.0'
-  gem 'brakeman', '~> 5.1'
+  gem 'brakeman', '~> 6.0'
   gem 'i18n-tasks', '~> 1.0.12'
   gem 'letter_opener', '~> 1.7'
   gem 'listen', '~> 3.8'
@@ -70,8 +70,8 @@ group :test do
   gem 'faker', '~> 2.13'
   gem 'pg_query', '~> 4.2.1'
   gem 'prosopite', '~> 1.3.2'
-  gem 'shoulda-matchers', '~> 4.1', '>= 4.1.2'
-  gem 'simplecov', '~> 0.13.0', require: false
+  gem 'shoulda-matchers', '~> 5.3'
+  gem 'simplecov', '~> 0.22.0', require: false
   gem 'webmock', '~> 3.7', '>= 3.7.6'
 end
 
