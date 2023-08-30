@@ -57,6 +57,3 @@ plugins:
       - spec/**/*
 exclude_patterns:
   - 'babel.config.js'
-  - 'lib/tasks/code_analysis.rake'
-  - 'bin/parallel_tests'
-  - 'knapsack_rspec_report.json'
