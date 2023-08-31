@@ -64,6 +64,6 @@ jobs:
         debug: true
         draft: false
         body: >
-          This is a automated PR. Knapsack uses the report file to distribute tests across different nodes
+          This is an automated PR. Knapsack uses the report file to distribute tests across different nodes
           so that they all have similar execution times. It's advisable to update the report periodically, 
           especially if many test files have been added, for better distribution.
