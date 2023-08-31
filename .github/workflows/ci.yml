@@ -78,7 +78,6 @@ jobs:
         run: |
           ./cc-test-reporter before-build
           bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
-          echo "KNAPSACK_CI_NODE_INDEX=$KNAPSACK_CI_NODE_INDEX" >> $GITHUB_ENV
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories
@@ -87,12 +86,12 @@ jobs:
           path: "./app/ ./spec/"
       - name: Report to CodeClimate
         run: |
-          ./cc-test-reporter format-coverage --output "coverage/coverage.${{ env.KNAPSACK_CI_NODE_INDEX }}.json"
+          ./cc-test-reporter format-coverage --output "coverage/coverage.${{ matrix.ci_node_index }}.json"
       - name: Upload partial converage
         uses: actions/upload-artifact@v2
         with:
           name: coverage
-          path: "coverage/coverage.${{ env.KNAPSACK_CI_NODE_INDEX }}.json"
+          path: "coverage/coverage.${{ matrix.ci_node_index }}.json"
   coverage:
     name: Coverage
     runs-on: ubuntu-latest
