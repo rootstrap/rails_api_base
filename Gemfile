@@ -70,7 +70,7 @@ group :test do
   gem 'prosopite', '~> 1.3.2'
   gem 'shoulda-matchers', '~> 5.3'
   gem 'simplecov', '~> 0.22.0', require: false
-  gem 'webmock', '~> 3.7', '>= 3.7.6'
+  gem 'webmock', '~> 3.19'
 end
 
 group :assets do
