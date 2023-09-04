@@ -26,7 +26,7 @@ jobs:
 
     services:
       db:
-        image: postgres:9.4
+        image: postgres:15
         env:
           POSTGRES_USER: postgres
           POSTGRES_HOST_AUTH_METHOD: trust
@@ -44,10 +44,10 @@ jobs:
         # Set N number of parallel jobs you want to run tests on.
         # Use higher number if you have slow tests to split them on more parallel jobs.
         # Remember to update ci_node_index below to 0..N-1
-        ci_node_total: [4]
+        ci_node_total: [1]
         # set N-1 indexes for parallel jobs
         # When you run 2 parallel jobs then first job will have index 0, the second job will have index 1 etc
-        ci_node_index: [0, 1, 2, 3]
+        ci_node_index: [0]
 
     steps:
       - name: Checkout code
@@ -60,8 +60,7 @@ jobs:
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
-      - name: Install dependencies
-        run: bundle install
+          ./cc-test-reporter before-build
       - name: Setup Database
         run: |
           bundle exec rake parallel:load_schema
@@ -69,14 +68,16 @@ jobs:
         uses: rootstrap/check_untracked_changes@v1
         with:
           path: "./db/schema.rb"
+      - name: Get CPU info
+        id: cpu_info
+        run: |
+          echo "cpu_cores=$(nproc)" >> $GITHUB_ENV
       - name: Run Tests
         env:
           KNAPSACK_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           KNAPSACK_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
-          KNAPSACK_LOG_LEVEL: info
-          PARALLEL_TESTS_CONCURRENCY: 2
+          PARALLEL_TESTS_CONCURRENCY: ${{ env.cpu_cores }}
         run: |
-          ./cc-test-reporter before-build
           bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
       - name: Check for missing annotations
         run: bundle exec annotate

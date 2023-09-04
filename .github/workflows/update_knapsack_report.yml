@@ -14,7 +14,7 @@ jobs:
 
     services:
       db:
-        image: postgres:9.4
+        image: postgres:15
         env:
           POSTGRES_USER: postgres
           POSTGRES_HOST_AUTH_METHOD: trust
@@ -55,13 +55,11 @@ jobs:
     - name: Initialize Pull Request
       uses: peter-evans/create-pull-request@v3
       with:
-        verbose: true
         pull_request_token: ${{ secrets.GITHUB_TOKEN }}
         head: update-knapsack-report
         base: main
         title: 'Update Knapsack report'
         maintainer_can_modify: true
-        debug: true
         draft: false
         body: >
           This is an automated PR. Knapsack uses the report file to distribute tests across different nodes
