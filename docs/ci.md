@@ -1,7 +1,7 @@
 # CI
 
 ## Parallelization with Parallel & Knapsack
-Knapsack and Parallel gems allow us to run tests in several nodes at the same time, benefiint us in the execution time. Knapsack it parallelizes at node level while Parallel does it at CPU level.
+Knapsack and Parallel gems allow us to run tests in several nodes at the same time, benefiting us in the execution time. Knapsack it parallelizes at node level while Parallel does it at CPU level.
 
 Knapsack splits tests based on an execution time report. In case there are files that were not added in the report, they will all run on the same node and may overload it, so it is strongly recommended to update the report frequently.
 
@@ -36,7 +36,7 @@ Now is setted on February 31th so will never run.
   # The above cron does not run. Replace with the wanted periodicity.
 ```
 ## Coverage
-When splitting tests in different nodes each one reports only coverate of a part of the code files are testing.
+When splitting tests in different nodes, each report covers only a part of the code files being tested.
 For this reason a job in the CI is added to sums coverages from all nodes to be uses by SimpleCov. This job will be executed after all nodes have finished and will send the final report to CodeClimate.
 
 For the case of CPU cores we do not need to add extra configuration since the report of each node contains the info of all the cores that have been splited.
