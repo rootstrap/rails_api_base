@@ -1,7 +1,7 @@
 # CI
 
 ## Parallelization with Parallel & Knapsack
-Knapsack and Parallel gems allow us to run tests in several nodes at the same time, benefiting us in the execution time. Knapsack it parallelizes at node level while Parallel does it at CPU level.
+Knapsack and Parallel gems allow us to run tests in several nodes at the same time, benefiting us in the execution time. Knapsack parallelizes them at node level while Parallel does it at CPU level.
 
 Knapsack splits tests based on an execution time report. In case there are files that were not added in the report, they will all run on the same node and may overload it, so it is strongly recommended to update the report frequently.
 
