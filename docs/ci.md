@@ -17,7 +17,8 @@ On Github Actions you can add any nodes you want using matrix strategy, setting 
   ci_node_index: [0, 1, 2, 3]
 ```
 
-CPU cores quantity on every node are obtained automatically from Github Actions config `echo "cpu_cores=$(nproc)" >> $GITHUB_ENV`
+CPU cores quantity on every node are obtained automatically from Github Actions config `echo "cpu_cores=$(nproc)" >> $GITHUB_ENV`.
+
 If you want to update it manually you can do it by updating this variable:
 `PARALLEL_TESTS_CONCURRENCY: 2`
 
