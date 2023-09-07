@@ -1,0 +1,11 @@
+{
+  "name": "app",
+  "private": "true",
+  "dependencies": {
+    "arctic_admin": "^4.2.5",
+    "esbuild": "^0.19.2"
+  },
+  "scripts": {
+    "build": "esbuild app/assets/javascripts/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets"
+  }
+}
