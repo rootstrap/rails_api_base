@@ -17,7 +17,7 @@ On Github Actions you can add any nodes you want using matrix strategy, setting 
   ci_node_index: [0, 1, 2, 3]
 ```
 
-To update cpu cores quantity on every onde you can do it by updating this variable:
+To update CPU cores quantity on every node you can do it by updating this variable:
 `PARALLEL_TESTS_CONCURRENCY: 2`
 
 To update tests on local machine you can by executing `KNAPSACK_CI_NODE_TOTAL=4 KNAPSACK_CI_NODE_INDEX=1 PARALLEL_TESTS_CONCURRENCY=2 bundle exec parallel_rspec -n 2 -e './bin/parallel_tests'`. This will run subset of tests files corresponding to second node.
@@ -29,7 +29,7 @@ Knapsack report needs to be updated frequently to balance execution time among n
 It is also recommended to generate the report in the CI for a better precision. For this you have available a workflow in Github Actions that triggers the report generation and creates a pull request automatically. This workflow can be scheduled in the frequency you want or even can be manually triggered.
 
 To schedule the cron task you have to do it in `.github/workflows/update_knapsack_report.yml:6`
-Now is setted on February 31th so will never run. 
+It is now scheduled for February 31 so will never run.
 
 ```sh
   - cron: '0 5 31 2 *'    
@@ -37,6 +37,6 @@ Now is setted on February 31th so will never run.
 ```
 ## Coverage
 When splitting tests in different nodes, each report covers only a part of the code files being tested.
-For this reason a job in the CI is added to sums coverages from all nodes to be uses by SimpleCov. This job will be executed after all nodes have finished and will send the final report to CodeClimate.
+For this reason a job in the CI is added to sums coverages from all nodes to be used by SimpleCov. This job will be executed after all nodes have finished and will send the final report to CodeClimate.
 
 For the case of CPU cores we do not need to add extra configuration since the report of each node contains the info of all the cores that have been splited.
