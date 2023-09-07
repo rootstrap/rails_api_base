@@ -8,7 +8,7 @@ gem 'rails', '~> 7.0.7'
 gem 'activeadmin', '~> 2.9'
 gem 'active_storage_base64', '~> 2.0.0'
 gem 'arctic_admin', '~> 3.3.0'
-gem 'aws-sdk-s3', '~> 1.132', require: false
+gem 'aws-sdk-s3', '~> 1.134', require: false
 gem 'bootsnap', '~> 1.16'
 gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.5'
 gem 'devise', '~> 4.7', '>= 4.7.2'
@@ -19,11 +19,12 @@ gem 'flipper', '~> 0.28.3'
 gem 'flipper-active_record', '~> 0.28.3'
 gem 'flipper-ui', '~> 0.28.0'
 gem 'jbuilder', '~> 2.10'
-gem 'oj', '~> 3.9', '>= 3.9.2'
+gem 'lograge', '~> 0.13'
+gem 'oj', '~> 3.16'
 gem 'pagy', '~> 4.0'
 gem 'pg', '~> 1.5'
-gem 'puma', '~> 5.6'
-gem 'pundit', '~> 2.1'
+gem 'puma', '~> 6.3'
+gem 'pundit', '~> 2.3'
 gem 'rack-cors', '~> 2.0'
 gem 'sass-rails', '~> 6.0.0'
 gem 'sendgrid', '~> 1.2.4'
@@ -49,7 +50,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'better_errors', '~> 2.5', '>= 2.5.1'
+  gem 'better_errors', '~> 2.10'
   gem 'binding_of_caller', '~> 1.0'
   gem 'brakeman', '~> 6.0'
   gem 'i18n-tasks', '~> 1.0.12'
@@ -72,7 +73,7 @@ group :test do
   gem 'prosopite', '~> 1.3.2'
   gem 'shoulda-matchers', '~> 5.3'
   gem 'simplecov', '~> 0.22.0', require: false
-  gem 'webmock', '~> 3.7', '>= 3.7.6'
+  gem 'webmock', '~> 3.19'
 end
 
 group :assets do
