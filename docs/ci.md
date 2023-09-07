@@ -1,7 +1,7 @@
 # CI
 
-## Parallelization with Parallel & Knapsack
-Knapsack and Parallel gems allow us to run tests in several nodes at the same time, benefiting us in the execution time. Knapsack parallelizes them at node level while Parallel does it at CPU level.
+## Parallelization with Parallel Tests & Knapsack
+Knapsack and Parallel Tests gems allow us to run tests in several nodes at the same time, benefiting us in the execution time. Knapsack parallelizes them at node level while Parallel Tests does it at CPU level.
 
 Knapsack splits tests based on an execution time report. In case there are files that were not added in the report, they will all run on the same node and may overload it, so it is strongly recommended to update the report frequently.
 
@@ -26,7 +26,7 @@ To update tests on local machine you can by executing `KNAPSACK_CI_NODE_TOTAL=4 
 
 ## Generating report
 Knapsack report needs to be updated frequently to balance execution time among nodes. This can be done manually by executing:
-`knapsack_generate_generate_report: true bundle exec knapsack:rspec`
+`KNAPSACK_GENERATE_REPORT=true bundle exec rspec`
 
 It is also recommended to generate the report in the CI for a better precision. For this you have available a workflow in Github Actions that triggers the report generation and creates a pull request automatically. This workflow can be scheduled in the frequency you want or even can be manually triggered.
 

@@ -85,7 +85,7 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
 - [Oj](https://github.com/ohler55/oj) for optimized json
 - [Pagy](https://github.com/ddnexus/pagy) for pagination
-- [Parallel](https://github.com/grosser/parallel) for split CI in several cores
+- [Parallel Tests](https://github.com/grosser/parallel_tests) for split CI in several cores
 - [Prosopite](https://github.com/charkost/prosopite) to detect N+1 queries
 - [Pry](https://github.com/pry/pry) for enhancing the ruby shell
 - [Puma](https://github.com/puma/puma) for the server
