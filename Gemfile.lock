@@ -526,7 +526,7 @@ DEPENDENCIES
   jbuilder (~> 2.10)
   letter_opener (~> 1.7)
   listen (~> 3.8)
-  lograge (~> 0.13.0)
+  lograge (~> 0.13)
   oj (~> 3.16)
   pagy (~> 4.0)
   pg (~> 1.5)
