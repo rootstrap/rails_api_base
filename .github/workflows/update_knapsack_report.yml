@@ -36,10 +36,6 @@ jobs:
       with:
         ruby-version: 3.1
         github_token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Ruby gems
-      run: |
-        gem install bundler
-        bundle install --jobs 4 --retry 3
     - name: Setup Database
       run: bundle exec rails db:create db:migrate
     - name: Update Knapsack Report
@@ -53,7 +49,7 @@ jobs:
     - name: Push changes
       run: git push origin HEAD:update-knapsack-report
     - name: Initialize Pull Request
-      uses: peter-evans/create-pull-request@v3
+      uses: rootstrap/create-pull-request@v3
       with:
         pull_request_token: ${{ secrets.GITHUB_TOKEN }}
         head: update-knapsack-report
