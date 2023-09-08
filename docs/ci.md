@@ -6,7 +6,7 @@ Knapsack and Parallel Tests gems allow us to run tests in several nodes at the s
 Knapsack splits tests based on an execution time report. In case there are files that were not added in the report, they will all run on the same node and may overload it, so it is strongly recommended to update the report frequently.
 
 ## Configuration
-In case you want to use this you will need a script that split spec files called `parallel_tests` which sets up the configuration, assuming you have `n_nodes * cpu_cores_quantity`.
+In case you want to use this you will need the script that splits spec files called `parallel_tests`, which sets up the configuration, assuming you have `n_nodes * cpu_cores_quantity`.
 
 On Github Actions you can add any nodes you want using matrix strategy, setting up some variables:
 
