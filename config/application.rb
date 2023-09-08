@@ -48,7 +48,7 @@ module App
     config.action_mailer.default_url_options = { host: ENV.fetch('SERVER_HOST', nil),
                                                  port: ENV.fetch('PORT', 3000) }
     config.action_mailer.default_options = {
-      from: 'no-reply@api.com'
+      from: 'no-reply@example.com'
     }
 
     config.action_mailer.deliver_later_queue_name = 'mailers'
