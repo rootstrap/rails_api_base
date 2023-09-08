@@ -22,7 +22,7 @@ CPU cores quantity on every node are obtained automatically from Github Actions 
 If you want to update it manually you can do it by updating this variable:
 `PARALLEL_TESTS_CONCURRENCY: 2`
 
-To update tests on local machine you can by executing `KNAPSACK_CI_NODE_TOTAL=4 KNAPSACK_CI_NODE_INDEX=1 PARALLEL_TESTS_CONCURRENCY=2 bundle exec parallel_rspec -n 2 -e './bin/parallel_tests'`. This will run subset of tests files corresponding to second node.
+To update tests on local machine you can execute `KNAPSACK_CI_NODE_TOTAL=4 KNAPSACK_CI_NODE_INDEX=1 PARALLEL_TESTS_CONCURRENCY=2 bundle exec parallel_rspec -n 2 -e './bin/parallel_tests'`. This will run subset of tests files corresponding to second node.
 
 ## Generating report
 Knapsack report needs to be updated frequently to balance execution time among nodes. This can be done manually by executing:
