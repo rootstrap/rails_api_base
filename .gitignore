@@ -1,40 +1,28 @@
+**.orig
 *.rbc
 *.swp
-capybara-*.html
-/log
-/tmp
-/db/*.sqlite3
-/public/system
+.DS_Store
+.byebug_history
+.env
+.idea/
+.irb_history
+.rvmrc
+.yarn-integrity
+/.bundle
 /coverage/
+/db/*.sqlite3
+/log
+/node_modules
+/public/system
 /spec/tmp
 /storage
-.idea/
-.DS_Store
-**.orig
-rerun.txt
-pickle-email-*.html
-config/initializers/secret_token.rb
-config/secrets.yml
-config/master.key
-.env
-
-## Environment normalisation:
-/.bundle
+/tmp
 /vendor/bundle
-
-# these should all be checked in to normalise the environment:
-# Gemfile.lock, .ruby-version, .ruby-gemset
-
-# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
-.rvmrc
-
-# Ignore byebug history
-.byebug_history
-
-# Ignore irb history
-.irb_history
-
-/node_modules
 /yarn-error.log
+capybara-*.html
+config/initializers/secret_token.rb
+config/master.key
+config/secrets.yml
+pickle-email-*.html
+rerun.txt
 yarn-debug.log*
-.yarn-integrity
