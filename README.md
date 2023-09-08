@@ -81,9 +81,11 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Faker](https://github.com/stympy/faker) for generating test data
 - [Flipper](https://github.com/jnunemaker/flipper) for feature flag support
 - [Jbuilder](https://github.com/rails/jbuilder) for json views
+- [Knapsack](https://github.com/KnapsackPro/knapsack) for generating CI time report and splitting into nodes
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
 - [Oj](https://github.com/ohler55/oj) for optimized json
 - [Pagy](https://github.com/ddnexus/pagy) for pagination
+- [Parallel Tests](https://github.com/grosser/parallel_tests) for split CI in several cores
 - [Prosopite](https://github.com/charkost/prosopite) to detect N+1 queries
 - [Pry](https://github.com/pry/pry) for enhancing the ruby shell
 - [Puma](https://github.com/puma/puma) for the server
@@ -105,6 +107,7 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - Set your [frontend URL](https://github.com/cyu/rack-cors#origin) in `config/initializers/rack_cors.rb`
 - Set your mail sender in `config/initializers/devise.rb`
 - Config your timezone accordingly in `application.rb`.
+- Config CI in parallel execution. See [docs](docs/ci.md).
 
 ## Api Docs
 
