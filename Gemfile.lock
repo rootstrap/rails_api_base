@@ -287,7 +287,7 @@ GEM
       racc (~> 1.4)
     oj (3.16.1)
     orm_adapter (0.5.0)
-    pagy (4.11.0)
+    pagy (6.0.4)
     parallel (1.22.1)
     parallel_tests (4.2.1)
       parallel
@@ -525,7 +525,7 @@ DEPENDENCIES
   listen (~> 3.8)
   lograge (~> 0.13)
   oj (~> 3.16)
-  pagy (~> 4.0)
+  pagy (~> 6.0)
   parallel_tests (~> 4.2)
   pg (~> 1.5)
   pg_query (~> 4.2.1)
