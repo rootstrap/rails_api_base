@@ -26,7 +26,6 @@ This template comes with:
 - Code quality tools
 - API documentation following https://apiblueprint.org/
 - Docker support
-- Exception Tracking
 - RSpec API Doc Generator
 
 ## How to use
@@ -76,7 +75,6 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Devise Token Auth](https://github.com/lynndylanhurley/devise_token_auth) for api auth
 - [Dotenv](https://github.com/bkeepers/dotenv) for handling environment variables
 - [Draper](https://github.com/drapergem/draper) for decorators
-- [ExceptionHunter](https://github.com/rootstrap/exception_hunter) for exception tracking
 - [Factory Bot](https://github.com/thoughtbot/factory_bot) for testing data
 - [Faker](https://github.com/stympy/faker) for generating test data
 - [Flipper](https://github.com/jnunemaker/flipper) for feature flag support

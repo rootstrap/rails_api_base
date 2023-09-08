@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/rootstrap/exception_hunter.git
-  revision: b6f7cab9e9a9157147c5a165d0b79762c6158664
-  specs:
-    exception_hunter (1.1.0)
-      pagy (~> 4)
-      slack-notifier (~> 2.3)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -470,7 +462,6 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
-    slack-notifier (2.4.0)
     smart_properties (1.17.0)
     spring (4.1.0)
     sprockets (3.7.2)
@@ -522,7 +513,6 @@ DEPENDENCIES
   devise_token_auth (~> 1.2.2)
   dotenv-rails (~> 2.7.6)
   draper (~> 4.0, >= 4.0.1)
-  exception_hunter!
   factory_bot_rails (~> 6.2)
   faker (~> 2.13)
   flipper (~> 0.28.3)

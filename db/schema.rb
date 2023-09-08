@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_04_182448) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_08_202728) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -77,31 +77,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_04_182448) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table "exception_hunter_error_groups", force: :cascade do |t|
-    t.string "error_class_name", null: false
-    t.string "message"
-    t.integer "status", default: 0
-    t.text "tags", default: [], array: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["message"], name: "index_exception_hunter_error_groups_on_message", opclass: :gin_trgm_ops, using: :gin
-    t.index ["status"], name: "index_exception_hunter_error_groups_on_status"
-  end
-
-  create_table "exception_hunter_errors", force: :cascade do |t|
-    t.string "class_name", null: false
-    t.string "message"
-    t.datetime "occurred_at", precision: nil, null: false
-    t.json "environment_data"
-    t.json "custom_data"
-    t.json "user_data"
-    t.string "backtrace", default: [], array: true
-    t.bigint "error_group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["error_group_id"], name: "index_exception_hunter_errors_on_error_group_id"
-  end
-
   create_table "flipper_features", force: :cascade do |t|
     t.string "key", null: false
     t.datetime "created_at", null: false
@@ -151,5 +126,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_04_182448) do
   end
 
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "exception_hunter_errors", "exception_hunter_error_groups", column: "error_group_id"
 end
