@@ -7,5 +7,6 @@ namespace :code do
     sh 'bundle exec rubocop .'
     sh 'bundle exec reek .'
     sh 'bundle exec rails_best_practices .'
+    sh 'bundle exec i18n-tasks health'
   end
 end
