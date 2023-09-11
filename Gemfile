@@ -63,7 +63,7 @@ group :development do
   gem 'rubocop-rails', '~> 2.20', '>= 2.20.2', require: false
   gem 'rubocop-rake', '~> 0.6.0', require: false
   gem 'rubocop-rspec', '~> 2.23', require: false
-  gem 'spring', '~> 4.0'
+  gem 'spring', '~> 4.1'
 end
 
 group :test do
