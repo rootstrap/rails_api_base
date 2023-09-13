@@ -81,6 +81,7 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Jbuilder](https://github.com/rails/jbuilder) for json views
 - [Knapsack](https://github.com/KnapsackPro/knapsack) for generating CI time report and splitting into nodes
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
+- [New Relic](https://github.com/newrelic/newrelic-ruby-agent) for monitoring and debugging
 - [Oj](https://github.com/ohler55/oj) for optimized json
 - [Pagy](https://github.com/ddnexus/pagy) for pagination
 - [Parallel Tests](https://github.com/grosser/parallel_tests) for split CI in several cores
@@ -128,6 +129,11 @@ With `bundle exec rails code:analysis` you can run the code analysis tool, you c
 - [Reek](https://github.com/troessner/reek#configuration-file) Edit `config.reek`
 - [Rails Best Practices](https://github.com/flyerhzm/rails_best_practices#custom-configuration) Edit `config/rails_best_practices.yml`
 - [Brakeman](https://github.com/presidentbeef/brakeman) Run `brakeman -I` to generate `config/brakeman.ignore`
+
+## Monitoring
+
+In order to use [New Relic](https://newrelic.com) to monitor your application requests and metrics, you must setup `NEW_RELIC_API_KEY` and `NEW_RELIC_APP_NAME` environment variables.
+To obtain an API key you must create an account in the platform.
 
 ## Configuring Code Climate
 1. After adding the project to CC, go to `Repo Settings`
