@@ -26,7 +26,6 @@ This template comes with:
 - Code quality tools
 - API documentation following https://apiblueprint.org/
 - Docker support
-- RSpec API Doc Generator
 
 ## How to use
 
@@ -93,7 +92,6 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Rails Best Practices](https://github.com/flyerhzm/rails_best_practices) for rails linting
 - [Reek](https://github.com/troessner/reek) for ruby linting
 - [RSpec](https://github.com/rspec/rspec) for testing
-- [RSpec API Doc Generator](https://github.com/zipmark/rspec_api_documentation) for API documentation
 - [Rubocop](https://github.com/bbatsov/rubocop/) for ruby linting
 - [Sendgrid](https://github.com/stephenb/sendgrid) for sending mails
 - [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) adds other testing matchers
@@ -111,15 +109,6 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 ## Api Docs
 
 https://railsapibasers.docs.apiary.io/
-
-With [RSpec API Doc Generator](https://github.com/zipmark/rspec_api_documentation) you can generate the docs after writing the acceptance specs.
-
-Just run:
-
-`./bin/docs `
-
-An `apiary.apib` file will be generated at the root directory of the project.
-
 
 ## Code quality
 

@@ -285,7 +285,6 @@ GEM
     mini_portile2 (2.8.5)
     minitest (5.20.0)
     msgpack (1.7.2)
-    mustache (1.1.1)
     net-imap (0.3.7)
       date
       net-protocol
@@ -398,10 +397,6 @@ GEM
       railties (>= 5.2)
     rexml (3.2.6)
     rouge (4.1.3)
-    rspec (3.12.0)
-      rspec-core (~> 3.12.0)
-      rspec-expectations (~> 3.12.0)
-      rspec-mocks (~> 3.12.0)
     rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.3)
@@ -419,10 +414,6 @@ GEM
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
     rspec-support (3.12.1)
-    rspec_api_documentation (6.1.0)
-      activesupport (>= 3.0.0)
-      mustache (~> 1.0, >= 0.99.4)
-      rspec (~> 3.0)
     rubocop (1.57.1)
       base64 (~> 0.1.1)
       json (~> 2.3)
@@ -563,7 +554,6 @@ DEPENDENCIES
   reek (~> 6.1, >= 6.1.1)
   rspec-rails (~> 6.0)
   rspec-retry!
-  rspec_api_documentation (~> 6.1.0)
   rubocop (~> 1.57)
   rubocop-factory_bot (~> 2.24)
   rubocop-performance (~> 1.19)

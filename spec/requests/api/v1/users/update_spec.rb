@@ -24,7 +24,7 @@ describe 'PUT api/v1/user/' do
     end
 
     it 'returns the user full name' do
-      expect(json[:user][:name]).to eq user.full_name
+      expect(json[:user][:name]).to eq user.reload.full_name
     end
   end
 
