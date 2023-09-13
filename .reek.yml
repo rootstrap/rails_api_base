@@ -117,8 +117,7 @@ detectors:
       - _
   UnusedParameters:
     enabled: true
-    exclude:
-      - DeviseTokenAuth::TokenFactory#self.create
+    exclude: []
   UnusedPrivateMethod:
     enabled: false
   UtilityFunction:

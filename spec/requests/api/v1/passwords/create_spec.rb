@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe 'POST api/v1/users/password' do
+describe 'POST api/v1/users/passwords' do
   subject { post user_password_path, params:, as: :json }
 
   let!(:user) { create(:user, password: 'mypass123') }
