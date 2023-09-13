@@ -15,7 +15,7 @@ common: &default_settings
 
   # Your application name. Renaming here affects where data displays in New
   # Relic. For more details, see https://docs.newrelic.com/docs/apm/new-relic-apm/maintenance/renaming-applications
-  app_name: <%= ENV.fetch('NEW_RELIC_APP_NAME', 'Rails API base') %>
+  app_name: <%= ENV.fetch('NEW_RELIC_APP_NAME', 'rails_api_base - unknown env') %>
 
   # This config disables the agent regardless of other settings.
   agent_enabled: <%= ENV['NEW_RELIC_API_KEY'].present? %>
@@ -36,9 +36,6 @@ test:
   <<: *default_settings
   # It doesn't make sense to report to New Relic from automated test runs.
   monitor_mode: false
-
-staging:
-  <<: *default_settings
 
 production:
   <<: *default_settings

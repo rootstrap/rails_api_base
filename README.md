@@ -81,6 +81,7 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Jbuilder](https://github.com/rails/jbuilder) for json views
 - [Knapsack](https://github.com/KnapsackPro/knapsack) for generating CI time report and splitting into nodes
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
+- [New Relic](https://github.com/newrelic/newrelic-ruby-agent) for monitoring and debugging
 - [Oj](https://github.com/ohler55/oj) for optimized json
 - [Pagy](https://github.com/ddnexus/pagy) for pagination
 - [Parallel Tests](https://github.com/grosser/parallel_tests) for split CI in several cores
@@ -99,7 +100,6 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Simplecov](https://github.com/colszowka/simplecov) for code coverage
 - [Webmock](https://github.com/bblimke/webmock) for stubbing http requests
 - [YAAF](https://github.com/rootstrap/yaaf) for form objects
-- [New Relic](https://github.com/newrelic/newrelic-ruby-agent) for monitoring and debugging
 
 ## Optional configuration
 
