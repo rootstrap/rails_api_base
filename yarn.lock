@@ -112,12 +112,17 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.19.2.tgz#1205014625790c7ff0e471644a878a65d1e34ab0"
   integrity sha512-tcuhV7ncXBqbt/Ybf0IyrMcwVOAPDckMK9rXNHtF17UTK18OKLpg08glminN06pt2WCoALhXdLfSPbVvK/6fxw==
 
-arctic_admin@^4.2.5:
+"@fortawesome/fontawesome-free@6.4.2":
+  version "6.4.2"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-6.4.2.tgz#36b6a9cb5ffbecdf89815c94d0c0ffa489ac5ecb"
+  integrity sha512-m5cPn3e2+FDCOgi1mz0RexTUvvQibBebOUlUlW0+YrMjDTPkiJ6VTKukA1GRsvRw+12KyJndNjj0O4AgTxm2Pg==
+
+arctic_admin@4.2.5:
   version "4.2.5"
   resolved "https://registry.yarnpkg.com/arctic_admin/-/arctic_admin-4.2.5.tgz#45f2aec5f7d1a700ac6c675ec7636ed1f6ccc5ac"
   integrity sha512-sTP2i7xh9yd2l1ag2M4mom6IjQixAm/EaOu/cOs4ZmeQufOT0JKLR8u+HdkELFZEA5dwO3X+W33CiQL+yLXbuQ==
 
-esbuild@^0.19.2:
+esbuild@0.19.2:
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.19.2.tgz#b1541828a89dfb6f840d38538767c6130dca2aac"
   integrity sha512-G6hPax8UbFakEj3hWO0Vs52LQ8k3lnBhxZWomUJDxfz3rZTLqF5k/FCzuNdLx2RbpBiQQF9H9onlDDH1lZsnjg==
