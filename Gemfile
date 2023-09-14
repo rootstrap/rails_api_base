@@ -46,6 +46,7 @@ group :development, :test do
   gem 'pry-byebug', '~> 3.9', platform: :mri
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 6.0'
+  gem 'rspec-openapi', '~> 0.8.1'
 end
 
 group :development do
