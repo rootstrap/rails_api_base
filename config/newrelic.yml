@@ -1,0 +1,41 @@
+#
+# This file configures the New Relic Agent.  New Relic monitors Ruby, Java,
+# .NET, PHP, Python, Node, and Go applications with deep visibility and low
+# overhead.  For more information, visit www.newrelic.com.
+
+# Generated September 11, 2023, for version 9.4.2
+#
+# For full documentation of agent configuration options, please refer to
+# https://docs.newrelic.com/docs/agents/ruby-agent/installation-configuration/ruby-agent-configuration
+# This file is truncated and it only keeps the smaller set of configs needed to make New Relic start collecting metrics for your app.
+
+common: &default_settings
+  # Required license key associated with your New Relic account.
+  license_key: <%= ENV['NEW_RELIC_API_KEY'] %>
+
+  # Your application name. Renaming here affects where data displays in New
+  # Relic. For more details, see https://docs.newrelic.com/docs/apm/new-relic-apm/maintenance/renaming-applications
+  app_name: <%= ENV.fetch('NEW_RELIC_APP_NAME', 'rails_api_base - unknown env') %>
+
+  # This config disables the agent regardless of other settings.
+  agent_enabled: <%= ENV['NEW_RELIC_API_KEY'].present? %>
+
+  # Logging level for log/newrelic_agent.log; options are error, warn, info, or
+  # debug.
+  log_level: info
+  
+# Environment-specific settings are in this section.
+# RAILS_ENV or RACK_ENV (as appropriate) is used to determine the environment.
+# If your application has other named environments, configure them here.
+development:
+  <<: *default_settings
+  # Do not track the development environment by default.
+  monitor_mode: false
+
+test:
+  <<: *default_settings
+  # It doesn't make sense to report to New Relic from automated test runs.
+  monitor_mode: false
+
+production:
+  <<: *default_settings

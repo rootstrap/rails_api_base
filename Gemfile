@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 ruby '~> 3.1.2'
 
-gem 'rails', '~> 7.0.7'
+gem 'rails', '~> 7.0.8'
 
 gem 'activeadmin', '~> 2.9'
 gem 'active_storage_base64', '~> 2.0.0'
@@ -14,21 +14,21 @@ gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.5'
 gem 'devise', '~> 4.7', '>= 4.7.2'
 gem 'devise_token_auth', '~> 1.2.2'
 gem 'draper', '~> 4.0', '>= 4.0.1'
-gem 'exception_hunter', github: 'rootstrap/exception_hunter'
 gem 'flipper', '~> 0.28.3'
 gem 'flipper-active_record', '~> 0.28.3'
-gem 'flipper-ui', '~> 0.28.0'
+gem 'flipper-ui', '~> 0.28.3'
 gem 'jbuilder', '~> 2.10'
 gem 'lograge', '~> 0.13'
+gem 'newrelic_rpm', '~> 9.4'
 gem 'oj', '~> 3.16'
-gem 'pagy', '~> 4.0'
+gem 'pagy', '~> 6.0'
 gem 'pg', '~> 1.5'
 gem 'puma', '~> 6.3'
 gem 'pundit', '~> 2.3'
 gem 'rack-cors', '~> 2.0'
 gem 'sass-rails', '~> 6.0.0'
 gem 'sendgrid', '~> 1.2.4'
-gem 'sprockets', '~> 3.7.2'
+gem 'sprockets', '~> 4.2.1'
 gem 'strong_migrations', '~> 0.7.6'
 gem 'yaaf', '~> 2.2'
 # Use Redis adapter to run Action Cable in production
@@ -65,12 +65,12 @@ group :development do
   gem 'rubocop-rails', '~> 2.20', '>= 2.20.2', require: false
   gem 'rubocop-rake', '~> 0.6.0', require: false
   gem 'rubocop-rspec', '~> 2.23', require: false
-  gem 'spring', '~> 4.0'
+  gem 'spring', '~> 4.1'
 end
 
 group :test do
   gem 'faker', '~> 2.13'
-  gem 'pg_query', '~> 4.2.1'
+  gem 'pg_query', '~> 4.2.3'
   gem 'prosopite', '~> 1.3.2'
   gem 'shoulda-matchers', '~> 5.3'
   gem 'simplecov', '~> 0.22.0', require: false
