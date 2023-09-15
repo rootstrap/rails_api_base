@@ -99,6 +99,7 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Sendgrid](https://github.com/stephenb/sendgrid) for sending mails
 - [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) adds other testing matchers
 - [Simplecov](https://github.com/colszowka/simplecov) for code coverage
+- [Strong Migrations](https://github.com/ankane/strong_migrations) for catching unsafe migrations in development
 - [Webmock](https://github.com/bblimke/webmock) for stubbing http requests
 - [YAAF](https://github.com/rootstrap/yaaf) for form objects
 
