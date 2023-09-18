@@ -39,7 +39,7 @@ gem 'yaaf', '~> 2.2'
 
 group :development, :test do
   gem 'annotate', '~> 3.2', '>= 3.0.3'
-  gem 'dotenv-rails', '~> 2.7.6'
+  gem 'dotenv-rails', '~> 2.8.1'
   gem 'factory_bot_rails', '~> 6.2'
   gem 'knapsack', '~> 4.0'
   gem 'parallel_tests', '~> 4.2'
