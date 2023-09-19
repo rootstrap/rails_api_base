@@ -29,7 +29,6 @@ jobs:
 
     env:
       RAILS_ENV: test
-      github_token: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
     - uses: actions/checkout@v2
