@@ -37,6 +37,10 @@ It is now scheduled for February 31 so will never run.
   - cron: '0 5 31 2 *'    
   # The above cron does not run. Replace with the wanted periodicity.
 ```
+ 
+If the branch exists or the PR is already created the workflow will fail.
+In your repository settings -> actions -> general ->  Workflow permissions we need to allow read / write permissions and mark the option allow Github action to create PR, other case the workflow will fail.
+
 ## Coverage
 When splitting tests in different nodes, each report covers only a part of the code files being tested.
 For this reason a job in the CI is added to sums coverages from all nodes to be used by SimpleCov. This job will be executed after all nodes have finished and will send the final report to CodeClimate.
