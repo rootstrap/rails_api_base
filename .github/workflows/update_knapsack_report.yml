@@ -3,7 +3,7 @@ name: Update Knapsack Report
 # This workflow should be scheduled at certain intervals
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 5 31 2 *'
 # The above cron does not run. Replace with the wanted periodicity.
 # For example, the following configuration would schedule it every 3 months
 #    - cron: '0 0 1 */3 *'
@@ -52,8 +52,8 @@ jobs:
     - name: Initialize Pull Request
       uses: rootstrap/create-pull-request@v5
       with:
-        pull_request_token: ${{ secrets.GITHUB_TOKEN }}
-        head: update-knapsack-report
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: update-knapsack-report
         base: main
         title: 'Update Knapsack report'
         maintainer_can_modify: true
