@@ -1,12 +1,11 @@
 name: Update Knapsack Report
 
-# This workflow should be scheduled at certain intervals
 on:
-  schedule:
-    - cron: '0 5 31 2 *'
-# The above cron does not run. Replace with the wanted periodicity.
-# For example, the following configuration would schedule it every 3 months
+  workflow_dispatch:
+# This workflow should be scheduled at certain intervals
+# schedule:
 #    - cron: '0 0 1 */3 *'
+# The above cron would schedule it every 3 months. Replace with the wanted periodicity.
 
 jobs:
   build:
