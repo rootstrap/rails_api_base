@@ -58,16 +58,24 @@ fi
 # generate a .env from the sample file
 cp .env.sample .env
 
-# update project name in database.yml
 # sed command implementation is different for GNU and macOS
-if [[ $OSTYPE == 'darwin'* ]]; then
-  sed -i '' "s/rails_api_base/${project_name}/g" config/database.yml
-else
-  sed -i "s/rails_api_base/${project_name}/g" config/database.yml
-fi
+sed_i() {
+  if [[ $OSTYPE == 'darwin'* ]]; then
+    sed -i '' $@
+  else
+    sed -i $@
+  fi
+}
+
+# update project name in database.yml
+sed_i "s/rails_api_base/${project_name}/g" config/database.yml
 
 # spin up docker services if flag is specified for the setup to take place inside the containers
 if [[ $docker -eq 1 ]]; then
+  # Update DOCKER_ENABLED variable in .env
+  sed_i "s/DOCKER_ENABLED=false/DOCKER_ENABLED=true/g" .env
+
+  # build and spin up containers
   docker-compose up --build --detach
 fi
 
