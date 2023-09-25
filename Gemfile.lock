@@ -46,8 +46,9 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    active_storage_base64 (2.0.0)
-      rails (>= 7.0)
+    active_storage_base64 (3.0.0)
+      activestorage (> 7.0)
+      activesupport (> 7.0)
     activeadmin (2.14.0)
       arbre (~> 1.2, >= 1.2.1)
       formtastic (>= 3.1, < 5.0)
@@ -281,7 +282,7 @@ GEM
       net-protocol
     net-protocol (0.2.1)
       timeout
-    net-smtp (0.3.3)
+    net-smtp (0.4.0)
       net-protocol
     newrelic_rpm (9.4.2)
     nio4r (2.5.9)
@@ -496,13 +497,13 @@ GEM
     yaaf (2.2.0)
       activemodel (>= 5.2)
       activerecord (>= 5.2)
-    zeitwerk (2.6.11)
+    zeitwerk (2.6.12)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_storage_base64 (~> 2.0.0)
+  active_storage_base64 (~> 3.0.0)
   activeadmin (~> 2.9)
   annotate (~> 3.2, >= 3.0.3)
   arctic_admin (~> 3.3.0)
