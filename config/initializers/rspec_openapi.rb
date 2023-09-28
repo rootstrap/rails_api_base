@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rspec/openapi'
 
 # Set request `headers` - generate parameters with headers for a request
