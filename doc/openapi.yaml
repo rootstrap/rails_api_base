@@ -16,13 +16,13 @@ paths:
         required: true
         schema:
           type: string
-        example: OFtyWyx63v_WG2ch8g53Yw
+        example: 123456789A123456789012
       - name: client
         in: header
         required: true
         schema:
           type: string
-        example: qJj0XFFoUvh8RBs7m31CTg
+        example: abcdefghijklmnopqrstuv
       - name: uid
         in: header
         required: true
@@ -233,13 +233,13 @@ paths:
         required: true
         schema:
           type: string
-        example: 9_b7bSAAPQCW_lIgLhY3bg
+        example: 123456789A123456789012
       - name: client
         in: header
         required: true
         schema:
           type: string
-        example: i1oeaby7x8o8gfmGtpsTBw
+        example: abcdefghijklmnopqrstuv
       - name: uid
         in: header
         required: true
@@ -304,13 +304,13 @@ paths:
         required: true
         schema:
           type: string
-        example: pI1i551zDQOFu3Dzv5OP-A
+        example: 123456789A123456789012
       - name: client
         in: header
         required: true
         schema:
           type: string
-        example: MG3sZ85IHKQxT9MHbt5mTQ
+        example: abcdefghijklmnopqrstuv
       - name: uid
         in: header
         required: true
@@ -604,13 +604,13 @@ paths:
         required: true
         schema:
           type: string
-        example: K6JyVP5t7mel5LxfjCahNA
+        example: 123456789A123456789012
       - name: client
         in: header
         required: true
         schema:
           type: string
-        example: relAg0omfbUyqPBFVlHkow
+        example: abcdefghijklmnopqrstuv
       - name: uid
         in: header
         required: true
@@ -734,7 +734,7 @@ paths:
         in: query
         schema:
           type: string
-        example: KdB_x6wx2MnibxfnKDre
+        example: GhTthEdCcgpMNWHQmxfG
       responses:
         '302':
           description: returns the client id
@@ -742,7 +742,7 @@ paths:
             text/html:
               schema:
                 type: string
-              example: <html><body>You are being <a href="http://www.example.com:///?access-token=7DPNXDXFM2YVLHpsIn7Rcw&amp;client=XfkDrgWb7gNugcmRXxgBKA&amp;client_id=XfkDrgWb7gNugcmRXxgBKA&amp;config=&amp;expiry=1735700400&amp;reset_password=true&amp;token=7DPNXDXFM2YVLHpsIn7Rcw&amp;uid=raguel%40hauck.co">redirected</a>.</body></html>
+              example: <html><body>You are being <a href="http://www.example.com:///?access-token=123456789A123456789012&amp;client=abcdefghijklmnopqrstuv&amp;client_id=abcdefghijklmnopqrstuv&amp;config=&amp;expiry=1735700400&amp;reset_password=true&amp;token=123456789A123456789012&amp;uid=raguel%40hauck.co">redirected</a>.</body></html>
 components:
   schemas:
     User:
