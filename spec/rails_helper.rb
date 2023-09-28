@@ -29,6 +29,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include ActiveJob::TestHelper
+  config.include ActiveSupport::Testing::TimeHelpers
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
 
@@ -46,6 +47,17 @@ RSpec.configure do |config|
 
   # Reset previous flipper instance
   config.before { Flipper.instance = nil }
+
+  # Freeze data to not change OPENAPI docs
+  if ENV['OPENAPI']
+    ActiveRecord::Base.connection.tables.each do |t|
+      ActiveRecord::Base.connection.reset_pk_sequence!(t)
+    end
+    Kernel.srand config.seed
+    config.before(:all) { Faker::Config.random = Random.new(config.seed) }
+    config.before { travel_to Time.local(2023) }
+    config.after { travel_back }
+  end
 end
 
 Shoulda::Matchers.configure do |config|
