@@ -10,6 +10,7 @@ require 'knapsack'
 require 'webmock/rspec'
 require 'shoulda/matchers'
 require 'pundit/rspec'
+require 'support/devise_token_auth_overrides' if ENV['OPENAPI']
 
 Knapsack.tracker.config(enable_time_offset_warning: false)
 Knapsack::Adapters::RSpecAdapter.bind
