@@ -16,19 +16,19 @@ paths:
         required: true
         schema:
           type: string
-        example: h-i8D7qW0210rkXtBQ6-MQ
+        example: OFtyWyx63v_WG2ch8g53Yw
       - name: client
         in: header
         required: true
         schema:
           type: string
-        example: 2b6QrxiJgGlhDJhuemXLTg
+        example: qJj0XFFoUvh8RBs7m31CTg
       - name: uid
         in: header
         required: true
         schema:
           type: string
-        example: lorine@jones.org
+        example: kristopher.dare@boyle-bayer.co
       requestBody:
         content:
           application/json:
@@ -114,16 +114,16 @@ paths:
               example:
                 success: true
                 data:
-                  email: lorine@jones.org
+                  email: kristopher.dare@boyle-bayer.co
                   provider: email
-                  uid: lorine@jones.org
-                  id: 432
+                  uid: kristopher.dare@boyle-bayer.co
+                  id: 26
                   allow_password_change: false
                   first_name: ''
                   last_name: ''
-                  username: pedro.nicolas
-                  created_at: '2023-09-28T18:50:06.369Z'
-                  updated_at: '2023-09-28T18:50:06.629Z'
+                  username: yung_kirlin
+                  created_at: '2023-01-01T03:00:00.000Z'
+                  updated_at: '2023-01-01T03:00:00.000Z'
                 message: Your password has been successfully updated.
         '422':
           description: does not change the password if confirmation does not match
@@ -189,7 +189,7 @@ paths:
               required:
               - email
             example:
-              email: terrell@morar-veum.co
+              email: kris_schaden@stamm-haag.org
       responses:
         '404':
           description: does not send an email
@@ -220,7 +220,7 @@ paths:
                 - message
               example:
                 success: true
-                message: An email has been sent to 'terrell@morar-veum.co' containing
+                message: An email has been sent to 'kris_schaden@stamm-haag.org' containing
                   instructions for resetting your password.
   "/api/v1/user":
     get:
@@ -233,19 +233,19 @@ paths:
         required: true
         schema:
           type: string
-        example: Wyk245o5D3Dmrwza6SRaUw
+        example: 9_b7bSAAPQCW_lIgLhY3bg
       - name: client
         in: header
         required: true
         schema:
           type: string
-        example: WhG3YHUUiPkR4Dqm38EG8g
+        example: i1oeaby7x8o8gfmGtpsTBw
       - name: uid
         in: header
         required: true
         schema:
           type: string
-        example: sherlene_koelpin@ruecker.org
+        example: caitlyn@bernhard.info
       responses:
         '200':
           description: does not return a Set-Cookie Header
@@ -271,16 +271,16 @@ paths:
                 "$ref": "#/components/schemas/User"
               example:
                 user:
-                  id: 436
-                  email: madlyn.okon@bernhard.info
-                  name: rubye.lynch
-                  username: rubye.lynch
+                  id: 30
+                  email: rosenda_kiehn@batz-rowe.net
+                  name: lacy_swaniawski
+                  username: lacy_swaniawski
                   first_name: ''
                   last_name: ''
-                  uid: madlyn.okon@bernhard.info
+                  uid: rosenda_kiehn@batz-rowe.net
                   provider: email
-                  created_at: '2023-09-28T18:50:07.163Z'
-                  updated_at: '2023-09-28T18:50:07.236Z'
+                  created_at: '2023-01-01T03:00:00.000Z'
+                  updated_at: '2023-01-01T03:00:00.000Z'
         '404':
           description: returns status 404 not found
           content:
@@ -304,19 +304,19 @@ paths:
         required: true
         schema:
           type: string
-        example: nWqOY9VpSVBRJ4e1Jb_65Q
+        example: pI1i551zDQOFu3Dzv5OP-A
       - name: client
         in: header
         required: true
         schema:
           type: string
-        example: j3z-fpnVtgB_fIMjLPmC5w
+        example: MG3sZ85IHKQxT9MHbt5mTQ
       - name: uid
         in: header
         required: true
         schema:
           type: string
-        example: daniel@padberg.com
+        example: lieselotte@cummerata-leffler.net
       responses:
         '422':
           description: returns the missing params error
@@ -377,16 +377,16 @@ paths:
                 "$ref": "#/components/schemas/User"
               example:
                 user:
-                  id: 444
-                  email: oliver_terry@hyatt.name
+                  id: 38
+                  email: collen.hegmann@hansen.io
                   name: new username
                   username: new username
                   first_name: ''
                   last_name: ''
-                  uid: oliver_terry@hyatt.name
+                  uid: collen.hegmann@hansen.io
                   provider: email
-                  created_at: '2023-09-28T18:50:08.426Z'
-                  updated_at: '2023-09-28T18:50:08.634Z'
+                  created_at: '2023-01-01T03:00:00.000Z'
+                  updated_at: '2023-01-01T03:00:00.000Z'
       requestBody:
         content:
           application/json:
@@ -449,7 +449,7 @@ paths:
                 "$ref": "#/components/schemas/User"
               example:
                 user:
-                  id: 420
+                  id: 14
                   email: test@example.com
                   name: Johnny Perez
                   username: test
@@ -457,8 +457,8 @@ paths:
                   last_name: Perez
                   uid: test@example.com
                   provider: email
-                  created_at: '2023-09-28T18:50:04.403Z'
-                  updated_at: '2023-09-28T18:50:04.511Z'
+                  created_at: '2023-01-01T03:00:00.000Z'
+                  updated_at: '2023-01-01T03:00:00.000Z'
         '422':
           description: does not create a user
           content:
@@ -604,19 +604,19 @@ paths:
         required: true
         schema:
           type: string
-        example: 9ZOXbxUl0j3Pi_OljDSzdQ
+        example: K6JyVP5t7mel5LxfjCahNA
       - name: client
         in: header
         required: true
         schema:
           type: string
-        example: R8hE18ubcNH7TtIHS6J27g
+        example: relAg0omfbUyqPBFVlHkow
       - name: uid
         in: header
         required: true
         schema:
           type: string
-        example: zane.yundt@schaden.co
+        example: kasey@stiedemann.info
       responses:
         '200':
           description: returns a successful response
@@ -669,7 +669,7 @@ paths:
               - user
             example:
               user:
-                email: trinity@brakus.co
+                email: astrid_mccullough@weissnat.io
                 password: wrong_password!
       responses:
         '401':
@@ -709,16 +709,16 @@ paths:
                 "$ref": "#/components/schemas/User"
               example:
                 user:
-                  id: 428
-                  email: abraham@murray.com
-                  name: bryan.beatty
-                  username: bryan.beatty
+                  id: 22
+                  email: elias@kihn.org
+                  name: cassondra.ryan
+                  username: cassondra.ryan
                   first_name: ''
                   last_name: ''
-                  uid: abraham@murray.com
+                  uid: elias@kihn.org
                   provider: email
-                  created_at: '2023-09-28T18:50:05.905Z'
-                  updated_at: '2023-09-28T18:50:06.028Z'
+                  created_at: '2023-01-01T03:00:00.000Z'
+                  updated_at: '2023-01-01T03:00:00.000Z'
   "/api/v1/users/password/edit":
     get:
       summary: edit
@@ -734,7 +734,7 @@ paths:
         in: query
         schema:
           type: string
-        example: hhX3Ndx_3ueyiYdgB-zX
+        example: KdB_x6wx2MnibxfnKDre
       responses:
         '302':
           description: returns the client id
@@ -742,7 +742,7 @@ paths:
             text/html:
               schema:
                 type: string
-              example: <html><body>You are being <a href="http://www.example.com:///?access-token=SxGSz8R_knCib6GRlxQ6pQ&amp;client=R8Q1sed1Q3mgNXtK9ufbMA&amp;client_id=R8Q1sed1Q3mgNXtK9ufbMA&amp;config=&amp;expiry=1759085405&amp;reset_password=true&amp;token=SxGSz8R_knCib6GRlxQ6pQ&amp;uid=ollie.nikolaus%40von-wisozk.org">redirected</a>.</body></html>
+              example: <html><body>You are being <a href="http://www.example.com:///?access-token=7DPNXDXFM2YVLHpsIn7Rcw&amp;client=XfkDrgWb7gNugcmRXxgBKA&amp;client_id=XfkDrgWb7gNugcmRXxgBKA&amp;config=&amp;expiry=1735700400&amp;reset_password=true&amp;token=7DPNXDXFM2YVLHpsIn7Rcw&amp;uid=raguel%40hauck.co">redirected</a>.</body></html>
 components:
   schemas:
     User:
