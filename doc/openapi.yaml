@@ -1,0 +1,784 @@
+---
+openapi: 3.0.3
+info:
+  title: rails_api_base
+  version: 1.0.0
+servers: []
+paths:
+  "/api/v1/users/password":
+    put:
+      summary: update
+      tags:
+      - Api::V1::Password
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+        example: AzjiJo4-pp8U73Jy6vRbZQ
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+        example: 9Cckc1WuJapBmOdwgn4Odw
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+        example: clinton@kemmer.io
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+              required:
+              - password
+              - password_confirmation
+            example:
+              password: '123456789'
+              password_confirmation: anotherpass
+      responses:
+        '200':
+          description: returns a successful response
+          headers:
+            access-token:
+              schema:
+                type: string
+            expiry:
+              schema:
+                type: integer
+            token-type:
+              schema:
+                type: string
+            uid:
+              schema:
+                type: string
+            client:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                      provider:
+                        type: string
+                      uid:
+                        type: string
+                      id:
+                        type: integer
+                      allow_password_change:
+                        type: boolean
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      username:
+                        type: string
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+                    required:
+                    - email
+                    - provider
+                    - uid
+                    - id
+                    - allow_password_change
+                    - first_name
+                    - last_name
+                    - username
+                    - created_at
+                    - updated_at
+                  message:
+                    type: string
+                required:
+                - success
+                - data
+                - message
+              example:
+                success: true
+                data:
+                  email: stewart@spencer.org
+                  provider: email
+                  uid: stewart@spencer.org
+                  id: 89
+                  allow_password_change: false
+                  first_name: ''
+                  last_name: ''
+                  username: berry.ebert
+                  created_at: '2023-09-15T16:17:37.048Z'
+                  updated_at: '2023-09-15T16:17:37.405Z'
+                message: Your password has been successfully updated.
+        '422':
+          description: does not change the password if confirmation does not match
+          headers:
+            access-token:
+              schema:
+                type: string
+            expiry:
+              schema:
+                type: integer
+            token-type:
+              schema:
+                type: string
+            uid:
+              schema:
+                type: string
+            client:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  errors:
+                    type: object
+                    properties:
+                      password_confirmation:
+                        type: array
+                        items:
+                          type: string
+                      full_messages:
+                        type: array
+                        items:
+                          type: string
+                    required:
+                    - password_confirmation
+                    - full_messages
+                required:
+                - success
+                - errors
+              example:
+                success: false
+                errors:
+                  password_confirmation:
+                  - doesn't match Password
+                  full_messages:
+                  - Password confirmation doesn't match Password
+    post:
+      summary: create
+      tags:
+      - Api::V1::Password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+              required:
+              - email
+            example:
+              email: mark@gleichner.org
+      responses:
+        '404':
+          description: does not return a successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: Unable to find user with email 'notvalid@example.com'.
+        '200':
+          description: does not raise an error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                required:
+                - success
+                - message
+              example:
+                success: true
+                message: An email has been sent to 'mark@gleichner.org' containing
+                  instructions for resetting your password.
+  "/api/v1/user":
+    get:
+      summary: show
+      tags:
+      - Api::V1::User
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+        example: yihppZ7f2pL61PRW2rH5Qw
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+        example: 5jw3xAWwg5ufz8Pw8yRzHQ
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+        example: elayne@murray.net
+      responses:
+        '200':
+          description: does not return a Set-Cookie Header
+          headers:
+            access-token:
+              schema:
+                type: string
+            expiry:
+              schema:
+                type: integer
+            token-type:
+              schema:
+                type: string
+            uid:
+              schema:
+                type: string
+            client:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/User"
+              example:
+                user:
+                  id: 102
+                  email: elayne@murray.net
+                  name: dominique_boyle
+                  username: dominique_boyle
+                  first_name: ''
+                  last_name: ''
+                  uid: elayne@murray.net
+                  provider: email
+                  created_at: '2023-09-15T16:17:39.018Z'
+                  updated_at: '2023-09-15T16:17:39.092Z'
+        '404':
+          description: returns status 404 not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: Couldn't find the record
+    put:
+      summary: update
+      tags:
+      - Api::V1::User
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+        example: W95KPe2J5yezGQ8xuAXBSA
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+        example: KJ0TfDPZ6ciIEPtI8rYRdA
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+        example: fredrick@kulas.name
+      responses:
+        '422':
+          description: returns the missing params error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: A required param is missing
+        '400':
+          description: does not update the user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      email:
+                        type: array
+                        items:
+                          type: string
+                    required:
+                    - email
+                required:
+                - errors
+              example:
+                errors:
+                  email:
+                  - is not an email
+        '200':
+          description: updates the user
+          headers:
+            access-token:
+              schema:
+                type: string
+            expiry:
+              schema:
+                type: integer
+            token-type:
+              schema:
+                type: string
+            uid:
+              schema:
+                type: string
+            client:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/User"
+              example:
+                user:
+                  id: 86
+                  email: fredrick@kulas.name
+                  name: new username
+                  username: new username
+                  first_name: ''
+                  last_name: ''
+                  uid: fredrick@kulas.name
+                  provider: email
+                  created_at: '2023-09-15T16:17:36.398Z'
+                  updated_at: '2023-09-15T16:17:36.561Z'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    username:
+                      type: string
+              required:
+              - user
+            example:
+              user:
+                username: new username
+                email: notanemail
+  "/api/v1/users":
+    post:
+      summary: create
+      tags:
+      - Api::V1::Registration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/User"
+            example:
+              user:
+                username: test
+                email: test@example.com
+                password: short
+                password_confirmation: short
+                first_name: Johnny
+                last_name: Perez
+      responses:
+        '200':
+          description: does not return a Set-Cookie Header
+          headers:
+            access-token:
+              schema:
+                type: string
+            expiry:
+              schema:
+                type: integer
+            token-type:
+              schema:
+                type: string
+            uid:
+              schema:
+                type: string
+            client:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/User"
+              example:
+                user:
+                  id: 107
+                  email: test@example.com
+                  name: Johnny Perez
+                  username: test
+                  first_name: Johnny
+                  last_name: Perez
+                  uid: test@example.com
+                  provider: email
+                  created_at: '2023-09-15T16:17:39.634Z'
+                  updated_at: '2023-09-15T16:17:39.706Z'
+        '422':
+          description: does not return a successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        nullable: true
+                      email:
+                        type: string
+                      allow_password_change:
+                        type: boolean
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      username:
+                        type: string
+                      created_at:
+                        nullable: true
+                      updated_at:
+                        nullable: true
+                      provider:
+                        type: string
+                      uid:
+                        type: string
+                    required:
+                    - id
+                    - email
+                    - allow_password_change
+                    - first_name
+                    - last_name
+                    - username
+                    - created_at
+                    - updated_at
+                    - provider
+                    - uid
+                  errors:
+                    type: object
+                    properties:
+                      password_confirmation:
+                        type: array
+                        items:
+                          type: string
+                      full_messages:
+                        type: array
+                        items:
+                          type: string
+                      password:
+                        type: array
+                        items:
+                          type: string
+                      email:
+                        type: array
+                        items:
+                          type: string
+                    required:
+                    - full_messages
+                required:
+                - status
+                - data
+                - errors
+              example:
+                status: error
+                data:
+                  id:
+                  email: test@example.com
+                  allow_password_change: false
+                  first_name: Johnny
+                  last_name: Perez
+                  username: test
+                  created_at:
+                  updated_at:
+                  provider: email
+                  uid: test@example.com
+                errors:
+                  email:
+                  - is not an email
+                  full_messages:
+                  - Password is too short (minimum is 8 characters)
+                  password_confirmation:
+                  - doesn't match Password
+                  password:
+                  - is too short (minimum is 8 characters)
+  "/api/v1/settings/must_update":
+    get:
+      summary: must_update
+      tags:
+      - Api::V1::Setting
+      parameters:
+      - name: device_version
+        in: query
+        schema:
+          type: string
+        example: '1.0'
+      responses:
+        '200':
+          description: returns it needs to update
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  must_update:
+                    type: boolean
+                required:
+                - must_update
+              example:
+                must_update: true
+  "/api/v1/status":
+    get:
+      summary: status
+      tags:
+      - Api::V1::Api
+      responses:
+        '200':
+          description: returns the api status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  online:
+                    type: boolean
+                required:
+                - online
+              example:
+                online: true
+  "/api/v1/users/sign_out":
+    delete:
+      summary: destroy
+      tags:
+      - Api::V1::Session
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+        example: Ayn_iBkOD8dICfySJpPLFQ
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+        example: w67bDzlsxDFz3O37WG7R3A
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+        example: carol@bernhard.org
+      responses:
+        '200':
+          description: decrements the amount of user tokens
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                required:
+                - success
+              example:
+                success: true
+        '404':
+          description: returns not found response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: User was not found or was not logged in.
+  "/api/v1/users/sign_in":
+    post:
+      summary: create
+      tags:
+      - Api::V1::Session
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                  required:
+                  - email
+                  - password
+              required:
+              - user
+            example:
+              user:
+                email: stefani_littel@farrell.biz
+                password: password
+      responses:
+        '401':
+          description: returns to be unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: Invalid login credentials. Please try again.
+        '200':
+          description: does not raise an error
+          headers:
+            access-token:
+              schema:
+                type: string
+            expiry:
+              schema:
+                type: integer
+            token-type:
+              schema:
+                type: string
+            uid:
+              schema:
+                type: string
+            client:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/User"
+              example:
+                user:
+                  id: 97
+                  email: stefani_littel@farrell.biz
+                  name: kenneth
+                  username: kenneth
+                  first_name: ''
+                  last_name: ''
+                  uid: stefani_littel@farrell.biz
+                  provider: email
+                  created_at: '2023-09-15T16:17:38.308Z'
+                  updated_at: '2023-09-15T16:17:38.401Z'
+  "/api/v1/users/password/edit":
+    get:
+      summary: edit
+      tags:
+      - Api::V1::Password
+      parameters:
+      - name: redirect_url
+        in: query
+        schema:
+          type: string
+        example: "/"
+      - name: reset_password_token
+        in: query
+        schema:
+          type: string
+        example: osHpPU7yAiNzmkwERg_B
+      responses:
+        '302':
+          description: returns a the access token, uid and client id
+          content:
+            text/html:
+              schema:
+                type: string
+              example: <html><body>You are being <a href="http://www.example.com:///?access-token=od_SQGvddQK-AaF9hPlFdg&amp;client=hDnU2And_jKO-oJ14_FVCg&amp;client_id=hDnU2And_jKO-oJ14_FVCg&amp;config=&amp;expiry=1757953060&amp;reset_password=true&amp;token=od_SQGvddQK-AaF9hPlFdg&amp;uid=alessandra%40fadel-kihn.io">redirected</a>.</body></html>
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        user:
+          type: object
+          properties:
+            username:
+              type: string
+            email:
+              type: string
+            password:
+              type: string
+            password_confirmation:
+              type: string
+            first_name:
+              type: string
+            last_name:
+              type: string
+            id:
+              type: integer
+            name:
+              type: string
+            uid:
+              type: string
+            provider:
+              type: string
+            created_at:
+              type: string
+            updated_at:
+              type: string
+          required:
+          - email
+          - username
+          - first_name
+          - last_name
+      required:
+      - user
