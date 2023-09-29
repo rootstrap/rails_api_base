@@ -734,7 +734,7 @@ paths:
         in: query
         schema:
           type: string
-        example: kmeqD3h8LoPQ7izJgDLa
+        example: 96BuszWmzDxRqXYzc_Mf
       responses:
         '302':
           description: returns the client id
