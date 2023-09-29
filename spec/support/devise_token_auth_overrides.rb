@@ -2,6 +2,7 @@
 
 module DeviseTokenAuth
   module TokenFactory
+    # :reek:UnusedParameters
     def self.create(client: nil, lifespan: nil, cost: nil)
       obj_client = 'abcdefghijklmnopqrstuv'
       obj_token = '123456789A123456789012'
