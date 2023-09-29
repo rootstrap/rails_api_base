@@ -84,7 +84,7 @@ jobs:
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for missing doc changes
-        run: ./bin/update-docs
+        run: ./bin/update-docs && git diff
       - name: Check for untracked changes in app, spec and doc directories
         uses: rootstrap/check_untracked_changes@v1
         with:
