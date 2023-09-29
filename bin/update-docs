@@ -1,3 +1,15 @@
 #!/usr/bin/env bash
 
 OPENAPI=1 bundle exec rspec spec/requests/api/ --seed 1993
+
+# sed command implementation is different for GNU and macOS
+sed_i() {
+  if [[ $OSTYPE == 'darwin'* ]]; then
+	sed -i '' -E 's/[ '$'\t'']+$//' $@
+  else
+    sed -i 's/[ \t]*$//' $@
+  fi
+}
+
+# Remove trailing whitespaces from doc file
+sed_i doc/openapi.yaml

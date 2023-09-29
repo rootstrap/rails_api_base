@@ -28,7 +28,7 @@ paths:
         required: true
         schema:
           type: string
-        example: kristopher.dare@boyle-bayer.co
+        example: maritza_schumm@monahan-boyer.example
       requestBody:
         content:
           application/json:
@@ -114,14 +114,14 @@ paths:
               example:
                 success: true
                 data:
-                  email: kristopher.dare@boyle-bayer.co
+                  email: maritza_schumm@monahan-boyer.example
                   provider: email
-                  uid: kristopher.dare@boyle-bayer.co
+                  uid: maritza_schumm@monahan-boyer.example
                   id: 26
                   allow_password_change: false
                   first_name: ''
                   last_name: ''
-                  username: yung_kirlin
+                  username: arlen_bernier
                   created_at: '2023-01-01T00:00:00.000Z'
                   updated_at: '2023-01-01T00:00:00.000Z'
                 message: Your password has been successfully updated.
@@ -189,7 +189,7 @@ paths:
               required:
               - email
             example:
-              email: kris_schaden@stamm-haag.org
+              email: leslie@nikolaus-thiel.example
       responses:
         '404':
           description: does not send an email
@@ -220,8 +220,8 @@ paths:
                 - message
               example:
                 success: true
-                message: An email has been sent to 'kris_schaden@stamm-haag.org' containing
-                  instructions for resetting your password.
+                message: An email has been sent to 'leslie@nikolaus-thiel.example'
+                  containing instructions for resetting your password.
   "/api/v1/user":
     get:
       summary: show
@@ -245,7 +245,7 @@ paths:
         required: true
         schema:
           type: string
-        example: caitlyn@bernhard.info
+        example: marcel_deckow@gislason-ziemann.test
       responses:
         '200':
           description: does not return a Set-Cookie Header
@@ -272,12 +272,12 @@ paths:
               example:
                 user:
                   id: 30
-                  email: rosenda_kiehn@batz-rowe.net
-                  name: lacy_swaniawski
-                  username: lacy_swaniawski
+                  email: caitlyn@bernhard.example
+                  name: matt.abernathy
+                  username: matt.abernathy
                   first_name: ''
                   last_name: ''
-                  uid: rosenda_kiehn@batz-rowe.net
+                  uid: caitlyn@bernhard.example
                   provider: email
                   created_at: '2023-01-01T00:00:00.000Z'
                   updated_at: '2023-01-01T00:00:00.000Z'
@@ -316,7 +316,7 @@ paths:
         required: true
         schema:
           type: string
-        example: lieselotte@cummerata-leffler.net
+        example: tamie_spencer@powlowski-haley.example
       responses:
         '422':
           description: returns the missing params error
@@ -378,12 +378,12 @@ paths:
               example:
                 user:
                   id: 38
-                  email: collen.hegmann@hansen.io
+                  email: catherina.leffler@gerlach-aufderhar.example
                   name: new username
                   username: new username
                   first_name: ''
                   last_name: ''
-                  uid: collen.hegmann@hansen.io
+                  uid: catherina.leffler@gerlach-aufderhar.example
                   provider: email
                   created_at: '2023-01-01T00:00:00.000Z'
                   updated_at: '2023-01-01T00:00:00.000Z'
@@ -616,7 +616,7 @@ paths:
         required: true
         schema:
           type: string
-        example: kasey@stiedemann.info
+        example: shakia.flatley@raynor.test
       responses:
         '200':
           description: returns a successful response
@@ -669,7 +669,7 @@ paths:
               - user
             example:
               user:
-                email: astrid_mccullough@weissnat.io
+                email: derick.koelpin@satterfield.test
                 password: wrong_password!
       responses:
         '401':
@@ -710,12 +710,12 @@ paths:
               example:
                 user:
                   id: 22
-                  email: elias@kihn.org
-                  name: cassondra.ryan
-                  username: cassondra.ryan
+                  email: yung_kirlin@boyer.example
+                  name: jeffry_abernathy
+                  username: jeffry_abernathy
                   first_name: ''
                   last_name: ''
-                  uid: elias@kihn.org
+                  uid: yung_kirlin@boyer.example
                   provider: email
                   created_at: '2023-01-01T00:00:00.000Z'
                   updated_at: '2023-01-01T00:00:00.000Z'
@@ -742,7 +742,7 @@ paths:
             text/html:
               schema:
                 type: string
-              example: <html><body>You are being <a href="http://www.example.com:///?access-token=123456789A123456789012&amp;client=abcdefghijklmnopqrstuv&amp;client_id=abcdefghijklmnopqrstuv&amp;config=&amp;expiry=1735689600&amp;reset_password=true&amp;token=123456789A123456789012&amp;uid=raguel%40hauck.co">redirected</a>.</body></html>
+              example: <html><body>You are being <a href="http://www.example.com:///?access-token=123456789A123456789012&amp;client=abcdefghijklmnopqrstuv&amp;client_id=abcdefghijklmnopqrstuv&amp;config=&amp;expiry=1735689600&amp;reset_password=true&amp;token=123456789A123456789012&amp;uid=raguel%40hauck.test">redirected</a>.</body></html>
 components:
   schemas:
     User:
