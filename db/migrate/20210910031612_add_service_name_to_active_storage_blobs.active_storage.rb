@@ -5,11 +5,13 @@ class AddServiceNameToActiveStorageBlobs < ActiveRecord::Migration[6.0]
   def up
     return if column_exists?(:active_storage_blobs, :service_name)
 
-    add_column :active_storage_blobs, :service_name, :string, null: false, default: ''
+    add_column :active_storage_blobs, :service_name, :string
 
-    return unless (configured_service = ActiveStorage::Blob.service.name)
+    if (configured_service = ActiveStorage::Blob.service.name)
+      ActiveStorage::Blob.unscoped.update_all(service_name: configured_service) # rubocop:disable Rails/SkipsModelValidations
+    end
 
-    ActiveStorage::Blob.unscoped.update_all(service_name: configured_service) # rubocop:disable Rails/SkipsModelValidations
+    change_column :active_storage_blobs, :service_name, :string, null: false
   end
 
   def down
