@@ -122,8 +122,8 @@ paths:
                   first_name: ''
                   last_name: ''
                   username: yung_kirlin
-                  created_at: '2023-01-01T03:00:00.000Z'
-                  updated_at: '2023-01-01T03:00:00.000Z'
+                  created_at: '2023-01-01T00:00:00.000Z'
+                  updated_at: '2023-01-01T00:00:00.000Z'
                 message: Your password has been successfully updated.
         '422':
           description: does not change the password if confirmation does not match
@@ -279,8 +279,8 @@ paths:
                   last_name: ''
                   uid: rosenda_kiehn@batz-rowe.net
                   provider: email
-                  created_at: '2023-01-01T03:00:00.000Z'
-                  updated_at: '2023-01-01T03:00:00.000Z'
+                  created_at: '2023-01-01T00:00:00.000Z'
+                  updated_at: '2023-01-01T00:00:00.000Z'
         '404':
           description: returns status 404 not found
           content:
@@ -385,8 +385,8 @@ paths:
                   last_name: ''
                   uid: collen.hegmann@hansen.io
                   provider: email
-                  created_at: '2023-01-01T03:00:00.000Z'
-                  updated_at: '2023-01-01T03:00:00.000Z'
+                  created_at: '2023-01-01T00:00:00.000Z'
+                  updated_at: '2023-01-01T00:00:00.000Z'
       requestBody:
         content:
           application/json:
@@ -457,8 +457,8 @@ paths:
                   last_name: Perez
                   uid: test@example.com
                   provider: email
-                  created_at: '2023-01-01T03:00:00.000Z'
-                  updated_at: '2023-01-01T03:00:00.000Z'
+                  created_at: '2023-01-01T00:00:00.000Z'
+                  updated_at: '2023-01-01T00:00:00.000Z'
         '422':
           description: does not create a user
           content:
@@ -717,8 +717,8 @@ paths:
                   last_name: ''
                   uid: elias@kihn.org
                   provider: email
-                  created_at: '2023-01-01T03:00:00.000Z'
-                  updated_at: '2023-01-01T03:00:00.000Z'
+                  created_at: '2023-01-01T00:00:00.000Z'
+                  updated_at: '2023-01-01T00:00:00.000Z'
   "/api/v1/users/password/edit":
     get:
       summary: edit
@@ -734,7 +734,7 @@ paths:
         in: query
         schema:
           type: string
-        example: GhTthEdCcgpMNWHQmxfG
+        example: kmeqD3h8LoPQ7izJgDLa
       responses:
         '302':
           description: returns the client id
@@ -742,7 +742,7 @@ paths:
             text/html:
               schema:
                 type: string
-              example: <html><body>You are being <a href="http://www.example.com:///?access-token=123456789A123456789012&amp;client=abcdefghijklmnopqrstuv&amp;client_id=abcdefghijklmnopqrstuv&amp;config=&amp;expiry=1735700400&amp;reset_password=true&amp;token=123456789A123456789012&amp;uid=raguel%40hauck.co">redirected</a>.</body></html>
+              example: <html><body>You are being <a href="http://www.example.com:///?access-token=123456789A123456789012&amp;client=abcdefghijklmnopqrstuv&amp;client_id=abcdefghijklmnopqrstuv&amp;config=&amp;expiry=1735689600&amp;reset_password=true&amp;token=123456789A123456789012&amp;uid=raguel%40hauck.co">redirected</a>.</body></html>
 components:
   schemas:
     User:
