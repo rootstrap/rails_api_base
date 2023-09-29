@@ -10,17 +10,17 @@ Our feature flag engine is built upon Flipper. To learn more about Flipper, plea
 
 We have taken care of all aspects of the Flipper configuration, and the Feature Flags system is ready to use. However, we understand that some users might have different needs. Flipper configuration can be find in the following files:
 
-- config/routes.rb => This config file mounts the Flipper UI and restricts access to admin_user.
-- config/initializers/active_admin.rb => This config file adds a link in `active_admin` to the Flipper UI.
-- config/initializers/flipper.rb => This configuration file enables the inclusion of a description for every feature flag.
-- config/feature-flags.yml => This YAML file lists all registered feature flags in the system.
-- spec/rails_helper.rb => In this file, we configure the Memory adapter for use in the testing environment
+- `config/routes.rb` => Mounts the Flipper UI and restricts access to admin_user.
+- `config/initializers/active_admin.rb` => Adds a link in `active_admin` to the Flipper UI.
+- `config/initializers/flipper.rb` => Enables the inclusion of a description for every feature flag.
+- `config/feature-flags.yml` => List of all registered feature flags in the system.
+- `spec/rails_helper.rb` => Configures the Memory adapter for use in the testing environment.
 
 
 ## Set Up Feature Flags
 
-1. [DEV ENVIRONMENT] Register your feature flag in config/feature-flags.yml, adhering to the format specified in that file.
-2. [DEV ENVIRONMENT] Restart your server
+1. [DEV ENVIRONMENT] Register your feature flag in `config/feature-flags.yml`, adhering to the format specified in that file.
+2. [DEV ENVIRONMENT] Restart your server.
 
 ## Use Feature Flags in Your Application
 
@@ -32,7 +32,7 @@ For more examples, please visit [Flipper documentation](https://www.flippercloud
 
 ## Deploy
 
-The Rootstrap Rails API base utilizes the `bin/release.sh` script to execute `lib/tasks/feature_flags.rake`. This rake task registers non-existing feature flags based on the list in config/feature-flags.yml. This approach eliminates the need for developers to manually register feature flags in the production environment, as registering them in the local environment is sufficient.
+The Rootstrap Rails API base utilizes the `bin/release.sh` script to execute `lib/tasks/feature_flags.rake` on every release. This rake task registers non-existing feature flags based on the list in config/feature-flags.yml. This approach eliminates the need for developers to manually register feature flags in the production environment, as registering them in the local environment is sufficient.
 
 ## Testing
 
