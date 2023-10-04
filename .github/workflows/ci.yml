@@ -7,14 +7,6 @@ env:
   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
 jobs:
-  labeler:
-    name: Labeler
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Autolabel PR
-        uses: actions/labeler@v4
   linters:
     name: Linters
     runs-on: ubuntu-latest
