@@ -1,0 +1,46 @@
+name: Update Docs
+
+env:
+  RAILS_ENV: test
+
+jobs:
+  openapi:
+    name: RSpec OpenAPI
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    services:
+      db:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Setup Database
+        run: |
+          bundle exec rake parallel:load_schema
+      - name: Get CPU info
+        id: cpu_info
+        run: |
+          echo "cpu_cores=$(nproc)" >> $GITHUB_ENV
+      - name: Run tests and update docs
+        env:
+          PARALLEL_TESTS_CONCURRENCY: ${{ env.cpu_cores }}
+        run: ./bin/update-docs
+      - name: Check for untracked changes doc
+        uses: rootstrap/check_untracked_changes@v1
+        with:
+          path: "./doc"
