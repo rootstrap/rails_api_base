@@ -18,6 +18,14 @@ env:
   REPO: ${{ github.repository }}
 
 jobs:
+  labeler:
+    name: Labeler
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Autolabel PR
+        uses: actions/labeler@v4
   linters:
     name: Linters
     runs-on: ubuntu-latest
@@ -65,8 +73,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Autolabel PR
-        uses: actions/labeler@v4
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
