@@ -1,0 +1,3 @@
+docs:
+  - 'spec/requests/api/*'
+  - 'doc/openapi.yaml'
