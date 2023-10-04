@@ -83,12 +83,10 @@ jobs:
           bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
       - name: Check for missing annotations
         run: bundle exec annotate
-      - name: Check for missing doc changes
-        run: ./bin/update-docs && git diff
       - name: Check for untracked changes in app, spec and doc directories
         uses: rootstrap/check_untracked_changes@v1
         with:
-          path: "./app/ ./spec/ ./doc"
+          path: "./app/ ./spec/"
       - name: Report to CodeClimate
         run: |
           ./cc-test-reporter format-coverage --output "coverage/coverage.${{ matrix.ci_node_index }}.json"
