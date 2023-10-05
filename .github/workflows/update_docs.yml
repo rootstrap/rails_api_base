@@ -36,7 +36,7 @@ jobs:
           bundler-cache: true
       - name: Setup Database
         run: |
-          bundle exec rake parallel:load_schema
+          bundle exec rake parallel:load_schema[8]
       - name: Run tests and update docs
         env:
           PARALLEL_TESTS_CONCURRENCY: 8
