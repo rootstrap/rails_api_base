@@ -8,7 +8,7 @@ if ENV['PARALLEL_TESTS_CONCURRENCY']
   file = YAML.safe_load(File.read('./doc/openapi.yaml'))
   (2..ENV['PARALLEL_TESTS_CONCURRENCY'].to_i).each do |number|
     path = "./doc/openapi#{number}.yaml"
-    file.deep_merge!(YAML.safe_load(File.read(path))) 
+    file.deep_merge!(YAML.safe_load(File.read(path)))
     File.delete(path)
   end
   File.write('./doc/openapi.yaml', YAML.dump(file))
