@@ -1,8 +1,6 @@
 name: Update Docs
 
-on:
-  push:
-    types: [ labeled ]
+on: [push]
 
 env:
   RAILS_ENV: test
