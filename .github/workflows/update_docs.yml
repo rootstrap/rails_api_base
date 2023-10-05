@@ -1,11 +1,8 @@
 name: Update Docs
 
 on:
-  pull_request:
-    types: [ labeled ]
   push:
-    branches:
-      - main
+    types: [ labeled ]
 
 env:
   RAILS_ENV: test
