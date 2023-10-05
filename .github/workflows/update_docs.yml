@@ -40,14 +40,10 @@ jobs:
       - name: Setup Database
         run: |
           bundle exec rake parallel:load_schema
-      - name: Get CPU info
-        id: cpu_info
-        run: |
-          echo "cpu_cores=$(nproc)" >> $GITHUB_ENV
       - name: Run tests and update docs
         env:
-          PARALLEL_TESTS_CONCURRENCY: ${{ env.cpu_cores }}
-        run: ./bin/update-docs
+          PARALLEL_TESTS_CONCURRENCY: 8
+        run: ./bin/update-docs.rb && git diff
       - name: Check for untracked changes doc
         uses: rootstrap/check_untracked_changes@v1
         with:
