@@ -43,7 +43,7 @@ jobs:
       - name: Run tests and update docs
         env:
           PARALLEL_TESTS_CONCURRENCY: 8
-        run: ./bin/update-docs.rb && git diff
+        run: bundle exec ./bin/update-docs.rb && git diff
       - name: Check for untracked changes doc
         uses: rootstrap/check_untracked_changes@v1
         with:
