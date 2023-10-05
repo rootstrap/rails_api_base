@@ -8,4 +8,4 @@ RSpec::OpenAPI.request_headers = %w[access-token uid client]
 # Set response `headers` - generate parameters with headers for a response
 RSpec::OpenAPI.response_headers = %w[access-token expiry token-type uid client]
 
-RSpec::OpenAPI.path = ->(arg) { "doc/openapi#{ENV['TEST_ENV_NUMBER']}.yaml" }
+RSpec::OpenAPI.path = ->(_) { "doc/openapi#{ENV.fetch('TEST_ENV_NUMBER')}.yaml" }
