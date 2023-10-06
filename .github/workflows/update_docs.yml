@@ -2,9 +2,9 @@ name: Update Docs
 
 on:
   pull_request_target:
-  push:
     branches:
       - main
+  pull_request:
 
 env:
   RAILS_ENV: test
@@ -25,8 +25,7 @@ jobs:
   update-docs:
     needs: labeler
     if: |
-      contains(github.event.pull_request.labels.*.name, 'doc') ||
-      (github.event_name == 'push' && github.head_ref == 'main')
+      contains(github.event.pull_request.labels.*.name, 'doc')
     name: Run request specs and update docs
     runs-on: ubuntu-latest
     timeout-minutes: 20
