@@ -1,8 +1,7 @@
 name: Update Docs
 
 on:
-  pull_request_target:
-    types: [synchronize]
+  pull_request:
   push:
     branches:
       - main
@@ -21,11 +20,11 @@ jobs:
         uses: actions/checkout@v3
       - name: Label PR
         uses: actions/labeler@v4
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
   update-docs:
     needs: labeler
-    if: contains(github.event.pull_request.labels.*.name, 'doc') || (github.event == 'push' && github.ref == 'refs/heads/main')
+    if: |
+      contains(github.event.pull_request.labels.*.name, 'doc') ||
+      (github.event_name == 'push' && github.head_ref == 'main')
     name: Run request specs and update docs
     runs-on: ubuntu-latest
     timeout-minutes: 20
