@@ -24,8 +24,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
   update-docs:
     needs: labeler
-    if: |
-      contains(github.event.pull_request.labels.*.name, 'doc')
+    if: contains(github.event.pull_request.labels.*.name, 'doc')
     name: Run request specs and update docs
     runs-on: ubuntu-latest
     timeout-minutes: 20
