@@ -6,7 +6,7 @@ require 'active_support/core_ext/hash/deep_merge'
 # sed command implementation is different for GNU and macOS
 def sed_i(file)
   if /darwin/.match?(RUBY_PLATFORM)
-	  system "sed -i '' -E 's/[ '$'\t'']+$//' #{file}"
+    system "sed -i '' -E 's/[ '$'\t'']+$//' #{file}"
   else
     system "sed -i 's/[ \t]*$//' #{file}"
   end

@@ -83,7 +83,7 @@ jobs:
           bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
       - name: Check for missing annotations
         run: bundle exec annotate
-      - name: Check for untracked changes in app, spec and doc directories
+      - name: Check for untracked changes in app and spec directories
         uses: rootstrap/check_untracked_changes@v1
         with:
           path: "./app/ ./spec/"
