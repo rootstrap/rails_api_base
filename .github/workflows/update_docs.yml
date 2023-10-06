@@ -3,17 +3,19 @@ name: Update Docs
 on:
   pull_request:
     types: [synchronize]
+  push:
+    branches:
+      - main
 
 env:
   RAILS_ENV: test
 
 jobs:
-  openapi:
+  update-docs:
     if: contains(github.event.pull_request.labels.*.name, 'doc')
-    name: RSpec OpenAPI
+    name: Run request specs and update docs
     runs-on: ubuntu-latest
     timeout-minutes: 20
-
     services:
       db:
         image: postgres:15
