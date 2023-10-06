@@ -28,5 +28,12 @@ services:
       - db_data:/var/lib/postgresql/data
     ports:
       - ${POSTGRES_PORT-5432}:5432
+  js:
+    build: .
+    entrypoint: yarn build --watch
+    volumes:
+      - .:/src/myapp
+      - node_modules:/src/myapp/node_modules
 volumes:
   db_data:
+  node_modules:
