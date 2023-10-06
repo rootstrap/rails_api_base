@@ -34,13 +34,31 @@ To schedule the cron task you have to do it in `.github/workflows/update_knapsac
 It is now scheduled for February 31 so will never run.
 
 ```sh
-  - cron: '0 5 31 2 *'    
+  - cron: '0 5 31 2 *'
   # The above cron does not run. Replace with the wanted periodicity.
 ```
- 
+
 If the branch exists or the PR is already created the workflow will fail.
 In your repository settings -> actions -> general ->  Workflow permissions we need to allow read / write permissions and mark the option allow Github action to create PR, other case the workflow will fail.
 
+## Generating Docs
+An [Update Docs](./.github/workflows/update_docs.yml) action is provided to check the request specs pass and the docs don't have missing changes.
+
+This action is triggered when the PR is labeled with `doc` and on pushes to main.
+An autolabeler action takes care of labeling for any PR that changes the `spec/requests/api` files, but if you wish to run this against any PR just add the label manually.
+### Parallelization caveats
+We use a default of 8 cores in the  workflow so if you're running this locally make sure to run with `PARALLEL_TESTS_CONCURRENCY=8`. If you wish to change this just update the workflow to the desired amount, if not you will have data changes in the generated docs.
+
+If you wish to run everything without parallelization make the following change:
+```diff
+  name: Setup Database
+- run: bundle exec rake parallel:load_schema[8]
++ run: bundle exec rails db:setup
+  name: Run tests and update docs
+-  env:
+-    PARALLEL_TESTS_CONCURRENCY: 8
+  run: bundle exec ./bin/update-docs.rb && git diff
+```
 ## Coverage
 When splitting tests in different nodes, each report covers only a part of the code files being tested.
 For this reason a job in the CI is added to sums coverages from all nodes to be used by SimpleCov. This job will be executed after all nodes have finished and will send the final report to CodeClimate.
