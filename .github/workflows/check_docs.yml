@@ -1,16 +1,17 @@
 name: Check Docs
 
 on:
-  pull_request_target:
+  push:
     branches:
       - main
-  pull_request:
+  pull_request_target:
 
 env:
   RAILS_ENV: test
 
 jobs:
   labeler:
+    if: github.event.name == 'pull_request_target'
     permissions:
       contents: read
       pull-requests: write
@@ -23,7 +24,9 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
   check-docs:
-    if: contains(github.event.pull_request.labels.*.name, 'doc')
+    if: |
+      (github.event.name == 'push' && github.head_ref == 'main') ||
+      contains(github.event.pull_request.labels.*.name, 'doc')
     name: Run request specs and check for untracked doc changes
     runs-on: ubuntu-latest
     timeout-minutes: 20
