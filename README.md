@@ -124,13 +124,13 @@ To update docs:
 1. Modify files in `spec/requests/api`
 2. Update doc file
 
-    2.a. Utilizing parallelization to speed up the process:
+    2.a. We use parallelization by default to speed up the process:
     ```bash
-    PARALLEL_TESTS_CONCURRENCY=8 bin/update-docs.rb
+    bin/update-docs.rb
     ```
     2.b. Without parallelization
     ```bash
-    bin/update-docs.rb
+    SEQUENTIAL_SPECS=true bin/update-docs.rb
     ```
 3. Commit changes
 
