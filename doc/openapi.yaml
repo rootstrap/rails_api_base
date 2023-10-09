@@ -5,261 +5,50 @@ info:
   version: 1.0.0
 servers: []
 paths:
-  "/api/v1/users":
-    post:
-      summary: create
+  "/api/v1/settings/must_update":
+    get:
+      summary: must_update
       tags:
-      - Api::V1::Registration
-      requestBody:
-        content:
-          application/json:
-            schema:
-              "$ref": "#/components/schemas/User"
-            example:
-              user:
-                username: test
-                email: test@example.com
-                password: shouldmatch
-                password_confirmation: dontmatch
-                first_name: Johnny
-                last_name: Perez
+      - Api::V1::Setting
+      parameters:
+      - name: device_version
+        in: query
+        schema:
+          type: string
+        example: '1.0'
       responses:
         '200':
-          description: does not raise an error
-          headers:
-            access-token:
-              schema:
-                type: string
-            expiry:
-              schema:
-                type: integer
-            token-type:
-              schema:
-                type: string
-            uid:
-              schema:
-                type: string
-            client:
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/User"
-              example:
-                user:
-                  id: 5
-                  email: test@example.com
-                  name: Johnny Perez
-                  username: test
-                  first_name: Johnny
-                  last_name: Perez
-                  uid: test@example.com
-                  provider: email
-                  created_at: '2023-01-01T00:00:00.000Z'
-                  updated_at: '2023-01-01T00:00:00.000Z'
-        '422':
-          description: does not create a user
+          description: returns no need to update
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  status:
-                    type: string
-                  data:
-                    type: object
-                    properties:
-                      id:
-                        nullable: true
-                      email:
-                        type: string
-                      allow_password_change:
-                        type: boolean
-                      first_name:
-                        type: string
-                      last_name:
-                        type: string
-                      username:
-                        type: string
-                      created_at:
-                        nullable: true
-                      updated_at:
-                        nullable: true
-                      provider:
-                        type: string
-                      uid:
-                        type: string
-                    required:
-                    - id
-                    - email
-                    - allow_password_change
-                    - first_name
-                    - last_name
-                    - username
-                    - created_at
-                    - updated_at
-                    - provider
-                    - uid
-                  errors:
-                    type: object
-                    properties:
-                      password_confirmation:
-                        type: array
-                        items:
-                          type: string
-                      full_messages:
-                        type: array
-                        items:
-                          type: string
-                      password:
-                        type: array
-                        items:
-                          type: string
-                      email:
-                        type: array
-                        items:
-                          type: string
-                    required:
-                    - full_messages
+                  must_update:
+                    type: boolean
                 required:
-                - status
-                - data
-                - errors
+                - must_update
               example:
-                status: error
-                data:
-                  id:
-                  email: test@example.com
-                  allow_password_change: false
-                  first_name: Johnny
-                  last_name: Perez
-                  username: test
-                  created_at:
-                  updated_at:
-                  provider: email
-                  uid: test@example.com
-                errors:
-                  email:
-                  - is not an email
-                  full_messages:
-                  - Password confirmation doesn't match Password
-                  password_confirmation:
-                  - doesn't match Password
-                  password:
-                  - is too short (minimum is 8 characters)
-  "/api/v1/users/sign_in":
-    post:
-      summary: create
+                must_update: false
+  "/api/v1/status":
+    get:
+      summary: status
       tags:
-      - Api::V1::Session
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                user:
-                  type: object
-                  properties:
-                    email:
-                      type: string
-                    password:
-                      type: string
-                  required:
-                  - email
-                  - password
-              required:
-              - user
-            example:
-              user:
-                email: jeffry_abernathy@lang.example
-                password: wrong_password!
+      - Api::V1::Api
       responses:
         '200':
-          description: does not return a Set-Cookie Header
-          headers:
-            access-token:
-              schema:
-                type: string
-            expiry:
-              schema:
-                type: integer
-            token-type:
-              schema:
-                type: string
-            uid:
-              schema:
-                type: string
-            client:
-              schema:
-                type: string
+          description: returns status 200 ok
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  user:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      email:
-                        type: string
-                      name:
-                        type: string
-                      username:
-                        type: string
-                      first_name:
-                        type: string
-                      last_name:
-                        type: string
-                      uid:
-                        type: string
-                      provider:
-                        type: string
-                      created_at:
-                        type: string
-                      updated_at:
-                        type: string
-                    required:
-                    - id
-                    - email
-                    - name
-                    - username
-                    - first_name
-                    - last_name
-                    - uid
-                    - provider
-                    - created_at
-                    - updated_at
+                  online:
+                    type: boolean
                 required:
-                - user
+                - online
               example:
-                user:
-                  id: 5
-                  email: jenine@herzog-streich.test
-                  name: julian.weber
-                  username: julian.weber
-                  first_name: ''
-                  last_name: ''
-                  uid: jenine@herzog-streich.test
-                  provider: email
-                  created_at: '2023-01-01T00:00:00.000Z'
-                  updated_at: '2023-01-01T00:00:00.000Z'
-        '401':
-          description: returns to be unauthorized
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                required:
-                - error
-              example:
-                error: Invalid login credentials. Please try again.
+                online: true
   "/api/v1/user":
     put:
       summary: update
@@ -518,6 +307,149 @@ paths:
                 - error
               example:
                 error: Couldn't find the record
+  "/api/v1/users":
+    post:
+      summary: create
+      tags:
+      - Api::V1::Registration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/User"
+            example:
+              user:
+                username: test
+                email: test@example.com
+                password: shouldmatch
+                password_confirmation: dontmatch
+                first_name: Johnny
+                last_name: Perez
+      responses:
+        '200':
+          description: does not raise an error
+          headers:
+            access-token:
+              schema:
+                type: string
+            expiry:
+              schema:
+                type: integer
+            token-type:
+              schema:
+                type: string
+            uid:
+              schema:
+                type: string
+            client:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/User"
+              example:
+                user:
+                  id: 5
+                  email: test@example.com
+                  name: Johnny Perez
+                  username: test
+                  first_name: Johnny
+                  last_name: Perez
+                  uid: test@example.com
+                  provider: email
+                  created_at: '2023-01-01T00:00:00.000Z'
+                  updated_at: '2023-01-01T00:00:00.000Z'
+        '422':
+          description: does not create a user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        nullable: true
+                      email:
+                        type: string
+                      allow_password_change:
+                        type: boolean
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      username:
+                        type: string
+                      created_at:
+                        nullable: true
+                      updated_at:
+                        nullable: true
+                      provider:
+                        type: string
+                      uid:
+                        type: string
+                    required:
+                    - id
+                    - email
+                    - allow_password_change
+                    - first_name
+                    - last_name
+                    - username
+                    - created_at
+                    - updated_at
+                    - provider
+                    - uid
+                  errors:
+                    type: object
+                    properties:
+                      password_confirmation:
+                        type: array
+                        items:
+                          type: string
+                      full_messages:
+                        type: array
+                        items:
+                          type: string
+                      password:
+                        type: array
+                        items:
+                          type: string
+                      email:
+                        type: array
+                        items:
+                          type: string
+                    required:
+                    - full_messages
+                required:
+                - status
+                - data
+                - errors
+              example:
+                status: error
+                data:
+                  id:
+                  email: test@example.com
+                  allow_password_change: false
+                  first_name: Johnny
+                  last_name: Perez
+                  username: test
+                  created_at:
+                  updated_at:
+                  provider: email
+                  uid: test@example.com
+                errors:
+                  email:
+                  - is not an email
+                  full_messages:
+                  - Password confirmation doesn't match Password
+                  password_confirmation:
+                  - doesn't match Password
+                  password:
+                  - is too short (minimum is 8 characters)
   "/api/v1/users/password":
     put:
       summary: update
@@ -759,50 +691,118 @@ paths:
               schema:
                 type: string
               example: <html><body>You are being <a href="http://www.example.com://localhost?access-token=123456789A123456789012&amp;client=abcdefghijklmnopqrstuv&amp;client_id=abcdefghijklmnopqrstuv&amp;config=&amp;expiry=1735689600&amp;reset_password=true&amp;token=123456789A123456789012&amp;uid=louis%40lang-jones.test">redirected</a>.</body></html>
-  "/api/v1/status":
-    get:
-      summary: status
+  "/api/v1/users/sign_in":
+    post:
+      summary: create
       tags:
-      - Api::V1::Api
+      - Api::V1::Session
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                  required:
+                  - email
+                  - password
+              required:
+              - user
+            example:
+              user:
+                email: jeffry_abernathy@lang.example
+                password: wrong_password!
       responses:
         '200':
-          description: returns status 200 ok
+          description: does not return a Set-Cookie Header
+          headers:
+            access-token:
+              schema:
+                type: string
+            expiry:
+              schema:
+                type: integer
+            token-type:
+              schema:
+                type: string
+            uid:
+              schema:
+                type: string
+            client:
+              schema:
+                type: string
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  online:
-                    type: boolean
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      email:
+                        type: string
+                      name:
+                        type: string
+                      username:
+                        type: string
+                      first_name:
+                        type: string
+                      last_name:
+                        type: string
+                      uid:
+                        type: string
+                      provider:
+                        type: string
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+                    required:
+                    - id
+                    - email
+                    - name
+                    - username
+                    - first_name
+                    - last_name
+                    - uid
+                    - provider
+                    - created_at
+                    - updated_at
                 required:
-                - online
+                - user
               example:
-                online: true
-  "/api/v1/settings/must_update":
-    get:
-      summary: must_update
-      tags:
-      - Api::V1::Setting
-      parameters:
-      - name: device_version
-        in: query
-        schema:
-          type: string
-        example: '1.0'
-      responses:
-        '200':
-          description: returns no need to update
+                user:
+                  id: 5
+                  email: jenine@herzog-streich.test
+                  name: julian.weber
+                  username: julian.weber
+                  first_name: ''
+                  last_name: ''
+                  uid: jenine@herzog-streich.test
+                  provider: email
+                  created_at: '2023-01-01T00:00:00.000Z'
+                  updated_at: '2023-01-01T00:00:00.000Z'
+        '401':
+          description: returns to be unauthorized
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  must_update:
-                    type: boolean
+                  error:
+                    type: string
                 required:
-                - must_update
+                - error
               example:
-                must_update: false
+                error: Invalid login credentials. Please try again.
   "/api/v1/users/sign_out":
     delete:
       summary: destroy

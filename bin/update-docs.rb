@@ -20,6 +20,8 @@ if ENV['PARALLEL_TESTS_CONCURRENCY']
     (2..ENV['PARALLEL_TESTS_CONCURRENCY'].to_i).each do |number|
       file.deep_merge!(YAML.safe_load(File.read("./doc/openapi#{number}.yaml")))
     end
+    # Sort endpoints alphabetically
+    file['paths'] = file['paths'].sort.to_h
     File.write(path, YAML.dump(file))
     # Remove trailing whitespaces from doc file
     sed_i(path)
