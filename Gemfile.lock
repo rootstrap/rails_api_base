@@ -291,7 +291,7 @@ GEM
     orm_adapter (0.5.0)
     pagy (6.1.0)
     parallel (1.23.0)
-    parallel_tests (4.2.2)
+    parallel_tests (4.3.0)
       parallel
     parser (3.2.2.4)
       ast (~> 2.4.1)
@@ -529,7 +529,7 @@ DEPENDENCIES
   newrelic_rpm (~> 9.5)
   oj (~> 3.16)
   pagy (~> 6.1)
-  parallel_tests (~> 4.2)
+  parallel_tests (~> 4.3)
   pg (~> 1.5)
   pg_query (~> 4.2.3)
   prosopite (~> 1.4.1)
