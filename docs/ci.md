@@ -46,6 +46,7 @@ An [Update Docs](./.github/workflows/update_docs.yml) action is provided to chec
 
 This action is triggered when the PR is labeled with `doc` and on pushes to main.
 An autolabeler action takes care of labeling for any PR that changes the `spec/requests/api` files, but if you wish to run this against any PR just add the label manually.
+
 ### Parallelization caveats
 We use a default of 8 cores in the  workflow so if you're running this locally make sure to run with `PARALLEL_TESTS_CONCURRENCY=8`. If you wish to change this just update the workflow to the desired amount, if not you will have data changes in the generated docs.
 
@@ -59,6 +60,7 @@ If you wish to run everything without parallelization make the following change:
 -    PARALLEL_TESTS_CONCURRENCY: 8
   run: bundle exec ./bin/update-docs.rb && git diff
 ```
+
 ## Coverage
 When splitting tests in different nodes, each report covers only a part of the code files being tested.
 For this reason a job in the CI is added to sums coverages from all nodes to be used by SimpleCov. This job will be executed after all nodes have finished and will send the final report to CodeClimate.
