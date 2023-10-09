@@ -59,7 +59,7 @@ group :development do
   gem 'rails_best_practices', '~> 1.20'
   gem 'reek', '~> 6.1', '>= 6.1.1'
   gem 'rubocop', '~> 1.56', require: false
-  gem 'rubocop-factory_bot', '~> 2.23', '>= 2.23.1', require: false
+  gem 'rubocop-factory_bot', '~> 2.24', require: false
   gem 'rubocop-performance', '~> 1.19', require: false
   gem 'rubocop-rails', '~> 2.21', require: false
   gem 'rubocop-rake', '~> 0.6.0', require: false
