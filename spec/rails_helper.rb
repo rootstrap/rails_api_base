@@ -50,6 +50,7 @@ RSpec.configure do |config|
 
   # Freeze data to not change OPENAPI docs
   if ENV['OPENAPI']
+    Rails.cache.clear
     ActiveRecord::Base.connection.tables.each do |t|
       ActiveRecord::Base.connection.reset_pk_sequence!(t)
     end
