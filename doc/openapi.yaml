@@ -690,7 +690,7 @@ paths:
             text/html:
               schema:
                 type: string
-              example: <html><body>You are being <a href="http://www.example.com://localhost?access-token=123456789A123456789012&amp;client=abcdefghijklmnopqrstuv&amp;client_id=abcdefghijklmnopqrstuv&amp;config=&amp;expiry=1735689600&amp;reset_password=true&amp;token=123456789A123456789012&amp;uid=louis%40lang-jones.test">redirected</a>.</body></html>
+              example: <html><body>You are being <a href="http://www.example.com://localhost?access-token=123456789A123456789012&amp;client=abcdefghijklmnopqrstuv&amp;client_id=abcdefghijklmnopqrstuv&amp;config=&amp;expiry=1111111111&amp;reset_password=true&amp;token=123456789A123456789012&amp;uid=louis%40lang-jones.test">redirected</a>.</body></html>
   "/api/v1/users/sign_in":
     post:
       summary: create

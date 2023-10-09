@@ -34,8 +34,10 @@ else
     end
     # Sort endpoints alphabetically
     file['paths'] = file['paths'].sort.to_h
-    # Freeze all created_at & updated_at dates to 1/1/2023
-    file = YAML.dump(file).gsub(/(created_at|updated_at): '.*'/, "\0: '2023-01-01T00:00:00.000Z'")
+    # Freeze all timestamps
+    file = YAML.dump(file)
+      .gsub(/(created_at|updated_at): '.*'/, '\1: \'2023-01-01T00:00:00.000Z\'')
+      .gsub(/(expiry=)\d*/, '\11111111111')
     File.write(PATH, file)
     remove_white_spaces
   rescue Errno::ENOENT => exception
