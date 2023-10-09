@@ -56,7 +56,6 @@ RSpec.configure do |config|
     end
     Kernel.srand config.seed
     config.before(:all) { Faker::Config.random = Random.new(config.seed) }
-    config.before { travel_to Time.zone.local(2023) }
   end
 end
 
