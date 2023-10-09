@@ -5,7 +5,7 @@ ruby '~> 3.1.2'
 
 gem 'rails', '~> 7.0.8'
 
-gem 'activeadmin', '~> 2.9'
+gem 'activeadmin', '~> 3.0'
 gem 'active_storage_base64', '~> 2.0.0'
 gem 'arctic_admin', '~> 4.2.5'
 gem 'aws-sdk-s3', '~> 1.136', require: false
