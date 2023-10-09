@@ -1,4 +1,4 @@
-name: Update Docs
+name: Check Docs
 
 on:
   pull_request_target:
@@ -10,22 +10,10 @@ env:
   RAILS_ENV: test
 
 jobs:
-  labeler:
-    permissions:
-      contents: read
-      pull-requests: write
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Label PR
-        uses: actions/labeler@v4
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-  update-docs:
+  check-docs:
     needs: labeler
     if: contains(github.event.pull_request.labels.*.name, 'doc')
-    name: Run request specs and update docs
+    name: Run request specs and check for untracked doc changes
     runs-on: ubuntu-latest
     timeout-minutes: 20
     services:
@@ -55,7 +43,7 @@ jobs:
         env:
           PARALLEL_TESTS_CONCURRENCY: 8
         run: bundle exec ./bin/update-docs.rb && git diff
-      - name: Check for untracked changes doc
+      - name: Check for untracked changes in docs
         uses: rootstrap/check_untracked_changes@v1
         with:
           path: "./doc"
