@@ -119,7 +119,6 @@ detectors:
       - _
   UnusedParameters:
     enabled: true
-    exclude: []
   UnusedPrivateMethod:
     enabled: false
   UtilityFunction:
