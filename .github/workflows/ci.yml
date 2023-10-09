@@ -1,14 +1,9 @@
 name: CI
 
 on:
-  workflow_dispatch:
   pull_request:
   push:
     branches: [main]
-
-permissions:
-  pull-requests: write
-  contents: write
 
 env:
   RAILS_ENV: test
@@ -21,6 +16,9 @@ jobs:
   linters:
     name: Linters
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     timeout-minutes: 10
     steps:
       - name: Checkout code
@@ -29,6 +27,11 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+      - name: Label PR
+        if: github.event.pull_request
+        uses: actions/labeler@v4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Code Analysis
         run: |
           bundle exec rake code:analysis
@@ -124,3 +127,42 @@ jobs:
         run: |
           ./cc-test-reporter sum-coverage coverage/**/*.json
           ./cc-test-reporter upload-coverage
+  check-docs:
+    if: |
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      contains(github.event.pull_request.labels.*.name, 'doc')
+    name: Run request specs and check for untracked doc changes
+    runs-on: ubuntu-latest
+    needs: linters
+    timeout-minutes: 20
+    services:
+      db:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Setup Database
+        run: |
+          bundle exec rake parallel:load_schema[8]
+      - name: Run tests and update docs
+        env:
+          PARALLEL_TESTS_CONCURRENCY: 8
+        run: bundle exec ./bin/update-docs.rb && git diff
+      - name: Check for untracked changes in docs
+        uses: rootstrap/check_untracked_changes@v1
+        with:
+          path: "./doc"
