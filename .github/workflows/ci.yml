@@ -16,9 +16,6 @@ jobs:
   linters:
     name: Linters
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
     timeout-minutes: 10
     steps:
       - name: Checkout code
