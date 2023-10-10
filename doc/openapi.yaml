@@ -320,7 +320,7 @@ paths:
             example:
               user:
                 username: test
-                email: test@example.com
+                email: test2@example.com
                 password: shouldmatch
                 password_confirmation: dontmatch
                 first_name: Johnny
@@ -351,12 +351,12 @@ paths:
               example:
                 user:
                   id: 5
-                  email: test@example.com
+                  email: test2@example.com
                   name: Johnny Perez
                   username: test
                   first_name: Johnny
                   last_name: Perez
-                  uid: test@example.com
+                  uid: test2@example.com
                   provider: email
                   created_at: '2023-01-01T00:00:00.000Z'
                   updated_at: '2023-01-01T00:00:00.000Z'
@@ -432,7 +432,7 @@ paths:
                 status: error
                 data:
                   id:
-                  email: test@example.com
+                  email: test2@example.com
                   allow_password_change: false
                   first_name: Johnny
                   last_name: Perez
@@ -440,7 +440,7 @@ paths:
                   created_at:
                   updated_at:
                   provider: email
-                  uid: test@example.com
+                  uid: test2@example.com
                 errors:
                   email:
                   - is not an email

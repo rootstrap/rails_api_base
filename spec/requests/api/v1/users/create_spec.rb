@@ -4,7 +4,7 @@ describe 'POST api/v1/users' do
   subject { post user_registration_path, params:, as: :json }
 
   let(:user) { User.last }
-  let(:email) { 'test@example.com' }
+  let(:email) { 'test2@example.com' }
 
   let(:params) do
     {
