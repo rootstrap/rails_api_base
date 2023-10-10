@@ -1,6 +1,9 @@
 name: CI
 
-on: [push]
+on:
+  pull_request:
+  push:
+    branches: [main]
 
 env:
   RAILS_ENV: test
@@ -10,6 +13,9 @@ jobs:
   linters:
     name: Linters
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     timeout-minutes: 10
     steps:
       - name: Checkout code
@@ -18,6 +24,11 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+      - name: Label PR
+        if: github.event.pull_request
+        uses: actions/labeler@v4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Code Analysis
         run: |
           bundle exec rake code:analysis

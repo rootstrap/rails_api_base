@@ -1,0 +1,2 @@
+doc:
+  - 'spec/requests/api/**/*'

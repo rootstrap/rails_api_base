@@ -1,0 +1,50 @@
+name: Check Docs
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+  push:
+    branches: [main]
+
+env:
+  RAILS_ENV: test
+
+jobs:
+  check-docs:
+    if: |
+      (github.event_name == 'push' && github.head_ref == 'main') ||
+      contains(github.event.pull_request.labels.*.name, 'doc')
+    name: Run request specs and check for untracked doc changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      db:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Setup Database
+        run: |
+          bundle exec rake parallel:load_schema[8]
+      - name: Run tests and update docs
+        env:
+          PARALLEL_TESTS_CONCURRENCY: 8
+        run: bundle exec ./bin/update-docs.rb && git diff
+      - name: Check for untracked changes in docs
+        uses: rootstrap/check_untracked_changes@v1
+        with:
+          path: "./doc"
