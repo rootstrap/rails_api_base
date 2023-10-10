@@ -130,7 +130,7 @@ jobs:
   check-docs:
     if: |
       (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
-      contains(github.event.pull_request.labels.*.name, 'doc')
+      contains(github.event.pull_request.labels.*.name, 'api_docs')
     name: Run request specs and check for untracked doc changes
     runs-on: ubuntu-latest
     needs: linters
