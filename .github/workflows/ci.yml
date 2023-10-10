@@ -2,9 +2,17 @@ name: CI
 
 on: [push]
 
+permissions:
+  issues: write
+  pull-requests: write
+  contents: write
+
 env:
   RAILS_ENV: test
   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+  CI: 'true'
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  REPO: ${{ github.repository }}
 
 jobs:
   linters:

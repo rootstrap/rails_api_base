@@ -42,11 +42,13 @@ group :development, :test do
   gem 'dotenv-rails', '~> 2.8.1'
   gem 'factory_bot_rails', '~> 6.2'
   gem 'knapsack', '~> 4.0'
+  gem 'octokit', '~> 7.1'
   gem 'parallel_tests', '~> 4.3'
   gem 'pry-byebug', '~> 3.9', platform: :mri
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec_api_documentation', '~> 6.1.0'
   gem 'rspec-rails', '~> 6.0'
+  gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
 end
 
 group :development do
