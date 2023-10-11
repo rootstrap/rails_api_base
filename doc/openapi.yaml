@@ -13,6 +13,7 @@ paths:
       parameters:
       - name: device_version
         in: query
+        required: false
         schema:
           type: string
         example: '1.0'
@@ -675,11 +676,13 @@ paths:
       parameters:
       - name: redirect_url
         in: query
+        required: false
         schema:
           type: string
         example: localhost
       - name: reset_password_token
         in: query
+        required: false
         schema:
           type: string
         example: 96BuszWmzDxRqXYzc_Mf
