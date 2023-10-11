@@ -16,6 +16,10 @@ module Retry
         "\n> Error: ```#{error}```\n"
     end
 
+    def title
+      "Flaky test on #{error_location}"
+    end
+
     private
 
     def description
