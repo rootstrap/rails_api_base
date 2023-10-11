@@ -24,7 +24,8 @@ end
 
 def freeze_timestamps(file)
   file.gsub(/\d{4}-\d{2}-\d{2}/, '2023-01-01')
-    .gsub(/T\d{2}:\d{2}:\d{2}\.\d{3}Z/, 'T00:00:00.000Z')
+    .gsub(/T\d{2}:\d{2}:\d{2}/, 'T00:00:00')
+    .gsub(/\.\d{3}Z/, '.000Z')
     .gsub(/(expiry=)\d*/, '\11111111111')
 end
 
