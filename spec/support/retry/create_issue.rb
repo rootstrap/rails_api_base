@@ -13,8 +13,8 @@ module Retry
     def create_issue(title, body)
       issue = client.create_issue(repo, title, body)
       pp "Issue created: #{issue.html_url}"
-    rescue StandardError => e
-      p e.message
+    rescue StandardError => error
+      p error.message
     end
   end
 end
