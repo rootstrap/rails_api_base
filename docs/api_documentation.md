@@ -24,6 +24,7 @@ A [check-docs](./.github/workflows/ci.yml) step is provided in the CI action to 
 This action is triggered when the PR is labeled with `api_docs` and on pushes to main.
 An autolabeler action takes care of labeling for any PR that changes the `spec/requests/api` files, but if you wish to run this against any PR just add the label manually.
 
+*The label has to be created before hand for the labeler to work*
 ### Removing CI action
 If you wish not to have a specific check for docs in the CI you can just modify the file and remove the [check-docs](./.github/workflows/ci.yml) job.
 ### Parallelization caveats
