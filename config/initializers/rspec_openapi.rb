@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+return unless Rails.env.test?
+
 require 'rspec/openapi'
 
 # Set request `headers` - generate parameters with headers for a request
