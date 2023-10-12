@@ -22,13 +22,6 @@ def remove_white_spaces
   end
 end
 
-def freeze_timestamps(file)
-  file.gsub(/\d{4}-\d{2}-\d{2}/, '2023-01-01')
-    .gsub(/T\d{2}:\d{2}:\d{2}/, 'T00:00:00')
-    .gsub(/\.\d{3}Z/, '.000Z')
-    .gsub(/(expiry=)\d*/, '\11111111111')
-end
-
 if ENV['SEQUENTIAL_SPECS']
   exec 'OPENAPI=1 bundle exec rspec spec/requests/api/ --seed 1993'
 else
@@ -41,7 +34,6 @@ else
     end
     # Sort endpoints alphabetically
     file['paths'] = file['paths'].sort.to_h
-    file = freeze_timestamps(YAML.dump(file))
     File.write(PATH, file)
     remove_white_spaces
   rescue Errno::ENOENT => exception

@@ -138,11 +138,10 @@ jobs:
         run: |
           ./cc-test-reporter sum-coverage coverage/**/*.json
           ./cc-test-reporter upload-coverage
-  check-docs:
+  update-docs:
     if: |
-      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
-      contains(github.event.pull_request.labels.*.name, 'api_docs')
-    name: Run request specs and check for untracked doc changes
+      github.event_name == 'push' && github.ref == 'refs/heads/main'
+    name: Run request specs and update docs
     runs-on: ubuntu-latest
     needs: linters
     timeout-minutes: 20
@@ -172,8 +171,10 @@ jobs:
       - name: Run tests and update docs
         env:
           PARALLEL_TESTS_CONCURRENCY: 8
-        run: bundle exec ./bin/update-docs.rb && git diff
-      - name: Check for untracked changes in docs
-        uses: rootstrap/check_untracked_changes@v1
+        run: bundle exec ./bin/update-docs.rb
+      - name: Commit doc changes
+        uses: EndBug/add-and-commit@v9
         with:
-          path: "./doc"
+          add: 'doc'
+          message: 'Update API Docs'
+
