@@ -61,8 +61,8 @@ RSpec.configure do |config|
   config.default_retry_count = ENV.fetch('CI', false) ? 2 : 1
   # Callback for intermittent tests
   config.intermittent_callback = proc do |ex|
-    message = Retry::MessageFormatter.new(ex)
-    Retry::CreateIssue.new.create_issue(message.title, message.to_s)
+    text = Retry::MessageFormatter.new(ex).to_s
+    Retry::PullRequestComment.new.comment(text)
   end
 end
 
