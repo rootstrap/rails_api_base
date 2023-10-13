@@ -116,9 +116,6 @@ https://railsapibasers.docs.apiary.io/
 With [RSpec API Doc Generator](https://github.com/exoego/rspec-openapi) you can generate the docs after writing requests specs.
 
 See [api_documentation](./docs/api_documentation.md) docs for more info.
-### Freezing test data
-
-In order to freeze random testing data so we don't generate changes to the docs each time some configs are needed in the [rails_helper](./spec/rails_helper.rb) file.
 
 ## Code quality
 
