@@ -70,15 +70,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Set ENV for codeclimate (pull_request)
         run: |
           git fetch --no-tags --prune --depth=1 origin refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
           echo "GIT_BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
           echo "GIT_COMMIT_SHA=$(git rev-parse origin/$GITHUB_HEAD_REF)" >> $GITHUB_ENV
         if: github.event_name == 'pull_request'
-      - name: Set ENV for api docs
+      - name: Set ENV for API Docs
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: echo "OPENAPI=true" >> $GITHUB_ENV
+        run: |
+          if [ $(git diff ${{ github.event.before }} ${{ github.event.after }} --name-only | grep 'spec/requests/api' | wc -l) -gt 0 ]; then
+            echo "OPENAPI=true" >> $GITHUB_ENV
+          fi
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -102,7 +107,6 @@ jobs:
           KNAPSACK_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           KNAPSACK_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           PARALLEL_TESTS_CONCURRENCY: ${{ env.cpu_cores }}
-          OPENAPI: ${{ env.OPENAPI }}
         run: bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
       - name: Check for missing annotations
         run: bundle exec annotate
@@ -117,13 +121,13 @@ jobs:
         with:
           name: coverage
           path: "coverage/coverage.${{ matrix.ci_node_index }}.json"
-      - name: Merge API docs
+      - name: Merge API docs from threads
         env:
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: ${{ env.OPENAPI }}
         run: bundle exec ./bin/merge-api-docs.rb
       - name: Upload partial api docs
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: ${{ env.OPENAPI }}
         uses: actions/upload-artifact@v2
         with:
           name: api_docs
@@ -132,32 +136,57 @@ jobs:
     name: Merge Results
     runs-on: ubuntu-latest
     needs: tests
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Set ENV for codeclimate (pull_request)
+        with:
+          fetch-depth: 0
+      - name: Set ENV for Code Climate (pull_request)
         run: |
           git fetch --no-tags --prune --depth=1 origin refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
           echo "GIT_BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
           echo "GIT_COMMIT_SHA=$(git rev-parse origin/$GITHUB_HEAD_REF)" >> $GITHUB_ENV
+        if: github.event_name == 'pull_request'
+      - name: Set ENV for API Docs
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          if [ $(git diff ${{ github.event.before }} ${{ github.event.after }} --name-only | grep 'spec/requests/api' | wc -l) -gt 0 ]; then
+            echo "OPENAPI=true" >> $GITHUB_ENV
+          fi
+      - name: Setup Code Climate test-reporter
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+      - name: Download coverage reports
+        uses: actions/download-artifact@v2
+        with:
+          name: coverage
+          path: coverage/coverage.*.json
+      - name: Report coverage
+        run: |
+          ./cc-test-reporter sum-coverage coverage/**/*.json
+          ./cc-test-reporter upload-coverage
       - name: Setup Ruby
+        if: ${{ env.OPENAPI }}
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: download api docs
+      - name: Download API Docs
+        if: ${{ env.OPENAPI }}
         uses: actions/download-artifact@v2
         with:
           name: api_docs
           path: tmp/
-      - name: Merge API docs
+      - name: Merge API Docs from nodes
         env:
           MOVE_TMP_FILES: true
+        if: ${{ env.OPENAPI }}
         run: bundle exec ./bin/merge-api-docs.rb
-      - name: Commit api docs
+      - name: Commit & push API Docs
+        if: ${{ env.OPENAPI }}
         run: |
-          git config --global user.name 'GitHub Bot'
-          git config --global user.email 'github_bot@users.noreply.github.com'
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add "doc/openapi.yaml"
           git commit -m "Update API Docs" || echo "No changes to commit"
           git push origin main
