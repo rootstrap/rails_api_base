@@ -10,7 +10,7 @@ gem 'active_storage_base64', '~> 2.0.0'
 gem 'arctic_admin', '~> 4.2.6'
 gem 'aws-sdk-s3', '~> 1.136', require: false
 gem 'bootsnap', '~> 1.16'
-gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.5'
+gem 'delayed_job_active_record', '~> 4.1'
 gem 'devise', '~> 4.9'
 gem 'devise_token_auth', '~> 1.2.2'
 gem 'draper', '~> 4.0', '>= 4.0.1'
