@@ -7,18 +7,18 @@ gem 'rails', '~> 7.0.8'
 
 gem 'activeadmin', '~> 3.0'
 gem 'active_storage_base64', '~> 2.0.0'
-gem 'arctic_admin', '~> 4.2.5'
+gem 'arctic_admin', '~> 4.2.6'
 gem 'aws-sdk-s3', '~> 1.136', require: false
 gem 'bootsnap', '~> 1.16'
-gem 'delayed_job_active_record', '~> 4.1', '>= 4.1.5'
-gem 'devise', '~> 4.7', '>= 4.7.2'
+gem 'delayed_job_active_record', '~> 4.1'
+gem 'devise', '~> 4.9'
 gem 'devise_token_auth', '~> 1.2.2'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'flipper', '~> 1.0.0'
 gem 'flipper-active_record', '~> 1.0.0'
 gem 'flipper-ui', '~> 1.0.0'
 gem 'jbuilder', '~> 2.10'
-gem 'lograge', '~> 0.13'
+gem 'lograge', '~> 0.14'
 gem 'newrelic_rpm', '~> 9.5'
 gem 'oj', '~> 3.16'
 gem 'pagy', '~> 6.1'
@@ -60,7 +60,7 @@ group :development do
   gem 'listen', '~> 3.8'
   gem 'rails_best_practices', '~> 1.20'
   gem 'reek', '~> 6.1', '>= 6.1.1'
-  gem 'rubocop', '~> 1.56', require: false
+  gem 'rubocop', '~> 1.57', require: false
   gem 'rubocop-factory_bot', '~> 2.24', require: false
   gem 'rubocop-performance', '~> 1.19', require: false
   gem 'rubocop-rails', '~> 2.21', require: false
