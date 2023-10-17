@@ -1,24 +1,21 @@
+# frozen_string_literal: true
+
 module Retry
   class PullRequestComment
     attr_reader :repo, :pull_request_number, :client
 
     def initialize
-      @repo = ENV['REPO']
-      @pull_request_number = ENV['PULL_REQUEST_NUMBER']
-      @github_token = ENV['GITHUB_TOKEN']
+      @repo = ENV.fetch('REPO', nil)
+      @pull_request_number = ENV.fetch('PULL_REQUEST_NUMBER', nil)
+      @github_token = ENV.fetch('GITHUB_TOKEN', nil)
       @client = Octokit::Client.new(access_token: @github_token)
     end
 
     def comment(message)
-      pp "repo: #{repo}"
-      pp "Payload number: #{ENV['PAYLOAD_NUMBER']}"
-      pp "pr: #{pull_request_number}"
-      pp message
-
       options = { event: 'COMMENT', body: message }
       client.create_pull_request_review(repo, pull_request_number, options)
-    rescue StandardError => e
-      p e.message
+    rescue StandardError => error
+      p error.message
     end
   end
 end

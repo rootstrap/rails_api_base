@@ -79,6 +79,10 @@ Rails/FilePath:
 Rails/SaveBang:
   Enabled: true
 
+RescuedExceptionsVariableName:
+  Exclude:
+    - "spec/support/retry/pull_request_comment.rb"
+
 RSpec/ExampleLength:
   Enabled: false
 
