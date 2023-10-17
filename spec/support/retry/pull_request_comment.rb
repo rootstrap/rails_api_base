@@ -15,7 +15,7 @@ module Retry
       options = { event: 'COMMENT', body: message }
       client.create_pull_request_review(repo, pull_request_number, options)
     rescue StandardError => error
-      p error.message
+      puts error.message
     end
   end
 end
