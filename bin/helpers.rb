@@ -1,4 +1,5 @@
 require 'open3'
+require 'dotenv/load'
 
 def running_with_docker?
   ENV['DOCKER_ENABLED'] == 'true' && docker_compose_installed? && web_service_running?
