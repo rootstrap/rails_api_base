@@ -14,7 +14,7 @@ content = {}
 Dir.glob('./doc/openapi?*.yaml').each do |filename|
   content.deep_merge!(YAML.safe_load(File.read(filename)))
 end
-# Sort endpoints alphabetically
-content['paths'] = content['paths'].sort.to_h
+# Sort endpoints alphabetically and remove duplicate endpoints
+content['paths'] = content['paths'].sort.uniq(&:first).to_h
 File.write(PATH, YAML.dump(content))
 FileUtils.cp(PATH, "./tmp/openapi#{ENV['CI_NODE_INDEX']}.yaml")
