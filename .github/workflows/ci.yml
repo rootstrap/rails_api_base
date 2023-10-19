@@ -141,6 +141,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          ssh-key: "${{ secrets.PUSH_KEY }}"
       - name: Set ENV for Code Climate (pull_request)
         run: |
           git fetch --no-tags --prune --depth=1 origin refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
