@@ -17,4 +17,6 @@
 
 class Setting < ApplicationRecord
   validates :key, uniqueness: true, presence: true
+
+  RANSACK_ATTRIBUTES = %w[id key value].freeze
 end
