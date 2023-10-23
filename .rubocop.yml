@@ -80,8 +80,7 @@ Rails/SaveBang:
   Enabled: true
 
 RescuedExceptionsVariableName:
-  Exclude:
-    - "spec/support/retry/pull_request_comment.rb"
+  Enabled: false
 
 RSpec/ExampleLength:
   Enabled: false
