@@ -1,9 +1,14 @@
 name: CI
 
 on:
+  workflow_dispatch:
   pull_request:
   push:
     branches: [main]
+
+permissions:
+  pull-requests: write
+  contents: write
 
 env:
   RAILS_ENV: test
@@ -72,12 +77,13 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Set ENV for codeclimate (pull_request)
+      - name: Set ENV for CodeClimate
+        if: github.event_name == 'pull_request'
         run: |
-          git fetch --no-tags --prune --depth=1 origin refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
           echo "GIT_BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
           echo "GIT_COMMIT_SHA=$(git rev-parse origin/$GITHUB_HEAD_REF)" >> $GITHUB_ENV
-        if: github.event_name == 'pull_request'
+          echo "PULL_REQUEST_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
       - name: Set ENV for API Docs
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
@@ -121,12 +127,12 @@ jobs:
         with:
           name: coverage
           path: "coverage/coverage.${{ matrix.ci_node_index }}.json"
-      - name: Merge API docs from threads
+      - name: Merge API Docs from threads
         env:
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
         if: ${{ env.OPENAPI }}
         run: bundle exec ./bin/merge-api-docs.rb
-      - name: Upload partial api docs
+      - name: Upload partial API Docs
         if: ${{ env.OPENAPI }}
         uses: actions/upload-artifact@v2
         with:
@@ -142,12 +148,13 @@ jobs:
         with:
           fetch-depth: 0
           ssh-key: "${{ secrets.PUSH_KEY }}"
-      - name: Set ENV for Code Climate (pull_request)
+      - name: Set ENV for CodeClimate
+        if: github.event_name == 'pull_request'
         run: |
-          git fetch --no-tags --prune --depth=1 origin refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
           echo "GIT_BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
           echo "GIT_COMMIT_SHA=$(git rev-parse origin/$GITHUB_HEAD_REF)" >> $GITHUB_ENV
-        if: github.event_name == 'pull_request'
+          echo "PULL_REQUEST_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
       - name: Set ENV for API Docs
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
