@@ -20,9 +20,14 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/core'
 require 'spec_helper'
 require 'rspec/rails'
+require 'rspec/retry'
+require 'support/retry/message_formatter'
 
 ActiveRecord::Migration.maintain_test_schema!
-WebMock.disable_net_connect!(allow_localhost: true)
+WebMock.disable_net_connect!(
+  allow_localhost: true,
+  allow: ['api.github.com']
+)
 
 RSpec.configure do |config|
   config.render_views = true
@@ -46,6 +51,19 @@ RSpec.configure do |config|
 
   # Reset previous flipper instance
   config.before { Flipper.instance = nil }
+
+  # rspec-retry gem
+  # Show retry status in spec process
+  config.verbose_retry = true
+  # Print what reason forced the retry
+  config.display_try_failure_messages = true
+  # Try tests twice in the CI and once locally
+  config.default_retry_count = ENV.fetch('CI', false) ? 2 : 1
+  # Callback for intermittent tests
+  config.intermittent_callback = proc do |ex|
+    text = Retry::MessageFormatter.new(ex).to_s
+    Retry::PullRequestComment.new.comment(text)
+  end
 end
 
 Shoulda::Matchers.configure do |config|

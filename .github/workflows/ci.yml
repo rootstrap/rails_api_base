@@ -1,10 +1,21 @@
 name: CI
 
-on: [push]
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  pull-requests: write
+  contents: write
 
 env:
   RAILS_ENV: test
   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+  CI: true
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  REPO: ${{ github.repository }}
 
 jobs:
   linters:
@@ -54,6 +65,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Set ENV for codeclimate (pull_request)
+        if: github.event_name == 'pull_request'
+        run: |
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
+          echo "GIT_BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
+          echo "GIT_COMMIT_SHA=$(git rev-parse origin/$GITHUB_HEAD_REF)" >> $GITHUB_ENV
+          echo "PULL_REQUEST_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:

@@ -41,12 +41,9 @@ group :development, :test do
   gem 'annotate', '~> 3.2', '>= 3.0.3'
   gem 'dotenv-rails', '~> 2.8.1'
   gem 'factory_bot_rails', '~> 6.2'
-  gem 'knapsack', '~> 4.0'
-  gem 'parallel_tests', '~> 4.3'
   gem 'pry-byebug', '~> 3.9', platform: :mri
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec_api_documentation', '~> 6.1.0'
-  gem 'rspec-rails', '~> 6.0'
 end
 
 group :development do
@@ -69,8 +66,13 @@ end
 
 group :test do
   gem 'faker', '~> 3.2'
+  gem 'knapsack', '~> 4.0'
+  gem 'octokit', '~> 7.1'
+  gem 'parallel_tests', '~> 4.3'
   gem 'pg_query', '~> 4.2.3'
   gem 'prosopite', '~> 1.4.1'
+  gem 'rspec-rails', '~> 6.0'
+  gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
   gem 'shoulda-matchers', '~> 5.3'
   gem 'simplecov', '~> 0.22.0', require: false
   gem 'webmock', '~> 3.19'

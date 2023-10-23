@@ -79,6 +79,9 @@ Rails/FilePath:
 Rails/SaveBang:
   Enabled: true
 
+RescuedExceptionsVariableName:
+  Enabled: false
+
 RSpec/ExampleLength:
   Enabled: false
 
