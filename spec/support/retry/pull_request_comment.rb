@@ -12,6 +12,8 @@ module Retry
     end
 
     def comment(message)
+      return if pull_request_number.blank?
+
       options = { event: 'COMMENT', body: message }
       client.create_pull_request_review(repo, pull_request_number, options)
     rescue StandardError => error
