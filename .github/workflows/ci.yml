@@ -22,9 +22,6 @@ jobs:
   linters:
     name: Linters
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
     timeout-minutes: 10
     steps:
       - name: Checkout code
@@ -42,8 +39,6 @@ jobs:
         run: bundle exec rake code:analysis
   tests:
     name: Tests
-    permissions:
-      contents: write
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
