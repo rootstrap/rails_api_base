@@ -24,9 +24,9 @@ This template comes with:
 - Feature flags support with a UI for management.
 - RSpec tests
 - Code quality tools
-- API documentation following https://apiblueprint.org/
-- Docker support
+- API documentation following https://www.openapis.org/
 - RSpec API Doc Generator
+- Docker support
 
 ## How to use
 
@@ -48,6 +48,7 @@ This template comes with:
 1. You can now try your REST services!
 
 ## Dev scripts
+
 This template provides a handful of scripts to make your dev experience better!
 
 - bin/bundle to run any `bundle` commands.
@@ -93,7 +94,7 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Rails Best Practices](https://github.com/flyerhzm/rails_best_practices) for rails linting
 - [Reek](https://github.com/troessner/reek) for ruby linting
 - [RSpec](https://github.com/rspec/rspec) for testing
-- [RSpec API Doc Generator](https://github.com/zipmark/rspec_api_documentation) for API documentation
+- [RSpec OpenAPI](https://github.com/exoego/rspec-openapi) for API documentation
 - [Rubocop](https://github.com/bbatsov/rubocop/) for ruby linting
 - [Sendgrid](https://github.com/stephenb/sendgrid) for sending mails
 - [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) adds other testing matchers
@@ -112,14 +113,9 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 
 https://railsapibasers.docs.apiary.io/
 
-With [RSpec API Doc Generator](https://github.com/zipmark/rspec_api_documentation) you can generate the docs after writing the acceptance specs.
+With [RSpec API Doc Generator](https://github.com/exoego/rspec-openapi) you can generate the docs after writing requests specs.
 
-Just run:
-
-`./bin/docs `
-
-An `apiary.apib` file will be generated at the root directory of the project.
-
+See [api_documentation](./docs/api_documentation.md) docs for more info.
 
 ## Code quality
 
@@ -136,6 +132,7 @@ In order to use [New Relic](https://newrelic.com) to monitor your application re
 To obtain an API key you must create an account in the platform.
 
 ## Configuring Code Climate
+
 1. After adding the project to CC, go to `Repo Settings`
 1. On the `Test Coverage` tab, copy the `Test Reporter ID`
 1. Set the current value of `CC_TEST_REPORTER_ID` in the [circle-ci project env variables](https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project)

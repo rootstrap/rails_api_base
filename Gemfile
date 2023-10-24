@@ -43,7 +43,6 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6.2'
   gem 'pry-byebug', '~> 3.9', platform: :mri
   gem 'pry-rails', '~> 0.3.9'
-  gem 'rspec_api_documentation', '~> 6.1.0'
 end
 
 group :development do
@@ -71,6 +70,7 @@ group :test do
   gem 'parallel_tests', '~> 4.3'
   gem 'pg_query', '~> 4.2.3'
   gem 'prosopite', '~> 1.4.1'
+  gem 'rspec-openapi', '~> 0.9'
   gem 'rspec-rails', '~> 6.0'
   gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
   gem 'shoulda-matchers', '~> 5.3'

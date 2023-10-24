@@ -34,10 +34,10 @@ To schedule the cron task you have to do it in `.github/workflows/update_knapsac
 It is now scheduled for February 31 so will never run.
 
 ```sh
-  - cron: '0 5 31 2 *'    
+  - cron: '0 5 31 2 *'
   # The above cron does not run. Replace with the wanted periodicity.
 ```
- 
+
 If the branch exists or the PR is already created the workflow will fail.
 In your repository settings -> actions -> general ->  Workflow permissions we need to allow read / write permissions and mark the option allow Github action to create PR, other case the workflow will fail.
 

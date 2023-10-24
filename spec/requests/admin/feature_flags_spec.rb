@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe 'GET admin/feature-flags' do
+describe 'GET admin/feature-flags', openapi: false do
   subject { get '/admin/feature-flags' }
 
   context 'with an admin_user account' do

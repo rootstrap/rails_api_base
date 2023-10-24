@@ -3,7 +3,7 @@
 describe 'GET api/v1/users/passwords/edit' do
   subject { get edit_user_password_path, params: }
 
-  let(:user)           { create(:user, password: 'mypass123') }
+  let(:user) { create(:user, password: 'mypass123') }
   let(:password_token) { user.send(:set_reset_password_token) }
   let(:params) do
     {

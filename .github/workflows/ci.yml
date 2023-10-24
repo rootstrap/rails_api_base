@@ -16,6 +16,7 @@ env:
   CI: true
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   REPO: ${{ github.repository }}
+  PARALLEL_TEST_FIRST_IS_1: true
 
 jobs:
   linters:
@@ -29,9 +30,13 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+      - name: Label PR
+        if: github.event.pull_request
+        uses: actions/labeler@v4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Code Analysis
-        run: |
-          bundle exec rake code:analysis
+        run: bundle exec rake code:analysis
   tests:
     name: Tests
     runs-on: ubuntu-latest
@@ -65,13 +70,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Set ENV for codeclimate (pull_request)
+        with:
+          fetch-depth: 0
+      - name: Set ENV for CodeClimate
         if: github.event_name == 'pull_request'
         run: |
           git fetch --no-tags --prune --depth=1 origin +refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
           echo "GIT_BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
           echo "GIT_COMMIT_SHA=$(git rev-parse origin/$GITHUB_HEAD_REF)" >> $GITHUB_ENV
           echo "PULL_REQUEST_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+      - name: Set ENV for API Docs
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          if [ $(git diff ${{ github.event.before }} ${{ github.event.after }} --name-only | grep 'spec/requests/api' | wc -l) -gt 0 ]; then
+            echo "OPENAPI=true" >> $GITHUB_ENV
+          fi
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -82,23 +95,20 @@ jobs:
           chmod +x ./cc-test-reporter
           ./cc-test-reporter before-build
       - name: Setup Database
-        run: |
-          bundle exec rake parallel:load_schema
+        run: bundle exec rake parallel:load_schema
       - name: Check for untracked changes in schema.rb
         uses: rootstrap/check_untracked_changes@v1
         with:
           path: "./db/schema.rb"
       - name: Get CPU info
         id: cpu_info
-        run: |
-          echo "cpu_cores=$(nproc)" >> $GITHUB_ENV
+        run: echo "cpu_cores=$(nproc)" >> $GITHUB_ENV
       - name: Run Tests
         env:
           KNAPSACK_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           KNAPSACK_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           PARALLEL_TESTS_CONCURRENCY: ${{ env.cpu_cores }}
-        run: |
-          bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
+        run: bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories
@@ -106,28 +116,80 @@ jobs:
         with:
           path: "./app/ ./spec/"
       - name: Report to CodeClimate
-        run: |
-          ./cc-test-reporter format-coverage --output "coverage/coverage.${{ matrix.ci_node_index }}.json"
-      - name: Upload partial converage
+        run: ./cc-test-reporter format-coverage --output "coverage/coverage.${{ matrix.ci_node_index }}.json"
+      - name: Upload partial coverage
         uses: actions/upload-artifact@v2
         with:
           name: coverage
           path: "coverage/coverage.${{ matrix.ci_node_index }}.json"
-  coverage:
-    name: Coverage
+      - name: Merge API Docs from threads
+        env:
+          CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+        if: ${{ env.OPENAPI }}
+        run: bundle exec ./bin/merge-api-docs.rb
+      - name: Upload partial API Docs
+        if: ${{ env.OPENAPI }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: api_docs
+          path: "tmp/openapi${{ matrix.ci_node_index }}.yaml"
+  merge_results:
+    name: Merge Results
     runs-on: ubuntu-latest
     needs: tests
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ssh-key: "${{ secrets.PUSH_KEY }}"
+      - name: Set ENV for CodeClimate
+        if: github.event_name == 'pull_request'
+        run: |
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
+          echo "GIT_BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
+          echo "GIT_COMMIT_SHA=$(git rev-parse origin/$GITHUB_HEAD_REF)" >> $GITHUB_ENV
+          echo "PULL_REQUEST_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+      - name: Set ENV for API Docs
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          if [ $(git diff ${{ github.event.before }} ${{ github.event.after }} --name-only | grep 'spec/requests/api' | wc -l) -gt 0 ]; then
+            echo "OPENAPI=true" >> $GITHUB_ENV
+          fi
       - name: Setup Code Climate test-reporter
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
-      - name: download coverage reports
+      - name: Download coverage reports
         uses: actions/download-artifact@v2
         with:
           name: coverage
           path: coverage/coverage.*.json
-      - name: report coverage
+      - name: Report coverage
         run: |
           ./cc-test-reporter sum-coverage coverage/**/*.json
           ./cc-test-reporter upload-coverage
+      - name: Setup Ruby
+        if: ${{ env.OPENAPI }}
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Download API Docs
+        if: ${{ env.OPENAPI }}
+        uses: actions/download-artifact@v2
+        with:
+          name: api_docs
+          path: tmp/
+      - name: Merge API Docs from nodes
+        env:
+          MOVE_TMP_FILES: true
+        if: ${{ env.OPENAPI }}
+        run: bundle exec ./bin/merge-api-docs.rb
+      - name: Commit & push API Docs
+        if: ${{ env.OPENAPI }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add "doc/openapi.yaml"
+          git commit -m "Update API Docs" || echo "No changes to commit"
+          git push origin main
