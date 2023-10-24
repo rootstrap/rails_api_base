@@ -9,8 +9,13 @@ For the action to update the docs make sure to set the `PUSH_KEY` secret so the 
 2. Add a "secret" to the repo with name `PUSH_KEY` and value the generated file `deploy_key`.
 3. Add a "deploy key" to the repo with title `GitHub Actions` and value the generated file `deploy_key.pub`. Make sure to tick the "Allow write access" checkbox.
 
-### Labeling
+### Ignoring specs
+To ignore specs that we don't want in the final API documentation we can add the `openapi: false` option to the spec like so:
+```ruby
+describe 'GET admin/feature-flags', openapi: false do
+```
 
+### Labeling
 An autolabeler action takes care of labeling with `api_docs` for any PR that changes the `spec/requests/api` files.
 
 *The label has to be created before hand for the labeler to work*
