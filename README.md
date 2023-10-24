@@ -35,7 +35,7 @@ This template comes with:
 1. Run `bootstrap.sh` with the name of your project like `./bootstrap.sh --name=my_awesome_project`
 1. `rspec` and make sure all tests pass
 1. Run `rails s`.
-1. To bundle the JS assets, you will also need to run `yarn build --watch` in a separate terminal tab. This requires yarn and node installed in your system.
+1. To bundle the JS assets, run `yarn install` and `yarn build --watch`. This requires yarn and node installed in your system.
 1. You can now try your REST services!
 
 ## How to use with docker
