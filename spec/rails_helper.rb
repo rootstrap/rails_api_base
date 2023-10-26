@@ -41,6 +41,10 @@ RSpec.configure do |config|
   config.define_derived_metadata(file_path: Regexp.new('/spec/forms/')) do |metadata|
     metadata[:type] = :form
   end
+  # Only build the API Docs from files in spec/requests/api, and ignore the rest
+  config.define_derived_metadata(file_path: Regexp.new('/spec/requests/')) do |metadata|
+    metadata[:openapi] = false unless metadata[:file_path].match?(Regexp.new('/spec/requests/api/'))
+  end
 
   config.include Shoulda::Matchers::ActiveModel, type: :form
   config.include Shoulda::Matchers::ActiveRecord, type: :form
