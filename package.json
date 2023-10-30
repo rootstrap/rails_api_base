@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "rails_api_base",
   "private": "true",
   "dependencies": {
     "@activeadmin/activeadmin": "3.1.0",

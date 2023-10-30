@@ -1,2 +1,2 @@
-web: unset PORT && env RUBY_DEBUG_OPEN=true bin/rails server
+web: bin/rails server -p3000
 js: yarn build --watch
