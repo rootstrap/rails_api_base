@@ -1,5 +1,10 @@
 require 'open3'
-require 'dotenv/load'
+
+begin
+  require 'dotenv/load'
+rescue StandardError, LoadError => e
+  e
+end
 
 def running_with_docker?
   ENV['DOCKER_ENABLED'] == 'true' && docker_compose_installed? && web_service_running?
