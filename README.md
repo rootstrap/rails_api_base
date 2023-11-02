@@ -32,9 +32,11 @@ This template comes with:
 
 1. Clone this repo
 1. Install PostgreSQL in case you don't have it
+1. Install node and yarn.
 1. Run `bootstrap.sh` with the name of your project like `./bootstrap.sh --name=my_awesome_project`
 1. `rspec` and make sure all tests pass
-1. `rails s`
+1. Run `rails s`.
+1. Run `yarn install` and `yarn build --watch`. This bundles the JS assets in the administration site using [esbuild](https://github.com/evanw/esbuild).
 1. You can now try your REST services!
 
 ## How to use with docker
@@ -59,6 +61,8 @@ This template provides a handful of scripts to make your dev experience better!
   - `bin/web ls`
 - bin/rspec to run specs
   - `bin/rspec .`
+- bin/dev to run both rails and JS build processes at the same time in a single terminal tab.
+  - `bin/dev`
 
 You don't have to use these but they are designed to run the same when running with docker or not.
 To illustrate, `bin/rails console` will run the console in the docker container when running with docker and locally when not.
@@ -80,6 +84,7 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Faker](https://github.com/stympy/faker) for generating test data
 - [Flipper](https://github.com/jnunemaker/flipper) for feature flag support
 - [Jbuilder](https://github.com/rails/jbuilder) for json views
+- [JS Bundling](https://github.com/rails/jsbundling-rails) for bundling JS assets.
 - [Knapsack](https://github.com/KnapsackPro/knapsack) for generating CI time report and splitting into nodes
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
 - [New Relic](https://github.com/newrelic/newrelic-ruby-agent) for monitoring and debugging
