@@ -67,7 +67,7 @@ end
 group :test do
   gem 'faker', '~> 3.2'
   gem 'knapsack', '~> 4.0'
-  gem 'octokit', '~> 7.1'
+  gem 'octokit', '~> 8.0'
   gem 'parallel_tests', '~> 4.3'
   gem 'pg_query', '~> 4.2.3'
   gem 'prosopite', '~> 1.4.1'
