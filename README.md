@@ -119,7 +119,7 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 ## Api Docs
 
 - [RSpec API Doc Generator](https://github.com/exoego/rspec-openapi) you can generate the docs after writing requests specs.
-- [Rswag](https://github.com/rswag/rswag) you can expose the generate docs.
+- [Rswag](https://github.com/rswag/rswag) you can expose the generated docs.
 
 See [api_documentation](./docs/api_documentation.md) docs for more info.
 
