@@ -99,7 +99,8 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Rails Best Practices](https://github.com/flyerhzm/rails_best_practices) for rails linting
 - [Reek](https://github.com/troessner/reek) for ruby linting
 - [RSpec](https://github.com/rspec/rspec) for testing
-- [RSpec OpenAPI](https://github.com/exoego/rspec-openapi) for API documentation
+- [RSpec OpenAPI](https://github.com/exoego/rspec-openapi) for generating API documentation
+- [Rswag](https://github.com/rswag/rswag) for expose API documentation
 - [Rubocop](https://github.com/bbatsov/rubocop/) for ruby linting
 - [Sendgrid](https://github.com/stephenb/sendgrid) for sending mails
 - [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) adds other testing matchers
@@ -117,9 +118,8 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 
 ## Api Docs
 
-https://railsapibasers.docs.apiary.io/
-
-With [RSpec API Doc Generator](https://github.com/exoego/rspec-openapi) you can generate the docs after writing requests specs.
+- [RSpec API Doc Generator](https://github.com/exoego/rspec-openapi) you can generate the docs after writing requests specs.
+- [Rswag](https://github.com/rswag/rswag) you can expose the generated docs.
 
 See [api_documentation](./docs/api_documentation.md) docs for more info.
 
