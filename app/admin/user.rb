@@ -53,4 +53,14 @@ ActiveAdmin.register User do
       row :updated_at
     end
   end
+
+  sidebar 'Actions', only: %i[show] do
+    li(link_to('Impersonate', impersonate_admin_user_path(user), method: :post))
+  end
+
+  member_action :impersonate, method: :post do
+    impersonate_user(resource)
+    
+    redirect_to root_path
+  end
 end

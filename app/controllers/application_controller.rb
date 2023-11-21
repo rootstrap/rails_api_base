@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
   include ActiveStorage::SetCurrent
+  impersonates :user
 
   after_action :verify_authorized,
                except: :index,
