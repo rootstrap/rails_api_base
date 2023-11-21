@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '~> 3.2.2'
 
 gem 'rails', '~> 7.0.8'
 
@@ -32,6 +31,7 @@ gem 'sass-rails', '~> 6.0.0'
 gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets', '~> 4.2.1'
 gem 'strong_migrations', '~> 1.6'
+gem 'view_component', '~> 3.7.0'
 gem 'yaaf', '~> 2.2'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -55,6 +55,7 @@ group :development do
   gem 'i18n-tasks', '~> 1.0.13'
   gem 'letter_opener', '~> 1.7'
   gem 'listen', '~> 3.8'
+  gem 'lookbook', '~> 2.1'
   gem 'rails_best_practices', '~> 1.20'
   gem 'reek', '~> 6.1', '>= 6.1.1'
   gem 'rubocop', '~> 1.57', require: false
