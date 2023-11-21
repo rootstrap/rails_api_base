@@ -59,8 +59,9 @@ ActiveAdmin.register User do
   end
 
   member_action :impersonate, method: :post do
+    @current_user = current_admin_user
     impersonate_user(resource)
     
-    redirect_to root_path
+    redirect_to admin_root_path
   end
 end
