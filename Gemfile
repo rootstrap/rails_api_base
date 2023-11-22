@@ -8,6 +8,7 @@ gem 'activeadmin', '~> 3.0'
 gem 'active_storage_base64', '~> 2.0.0'
 gem 'aws-sdk-s3', '~> 1.137', require: false
 gem 'bootsnap', '~> 1.17'
+gem 'cssbundling-rails', '~> 1.3'
 gem 'delayed_job_active_record', '~> 4.1'
 gem 'devise', '~> 4.9'
 gem 'devise_token_auth', '~> 1.2.2'
