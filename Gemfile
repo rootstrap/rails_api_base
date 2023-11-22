@@ -68,6 +68,7 @@ end
 
 group :test do
   gem 'faker', '~> 3.2'
+  gem 'faraday-retry', '~> 2.2'
   gem 'knapsack', '~> 4.0'
   gem 'octokit', '~> 8.0'
   gem 'parallel_tests', '~> 4.3'
