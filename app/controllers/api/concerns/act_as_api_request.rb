@@ -8,6 +8,7 @@ module Api
       included do
         before_action :skip_session_storage
         before_action :check_json_request
+        protect_from_forgery with: :null_session
       end
 
       def check_json_request
