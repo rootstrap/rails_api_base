@@ -93,6 +93,7 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Parallel Tests](https://github.com/grosser/parallel_tests) for split CI in several cores
 - [Prosopite](https://github.com/charkost/prosopite) to detect N+1 queries
 - [Pry](https://github.com/pry/pry) for enhancing the ruby shell
+- [Pretender](https://github.com/ankane/pretender) for user impersonation
 - [Puma](https://github.com/puma/puma) for the server
 - [Pundit](https://github.com/varvet/pundit) for authorization management
 - [Rack CORS](https://github.com/cyu/rack-cors) for handling CORS
@@ -142,6 +143,12 @@ To obtain an API key you must create an account in the platform.
 1. After adding the project to CC, go to `Repo Settings`
 1. On the `Test Coverage` tab, copy the `Test Reporter ID`
 1. Set the current value of `CC_TEST_REPORTER_ID` in the [circle-ci project env variables](https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project)
+
+## Impersonation
+
+The [Pretender](https://github.com/ankane/pretender) gem provides a user impersonation feature, enabling users to assume the identity of another. While this functionality can be powerful, it comes with inherent safety and privacy concerns. Consequently, it is **important to exercise caution and restrict access to this feature only to specific high-level roles**.
+
+To mitigate potential risks, it is **strongly advised not to rely on default access settings**. Ensure that careful consideration is given to the assignment of roles permitted to utilize this impersonation tool. By implementing these measures, you can safeguard against unintended or unauthorized use, promoting a secure and controlled environment.
 
 ## Code Owners
 
