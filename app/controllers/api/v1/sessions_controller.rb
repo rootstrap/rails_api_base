@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-module Api
+module API
   module V1
     class SessionsController < DeviseTokenAuth::SessionsController
       protect_from_forgery with: :null_session
-      include Api::Concerns::ActAsApiRequest
+      include API::Concerns::ActAsAPIRequest
 
       private
 

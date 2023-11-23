@@ -24,7 +24,7 @@ describe 'GET api/v1/users/:id' do
 
   context 'when record is not found' do
     it 'returns status 404 not found' do
-      allow_any_instance_of(Api::V1::UsersController).to receive(
+      allow_any_instance_of(API::V1::UsersController).to receive(
         :current_user
       ).and_raise(ActiveRecord::RecordNotFound)
       subject

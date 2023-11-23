@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-module Api
+module API
   module V1
     class RegistrationsController < DeviseTokenAuth::RegistrationsController
       protect_from_forgery with: :exception, unless: :json_request?
-      include Api::Concerns::ActAsApiRequest
+      include API::Concerns::ActAsAPIRequest
 
       private
 

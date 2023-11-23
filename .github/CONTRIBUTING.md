@@ -8,7 +8,7 @@
 
 ## Releases
 
-We release new versions of Rails Api Base when it is convenient, we follow [semver](http://semver.org/). When ready to release:
+We release new versions of Rails API Base when it is convenient, we follow [semver](http://semver.org/). When ready to release:
 
 1. Make sure that tests are green.
 2. Update the changelog with [Github Changelog Generator](https://github.com/skywinder/github-changelog-generator)

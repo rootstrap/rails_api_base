@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module Api
+module API
   module V1
-    class SettingsController < Api::V1::ApiController
+    class SettingsController < API::V1::APIController
       skip_before_action :authenticate_user!
       skip_after_action :verify_authorized, :verify_policy_scoped
 
