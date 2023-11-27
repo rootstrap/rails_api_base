@@ -9,7 +9,7 @@ paths:
     get:
       summary: must_update
       tags:
-      - Api::V1::Setting
+      - API::V1::Setting
       parameters:
       - name: device_version
         in: query
@@ -35,10 +35,10 @@ paths:
     get:
       summary: status
       tags:
-      - Api::V1::Api
+      - API::V1::Health
       responses:
         '200':
-          description: returns status 200 ok
+          description: returns the api status
           content:
             application/json:
               schema:
@@ -54,46 +54,40 @@ paths:
     put:
       summary: update
       tags:
-      - Api::V1::User
+      - API::V1::User
       parameters:
       - name: access-token
         in: header
         required: true
         schema:
           type: string
-        example: e5HkLYnaCXYraNag7j8Pow
+        example: US1OLbVoV75Dmmrsvghj6A
       - name: client
         in: header
         required: true
         schema:
           type: string
-        example: 6sjGQud9xal67VGOIbMB2g
+        example: B5UYANRjXLfoTwXY_bj58g
       - name: uid
         in: header
         required: true
         schema:
           type: string
-        example: armand.daniel@nader-rodriguez.example
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                user:
-                  type: object
-                  properties:
-                    email:
-                      type: string
-                    username:
-                      type: string
-              required:
-              - user
-            example:
-              user:
-                email: notanemail
-                username: new username
+        example: kurt@kub-hoppe.example
       responses:
+        '422':
+          description: returns the missing params error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: A required param is missing
         '400':
           description: does not return success
           content:
@@ -116,21 +110,8 @@ paths:
                 errors:
                   email:
                   - is not an email
-        '422':
-          description: returns the missing params error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                required:
-                - error
-              example:
-                error: A required param is missing
         '200':
-          description: returns the user full name
+          description: returns the user id
           headers:
             access-token:
               schema:
@@ -190,39 +171,58 @@ paths:
                 - user
               example:
                 user:
-                  id: 17
-                  email: armand.daniel@nader-rodriguez.example
+                  id: 8
+                  email: kurt@kub-hoppe.example
                   name: new username
                   username: new username
                   first_name: ''
                   last_name: ''
-                  uid: armand.daniel@nader-rodriguez.example
+                  uid: kurt@kub-hoppe.example
                   provider: email
-                  created_at: '2023-10-24T16:30:58.054Z'
-                  updated_at: '2023-10-24T16:30:58.201Z'
+                  created_at: '2023-11-27T16:16:37.169Z'
+                  updated_at: '2023-11-27T16:16:37.322Z'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    username:
+                      type: string
+              required:
+              - user
+            example:
+              user:
+                email: notanemail
+                username: new username
     get:
       summary: show
       tags:
-      - Api::V1::User
+      - API::V1::User
       parameters:
       - name: access-token
         in: header
         required: true
         schema:
           type: string
-        example: mt6OF-UlCTAsrk_li416hg
+        example: 2p0p8q8f9LoBjWk2qctLbA
       - name: client
         in: header
         required: true
         schema:
           type: string
-        example: Z5xsKR56w5coLQWQFyHszA
+        example: ChM3End8GdtfE2NUCfkRZQ
       - name: uid
         in: header
         required: true
         schema:
           type: string
-        example: brent_bode@lubowitz.test
+        example: arthur@bahringer.example
       responses:
         '200':
           description: does not return a Set-Cookie Header
@@ -285,16 +285,16 @@ paths:
                 - user
               example:
                 user:
-                  id: 5
-                  email: elden_spinka@fadel.example
-                  name: theron.littel
-                  username: theron.littel
+                  id: 6
+                  email: wally@russel.example
+                  name: margo
+                  username: margo
                   first_name: ''
                   last_name: ''
-                  uid: elden_spinka@fadel.example
+                  uid: wally@russel.example
                   provider: email
-                  created_at: '2023-10-24T16:30:56.597Z'
-                  updated_at: '2023-10-24T16:30:56.668Z'
+                  created_at: '2023-11-27T16:16:37.152Z'
+                  updated_at: '2023-11-27T16:16:37.217Z'
         '404':
           description: returns status 404 not found
           content:
@@ -312,7 +312,7 @@ paths:
     post:
       summary: create
       tags:
-      - Api::V1::Registration
+      - API::V1::Registration
       requestBody:
         content:
           application/json:
@@ -347,13 +347,13 @@ paths:
               user:
                 username: test
                 email: test@example.com
-                password: '12345678'
-                password_confirmation: '12345678'
+                password: shouldmatch
+                password_confirmation: dontmatch
                 first_name: Johnny
                 last_name: Perez
       responses:
         '200':
-          description: does not return a Set-Cookie Header
+          description: does not raise an error
           headers:
             access-token:
               schema:
@@ -413,7 +413,7 @@ paths:
                 - user
               example:
                 user:
-                  id: 25
+                  id: 13
                   email: test@example.com
                   name: Johnny Perez
                   username: test
@@ -421,10 +421,10 @@ paths:
                   last_name: Perez
                   uid: test@example.com
                   provider: email
-                  created_at: '2023-10-24T16:30:59.078Z'
-                  updated_at: '2023-10-24T16:30:59.147Z'
+                  created_at: '2023-11-27T16:16:36.781Z'
+                  updated_at: '2023-11-27T16:16:36.845Z'
         '422':
-          description: does not return a successful response
+          description: does not create a user
           content:
             application/json:
               schema:
@@ -469,7 +469,7 @@ paths:
                   errors:
                     type: object
                     properties:
-                      password:
+                      email:
                         type: array
                         items:
                           type: string
@@ -477,7 +477,7 @@ paths:
                         type: array
                         items:
                           type: string
-                      email:
+                      password:
                         type: array
                         items:
                           type: string
@@ -505,19 +505,19 @@ paths:
                   provider: email
                   uid: test@example.com
                 errors:
-                  password:
-                  - is too short (minimum is 8 characters)
-                  full_messages:
-                  - Password confirmation doesn't match Password
                   email:
                   - is not an email
+                  full_messages:
+                  - Password confirmation doesn't match Password
+                  password:
+                  - is too short (minimum is 8 characters)
                   password_confirmation:
                   - doesn't match Password
   "/api/v1/users/password":
     post:
       summary: create
       tags:
-      - Api::V1::Password
+      - API::V1::Password
       requestBody:
         content:
           application/json:
@@ -532,7 +532,7 @@ paths:
               email: notvalid@example.com
       responses:
         '200':
-          description: does not raise an error
+          description: does not return a Set-Cookie Header
           content:
             application/json:
               schema:
@@ -547,10 +547,10 @@ paths:
                 - message
               example:
                 success: true
-                message: An email has been sent to 'maryellen@tillman.test' containing
-                  instructions for resetting your password.
+                message: An email has been sent to 'cedrick_borer@fritsch-russel.example'
+                  containing instructions for resetting your password.
         '404':
-          description: does not send an email
+          description: does not return a successful response
           content:
             application/json:
               schema:
@@ -565,26 +565,26 @@ paths:
     put:
       summary: update
       tags:
-      - Api::V1::Password
+      - API::V1::Password
       parameters:
       - name: access-token
         in: header
         required: true
         schema:
           type: string
-        example: ke-3dKPt96BfO50ZRu224w
+        example: Px9jGqvmrR3-XQ5wIEJofA
       - name: client
         in: header
         required: true
         schema:
           type: string
-        example: 2Tk8qHUKrqdj1lIYCNuL2g
+        example: J8ViAYe3UpGsATHp_jhSFg
       - name: uid
         in: header
         required: true
         schema:
           type: string
-        example: cheri@oberbrunner.example
+        example: drew@oreilly-rodriguez.test
       requestBody:
         content:
           application/json:
@@ -670,16 +670,16 @@ paths:
               example:
                 success: true
                 data:
-                  email: alisia_kemmer@medhurst-thiel.example
+                  email: tomiko.christiansen@huel-lehner.example
                   provider: email
-                  uid: alisia_kemmer@medhurst-thiel.example
-                  id: 21
+                  uid: tomiko.christiansen@huel-lehner.example
+                  id: 15
                   allow_password_change: false
                   first_name: ''
                   last_name: ''
-                  username: keesha
-                  created_at: '2023-10-24T16:30:57.554Z'
-                  updated_at: '2023-10-24T16:30:57.795Z'
+                  username: randell
+                  created_at: '2023-11-27T16:16:36.920Z'
+                  updated_at: '2023-11-27T16:16:37.284Z'
                 message: Your password has been successfully updated.
         '422':
           description: does not change the password if confirmation does not match
@@ -734,7 +734,7 @@ paths:
     get:
       summary: edit
       tags:
-      - Api::V1::Password
+      - API::V1::Password
       parameters:
       - name: redirect_url
         in: query
@@ -747,20 +747,20 @@ paths:
         required: false
         schema:
           type: string
-        example: DvTEJ-i3fY1NXtcQsLEB
+        example: x96pxBR3CGmwVZrQcRZQ
       responses:
         '302':
-          description: returns the client id
+          description: returns a the access token, uid and client id
           content:
             text/html:
               schema:
                 type: string
-              example: <html><body>You are being <a href="http://www.example.com://localhost?access-token=ieJIKa1BSUGhHIhJ1PRy_A&amp;client=9lJDiCWsyxq4g4iMykH2dw&amp;client_id=9lJDiCWsyxq4g4iMykH2dw&amp;config=&amp;expiry=1761323457&amp;reset_password=true&amp;token=ieJIKa1BSUGhHIhJ1PRy_A&amp;uid=sherita%40beer.example">redirected</a>.</body></html>
+              example: <html><body>You are being <a href="http://www.example.com://localhost?access-token=ZIZyF6OHpd3uHUNwjWjp_A&amp;client=4rCNjehLCLVoY9B4m-wQMg&amp;client_id=4rCNjehLCLVoY9B4m-wQMg&amp;config=&amp;expiry=1764260197&amp;reset_password=true&amp;token=ZIZyF6OHpd3uHUNwjWjp_A&amp;uid=krystal.fahey%40hahn.test">redirected</a>.</body></html>
   "/api/v1/users/sign_in":
     post:
       summary: create
       tags:
-      - Api::V1::Session
+      - API::V1::Session
       requestBody:
         content:
           application/json:
@@ -781,24 +781,11 @@ paths:
               - user
             example:
               user:
-                email: amiee_okeefe@bednar-koelpin.example
-                password: password
+                email: sherrill_koepp@oberbrunner.test
+                password: wrong_password!
       responses:
-        '401':
-          description: return errors upon failure
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                required:
-                - error
-              example:
-                error: Invalid login credentials. Please try again.
         '200':
-          description: does not return a Set-Cookie Header
+          description: does not raise an error
           headers:
             access-token:
               schema:
@@ -858,22 +845,67 @@ paths:
                 - user
               example:
                 user:
-                  id: 29
-                  email: amiee_okeefe@bednar-koelpin.example
-                  name: aubrey
-                  username: aubrey
+                  id: 13
+                  email: deanne@sauer-erdman.example
+                  name: kyle.ondricka
+                  username: kyle.ondricka
                   first_name: ''
                   last_name: ''
-                  uid: amiee_okeefe@bednar-koelpin.example
+                  uid: deanne@sauer-erdman.example
                   provider: email
-                  created_at: '2023-10-24T16:30:58.579Z'
-                  updated_at: '2023-10-24T16:30:58.662Z'
+                  created_at: '2023-11-27T16:16:37.108Z'
+                  updated_at: '2023-11-27T16:16:37.192Z'
+        '401':
+          description: return errors upon failure
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+              example:
+                error: Invalid login credentials. Please try again.
   "/api/v1/users/sign_out":
     delete:
       summary: destroy
       tags:
-      - Api::V1::Session
+      - API::V1::Session
+      parameters:
+      - name: access-token
+        in: header
+        required: true
+        schema:
+          type: string
+        example: q6BogpAXVRPzZmDKWC_SIg
+      - name: client
+        in: header
+        required: true
+        schema:
+          type: string
+        example: 2x5U9r4i2iPmCjIm5t9U5Q
+      - name: uid
+        in: header
+        required: true
+        schema:
+          type: string
+        example: charley_lang@barrows-bradtke.example
       responses:
+        '200':
+          description: returns a successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                required:
+                - success
+              example:
+                success: true
         '404':
           description: returns not found response
           content:
@@ -887,35 +919,3 @@ paths:
                 - error
               example:
                 error: User was not found or was not logged in.
-        '200':
-          description: decrements the amount of user tokens
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                required:
-                - success
-              example:
-                success: true
-      parameters:
-      - name: access-token
-        in: header
-        required: true
-        schema:
-          type: string
-        example: jaBwtXBT-5cvGBvHSeqJ0A
-      - name: client
-        in: header
-        required: true
-        schema:
-          type: string
-        example: Gd-aUKbu2tZupIOvBtCgyw
-      - name: uid
-        in: header
-        required: true
-        schema:
-          type: string
-        example: reynaldo@ritchie.example
