@@ -4,7 +4,7 @@
 [![Code Climate](https://codeclimate.com/github/rootstrap/rails_api_base/badges/gpa.svg)](https://codeclimate.com/github/rootstrap/rails_api_base)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/63de7f82c79f5fe82f46/test_coverage)](https://codeclimate.com/github/rootstrap/rails_api_base/test_coverage)
 
-Rails Api Base is a boilerplate project for JSON RESTful APIs. It follows the community best practices in terms of standards, security and maintainability, integrating a variety of testing and code quality tools. It's based on Rails 7.0 and Ruby 3.2.
+Rails API Base is a boilerplate project for JSON RESTful APIs. It follows the community best practices in terms of standards, security and maintainability, integrating a variety of testing and code quality tools. It's based on Rails 7.0 and Ruby 3.2.
 
 Finally, it contains a plug an play Administration console (thanks to [ActiveAdmin](https://github.com/activeadmin/activeadmin)).
 
@@ -116,7 +116,7 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - Config your timezone accordingly in `application.rb`.
 - Config CI in parallel execution. See [docs](docs/ci.md).
 
-## Api Docs
+## API Docs
 
 - [RSpec API Doc Generator](https://github.com/exoego/rspec-openapi) you can generate the docs after writing requests specs.
 - [Rswag](https://github.com/rswag/rswag) you can expose the generated docs.
@@ -151,7 +151,7 @@ Code owners are automatically requested for review when someone opens a pull req
 
 ## Credits
 
-Rails Api Base is maintained by [Rootstrap](http://www.rootstrap.com) with the help of our
+Rails API Base is maintained by [Rootstrap](http://www.rootstrap.com) with the help of our
 [contributors](https://github.com/rootstrap/rails_api_base/contributors).
 
 [<img src="https://s3-us-west-1.amazonaws.com/rootstrap.com/img/rs.png" width="100"/>](http://www.rootstrap.com)

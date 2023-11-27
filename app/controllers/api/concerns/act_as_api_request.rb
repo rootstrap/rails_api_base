@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module Api
+module API
   module Concerns
-    module ActAsApiRequest
+    module ActAsAPIRequest
       extend ActiveSupport::Concern
 
       included do

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-module Api
+module API
   module V1
-    class ApiController < ActionController::API
-      include Api::Concerns::ActAsApiRequest
+    class APIController < ActionController::API
+      include API::Concerns::ActAsAPIRequest
       include Pundit::Authorization
       include DeviseTokenAuth::Concerns::SetUserByToken
 
