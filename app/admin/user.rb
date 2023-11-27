@@ -3,6 +3,35 @@
 ActiveAdmin.register User do
   permit_params :email, :first_name, :last_name, :username, :password, :password_confirmation
 
+  action_item :impersonate_user, only: :show do
+    link_to 'Impersonate User', impersonate_admin_user_path(user), method: :post
+  end
+
+  action_item :stop_impersonating_user, only: :show do
+    link_to 'Stop Impersonating User', stop_impersonating_admin_users_path, method: :post
+  end
+
+  member_action :impersonate, method: :post do
+    impersonate_user(resource)
+    redirect_to '/', notice: "Impersonated #{resource.email} successfully"
+  end
+
+  collection_action :stop_impersonating, method: :post do
+    stop_impersonating_user
+    redirect_to '/', notice: "Stopped impersonating successfully"
+  end
+
+  controller do
+    def impersonate_userr(resource)
+      raise ArgumentError, "No resource to impersonate" unless resource
+      raise Pretender::Error, "Must be logged in to impersonate" unless true_user
+
+      instance_variable_set(:"@impersonated_user", resource)
+      # use to_s for Mongoid for BSON::ObjectId
+      request.session[:"impersonated_user_id"] = resource.id.is_a?(Numeric) ? resource.id : resource.id.to_s
+    end
+  end
+
   form do |f|
     f.inputs 'Details' do
       f.input :email
