@@ -417,7 +417,7 @@ GEM
       rspec-mocks (~> 3.12)
       rspec-support (~> 3.12)
     rspec-support (3.12.1)
-    rswag-api (2.11.0)
+    rswag-api (2.12.0)
       railties (>= 3.1, < 7.2)
     rswag-ui (2.12.0)
       actionpack (>= 3.1, < 7.2)
@@ -566,7 +566,7 @@ DEPENDENCIES
   rspec-openapi (~> 0.9)
   rspec-rails (~> 6.1)
   rspec-retry!
-  rswag-api (~> 2.11.0)
+  rswag-api (~> 2.12.0)
   rswag-ui (~> 2.12.0)
   rubocop (~> 1.57)
   rubocop-factory_bot (~> 2.24)
