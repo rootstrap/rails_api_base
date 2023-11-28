@@ -11,6 +11,6 @@ Examples of affected indicators could include clicks and visits.
 
 ### How it works
 
-For the integration to function correctly, certain actions will be necessary:
+For the integration to works correctly, certain actions will be necessary:
 - The cookie indicating that a user is being impersonated should be obtained from the session.
 - If the cookie exists, a flag/attribute should be added to the Analytics Tool.
