@@ -3,7 +3,7 @@
 module Api
     module V1
       class HomeController < Api::V1::ApiController
-        def index end;
+        def index; end
       end
     end
 end
