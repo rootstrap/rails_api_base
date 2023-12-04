@@ -419,7 +419,7 @@ GEM
     rspec-support (3.12.1)
     rswag-api (2.12.0)
       railties (>= 3.1, < 7.2)
-    rswag-ui (2.12.0)
+    rswag-ui (2.13.0)
       actionpack (>= 3.1, < 7.2)
       railties (>= 3.1, < 7.2)
     rubocop (1.57.2)
@@ -567,7 +567,7 @@ DEPENDENCIES
   rspec-rails (~> 6.1)
   rspec-retry!
   rswag-api (~> 2.12.0)
-  rswag-ui (~> 2.12.0)
+  rswag-ui (~> 2.13.0)
   rubocop (~> 1.57)
   rubocop-factory_bot (~> 2.24)
   rubocop-performance (~> 1.19)
