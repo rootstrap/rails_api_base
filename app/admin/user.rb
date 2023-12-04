@@ -55,13 +55,7 @@ ActiveAdmin.register User do
   end
 
   sidebar 'Actions', only: %i[show] do
-    li(link_to('Impersonate', impersonate_admin_user_path(user), method: :post))
-  end
-
-  member_action :impersonate, method: :post do
-    @current_user = current_admin_user
-    impersonate_user(resource)
-    
-    redirect_to admin_root_path
+    li(link_to('Impersonate', masquerade_path(resource), method: :get))
+    li(link_to('Stop Impersonation', back_masquerade_path(resource), method: :get))
   end
 end
