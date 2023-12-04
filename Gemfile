@@ -58,6 +58,7 @@ group :development do
   gem 'rails_best_practices', '~> 1.20'
   gem 'reek', '~> 6.1', '>= 6.1.1'
   gem 'rubocop', '~> 1.58', require: false
+  gem 'rubocop-capybara', '~> 2.19'
   gem 'rubocop-factory_bot', '~> 2.24', require: false
   gem 'rubocop-performance', '~> 1.19', require: false
   gem 'rubocop-rails', '~> 2.22', require: false
@@ -67,6 +68,7 @@ group :development do
 end
 
 group :test do
+  gem 'capybara', '~> 3.39', '>= 3.39.2'
   gem 'faker', '~> 3.2'
   gem 'faraday-retry', '~> 2.2'
   gem 'knapsack', '~> 4.0'

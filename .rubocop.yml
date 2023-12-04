@@ -6,6 +6,7 @@ inherit_mode:
     - Exclude
 
 require:
+  - rubocop-capybara
   - rubocop-factory_bot
   - rubocop-performance
   - rubocop-rails
@@ -139,3 +140,8 @@ Style/SlicingWithRange:
 
 Style/StringConcatenation:
   Enabled: false
+
+RSpec/Capybara/FeatureMethods:
+  EnabledMethods:
+    - feature
+    - scenario
