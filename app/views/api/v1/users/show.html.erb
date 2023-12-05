@@ -1,0 +1,9 @@
+
+<% if user_masquerade? %>
+    <nav>
+        <%= link_to "Stop impersonation", back_user_masquerade_index_path(current_user) %>
+    </nav>
+<% end %>
+<h3>
+    Impersonated: <%=current_user.email %>
+</h3>

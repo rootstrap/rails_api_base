@@ -3,7 +3,6 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
   include ActiveStorage::SetCurrent
-  before_action :masquerade!
 
   after_action :verify_authorized,
                except: :index,

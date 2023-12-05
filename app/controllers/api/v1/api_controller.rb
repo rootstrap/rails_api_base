@@ -7,7 +7,6 @@ module Api
       include Pundit::Authorization
       include DeviseTokenAuth::Concerns::SetUserByToken
 
-      before_action :masquerade!
       before_action :authenticate_user!
 
       after_action :verify_authorized, except: :index

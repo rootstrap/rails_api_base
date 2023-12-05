@@ -4,9 +4,10 @@ module Api
   module V1
     class UsersController < Api::V1::ApiController
       before_action :auth_user
+      respond_to :html
 
       def show
-        byebug
+        respond_with :api, :v1, :show
       end
 
       def update

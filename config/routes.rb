@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'home#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   namespace :admin do
@@ -17,7 +16,7 @@ Rails.application.routes.draw do
   }
 
   namespace :api do
-    namespace :v1, defaults: { format: :json } do
+    namespace :v1, defaults: { format: :html } do
       get :status, to: 'health#status'
 
       devise_scope :user do
@@ -26,7 +25,6 @@ Rails.application.routes.draw do
       resources :settings, only: [] do
         get :must_update, on: :collection
       end
-      get :home, to: 'home#index'
     end
   end
   mount Rswag::Ui::Engine => '/api-docs'
