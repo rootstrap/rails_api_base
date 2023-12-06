@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  impersonates :user
-
   include Pundit::Authorization
   include ActiveStorage::SetCurrent
 
