@@ -141,7 +141,7 @@ To obtain an API key you must create an account in the platform.
 
 1. After adding the project to CC, go to `Repo Settings`
 1. On the `Test Coverage` tab, copy the `Test Reporter ID`
-1. Set the current value of `CC_TEST_REPORTER_ID` in the [circle-ci project env variables](https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project)
+1. Set the current value of `CC_TEST_REPORTER_ID` in the [GitHub secrets and variables](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)
 
 ## Code Owners
 
