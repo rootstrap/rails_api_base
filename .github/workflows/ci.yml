@@ -96,6 +96,9 @@ jobs:
           ./cc-test-reporter before-build
       - name: Setup Database
         run: bundle exec rake parallel:load_schema
+      - name: Run yarn commands
+        run: |
+          yarn install
       - name: Check for untracked changes in schema.rb
         uses: rootstrap/check_untracked_changes@v1
         with:
