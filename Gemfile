@@ -5,7 +5,7 @@ ruby '~> 3.2.2'
 
 gem 'rails', '~> 7.0.8'
 
-gem 'activeadmin', '~> 3.0'
+gem 'activeadmin', '~> 3.2'
 gem 'active_storage_base64', '~> 2.0.0'
 gem 'aws-sdk-s3', '~> 1.141', require: false
 gem 'bootsnap', '~> 1.17'
