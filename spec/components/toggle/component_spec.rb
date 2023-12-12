@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe ToggleComponent, type: :component do
+RSpec.describe Toggle::Component, type: :component do
   pending "add some examples to (or delete) #{__FILE__}"
 
   # it "renders something useful" do
