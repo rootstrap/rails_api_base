@@ -76,7 +76,7 @@ group :test do
   gem 'parallel_tests', '~> 4.3'
   gem 'pg_query', '~> 4.2.3'
   gem 'prosopite', '~> 1.4.1'
-  gem 'rspec-openapi', '~> 0.9'
+  gem 'rspec-openapi', '~> 0.10'
   gem 'rspec-rails', '~> 6.1'
   gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
   gem 'shoulda-matchers', '~> 5.3'
