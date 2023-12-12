@@ -1,12 +1,13 @@
 import * as esbuild from 'esbuild'
+import rails from 'esbuild-rails'
+import path from 'path'
 
 const config = {
-  entryPoints: ['app/assets/javascripts/*'],
+  entryPoints: ["application.js"],
   bundle: true,
-  sourcemap: process.env.RAILS_ENV !== 'production',
-  minify: process.env.RAILS_ENV === 'production',
-  outdir: 'app/assets/builds',
-  publicPath: '/assets'
+  outdir: path.join(process.cwd(), "app/assets/builds"),
+  absWorkingDir: path.join(process.cwd(), "app/javascript"),
+  plugins: [rails()],
 }
 
 if (process.argv.includes('--watch')) {
