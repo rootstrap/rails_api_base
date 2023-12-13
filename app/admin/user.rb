@@ -54,7 +54,7 @@ ActiveAdmin.register User do
     end
   end
 
-  sidebar 'Actions', only: %i[show] do
-    li(link_to('Impersonate', masquerade_path(resource), method: :get))
+  action_item :impersonate_user, only: :show do
+    link_to('Impersonate User', masquerade_path(resource), method: :get)
   end
 end
