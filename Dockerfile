@@ -5,9 +5,7 @@ FROM node:$NODE_VERSION as node
 FROM ruby:${RUBY_VERSION}
 
 RUN apt-get update -qq && \
-    apt-get install -y build-essential libssl-dev libpq-dev less vim nano libsasl2-dev
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+    apt-get install -y build-essential libssl-dev libpq-dev vim libsasl2-dev
 
 # Copy node binaries from node image
 COPY --from=node /usr/lib /usr/lib
@@ -17,30 +15,24 @@ COPY --from=node /usr/local/include /usr/local/include
 COPY --from=node /usr/local/bin /usr/local/bin
 COPY --from=node /opt /opt
 
-RUN node -v
+ENV WORK_ROOT /src
+ENV APP_HOME $WORK_ROOT/myapp/
+ENV LANG C.UTF-8
+ENV GEM_HOME $WORK_ROOT/bundle
 
-# RUN mkdir -p /usr/local/lib/nodejs
-# RUN tar -xJvf node-v$NODE_VERSION-linux-x64.tar.xz -C /usr/local/lib/nodejs 
+RUN mkdir -p $APP_HOME
 
-# ENV WORK_ROOT /src
-# ENV APP_HOME $WORK_ROOT/myapp/
-# ENV LANG C.UTF-8
-# ENV GEM_HOME $WORK_ROOT/bundle
-# ENV BUNDLE_BIN $GEM_HOME/gems/bin
-# ENV PATH $GEM_HOME/bin:$BUNDLE_BIN:$PATH
+RUN bundle config --path=$GEM_HOME
 
-# RUN gem install bundler
+WORKDIR $APP_HOME
 
-# RUN mkdir -p $APP_HOME
+COPY --link Gemfile Gemfile.lock ./
 
-# RUN bundle config --path=$GEM_HOME
+# Improve
+ARG BUNDLER_VERSION=2.3.23
 
-# WORKDIR $APP_HOME
-
-# ADD Gemfile ./
-# ADD Gemfile.lock ./
-# RUN bundle update --bundler
-# RUN bundle install
+RUN gem install bundler --version "${BUNDLER_VERSION}"
+RUN bundle _${BUNDLER_VERSION}_ install
 
 # ADD package.json ./
 # ADD yarn.lock ./
