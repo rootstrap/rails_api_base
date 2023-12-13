@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     registrations: 'api/v1/registrations',
     sessions: 'api/v1/sessions',
     passwords: 'api/v1/passwords',
-    masquerades: "admin/masquerades"
+    masquerades: 'admin/masquerades'
   }
 
   namespace :api do
