@@ -1,0 +1,36 @@
+# File: .github/workflows/rs-gpt-review.yml
+name: 'rs-gpt-review'
+
+# Run the workflow on new issues, pull requests and comments
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+
+# Allows the workflow to create comments on issues and pull requests
+permissions:
+  issues: write
+  pull-requests: write
+  contents: write
+
+jobs:
+  # Runs for issues, pull requests and comments
+  rs-gpt-review:
+    name: rs-gpt-review comment
+    # Only run the job if the comment contains @rs-gpt-review
+    if: ${{ github.event_name == 'issues' && contains(github.event.issue.body, '@rs-gpt-review') || github.event_name == 'pull_request' && contains(github.event.pull_request.body, '@rs-gpt-review') || github.event_name == 'issue_comment' && contains(github.event.comment.body, '@rs-gpt-review') || github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@rs-gpt-review') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      # The action will only run if the description or comments mentions @rs-gpt-review
+      - uses: rootstrap/rs-gpt-review@v2
+        name: rs-gpt-review
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          openai_key: ${{ secrets.OPENAI_KEY }}
+          model: gpt-4-1106-preview
