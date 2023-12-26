@@ -20,6 +20,19 @@ FactoryBot.reload
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
 
+Capybara.register_driver :non_headless_chrome do |app|
+  args = %w[no-sandbox disable-gpu]
+  options = Selenium::WebDriver::Chrome::Options.new(args:)
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
+end
+
+Capybara.configure do |config|
+  config.javascript_driver = :non_headless_chrome
+  config.always_include_port = true
+  config.default_max_wait_time = 10
+  config.default_normalize_ws = true
+end
+
 RSpec.configure do |config|
   config.include Helpers
   config.expect_with :rspec do |expectations|
