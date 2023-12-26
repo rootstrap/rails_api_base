@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Admin SignIn' do
-  feature 'Signing in' do
+  feature 'Signing in', :js do
     let(:admin_user) { create(:admin_user) }
 
     scenario 'Admin signs in successfully' do
