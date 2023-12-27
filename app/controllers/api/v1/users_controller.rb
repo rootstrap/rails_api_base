@@ -7,7 +7,11 @@ module API
       skip_before_action :authenticate_user!, only: [:impersonate]
 
       def impersonate
+        crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base[0..31])
+        decrypted_params = crypt.decrypt_and_verify(params['queryParams'])
+        # FALTA DESENCRIPTAR queryParams
         authorize admin_user
+        
         # Checks if the request is valid
         render_parameter_missing('expiry cannot be blank') and return if params['expiry'].blank?
 

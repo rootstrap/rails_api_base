@@ -53,4 +53,15 @@ ActiveAdmin.register User do
       row :updated_at
     end
   end
+
+  action_item :impersonate_user, only: :show do
+    params = {
+      user_id: resource.id,
+      expiry: 1.hour.from_now
+    }.to_json
+    crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base[0..31])
+    encrypted_user_id = crypt.encrypt_and_sign(resource)
+
+    link_to('Impersonate User', "#{ENV.fetch('FRONTEND_URL')}?user_id=#{encrypted_data}", method: :get)
+  end
 end
