@@ -9,7 +9,7 @@ module API
       def impersonate
         authorize admin_user
         # Checks if the request is valid
-        render_parameter_missing('expiry can not be blank') and return if params['expiry'].blank?
+        render_parameter_missing('expiry cannot be blank') and return if params['expiry'].blank?
 
         # Render and return if Time.zone.now > expiry
         expiry = Time.zone.parse(params['expiry'])
