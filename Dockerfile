@@ -28,19 +28,18 @@ WORKDIR $APP_HOME
 
 COPY --link Gemfile Gemfile.lock ./
 
-# Improve
-ARG BUNDLER_VERSION=2.3.23
 
-RUN gem install bundler --version "${BUNDLER_VERSION}"
-RUN bundle _${BUNDLER_VERSION}_ install
+RUN gem install bundler 
+RUN bundle install
 
-# ADD package.json ./
-# ADD yarn.lock ./
+COPY --link package.json yarn.lock ./
 
-# RUN yarn install
 
-# ADD . $APP_HOME
+RUN yarn install
+
+ADD . $APP_HOME
 
 # EXPOSE 3000
 
 # ENTRYPOINT bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b 0.0.0.0 -p 3000"
+CMD bundle exec rails s -b 0.0.0.0
