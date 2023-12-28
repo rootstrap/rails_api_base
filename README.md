@@ -34,7 +34,8 @@ This template comes with:
 1. Install PostgreSQL in case you don't have it
 1. Install node and yarn.
 1. Run `bootstrap.sh` with the name of your project like `./bootstrap.sh --name=my_awesome_project`
-1. `rspec` and make sure all tests pass
+1. `rspec` and make sure all tests pass (headless mode) or 
+1. `SHOW=1 rspec` (non-headless mode)
 1. Run `rails s`.
 1. Run `yarn install` and `yarn build --watch`. This bundles the JS assets in the administration site using [esbuild](https://github.com/evanw/esbuild).
 1. You can now try your REST services!
