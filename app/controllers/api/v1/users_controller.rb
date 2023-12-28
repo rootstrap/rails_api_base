@@ -7,9 +7,11 @@ module API
       skip_before_action :authenticate_user!, only: [:impersonate]
 
       def impersonate
-        crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base[0..31])
-        decrypted_params = crypt.decrypt_and_verify(params['queryParams'])
-        # FALTA DESENCRIPTAR queryParams
+        len = ActiveSupport::MessageEncryptor.key_len
+        salt, encrypted_data = params['queryParams'].split '$$'
+        key = ActiveSupport::KeyGenerator.new(Rails.application.secrets.secret_key_base).generate_key(salt, len)
+        crypt = ActiveSupport::MessageEncryptor.new(key)
+        decrypted_params = crypt.decrypt_and_verify(encrypted_data, purpose: 'impersonation')
         authorize admin_user
         
         # Checks if the request is valid
