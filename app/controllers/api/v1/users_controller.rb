@@ -9,9 +9,14 @@ module API
       def impersonate
         len = ActiveSupport::MessageEncryptor.key_len
         salt, encrypted_data = params['queryParams'].split '$$'
+        encrypted_data = Base64.urlsafe_decode64(encrypted_data)
         key = ActiveSupport::KeyGenerator.new(Rails.application.secrets.secret_key_base).generate_key(salt, len)
         crypt = ActiveSupport::MessageEncryptor.new(key)
-        decrypted_params = crypt.decrypt_and_verify(encrypted_data, purpose: 'impersonation')
+        decrypted_params = JSON.parse(crypt.decrypt_and_verify(encrypted_data, purpose: 'impersonation'))
+        
+        params['admin_user_id'] = decrypted_params['admin_user_id']
+        params['expiry'] = decrypted_params['expiry']
+        
         authorize admin_user
         
         # Checks if the request is valid
@@ -50,7 +55,7 @@ module API
       end
 
       def admin_user
-        @admin_user ||= AdminUser.find(params[:admin_user])
+        @admin_user ||= AdminUser.find(params[:admin_user_id])
       end
 
       def user

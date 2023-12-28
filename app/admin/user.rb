@@ -57,13 +57,15 @@ ActiveAdmin.register User do
   action_item :impersonate_user, only: :show do
     params = {
       user_id: resource.id.to_s,
-      admin_user_id: current_admin_user.id.to_s
+      admin_user_id: current_admin_user.id.to_s,
+      expiry: 1.hour.from_now
     }.to_json
     len = ActiveSupport::MessageEncryptor.key_len
     salt = SecureRandom.hex(len)
     key = ActiveSupport::KeyGenerator.new(Rails.application.secrets.secret_key_base).generate_key(salt, len)
     crypt = ActiveSupport::MessageEncryptor.new(key)
     encrypted_data = crypt.encrypt_and_sign(params, purpose: 'impersonation')
+    encrypted_data = Base64.urlsafe_encode64(encrypted_data)
 
     link_to('Impersonate User', "#{ENV.fetch('FRONTEND_URL')}?queryParams=#{salt}$$#{encrypted_data}", method: :get)
   end
