@@ -623,7 +623,7 @@ DEPENDENCIES
   rubocop-rake (~> 0.6.0)
   rubocop-rspec (~> 2.25)
   sass-rails (~> 6.0.0)
-  selenium-webdriver (= 4.16)
+  selenium-webdriver (= 4.16.0)
   sendgrid (~> 1.2.4)
   shoulda-matchers (~> 6.0)
   simplecov (~> 0.22.0)
