@@ -58,8 +58,10 @@ ActiveAdmin.register User do
     params = {
       user_id: resource.id.to_s,
       admin_user_id: current_admin_user.id.to_s,
-      expiry: 1.hour.from_now
+      expiry: 1.hour.from_now,
+      admin_user_session_cookie: request.cookies['_session_id']
     }.to_json
+    # TODO create encryptorService
     len = ActiveSupport::MessageEncryptor.key_len
     salt = SecureRandom.hex(len)
     key = ActiveSupport::KeyGenerator.new(Rails.application.secrets.secret_key_base).generate_key(salt, len)
