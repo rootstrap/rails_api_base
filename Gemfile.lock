@@ -486,7 +486,7 @@ GEM
     sendgrid (1.2.4)
       json
     sexp_processor (4.17.0)
-    shoulda-matchers (5.3.0)
+    shoulda-matchers (6.0.0)
       activesupport (>= 5.2.0)
     simplecov (0.22.0)
       docile (~> 1.1)
@@ -592,7 +592,7 @@ DEPENDENCIES
   rubocop-rspec (~> 2.25)
   sass-rails (~> 6.0.0)
   sendgrid (~> 1.2.4)
-  shoulda-matchers (~> 5.3)
+  shoulda-matchers (~> 6.0)
   simplecov (~> 0.22.0)
   spring (~> 4.1)
   sprockets (~> 4.2.1)

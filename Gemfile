@@ -79,7 +79,7 @@ group :test do
   gem 'rspec-openapi', '~> 0.10'
   gem 'rspec-rails', '~> 6.1'
   gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
-  gem 'shoulda-matchers', '~> 5.3'
+  gem 'shoulda-matchers', '~> 6.0'
   gem 'simplecov', '~> 0.22.0', require: false
   gem 'webmock', '~> 3.19'
 end
