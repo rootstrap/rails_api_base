@@ -35,7 +35,7 @@ This template comes with:
 1. Install node and yarn.
 1. Run `bootstrap.sh` with the name of your project like `./bootstrap.sh --name=my_awesome_project`
 1. `rspec` and make sure all tests pass (non-headless mode) or 
-1. `HEADLESS=false rspec` (headless mode)
+1. `NONHEADLESS=false rspec` (headless mode)
 1. Run `rails s`.
 1. Run `yarn install` and `yarn build --watch`. This bundles the JS assets in the administration site using [esbuild](https://github.com/evanw/esbuild).
 1. You can now try your REST services!
