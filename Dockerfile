@@ -28,18 +28,18 @@ WORKDIR $APP_HOME
 
 COPY --link Gemfile Gemfile.lock ./
 
-
 RUN gem install bundler 
 RUN bundle install
 
 COPY --link package.json yarn.lock ./
 
-
 RUN yarn install
 
 ADD . $APP_HOME
 
-# EXPOSE 3000
+# Entrypoint prepares the database.
+ENTRYPOINT ["./bin/docker-entrypoint"]
 
-# ENTRYPOINT bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b 0.0.0.0 -p 3000"
-CMD bundle exec rails s -b 0.0.0.0
+# Start the server by default, this can be overwritten at runtime
+EXPOSE 3000
+CMD ["./bin/rails", "server", "-b", "0.0.0.0"]
