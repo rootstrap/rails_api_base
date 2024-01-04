@@ -146,7 +146,7 @@ To obtain an API key you must create an account in the platform.
 
 ## Impersonation
 
-The [Pretender](https://github.com/ankane/pretender) gem provides a user impersonation feature, enabling users to assume the identity of another. While this functionality can be powerful, it comes with inherent safety and privacy concerns. Consequently, it is **important to exercise caution and restrict access to this feature only to specific high-level roles**.
+[Pretender](https://github.com/ankane/pretender) gem provides a user impersonation feature, enabling users to assume the identity of another. While this functionality can be powerful, it comes with inherent safety and privacy concerns. Consequently, it is **important to exercise caution and restrict access to this feature only to specific high-level roles**.
 
 To mitigate potential risks, it is **strongly advised not to rely on default access settings**. Ensure that careful consideration is given to the assignment of roles permitted to utilize this impersonation tool. By implementing these measures, you can safeguard against unintended or unauthorized use, promoting a secure and controlled environment.
 
