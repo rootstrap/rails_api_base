@@ -17,11 +17,7 @@ module Impersonation
     private
 
     def decrypted_data
-      @decrypted_data ||= JSON.parse(
-        ActiveSupport::MessageEncryptor.new(
-          Rails.application.secrets
-        ).decrypt_and_verify!(Base64.urlsafe_decode64(@impersonate_data), purpose: 'impersonation')
-      )
+      @decrypted_data ||= Impersonation::Encryptor.new.decrypt!(@impersonate_data)
     end
 
     def user
