@@ -57,8 +57,7 @@ ActiveAdmin.register User do
   action_item :impersonate_user, only: :show do
     params = {
       user_id: resource.id.to_s,
-      admin_user_id: current_admin_user.id.to_s,
-      admin_user_session_cookie: request.cookies['_session_id']
+      admin_user_id: current_admin_user.id.to_s
     }.to_json
 
     encrypted_data = ActiveSupport::MessageEncryptor.new(

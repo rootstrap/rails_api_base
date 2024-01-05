@@ -7,8 +7,7 @@ module API
       skip_after_action :verify_authorized
 
       def create
-        crypt = ActiveSupport::MessageEncryptor.new(key)
-
+        response.headers.merge!(user.build_auth_headers(token.token, token.client))
       end
     end
   end

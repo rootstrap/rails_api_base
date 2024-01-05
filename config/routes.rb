@@ -24,9 +24,6 @@ Rails.application.routes.draw do
       resources :settings, only: [] do
         get :must_update, on: :collection
       end
-      resources :users, only: [] do
-        get :impersonate, on: :member
-      end
     end
   end
   mount Rswag::Ui::Engine => '/api-docs'
