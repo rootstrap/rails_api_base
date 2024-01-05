@@ -31,20 +31,10 @@ Layout/LineLength:
     - db/**/*
 
 Layout/SpaceBeforeFirstArg:
-  Exclude:
-    - app/views/api/**/**/*
+  AllowForAlignment: true
 
 Lint/AmbiguousBlockAssociation:
   AllowedMethods: change
-
-Lint/BinaryOperatorWithIdenticalOperands:
-  Enabled: false
-
-Lint/DeprecatedOpenSSLConstant:
-  Enabled: false
-
-Lint/RaiseException:
-  Enabled: false
 
 Metrics/AbcSize:
   Max: 15
@@ -75,9 +65,6 @@ Metrics/ModuleLength:
 Metrics/PerceivedComplexity:
   Max: 12
 
-Rails/FilePath:
-  Enabled: false
-
 Rails/SaveBang:
   Enabled: true
 
@@ -93,11 +80,9 @@ RSpec/MultipleExpectations:
 RSpec/NamedSubject:
   Enabled: false
 
-Style/ArrayCoercion:
-  Enabled: true
-
 Style/BlockDelimiters:
-  EnforcedStyle: braces_for_chaining
+  Exclude:
+    - spec/**/*
 
 Style/Documentation:
   Enabled: false
@@ -108,35 +93,14 @@ Style/ExpandPathArguments:
 Style/GlobalStdStream:
   Enabled: false
 
-Style/HashEachMethods:
-  Enabled: false
-
 Style/HashLikeCase:
   MinBranchesCount: 4
-
-Style/HashTransformKeys:
-  Enabled: false
-
-Style/HashTransformValues:
-  Enabled: false
 
 Style/ModuleFunction:
   Enabled: false
 
-Style/RedundantFetchBlock:
-  Enabled: false
-
-Style/RedundantFileExtensionInRequire:
-  Enabled: false
-
-Style/RedundantRegexpCharacterClass:
-  Enabled: false
-
 Style/ReturnNil:
   Enabled: true
-
-Style/SlicingWithRange:
-  Enabled: false
 
 Style/StringConcatenation:
   Enabled: false
