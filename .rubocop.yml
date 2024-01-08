@@ -75,14 +75,14 @@ Metrics/ModuleLength:
 Metrics/PerceivedComplexity:
   Max: 12
 
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
+
 Rails/FilePath:
   Enabled: false
 
 Rails/SaveBang:
   Enabled: true
-
-RescuedExceptionsVariableName:
-  Enabled: false
 
 RSpec/ExampleLength:
   Enabled: false
