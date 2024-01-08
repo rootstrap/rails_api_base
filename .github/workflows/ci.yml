@@ -121,7 +121,7 @@ jobs:
       - name: Report to CodeClimate
         run: ./cc-test-reporter format-coverage --output "coverage/coverage.${{ matrix.ci_node_index }}.json"
       - name: Upload partial coverage
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: "coverage/coverage.${{ matrix.ci_node_index }}.json"
@@ -132,7 +132,7 @@ jobs:
         run: bundle exec ./bin/merge-api-docs.rb
       - name: Upload partial API Docs
         if: ${{ env.OPENAPI }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: api_docs
           path: "tmp/openapi${{ matrix.ci_node_index }}.yaml"
@@ -164,7 +164,7 @@ jobs:
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
       - name: Download coverage reports
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: coverage
           path: coverage/coverage.*.json
@@ -179,7 +179,7 @@ jobs:
           bundler-cache: true
       - name: Download API Docs
         if: ${{ env.OPENAPI }}
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: api_docs
           path: tmp/
