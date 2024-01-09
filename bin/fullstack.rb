@@ -98,5 +98,18 @@ gsub_file 'tailwind.config.js', "    './app/javascript/**/*.js'\n" do <<-EOF
 EOF
 end
 
+insert_into_file 'spec/rails_helper.rb', after: "require 'support/retry/message_formatter'\n" do <<-EOF
+require 'view_component/test_helpers'
+require 'view_component/system_test_helpers'
+EOF
+end
+
+insert_into_file 'spec/rails_helper.rb', after: "  config.include ActiveJob::TestHelper\n" do <<-EOF
+  config.include ViewComponent::TestHelpers, type: :component
+  config.include ViewComponent::SystemTestHelpers, type: :component
+  config.include Capybara::RSpecMatchers, type: :component
+EOF
+end
+
 # Fix Rubocop offenses
 run "bundle exec rubocop -A ."
