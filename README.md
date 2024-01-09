@@ -116,6 +116,7 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - Set your mail sender in `config/initializers/devise.rb`
 - Config your timezone accordingly in `application.rb`.
 - Config CI in parallel execution. See [docs](docs/ci.md).
+- Fullstack development. See [docs](docs/fullstack.md).
 
 ## API Docs
 
