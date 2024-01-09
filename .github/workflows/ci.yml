@@ -97,8 +97,9 @@ jobs:
       - name: Setup Database
         run: bundle exec rake parallel:load_schema
       - name: Run yarn commands
-        run: |
-          yarn install
+        run: yarn install
+      - name: Precompile assets
+        run: bundle exec rails assets:precompile
       - name: Check for untracked changes in schema.rb
         uses: rootstrap/check_untracked_changes@v1
         with:

@@ -1,4 +1,4 @@
-import './jquery'
+import './admin/jquery'
 import 'jquery-ui/ui/widget'
 import 'jquery-ui/ui/widgets/datepicker'
 import 'jquery-ui/ui/widgets/mouse'
