@@ -17,6 +17,7 @@ Bundler.with_unbundled_env { run 'bundle install' }
 # Add npm packages
 run 'yarn add @hotwired/stimulus@^3.2.2'
 run 'yarn add @hotwired/turbo-rails@^8.0.0-beta.2'
+run 'yarn add esbuild-rails@^1.0.7'
 
 # Run generator
 run './bin/rails css:install:tailwind'
@@ -56,6 +57,16 @@ add_file 'app/javascript/controllers/index.js' do <<~EOF
   // Import app/components/index.js
   import "../../components"
   EOF
+end
+
+insert_into_file 'esbuild.config.mjs', after: "import * as esbuild from 'esbuild'\n" do <<-EOF
+import rails from 'esbuild-rails'
+EOF
+end
+
+insert_into_file 'esbuild.config.mjs', after: "  outdir: 'app/assets/builds',\n" do <<-EOF
+  plugins: [rails()],
+EOF
 end
 
 # ViewComponent config
