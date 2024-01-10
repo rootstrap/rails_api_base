@@ -31,5 +31,8 @@ config/credentials/*.key
 /node_modules
 
 # Ignore .env files
-!.env.test
 .env*
+!.env.test
+
+.DS_Store
+.byebug_history

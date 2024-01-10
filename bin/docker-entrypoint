@@ -5,5 +5,9 @@ if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
   ./bin/rails db:prepare
 fi
 
+if [ "${1}" == "./bin/rspec" ]; then
+  ./bin/rails db:test:prepare
+fi
+
 exec "${@}"
 

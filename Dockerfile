@@ -16,7 +16,7 @@ COPY --from=node /usr/local/bin /usr/local/bin
 COPY --from=node /opt /opt
 
 ENV WORK_ROOT /src
-ENV APP_HOME $WORK_ROOT/myapp/
+ENV APP_HOME $WORK_ROOT/app/
 ENV LANG C.UTF-8
 ENV GEM_HOME $WORK_ROOT/bundle
 
@@ -28,7 +28,7 @@ WORKDIR $APP_HOME
 
 COPY --link Gemfile Gemfile.lock ./
 
-RUN gem install bundler 
+RUN gem install bundler
 RUN bundle install
 
 COPY --link package.json yarn.lock ./
