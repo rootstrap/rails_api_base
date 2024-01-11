@@ -107,9 +107,60 @@ end
 insert_into_file 'spec/rails_helper.rb', after: "  config.include ActiveJob::TestHelper\n" do <<-EOF
   config.include ViewComponent::TestHelpers, type: :component
   config.include ViewComponent::SystemTestHelpers, type: :component
+  config.include Capybara::DSL, type: :component
   config.include Capybara::RSpecMatchers, type: :component
+EOF
+end
+
+# Add example component
+add_file 'app/components/example/component.rb' do <<-EOF
+module Example
+  class Component < ViewComponent::Base
+  end
+end
+EOF
+end
+
+add_file 'app/components/example/component.html.erb' do <<-EOF
+<div data-controller="example--component">
+  <span class="m-10" data-example--component-target="hello">Hello World!</span>
+</div>
+EOF
+end
+
+add_file 'app/components/example/component_controller.js' do <<-EOF
+import { Controller } from '@hotwired/stimulus';
+
+export default class extends Controller {
+  static targets = ['hello'];
+
+  connect() {
+    this.helloTarget.innerText += " (edited by Stimulus)";
+  }
+}
+EOF
+end
+
+add_file 'spec/components/example/component_spec.rb' do <<-EOF
+require "rails_helper"
+
+RSpec.describe Example::Component, type: :component do
+  it "renders component", :js do
+    with_rendered_component_path(render_inline(described_class.new), layout: "application") do |path|
+      visit(path)
+
+      expect(page).to have_text "Hello World! (edited by Stimulus)"
+    end
+  end
+end
 EOF
 end
 
 # Fix Rubocop offenses
 run "bundle exec rubocop -A ."
+
+# Precompile assets
+run "bundle exec rails assets:precompile"
+
+# Run tests
+run "bundle exec rspec spec/components/example/component_spec.rb"
