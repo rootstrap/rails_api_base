@@ -44,6 +44,7 @@ group :development, :test do
   gem 'annotate', '~> 3.2', '>= 3.0.3'
   gem 'dotenv-rails', '~> 2.8.1'
   gem 'factory_bot_rails', '~> 6.4'
+  gem 'faker', '~> 3.2'
   gem 'pry-byebug', '~> 3.9', platform: :mri
   gem 'pry-rails', '~> 0.3.9'
 end
@@ -69,7 +70,6 @@ end
 
 group :test do
   gem 'capybara', '~> 3.39', '>= 3.39.2'
-  gem 'faker', '~> 3.2'
   gem 'faraday-retry', '~> 2.2'
   gem 'knapsack', '~> 4.0'
   gem 'octokit', '~> 8.0'
@@ -83,10 +83,6 @@ group :test do
   gem 'shoulda-matchers', '~> 6.0'
   gem 'simplecov', '~> 0.22.0', require: false
   gem 'webmock', '~> 3.19'
-end
-
-group :assets do
-  gem 'uglifier', '~> 4.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

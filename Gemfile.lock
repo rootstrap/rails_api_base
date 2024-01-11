@@ -210,7 +210,6 @@ GEM
       zeitwerk (~> 2.6)
     erubi (1.12.0)
     erubis (2.7.0)
-    execjs (2.9.1)
     factory_bot (6.4.5)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.4.3)
@@ -544,8 +543,6 @@ GEM
     timeout (0.4.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    uglifier (4.2.0)
-      execjs (>= 0.3.0, < 3)
     unicode-display_width (2.5.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -632,7 +629,6 @@ DEPENDENCIES
   sprockets (~> 4.2.1)
   strong_migrations (~> 1.7)
   tzinfo-data
-  uglifier (~> 4.2)
   webmock (~> 3.19)
   yaaf (~> 2.2)
 
