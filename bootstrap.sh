@@ -67,17 +67,17 @@ sed_i() {
   fi
 }
 
+# Export the function to make it available to the find command
+export -f sed_i
+
 # Define the file types to search for
 file_types=("yml" "yaml" "erb" "rb" "json")
 
 for file_type in "${file_types[@]}"
 do
-  # Find and replace the string in files of the current type, and save a backup file
-  find . -name "*.$file_type" -exec sed -i.bak "s|rails_api_base|${project_name}|g" {} +
+  # Find and replace the string in files of the current type
+  find . -name "*.$file_type" -type f -exec bash -c 'sed_i "s|rails_api_base|'"$project_name"'|g" "$0"' {} \;
 done
-
-# Remove all backup files
-find . -name "*.bak" -type f -delete
 
 echo "Replacement completed successfully."
 
