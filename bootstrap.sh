@@ -70,6 +70,9 @@ sed_i() {
 # update project name in database.yml
 sed_i "s/rails_api_base/${project_name}/g" config/database.yml
 
+# update project name in active_admin.rb
+sed_i "s/App/${project_name}/g" config/initializers/active_admin.rb
+
 # spin up docker services if flag is specified for the setup to take place inside the containers
 if [[ $docker -eq 1 ]]; then
   # Update DOCKER_ENABLED variable in .env
