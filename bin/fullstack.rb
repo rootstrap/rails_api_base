@@ -3,7 +3,7 @@ insert_into_file 'Gemfile', after: /gem 'rails'.*\n\n/ do <<-EOF
 gem 'cssbundling-rails', '~> 1.3'
 gem 'stimulus-rails', '~> 1.3'
 gem 'turbo-rails', '2.0.0.pre.beta.2'
-gem 'view_component', '~> 3.7.0'
+gem 'view_component', '~> 3.7'
 EOF
 end
 
