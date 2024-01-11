@@ -1,5 +1,5 @@
 # Add gems
-insert_into_file 'Gemfile', after: /gem 'rails'.*\n\n/ do <<-EOF
+insert_into_file 'Gemfile', after: "# Gems\n" do <<-EOF
 gem 'cssbundling-rails', '~> 1.3'
 gem 'stimulus-rails', '~> 1.3'
 gem 'turbo-rails', '2.0.0.pre.beta.2'
@@ -8,7 +8,7 @@ EOF
 end
 
 insert_into_file 'Gemfile', after: "group :development do\n" do <<-EOF
-gem 'lookbook', '~> 2.1'
+  gem 'lookbook', '~> 2.1'
 EOF
 end
 
@@ -19,13 +19,13 @@ run 'yarn add @hotwired/stimulus@^3.2.2'
 run 'yarn add @hotwired/turbo-rails@^8.0.0-beta.2'
 run 'yarn add esbuild-rails@^1.0.7'
 
-# Run generator
-run './bin/rails css:install:tailwind'
+# Run CSS generator
+rails_command 'css:install:tailwind'
 
 # Update application layout
 gsub_file 'app/views/layouts/application.html.erb', "    <%= stylesheet_link_tag \"application\" %>\n", ''
-insert_into_file 'app/views/layouts/application.html.erb', before: /\s*<\/head>/ do <<-EOF
-\n    <%= javascript_include_tag \"application\", \"data-turbo-track\": \"reload\", defer: true %>
+insert_into_file 'app/views/layouts/application.html.erb', before: /^  <\/head>$/ do <<-EOF
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 EOF
 end
 
@@ -37,7 +37,7 @@ import "./controllers"
 EOF
 end
 
-# StimulusJS
+# Stimulus
 add_file 'app/javascript/controllers/application.js' do <<-EOF
 import { Application } from "@hotwired/stimulus"
 
@@ -92,13 +92,12 @@ insert_into_file 'config/routes.rb', before: /^end$/ do <<-EOF
   EOF
 end
 
-gsub_file 'tailwind.config.js', "    './app/javascript/**/*.js'\n" do <<-EOF
-    './app/javascript/**/*.js',
-    './app/components/**/*.{erb,haml,html,slim,css,js}'
+insert_into_file 'tailwind.config.js', before: "    './app/javascript/**/*.js'" do <<-EOF
+    './app/components/**/*.{erb,haml,html,slim,css,js}',
 EOF
 end
 
-insert_into_file 'spec/rails_helper.rb', after: "require 'support/retry/message_formatter'\n" do <<-EOF
+insert_into_file 'spec/rails_helper.rb', after: "require 'rspec/rails'\n" do <<-EOF
 require 'view_component/test_helpers'
 require 'view_component/system_test_helpers'
 EOF
@@ -160,7 +159,7 @@ end
 run "bundle exec rubocop -A ."
 
 # Precompile assets
-run "bundle exec rails assets:precompile"
+rails_command "assets:precompile"
 
 # Run tests
 run "bundle exec rspec spec/components/example/component_spec.rb"
