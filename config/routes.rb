@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1, defaults: { format: :json } do
       get :status, to: 'health#status'
-
+      resources :impersonates, only: %i[create]
       devise_scope :user do
         resource :user, only: %i[update show]
       end
