@@ -9,7 +9,7 @@ module API
       def create
         response.headers.merge!(
           Impersonation::Authenticator.new(
-            params[:queryParams]
+            params[:auth_enc]
           ).build_auth_headers!
         )
       end

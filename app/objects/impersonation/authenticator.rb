@@ -7,7 +7,7 @@ module Impersonation
     end
 
     def build_auth_headers!
-      user.tokens.filter! { |_token, attrs| attrs['impersonated_by'] != admin_user_id }
+      user.tokens.reject! { |_token, attrs| attrs['impersonated_by'] == admin_user_id }
       user.build_auth_headers(token.token, token.client) if user.save!
     end
 
