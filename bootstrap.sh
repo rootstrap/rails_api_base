@@ -67,11 +67,19 @@ sed_i() {
   fi
 }
 
-# update project name in database.yml
-sed_i "s/rails_api_base/${project_name}/g" config/database.yml
+# Define the file types to search for
+file_types=("yml" "yaml" "erb" "rb" "json")
 
-# update project name in active_admin.rb
-sed_i "s/App/${project_name}/g" config/initializers/active_admin.rb
+for file_type in "${file_types[@]}"
+do
+  # Find and replace the string in files of the current type, and save a backup file
+  find . -name "*.$file_type" -exec sed -i.bak "s|rails_api_base|${project_name}|g" {} +
+done
+
+# Remove all backup files
+find . -name "*.bak" -type f -delete
+
+echo "Replacement completed successfully."
 
 # spin up docker services if flag is specified for the setup to take place inside the containers
 if [[ $docker -eq 1 ]]; then
