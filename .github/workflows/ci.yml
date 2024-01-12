@@ -25,18 +25,18 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
       - name: Label PR
         if: github.event.pull_request
-        uses: actions/labeler@v4
+        uses: actions/labeler@v5
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Code Analysis
-        run: bundle exec rake code:analysis
+        run: bundle exec rails code:analysis
   tests:
     name: Tests
     runs-on: ubuntu-latest
@@ -69,7 +69,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Set ENV for CodeClimate
@@ -95,10 +95,11 @@ jobs:
           chmod +x ./cc-test-reporter
           ./cc-test-reporter before-build
       - name: Setup Database
-        run: bundle exec rake parallel:load_schema
+        run: bundle exec rails parallel:load_schema
       - name: Run yarn commands
-        run: |
-          yarn install
+        run: yarn install
+      - name: Precompile assets
+        run: bundle exec rails assets:precompile
       - name: Check for untracked changes in schema.rb
         uses: rootstrap/check_untracked_changes@v1
         with:
@@ -111,7 +112,7 @@ jobs:
           KNAPSACK_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           KNAPSACK_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           PARALLEL_TESTS_CONCURRENCY: ${{ env.cpu_cores }}
-        run: bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
+        run: HEADLESS=true bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
       - name: Check for missing annotations
         run: bundle exec annotate
       - name: Check for untracked changes in app and spec directories
@@ -121,7 +122,7 @@ jobs:
       - name: Report to CodeClimate
         run: ./cc-test-reporter format-coverage --output "coverage/coverage.${{ matrix.ci_node_index }}.json"
       - name: Upload partial coverage
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: "coverage/coverage.${{ matrix.ci_node_index }}.json"
@@ -132,7 +133,7 @@ jobs:
         run: bundle exec ./bin/merge-api-docs.rb
       - name: Upload partial API Docs
         if: ${{ env.OPENAPI }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: api_docs
           path: "tmp/openapi${{ matrix.ci_node_index }}.yaml"
@@ -142,7 +143,7 @@ jobs:
     needs: tests
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ssh-key: "${{ secrets.PUSH_KEY }}"
@@ -164,7 +165,7 @@ jobs:
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
       - name: Download coverage reports
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: coverage
           path: coverage/coverage.*.json
@@ -179,7 +180,7 @@ jobs:
           bundler-cache: true
       - name: Download API Docs
         if: ${{ env.OPENAPI }}
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: api_docs
           path: tmp/

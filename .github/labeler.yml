@@ -1,2 +1,3 @@
 api_docs:
-  - 'spec/requests/api/**/*'
+- changed-files:
+  - any-glob-to-any-file: 'spec/requests/api/**/*'

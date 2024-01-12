@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-bundle exec rake db:migrate
-bundle exec rake feature_flags:initialize
+bundle exec rails db:migrate
+bundle exec rails feature_flags:initialize
