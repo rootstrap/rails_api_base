@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
+
 ruby '~> 3.3.0'
 
 gem 'rails', '~> 7.0.8'
 
+# Gems
 gem 'activeadmin', '~> 3.2'
 gem 'active_storage_base64', '~> 2.0.0'
 gem 'aws-sdk-s3', '~> 1.142', require: false

@@ -33,7 +33,7 @@ This template comes with:
 1. Clone this repo
 1. Install PostgreSQL in case you don't have it
 1. Install node and yarn.
-1. Run `bootstrap.sh` with the name of your project like `./bootstrap.sh --name=my_awesome_project`
+1. Run `bootstrap.sh` with the name of your project like `./bin/bootstrap.sh --name=my_awesome_project`
 1. `bundle exec rspec` and make sure all tests pass (non-headless mode) or `HEADLESS=true bundle exec rspec` (headless mode)
 1. Run `yarn install` and `yarn build --watch`. This bundles the JS assets in the administration site using [esbuild](https://github.com/evanw/esbuild).
 1. Run `bin/dev`.
@@ -42,8 +42,8 @@ This template comes with:
 ## How to use with Docker
 
 1. Have `docker` and `docker-compose` installed (You can check this by doing `docker -v` and `docker-compose -v`)
-1. Run `bootstrap.sh` with the name of your project and the `-d` or `--for-docker` flag like `./bootstrap.sh --name=my_awesome_project -d`
-    1. Run `./bootstrap.sh --help` for the full details.
+1. Run `bootstrap.sh` with the name of your project and the `-d` or `--for-docker` flag like `./bin/bootstrap.sh --name=my_awesome_project -d`
+    1. Run `./bin/bootstrap.sh --help` for the full details.
 1. Generate a secret key for the app by running `bin/web rails secret`, copy it and add it in your environment variables.
 1. (Optional) If you want to deny access to the database from outside of the `docker-compose` network, remove the `ports` key in the `docker-compose.yml` from the `db` service.
 1. (Optional) Run the tests to make sure everything is working with: `bin/rspec .`.
@@ -115,6 +115,7 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - Set your mail sender in `config/initializers/devise.rb`
 - Config your timezone accordingly in `application.rb`
 - Config CI parallel execution. See [docs](docs/ci.md)
+- Fullstack development. See [docs](docs/fullstack.md).
 
 ## API Docs
 
