@@ -8,7 +8,7 @@ module Impersonation
 
     def build_auth_headers!
       user.tokens.reject! { |_token, attrs| attrs['impersonated_by'] == admin_user_id }
-      user.build_auth_headers(token.token, token.client) if user.save!
+      user.build_auth_headers(token.token, token.client)
     end
 
     private
@@ -18,7 +18,7 @@ module Impersonation
     end
 
     def user
-      @user ||= User.find(@decrypted_data['user_id'])
+      @user ||= User.find(decrypted_data['user_id'])
     end
 
     def admin_user_id
@@ -26,7 +26,7 @@ module Impersonation
     end
 
     def token
-      @token ||= user.create_token(lifespan: 1.hour.to_i, impersonated_by: admin_user_id)
+      @token ||= user.create_token(lifespan: 1.hour.to_i, impersonated_by: admin_user_id).tap { user.save! }
     end
   end
 end
