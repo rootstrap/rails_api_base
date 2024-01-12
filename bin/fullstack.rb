@@ -112,6 +112,9 @@ EOF
 end
 
 # Add example component
+
+if yes?("Do you want to add an example component? [y/n]")
+
 add_file 'app/components/example/component.rb' do <<-EOF
 module Example
   class Component < ViewComponent::Base
@@ -122,7 +125,7 @@ end
 
 add_file 'app/components/example/component.html.erb' do <<-EOF
 <div data-controller="example--component">
-  <span class="m-10" data-example--component-target="hello">Hello World!</span>
+  <span class="after:content-['CSS_works!']" data-example--component-target="hello">HTML works!</span>
 </div>
 EOF
 end
@@ -134,7 +137,9 @@ export default class extends Controller {
   static targets = ['hello'];
 
   connect() {
-    this.helloTarget.innerText += " (edited by Stimulus)";
+    const cssValue = window.getComputedStyle(this.helloTarget, ':after').getPropertyValue('content');
+    this.helloTarget.classList = '';
+    this.helloTarget.innerText += ` ${cssValue} JS works!`;
   }
 }
 EOF
@@ -148,11 +153,24 @@ RSpec.describe Example::Component, type: :component do
     with_rendered_component_path(render_inline(described_class.new), layout: "application") do |path|
       visit(path)
 
-      expect(page).to have_text "Hello World! (edited by Stimulus)"
+      expect(page).to have_text "HTML works!"
+      expect(page).to have_text "CSS works!"
+      expect(page).to have_text "JS works!"
     end
   end
 end
 EOF
+end
+
+add_file 'spec/components/previews/example/component_preview.rb' do <<-EOF
+class Example::ComponentPreview < Lookbook::Preview
+  def standard
+    render Example::Component.new
+  end
+end
+EOF
+end
+
 end
 
 # Fix Rubocop offenses
