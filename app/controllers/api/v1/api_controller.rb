@@ -20,8 +20,10 @@ module API
       private
 
       def set_impersonation_header!
-        token = current_user&.tokens&.find do |_token, attr|
-          DeviseTokenAuth::TokenFactory.token_hash_is_token?(attr['token'], request.headers['Access-Token'])
+        token = current_user&.tokens&.values&.find do |data|
+          DeviseTokenAuth::TokenFactory.token_hash_is_token?(
+            data['token'], request.headers['Access-Token']
+          )
         end
 
         response.headers['impersonate'] = true if token&.key?('impersonated_by')

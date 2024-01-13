@@ -59,6 +59,6 @@ ActiveAdmin.register User do
       user_id: resource.id, admin_user_id: current_admin_user.id
     )
 
-    link_to('Impersonate User', "#{ENV.fetch('FRONTEND_URL')}?auth_encrypted=#{encrypted_data}", method: :post)
+    link_to 'Impersonate User', "#{ENV.fetch('FRONTEND_URL')}?auth_encrypted=#{encrypted_data}"
   end
 end
