@@ -14,6 +14,7 @@
 /log
 /node_modules
 /public/system
+/public/assets
 /spec/tmp
 /storage
 /tmp
