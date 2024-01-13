@@ -11,7 +11,7 @@ module API
           Impersonation::Authenticator.new(
             params[:auth_encrypted]
           ).build_auth_headers!
-        )
+        ).merge!(impersonated: true)
       end
     end
   end

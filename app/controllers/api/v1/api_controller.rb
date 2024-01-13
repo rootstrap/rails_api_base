@@ -26,7 +26,7 @@ module API
           )
         end
 
-        response.headers['impersonate'] = true if token&.key?('impersonated_by')
+        response.headers['impersonated'] = true if token&.key?('impersonated_by')
       end
 
       def render_not_found(exception)
