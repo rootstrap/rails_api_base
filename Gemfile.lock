@@ -114,7 +114,7 @@ GEM
       aws-sigv4 (~> 1.8)
     aws-sigv4 (1.8.0)
       aws-eventstream (~> 1, >= 1.0.2)
-    base64 (0.1.1)
+    base64 (0.2.0)
     bcrypt (3.1.19)
     better_errors (2.10.1)
       erubi (>= 1.0.0)
@@ -327,8 +327,7 @@ GEM
       timeout
     net-smtp (0.4.0)
       net-protocol
-    newrelic_rpm (9.6.0)
-      base64
+    newrelic_rpm (9.7.0)
     nio4r (2.7.0)
     nokogiri (1.16.0)
       mini_portile2 (~> 2.8.2)
@@ -592,7 +591,7 @@ DEPENDENCIES
   letter_opener (~> 1.7)
   listen (~> 3.8)
   lograge (~> 0.14)
-  newrelic_rpm (~> 9.6)
+  newrelic_rpm (~> 9.7)
   octokit (~> 8.0)
   oj (~> 3.16)
   pagy (~> 6.4)
