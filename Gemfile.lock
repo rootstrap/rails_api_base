@@ -316,7 +316,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.5)
-    minitest (5.20.0)
+    minitest (5.21.1)
     msgpack (1.7.2)
     net-imap (0.4.2)
       date
@@ -442,7 +442,7 @@ GEM
     rspec-mocks (3.12.6)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
-    rspec-openapi (0.10.0)
+    rspec-openapi (0.11.0)
       actionpack (>= 5.2.0)
       rspec-core
     rspec-rails (6.1.0)
@@ -608,7 +608,7 @@ DEPENDENCIES
   rails (~> 7.0.8)
   rails_best_practices (~> 1.20)
   reek (~> 6.2)
-  rspec-openapi (~> 0.10)
+  rspec-openapi (~> 0.11)
   rspec-rails (~> 6.1)
   rspec-retry!
   rswag-api (~> 2.13.0)
