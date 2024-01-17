@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 # If running the rails server then create or migrate existing database
-if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
+if ([ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]) || [ "${1}" == "./bin/dev" ]; then
   ./bin/rails db:prepare
 fi
 
@@ -10,4 +10,3 @@ if [ "${1}" == "./bin/rspec" ]; then
 fi
 
 exec "${@}"
-

@@ -29,7 +29,7 @@ WORKDIR $APP_HOME
 COPY --link Gemfile Gemfile.lock ./
 
 RUN gem install bundler
-RUN bundle install
+RUN bundle install -j 4
 
 COPY --link package.json yarn.lock ./
 
