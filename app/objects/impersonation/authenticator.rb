@@ -2,13 +2,16 @@
 
 module Impersonation
   class Authenticator
+    TOKEN_KEY = 'impersonated_by'
+    HEADER = { impersonated: true }.freeze
+
     def initialize(signed_data)
       @signed_data = signed_data
     end
 
     def build_auth_headers!
-      user.tokens.reject! { |_token, attrs| attrs['impersonated_by'] == admin_user_id }
-      user.build_auth_headers(token.token, token.client)
+      user.tokens.reject! { |_token, attrs| attrs[TOKEN_KEY] == admin_user_id }
+      user.build_auth_headers(token.token, token.client).merge(HEADER)
     end
 
     private
@@ -26,7 +29,7 @@ module Impersonation
     end
 
     def token
-      @token ||= user.create_token(lifespan: 1.hour.to_i, impersonated_by: admin_user_id).tap { user.save! }
+      @token ||= user.create_token(lifespan: 1.hour.to_i, TOKEN_KEY => admin_user_id).tap { user.save! }
     end
   end
 end

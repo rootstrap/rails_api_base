@@ -14,7 +14,9 @@ module API
               )
             end
 
-            response.headers['impersonated'] = true if token&.key?('impersonated_by')
+            if token&.key?(::Impersonation::Authenticator::TOKEN_KEY)
+              response.headers.merge!(::Impersonation::Authenticator::HEADER)
+            end
           end
         end
       end
