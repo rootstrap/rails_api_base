@@ -4,11 +4,11 @@ module API
   module V1
     class APIController < ActionController::API
       include API::Concerns::ActAsAPIRequest
+      include API::Concerns::Impersonation::SetHeaders
       include Pundit::Authorization
       include DeviseTokenAuth::Concerns::SetUserByToken
 
       before_action :authenticate_user!
-      before_action :set_impersonation_header!
 
       after_action :verify_authorized, except: :index
       after_action :verify_policy_scoped, only: :index
@@ -18,16 +18,6 @@ module API
       rescue_from ActionController::ParameterMissing,  with: :render_parameter_missing
 
       private
-
-      def set_impersonation_header!
-        token = current_user&.tokens&.values&.find do |data|
-          DeviseTokenAuth::TokenFactory.token_hash_is_token?(
-            data['token'], request.headers['Access-Token']
-          )
-        end
-
-        response.headers['impersonated'] = true if token&.key?('impersonated_by')
-      end
 
       def render_not_found(exception)
         logger.info { exception } # for logging

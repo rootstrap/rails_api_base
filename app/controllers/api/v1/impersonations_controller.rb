@@ -7,9 +7,9 @@ module API
       skip_after_action :verify_authorized
 
       def create
-        response.headers
-          .merge!(Impersonation::Authenticator.new(params[:auth]).build_auth_headers!)
-          .merge!(impersonated: true)
+        response.headers.merge!(
+          Impersonation::Authenticator.new(params[:auth]).build_auth_headers!
+        )
       end
     end
   end
