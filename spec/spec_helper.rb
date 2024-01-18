@@ -10,6 +10,7 @@ require 'knapsack'
 require 'webmock/rspec'
 require 'shoulda/matchers'
 require 'pundit/rspec'
+require 'capybara/rspec'
 
 Knapsack.tracker.config(enable_time_offset_warning: false)
 Knapsack::Adapters::RSpecAdapter.bind
@@ -18,6 +19,20 @@ FactoryBot.factories.clear
 FactoryBot.reload
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
+
+Capybara.register_driver :chrome do |app|
+  args = %w[no-sandbox disable-gpu disable-dev-shm-usage]
+  args << (ENV['HEADLESS'] == 'true' ? 'headless' : 'non-headless')
+  options = Selenium::WebDriver::Chrome::Options.new(args:)
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
+end
+
+Capybara.configure do |config|
+  config.javascript_driver = :chrome
+  config.always_include_port = true
+  config.default_max_wait_time = 10
+  config.default_normalize_ws = true
+end
 
 RSpec.configure do |config|
   config.include Helpers

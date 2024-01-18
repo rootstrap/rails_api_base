@@ -6,6 +6,7 @@ inherit_mode:
     - Exclude
 
 require:
+  - rubocop-capybara
   - rubocop-factory_bot
   - rubocop-performance
   - rubocop-rails
@@ -74,14 +75,14 @@ Metrics/ModuleLength:
 Metrics/PerceivedComplexity:
   Max: 12
 
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
+
 Rails/FilePath:
   Enabled: false
 
 Rails/SaveBang:
   Enabled: true
-
-RescuedExceptionsVariableName:
-  Enabled: false
 
 RSpec/ExampleLength:
   Enabled: false
@@ -139,3 +140,8 @@ Style/SlicingWithRange:
 
 Style/StringConcatenation:
   Enabled: false
+
+RSpec/Capybara/FeatureMethods:
+  EnabledMethods:
+    - feature
+    - scenario

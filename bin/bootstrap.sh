@@ -67,8 +67,19 @@ sed_i() {
   fi
 }
 
-# update project name in database.yml
-sed_i "s/rails_api_base/${project_name}/g" config/database.yml
+# Export the function to make it available to the find command
+export -f sed_i
+
+# Define the file types to search for
+file_types=("yml" "yaml" "erb" "rb" "json")
+
+for file_type in "${file_types[@]}"
+do
+  # Find and replace the string in files of the current type
+  find . -name "*.$file_type" -type f -exec bash -c 'sed_i "s|rails_api_base|'"$project_name"'|g" "$0"' {} \;
+done
+
+echo "Replacement completed successfully."
 
 # spin up docker services if flag is specified for the setup to take place inside the containers
 if [[ $docker -eq 1 ]]; then
