@@ -2,8 +2,8 @@
 
 module Impersonation
   class Authenticator
-    def initialize(encrypted_data)
-      @encrypted_data = encrypted_data
+    def initialize(signed_data)
+      @signed_data = signed_data
     end
 
     def build_auth_headers!
@@ -13,16 +13,16 @@ module Impersonation
 
     private
 
-    def decrypted_data
-      @decrypted_data ||= Impersonation::Encryptor.new.decrypt!(@encrypted_data)
+    def data
+      @data ||= Impersonation::Verifier.new.verify!(@signed_data)
     end
 
     def user
-      @user ||= User.find(decrypted_data['user_id'])
+      @user ||= User.find(data['user_id'])
     end
 
     def admin_user_id
-      decrypted_data['admin_user_id']
+      data['admin_user_id']
     end
 
     def token
