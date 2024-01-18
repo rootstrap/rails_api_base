@@ -54,11 +54,13 @@ ActiveAdmin.register User do
     end
   end
 
-  action_item :user_impersonation, only: :show do
-    encrypted_data = Impersonation::Encryptor.new.encrypt!(
-      user_id: resource.id, admin_user_id: current_admin_user.id
-    )
+  if ENV['IMPERSONATION_URL'].present?
+    action_item :user_impersonation, only: :show do
+      encrypted_data = Impersonation::Encryptor.new.encrypt!(
+        user_id: resource.id, admin_user_id: current_admin_user.id
+      )
 
-    link_to 'Impersonate User', "#{ENV.fetch('FRONTEND_URL')}?auth_encrypted=#{encrypted_data}"
+      link_to 'Impersonate User', "#{ENV.fetch('IMPERSONATION_URL')}?auth_encrypted=#{encrypted_data}"
+    end
   end
 end
