@@ -8,10 +8,8 @@ module API
 
       def create
         response.headers.merge!(
-          Impersonation::Authenticator.new(
-            params[:auth_encrypted]
-          ).build_auth_headers!
-        ).merge!(impersonated: true)
+          Impersonation::Authenticator.new(params[:auth]).build_auth_headers!
+        )
       end
     end
   end
