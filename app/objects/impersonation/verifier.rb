@@ -6,19 +6,13 @@ module Impersonation
     PURPOSE = :impersonation
 
     def sign!(data)
-      data.then {
-        message_verifier.generate(_1, expires_in: EXPIRATION, purpose: PURPOSE)
-      }.then {
-        Base64.urlsafe_encode64(_1)
-      }
+      signed_data = message_verifier.generate(data, expires_in: EXPIRATION, purpose: PURPOSE)
+      Base64.urlsafe_encode64(signed_data)
     end
 
-    def verify!(signed_data)
-      signed_data.then {
-        Base64.urlsafe_decode64(_1)
-      }.then {
-        message_verifier.verified(_1, purpose: PURPOSE)
-      }
+    def verify!(encoded_data)
+      signed_data = Base64.urlsafe_decode64(encoded_data)
+      message_verifier.verified(signed_data, purpose: PURPOSE)
     end
 
     private
