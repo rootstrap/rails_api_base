@@ -12,7 +12,7 @@ module Impersonation
 
     def verify!(encoded_data)
       signed_data = Base64.urlsafe_decode64(encoded_data)
-      message_verifier.verified(signed_data, purpose: PURPOSE)
+      message_verifier.verify(signed_data, purpose: PURPOSE)
     end
 
     private
