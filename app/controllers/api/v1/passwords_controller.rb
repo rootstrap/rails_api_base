@@ -10,9 +10,7 @@ module API
       private
 
       def redirect_options
-        {
-          allow_other_host: true
-        }
+        { allow_other_host: true }
       end
     end
   end
