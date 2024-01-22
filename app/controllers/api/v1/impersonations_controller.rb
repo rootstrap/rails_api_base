@@ -7,8 +7,12 @@ module API
       skip_after_action :verify_authorized
 
       def create
+        user, token = Impersonation::Authenticator.new(params[:auth]).authenticate!
+
         response.headers.merge!(
-          Impersonation::Authenticator.new(params[:auth]).build_auth_headers!
+          user.build_auth_headers(token.token, token.client)
+        ).merge!(
+          Impersonation::Headers.new(user, token.token).build_impersonation_headers
         )
       end
     end
