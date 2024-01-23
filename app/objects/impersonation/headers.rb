@@ -7,7 +7,7 @@ module Impersonation
       @access_token = access_token
     end
 
-    def build_impersonation_headers
+    def build_impersonation_header
       { impersonated: impersonation_token? }.compact_blank
     end
 

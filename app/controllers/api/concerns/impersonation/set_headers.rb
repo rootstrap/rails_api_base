@@ -9,7 +9,7 @@ module API
         included do
           after_action do
             response.headers.merge!(
-              ::Impersonation::Headers.new(current_user, request.headers['Access-Token']).build_impersonation_headers
+              ::Impersonation::Headers.new(current_user, request.headers['Access-Token']).build_impersonation_header
             )
           end
         end
