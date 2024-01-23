@@ -44,10 +44,13 @@ This template comes with:
 1. Have `docker` and `docker-compose` installed (You can check this by doing `docker -v` and `docker-compose -v`)
 1. Run `bootstrap.sh` with the name of your project and the `-d` or `--for-docker` flag like `./bin/bootstrap.sh --name=my_awesome_project -d`
     1. Run `./bin/bootstrap.sh --help` for the full details.
-1. Generate a secret key for the app by running `bin/web rails secret`, copy it and add it in your environment variables.
+1. Generate a secret key for the app by running `bin/web rails secret`, copy it and add it in your environment variables and set in the `SECRET_KEY_BASE` of your .env file.
 1. (Optional) If you want to deny access to the database from outside of the `docker-compose` network, remove the `ports` key in the `docker-compose.yml` from the `db` service.
 1. (Optional) Run the tests to make sure everything is working with: `bin/rspec .`.
 1. You can now try your REST services!
+
+> [!IMPORTANT]  
+> Docker version is not working with Ruby-3.3.0 for Apple Silicon. [Read more]( https://stackoverflow.com/questions/77725755/segmentation-fault-during-rails-assetsprecompile-on-apple-silicon-m3-with-rub )
 
 ## Dev scripts
 

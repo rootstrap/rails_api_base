@@ -13,6 +13,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD-postgres}
       POSTGRES_HOST: db
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE-1234567890}
     volumes:
       - .:/src/myapp
     depends_on:
