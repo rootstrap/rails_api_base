@@ -3,18 +3,22 @@
 module Impersonation
   class Authenticator
     TOKEN_KEY = 'impersonated_by'
-    HEADER = { impersonated: true }.freeze
 
     def initialize(signed_data)
       @signed_data = signed_data
     end
 
-    def build_auth_headers!
-      user.tokens.reject! { |_token, attrs| attrs[TOKEN_KEY] == admin_user_id }
-      user.build_auth_headers(token.token, token.client).merge(HEADER)
+    def authenticate!
+      clean_up_previous_impersonations
+
+      [user, token]
     end
 
     private
+
+    def clean_up_previous_impersonations
+      user.tokens.reject! { |_token, attrs| attrs[TOKEN_KEY] == admin_user_id }
+    end
 
     def data
       @data ||= Impersonation::Verifier.new.verify!(@signed_data)
@@ -29,7 +33,7 @@ module Impersonation
     end
 
     def token
-      @token ||= user.create_token(lifespan: 1.hour.to_i, TOKEN_KEY => admin_user_id).tap { user.save! }
+      user.create_token(lifespan: 1.hour.to_i, TOKEN_KEY => admin_user_id).tap { user.save! }
     end
   end
 end

@@ -8,15 +8,9 @@ module API
 
         included do
           after_action do
-            token = current_user&.tokens&.values&.find do |data|
-              DeviseTokenAuth::TokenFactory.token_hash_is_token?(
-                data['token'], request.headers['Access-Token']
-              )
-            end
-
-            if token&.key?(::Impersonation::Authenticator::TOKEN_KEY)
-              response.headers.merge!(::Impersonation::Authenticator::HEADER)
-            end
+            response.headers.merge!(
+              ::Impersonation::Headers.new(current_user, request.headers['Access-Token']).build_impersonation_header
+            )
           end
         end
       end
