@@ -24,8 +24,16 @@ Capybara.register_driver :chrome do |app|
   args = %w[no-sandbox disable-gpu disable-dev-shm-usage]
   args << (ENV['HEADLESS'] == 'true' ? 'headless' : 'non-headless')
   options = Selenium::WebDriver::Chrome::Options.new(args:)
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :remote,
+    url: 'http://chrome-server:4444',
+    options: options,
+  )
 end
+
+Capybara.server_host = '0.0.0.0'
+Capybara.app_host = "http://#{ENV.fetch("HOSTNAME")}:#{Capybara.server_port}"
 
 Capybara.configure do |config|
   config.javascript_driver = :chrome

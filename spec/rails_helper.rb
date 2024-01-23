@@ -26,7 +26,7 @@ require 'support/retry/message_formatter'
 ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!(
   allow_localhost: true,
-  allow: ['api.github.com']
+  allow: ['api.github.com', 'chrome-server:4444']
 )
 
 RSpec.configure do |config|
