@@ -26,8 +26,8 @@ Capybara.register_driver :chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new(args:)
   Capybara::Selenium::Driver.new(
     app,
-    browser: :remote,
-    url: 'http://chrome-server:4444',
+    browser: ENV.fetch('SELENIUM_BROWSER', :chrome).to_sym,
+    url: ENV.fetch('SELENIUM_BROWSER_HOST', nil),
     options: options,
   )
 end

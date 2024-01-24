@@ -8,6 +8,8 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_HOST: db
+      SELENIUM_BROWSER: remote
+      SELENIUM_BROWSER_HOST: http://chrome-server:4444
     volumes:
       - .:/src/app
     depends_on:
