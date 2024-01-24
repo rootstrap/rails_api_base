@@ -12,6 +12,7 @@ services:
       - .:/src/app
     depends_on:
       - db
+      - chrome-server
     links:
       - db:db
   chrome-server:
