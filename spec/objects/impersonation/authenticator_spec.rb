@@ -5,8 +5,8 @@ describe Impersonation::Authenticator do
   let(:admin_user_id) { 123 }
   let(:signed_data) { Impersonation::Verifier.new.generate_signature(user.id, admin_user_id) }
 
-  describe '#build_auth_headers!' do
-    subject { described_class.new(signed_data).build_auth_headers! }
+  describe '#authenticate!' do
+    subject { described_class.new(signed_data).authenticate! }
 
     context 'when signed_data is valid' do
 
