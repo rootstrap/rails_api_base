@@ -9,8 +9,11 @@ describe Impersonation::Verifier do
     context 'when data is present' do
       let(:data) { 1 }
 
-      # expect to be an encrypted response
-      # expect to an url safe
+      it 'returns a Base64.urlsafe_encode64 string' do
+        expect(
+          verifier.send(:message_verifier).valid_message?(Base64.decode64(subject))
+        ).to be true
+      end
     end
   end
 
@@ -20,7 +23,9 @@ describe Impersonation::Verifier do
     context 'when encoded_data is valid' do
       let(:encoded_data) { verifier.sign!('test') }
 
-      # it decodes the encoded_data
+      it 'returns the decoded data' do
+        expect(subject).to eq 'test'
+      end
     end
   end
 end
