@@ -9,7 +9,7 @@ gem 'rails', '~> 7.0.8'
 # Gems
 gem 'activeadmin', '~> 3.2'
 gem 'active_storage_base64', '~> 2.0.0'
-gem 'aws-sdk-s3', '~> 1.142', require: false
+gem 'aws-sdk-s3', '~> 1.143', require: false
 gem 'bootsnap', '~> 1.17'
 gem 'delayed_job_active_record', '~> 4.1'
 gem 'devise', '~> 4.9'
