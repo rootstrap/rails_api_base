@@ -71,7 +71,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 3.39', '>= 3.39.2'
+  gem 'capybara', '~> 3.40'
   gem 'faraday-retry', '~> 2.2'
   gem 'knapsack', '~> 4.0'
   gem 'octokit', '~> 8.0'
