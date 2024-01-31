@@ -10,6 +10,7 @@ services:
       POSTGRES_HOST: db
       SELENIUM_BROWSER: remote
       SELENIUM_BROWSER_HOST: http://chrome-server:4444
+      HEADLESS: true
     volumes:
       - .:/src/app
     depends_on:

@@ -20,20 +20,24 @@ FactoryBot.reload
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
 
+browser = ENV.fetch('SELENIUM_BROWSER', 'chrome')
+
 Capybara.register_driver :chrome do |app|
   args = %w[no-sandbox disable-gpu disable-dev-shm-usage]
   args << (ENV['HEADLESS'] == 'true' ? 'headless' : 'non-headless')
   options = Selenium::WebDriver::Chrome::Options.new(args:)
   Capybara::Selenium::Driver.new(
     app,
-    browser: ENV.fetch('SELENIUM_BROWSER', :chrome).to_sym,
+    browser: browser.to_sym,
     url: ENV.fetch('SELENIUM_BROWSER_HOST', nil),
     options: options,
   )
 end
 
-Capybara.server_host = '0.0.0.0'
-Capybara.app_host = "http://#{ENV.fetch("HOSTNAME")}:#{Capybara.server_port}"
+if browser == 'remote'
+  Capybara.server_host = '0.0.0.0'
+  Capybara.app_host = "http://#{ENV.fetch("HOSTNAME")}:#{Capybara.server_port}"
+end
 
 Capybara.configure do |config|
   config.javascript_driver = :chrome
