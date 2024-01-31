@@ -10,12 +10,11 @@ describe Impersonation::Headers do
     subject { headers.build_impersonation_header }
 
     context 'when access_token is valid' do
-      context 'when the user token has the impersonated_by key' do
 
-      end
-      context 'when the user token does not have the impersonated_by key' do
+    end
 
-      end
+    context 'when the user token does not have the impersonated_by key' do
+
     end
 
     context 'when access_token is not valid' do
