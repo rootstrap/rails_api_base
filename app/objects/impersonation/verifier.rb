@@ -6,12 +6,10 @@ module Impersonation
     PURPOSE = :impersonation
 
     def sign!(data)
-      signed_data = message_verifier.generate(data, expires_in: EXPIRATION, purpose: PURPOSE)
-      Base64.urlsafe_encode64(signed_data)
+      message_verifier.generate(data, expires_in: EXPIRATION, purpose: PURPOSE)
     end
 
-    def verify!(encoded_data)
-      signed_data = Base64.urlsafe_decode64(encoded_data)
+    def verify!(signed_data)
       message_verifier.verify(signed_data, purpose: PURPOSE)
     end
 
@@ -20,7 +18,7 @@ module Impersonation
     def message_verifier
       @message_verifier ||= ActiveSupport::MessageVerifier.new(
         Rails.application.secret_key_base,
-        digest: 'SHA256', serializer: JSON
+        digest: 'SHA256', serializer: JSON, url_safe: true
       )
     end
   end

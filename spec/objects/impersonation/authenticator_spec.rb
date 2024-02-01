@@ -28,7 +28,7 @@ describe Impersonation::Authenticator do
       it 'raises an InvalidSignature error' do
         signed_data
         travel_to 10.minutes.from_now do
-          expect { subject }.to raise_error('ActiveSupport::MessageVerifier::InvalidSignature')
+          expect { subject }.to raise_error(ActiveSupport::MessageVerifier::InvalidSignature)
         end
       end
     end

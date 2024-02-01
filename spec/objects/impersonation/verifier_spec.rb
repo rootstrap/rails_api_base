@@ -10,9 +10,7 @@ describe Impersonation::Verifier do
       let(:data) { 1 }
 
       it 'returns a Base64.urlsafe_encode64 string' do
-        expect(
-          verifier.send(:message_verifier).valid_message?(Base64.decode64(subject))
-        ).to be true
+        expect(Base64.decode64(subject)).to start_with("{\"_rails\":{\"data\":#{data},\"exp\"")
       end
     end
   end
