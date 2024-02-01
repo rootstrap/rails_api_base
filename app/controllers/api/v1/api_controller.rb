@@ -4,7 +4,6 @@ module API
   module V1
     class APIController < ActionController::API
       include API::Concerns::ActAsAPIRequest
-      include API::Concerns::Impersonation::SetHeaders
       include Pundit::Authorization
       include DeviseTokenAuth::Concerns::SetUserByToken
 
