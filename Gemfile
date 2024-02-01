@@ -4,26 +4,26 @@ source 'https://rubygems.org'
 
 ruby '~> 3.3.0'
 
-gem 'rails', '~> 7.0.8'
+gem 'rails', '~> 7.1.3'
 
 # Gems
 gem 'activeadmin', '~> 3.2'
 gem 'active_storage_base64', '~> 2.0.0'
-gem 'aws-sdk-s3', '~> 1.142', require: false
+gem 'aws-sdk-s3', '~> 1.143', require: false
 gem 'bootsnap', '~> 1.17'
 gem 'delayed_job_active_record', '~> 4.1'
 gem 'devise', '~> 4.9'
-gem 'devise_token_auth', '~> 1.2.2'
+gem 'devise_token_auth', github: 'lynndylanhurley/devise_token_auth'
 gem 'draper', '~> 4.0', '>= 4.0.1'
-gem 'flipper', '~> 1.1.2'
-gem 'flipper-active_record', '~> 1.1.1'
-gem 'flipper-ui', '~> 1.1.2'
+gem 'flipper', '~> 1.2.2'
+gem 'flipper-active_record', '~> 1.2.2'
+gem 'flipper-ui', '~> 1.2.2'
 gem 'jbuilder', '~> 2.10'
-gem 'jsbundling-rails', '~> 1.2'
+gem 'jsbundling-rails', '~> 1.3'
 gem 'lograge', '~> 0.14'
-gem 'newrelic_rpm', '~> 9.6'
+gem 'newrelic_rpm', '~> 9.7'
 gem 'oj', '~> 3.16'
-gem 'pagy', '~> 6.2'
+gem 'pagy', '~> 6.4'
 gem 'pg', '~> 1.5'
 gem 'puma', '~> 6.4'
 gem 'pundit', '~> 2.3'
@@ -59,7 +59,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'listen', '~> 3.8'
   gem 'rails_best_practices', '~> 1.20'
-  gem 'reek', '~> 6.2'
+  gem 'reek', '~> 6.3'
   gem 'rubocop', '~> 1.59', require: false
   gem 'rubocop-capybara', '~> 2.20'
   gem 'rubocop-factory_bot', '~> 2.25', require: false
@@ -71,18 +71,18 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 3.39', '>= 3.39.2'
+  gem 'capybara', '~> 3.40'
   gem 'faraday-retry', '~> 2.2'
   gem 'knapsack', '~> 4.0'
   gem 'octokit', '~> 8.0'
   gem 'parallel_tests', '~> 4.4'
-  gem 'pg_query', '~> 4.2.3'
+  gem 'pg_query', '~> 5.1.0'
   gem 'prosopite', '~> 1.4.2'
-  gem 'rspec-openapi', '~> 0.10'
+  gem 'rspec-openapi', '~> 0.11'
   gem 'rspec-rails', '~> 6.1'
   gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
-  gem 'selenium-webdriver', '~> 4.16.0'
-  gem 'shoulda-matchers', '~> 6.0'
+  gem 'selenium-webdriver', '~> 4.17.0'
+  gem 'shoulda-matchers', '~> 6.1'
   gem 'simplecov', '~> 0.22.0', require: false
   gem 'webmock', '~> 3.19'
 end

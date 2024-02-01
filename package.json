@@ -5,7 +5,7 @@
     "@activeadmin/activeadmin": "3.2.0",
     "@fortawesome/fontawesome-free": "6.5.1",
     "arctic_admin": "4.2.6",
-    "esbuild": "0.19.11",
+    "esbuild": "0.20.0",
     "jquery": "3.7.1",
     "jquery-ui": "1.13.2",
     "jquery-ujs": "1.2.3"
