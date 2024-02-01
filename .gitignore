@@ -23,7 +23,6 @@
 capybara-*.html
 config/initializers/secret_token.rb
 config/master.key
-config/secrets.yml
 pickle-email-*.html
 rerun.txt
 yarn-debug.log*
