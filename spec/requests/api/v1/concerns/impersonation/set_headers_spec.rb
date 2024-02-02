@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe API::Concerns::Impersonation::SetHeaders, type: :controller do
-  controller(API::V1::APIController) do
+RSpec.describe API::Concerns::Impersonation::SetHeaders do
+  class FakeController < API::V1::APIController
     include API::Concerns::Impersonation::SetHeaders
 
     def show
@@ -10,16 +10,22 @@ RSpec.describe API::Concerns::Impersonation::SetHeaders, type: :controller do
     end
   end
 
-  before { routes.draw { get 'show' => 'anonymous#show' } }
+  before do
+    Rails.application.routes.draw do
+      get '/show' => 'fake#show'
+    end
+  end
 
   describe '#show' do
-    subject { get :show, headers: auth_headers, format: :json }
+    subject do
+      get '/show', headers: auth_headers, as: :json
+    end
 
     let(:user) { create(:user) }
 
     context 'when user has a valid session' do
       it 'does not return the impersonated header' do
-        byebug
+        subject
         expect(response.headers).not_to include('impersonated')
       end
 
@@ -30,6 +36,8 @@ RSpec.describe API::Concerns::Impersonation::SetHeaders, type: :controller do
         end
 
         it 'does return the impersonated header' do
+          subject
+          byebug
           expect(response.headers).to include('impersonated')
         end
       end
