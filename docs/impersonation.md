@@ -20,7 +20,7 @@ This workflow ensures a secure and seamless user impersonation process for Admin
 
 1. The link to impersonate users is not available by default. To activate this tool, you need to set the `IMPERSONATION_URL` environment variable.
 
-2. Add `include API::Concerns::Impersonation::SetHeaders` to `app/controllers/api/v1/api_controller.rb` in order to include the `impersonated` header in the requests response.
+2. Add `include API::Concerns::Impersonation::Hooks` to `app/controllers/api/v1/api_controller.rb` in order to set the `impersonated_by` attribute in the `current_user` and the `impersonated` header in the response.
 
 ## Configuration
 
