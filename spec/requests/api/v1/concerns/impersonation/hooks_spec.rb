@@ -16,6 +16,10 @@ RSpec.describe 'API::Concerns::Impersonation::Hooks' do
     end
   end
 
+  after do
+    Rails.application.reload_routes!
+  end
+
   describe '#show' do
     subject do
       get '/show', headers: auth_headers, as: :json

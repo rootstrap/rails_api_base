@@ -12,7 +12,7 @@ module API
         response.headers.merge!(
           user.build_auth_headers(token.token, token.client)
         ).merge!(
-          Impersonation::Headers.new(user, token.token).build_impersonation_header
+          Impersonation::Headers.new(user).build_impersonation_header
         )
       end
     end
