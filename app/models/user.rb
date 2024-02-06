@@ -40,6 +40,8 @@ class User < ApplicationRecord
 
   validates :uid, uniqueness: { scope: :provider }
 
+  attribute :impersonated_by, :integer
+
   before_validation :init_uid
 
   RANSACK_ATTRIBUTES = %w[id email first_name last_name username sign_in_count current_sign_in_at

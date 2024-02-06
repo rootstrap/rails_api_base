@@ -1,28 +1,29 @@
 # frozen_string_literal: true
 
 describe Impersonation::Headers do
-  let(:headers) { described_class.new(user:, access_token:) }
   let(:user) { create(:user) }
-  let(:token) { user.create_token('impersonated_by' => 1).tap { user.save!.reload } }
-  let(:access_token) { user.build_auth_headers(token.token, token.client)['Access-Token'] }
 
   describe '#build_impersonation_header' do
-    subject { headers.build_impersonation_header }
+    subject { described_class.new(user).build_impersonation_header }
 
-    context 'when access_token is valid' do
+    context 'when the user has not been impersonated' do
+      before do
+        user.impersonated_by = nil
+      end
 
+      it 'returns an empty hash' do
+        expect(subject).to eq({})
+      end
     end
 
-    context 'when the user token does not have the impersonated_by key' do
+    context 'when the user has been impersonated' do
+      before do
+        user.impersonated_by = 100
+      end
 
-    end
-
-    context 'when access_token is not valid' do
-
-    end
-
-    context 'when user does not exist' do
-
+      it 'returns the impersonated header' do
+        expect(subject).to eq({ 'impersonated' => true })
+      end
     end
   end
 end

@@ -3,13 +3,15 @@
 module API
   module Concerns
     module Impersonation
-      module SetHeaders
+      module Hooks
         extend ActiveSupport::Concern
 
         included do
-          after_action do
+          before_action do
+            ::Impersonation::MarkUser.new(current_user, request.headers['Access-Token']).mark!
+
             response.headers.merge!(
-              ::Impersonation::Headers.new(current_user, request.headers['Access-Token']).build_impersonation_header
+              ::Impersonation::Headers.new(current_user).build_impersonation_header
             )
           end
         end
