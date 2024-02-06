@@ -11,7 +11,7 @@ describe Impersonation::MarkUser do
       let(:access_token) { user.build_auth_headers(token.token, token.client)['access-token'] }
 
       it 'sets the impersonated_by attribute' do
-        expect { subject }.to change { user.impersonated_by }.from(nil).to(1)
+        expect { subject }.to change(user, :impersonated_by).from(nil).to(1)
       end
     end
 
@@ -20,7 +20,7 @@ describe Impersonation::MarkUser do
       let(:access_token) { user.build_auth_headers(token.token, token.client)['access-token'] }
 
       it 'sets the impersonated_by attribute' do
-        expect { subject }.to_not change { user.impersonated_by }.from(nil)
+        expect { subject }.not_to change(user, :impersonated_by).from(nil)
       end
     end
 
@@ -29,7 +29,7 @@ describe Impersonation::MarkUser do
       let(:access_token) { 'invalid' }
 
       it 'sets the impersonated_by attribute' do
-        expect { subject }.to_not change { user.impersonated_by }.from(nil)
+        expect { subject }.not_to change(user, :impersonated_by).from(nil)
       end
     end
 
@@ -38,7 +38,7 @@ describe Impersonation::MarkUser do
       let(:access_token) { nil }
 
       it 'does not fail' do
-        expect { subject }.to_not raise_error
+        expect { subject }.not_to raise_error
       end
     end
   end

@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-RSpec.describe API::Concerns::Impersonation::Hooks do
-  class FakeController < API::V1::APIController
-    include API::Concerns::Impersonation::Hooks
-    skip_after_action :verify_authorized
-
-    def show
-      render json: { 'current_user.impersonated_by' => current_user.impersonated_by }
-    end
-  end
-
+RSpec.describe 'API::Concerns::Impersonation::Hooks' do
   before do
+    stub_const('FakeController', Class.new(API::V1::APIController) do
+      include API::Concerns::Impersonation::Hooks
+      skip_after_action :verify_authorized
+
+      def show
+        render json: { 'current_user.impersonated_by' => current_user.impersonated_by }
+      end
+    end)
+
     Rails.application.routes.draw do
       get '/show' => 'fake#show'
     end
@@ -26,7 +26,7 @@ RSpec.describe API::Concerns::Impersonation::Hooks do
     context 'with a normal session' do
       it 'does not return the impersonated header' do
         subject
-        expect(response.headers).to_not include('impersonated')
+        expect(response.headers).not_to include('impersonated')
       end
 
       it 'current_user.impersonated_by is nil' do
