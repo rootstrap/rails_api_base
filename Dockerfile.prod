@@ -8,7 +8,7 @@ FROM node:$NODE_VERSION as node
 FROM ruby:${RUBY_VERSION} as builder
 
 RUN apt-get update -qq && \
-    apt-get install -y build-essential libssl-dev libpq-dev vim libsasl2-dev && \
+    apt-get install -y build-essential libssl-dev libpq-dev libsasl2-dev && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy node binaries from node image.
@@ -29,7 +29,30 @@ WORKDIR $APP_HOME
 
 # Copy dependencies files and install libraries.
 COPY --link Gemfile Gemfile.lock package.json yarn.lock ./
-RUN gem install bundler && bundle install -j 4 && yarn install
+RUN gem install bundler && bundle install -j 4 --without development test && yarn install
+
+# Build runtime image.
+FROM ruby:${RUBY_VERSION}
+
+RUN apt-get update -qq && \
+    apt-get install -y build-essential libssl-dev libpq-dev libsasl2-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+# Setup env variables.
+ENV WORK_ROOT /src
+ENV APP_HOME $WORK_ROOT/app/
+ENV LANG C.UTF-8
+ENV BUNDLE_PATH $WORK_ROOT/bundle
+
+# Create app directory.
+RUN mkdir -p $APP_HOME
+
+# Setup work directory.
+WORKDIR $APP_HOME
+
+# Copy everything from the builder image
+COPY --from=builder $APP_HOME $APP_HOME
+COPY --from=builder $BUNDLE_PATH $BUNDLE_PATH
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["./bin/docker-entrypoint"]
