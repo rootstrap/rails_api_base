@@ -2,27 +2,12 @@
 
 module Impersonation
   class Headers
-    def initialize(user, access_token)
+    def initialize(user)
       @user = user
-      @access_token = access_token
     end
 
     def build_impersonation_header
-      { impersonated: impersonation_token? }.compact_blank
-    end
-
-    private
-
-    def token
-      @user&.tokens&.values&.find do |data|
-        DeviseTokenAuth::TokenFactory.token_hash_is_token?(
-          data['token'], @access_token
-        )
-      end
-    end
-
-    def impersonation_token?
-      token&.key?(::Impersonation::Authenticator::TOKEN_KEY)
+      { 'impersonated' => @user.impersonated_by.present? }.compact_blank
     end
   end
 end

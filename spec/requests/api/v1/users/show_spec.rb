@@ -32,10 +32,4 @@ describe 'GET api/v1/users/:id' do
       expect(response).to have_http_status(:not_found)
     end
   end
-
-  context 'when user access-token belongs to an impersonation session' do
-    context 'when API::Concerns::Impersonation::SetHeaders has been included in the api_controller' do
-      # Mock the include here
-    end
-  end
 end

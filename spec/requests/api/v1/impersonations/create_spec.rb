@@ -19,7 +19,7 @@ describe 'POST api/v1/impersonations' do
       subject
 
       expect(response.headers['Authorization']).to be_present
-      expect(response.headers[:impersonated]).to be_truthy
+      expect(response.headers['impersonated']).to be true
     end
 
     it 'returns a valid client and access token' do

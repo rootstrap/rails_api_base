@@ -25,7 +25,9 @@ module Impersonation
     end
 
     def user
-      @user ||= User.find(data['user_id'])
+      @user ||= User.find(data['user_id']).tap do |it|
+        it.impersonated_by = admin_user_id
+      end
     end
 
     def admin_user_id
