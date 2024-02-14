@@ -5,7 +5,7 @@ ARG NODE_VERSION=20.10.0
 FROM node:$NODE_VERSION as node
 
 # Ruby build image.
-FROM ruby:${RUBY_VERSION} as builder
+FROM ruby:${RUBY_VERSION}
 
 RUN apt-get update -qq && \
     apt-get install -y build-essential libssl-dev libpq-dev vim libsasl2-dev && \
