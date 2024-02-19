@@ -9,7 +9,6 @@ gem 'rails', '~> 7.1.3'
 # Gems
 gem 'activeadmin', '~> 3.2'
 gem 'active_storage_base64', '~> 2.0.0'
-gem 'arctic_admin', '~> 4.2.6'
 gem 'aws-sdk-s3', '~> 1.143', require: false
 gem 'bootsnap', '~> 1.17'
 gem 'delayed_job_active_record', '~> 4.1'
@@ -50,6 +49,7 @@ group :development, :test do
   gem 'faker', '~> 3.2'
   gem 'pry-byebug', '~> 3.9', platform: :mri
   gem 'pry-rails', '~> 0.3.9'
+  gem 'rspec-rails', '~> 6.1'
 end
 
 group :development do
@@ -79,7 +79,6 @@ group :test do
   gem 'pg_query', '~> 5.1.0'
   gem 'prosopite', '~> 1.4.2'
   gem 'rspec-openapi', '~> 0.11'
-  gem 'rspec-rails', '~> 6.1'
   gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
   gem 'selenium-webdriver', '~> 4.17.0'
   gem 'shoulda-matchers', '~> 6.1'
