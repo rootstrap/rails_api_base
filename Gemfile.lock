@@ -366,7 +366,7 @@ GEM
     orm_adapter (0.5.0)
     pagy (6.4.3)
     parallel (1.24.0)
-    parallel_tests (4.4.0)
+    parallel_tests (4.5.0)
       parallel
     parser (3.3.0.5)
       ast (~> 2.4.1)
@@ -637,7 +637,7 @@ DEPENDENCIES
   octokit (~> 8.1)
   oj (~> 3.16)
   pagy (~> 6.4)
-  parallel_tests (~> 4.4)
+  parallel_tests (~> 4.5)
   pg (~> 1.5)
   pg_query (~> 5.1.0)
   prosopite (~> 1.4.2)
