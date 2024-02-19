@@ -10,8 +10,7 @@ module API
         user, token = Impersonation::Authenticator.new(params[:auth]).authenticate!
 
         response.headers.merge!(
-          user.build_auth_headers(token.token, token.client)
-        ).merge!(
+          user.build_auth_headers(token.token, token.client),
           Impersonation::Headers.new(user).build_impersonation_header
         )
       end

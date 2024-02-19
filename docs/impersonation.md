@@ -1,30 +1,30 @@
 # Impersonation
 
-## How does it work?
-
-1. **Access Impersonation Link:**
-   - AdminUsers can find a link to impersonate users within the ActiveAdmin show page for users.
-
-2. **Initiate Impersonation Request:**
-   - When an AdminUser clicks on the impersonation link, a request containing encrypted data is sent to a route specified by the `IMPERSONATION_URL` environment variable.
-
-3. **Decrypt Data and Obtain Authentication Headers:**
-   - The designated route responsible for handling the encrypted data must make a POST request to `api/v1/impersonations`. This action retrieves the necessary authentication headers, including an additional header indicating that the headers are associated with an ongoing impersonation session. This extra header is named `impersonated`.
-
-4. **Establish Impersonation Session:**
-   - With the obtained headers, the frontend is equipped to make requests to the Rails API base, effectively simulating the experience of being another user.
-
-This workflow ensures a secure and seamless user impersonation process for AdminUsers. Adjust the configurations as needed based on your environment and requirements.
-
 ## Installation
 
-1. The link to impersonate users is not available by default. To activate this tool, you need to set the `IMPERSONATION_URL` environment variable.
+1. The link to impersonate users is not available by default. To activate this tool, you need to set the `IMPERSONATION_URL` environment variable with the frontend URL where the auth params are taken and sent back to the server at `/api/v1/impersonations`.
 
 2. Add `include API::Concerns::Impersonation::Hooks` to `app/controllers/api/v1/api_controller.rb` in order to set the `impersonated_by` attribute in the `current_user` and the `impersonated` header in the response.
 
+## How does it work?
+
+1. **Access Impersonation Link:**
+   - `AdminUser`s can find a link to impersonate users within the ActiveAdmin show page for users.
+
+2. **Initiate Impersonation Request:**
+   - When an `AdminUser` clicks on the impersonation link, a request containing signed data is sent to a route specified by the `IMPERSONATION_URL` environment variable.
+
+3. **Verify Data and Obtain Authentication Headers:**
+   - The designated route responsible for handling the signed data must make a POST request to `api/v1/impersonations`. This action retrieves the necessary authentication headers, including an additional header indicating that the headers are associated with an ongoing impersonation session. This extra header is named `impersonated`.
+
+4. **Establish Impersonation Session:**
+   - With the obtained headers, the frontend is equipped to make requests to the server, effectively simulating the experience of being another user.
+
+This workflow ensures a secure and seamless user impersonation process for `AdminUser`s. Adjust the configurations as needed based on your environment and requirements.
+
 ## Configuration
 
-The encrypted data has a TTL of 5 minutes, to change this value update the `Impersonation::Verifier::EXPIRATION` constant.
+The signed data has a TTL of 5 minutes, to change this value update the `Impersonation::Verifier::EXPIRATION` constant.
 
 Impersonated sessions have a TTL of 1 hour, to change this value update the lifespan at app/objects/impersonation/authenticator.rb
 

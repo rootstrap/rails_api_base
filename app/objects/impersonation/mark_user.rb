@@ -8,7 +8,9 @@ module Impersonation
     end
 
     def mark!
-      @user.impersonated_by = impersonated_by if impersonation_token?
+      return unless impersonation_token?
+
+      @user.impersonated_by = impersonated_by
     end
 
     private

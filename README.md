@@ -134,7 +134,7 @@ With `bundle exec rails code:analysis` you can run the code analysis tool, you c
 
 ## Impersonation
 
-The `rails_api_base` incorporates a user impersonation feature, allowing `AdminUser`s to assume the identity of other `User`s.
+The `rails_api_base` incorporates a user impersonation feature, allowing `AdminUser`s to assume the identity of other `User`s. This feature is disabled by default.
 
 See [Impersonation docs](./docs/impersonation.md) for more info
 
