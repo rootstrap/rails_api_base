@@ -45,7 +45,7 @@ gem 'yaaf', '~> 2.2'
 
 group :development, :test do
   gem 'annotate', '~> 3.2', '>= 3.0.3'
-  gem 'dotenv-rails', '~> 2.8.1'
+  gem 'dotenv-rails', '~> 3.0.0'
   gem 'factory_bot_rails', '~> 6.4'
   gem 'faker', '~> 3.2'
   gem 'pry-byebug', '~> 3.9', platform: :mri
@@ -75,7 +75,7 @@ group :test do
   gem 'faraday-retry', '~> 2.2'
   gem 'knapsack', '~> 4.0'
   gem 'octokit', '~> 8.1'
-  gem 'parallel_tests', '~> 4.4'
+  gem 'parallel_tests', '~> 4.5'
   gem 'pg_query', '~> 5.1.0'
   gem 'prosopite', '~> 1.4.2'
   gem 'rspec-openapi', '~> 0.11'
@@ -84,7 +84,7 @@ group :test do
   gem 'selenium-webdriver', '~> 4.17.0'
   gem 'shoulda-matchers', '~> 6.1'
   gem 'simplecov', '~> 0.22.0', require: false
-  gem 'webmock', '~> 3.19'
+  gem 'webmock', '~> 3.20'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
