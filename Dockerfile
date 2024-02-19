@@ -20,7 +20,7 @@ ENV GEM_HOME $WORK_ROOT/bundle
 ENV BUNDLE_BIN $GEM_HOME/gems/bin
 ENV PATH $GEM_HOME/bin:$BUNDLE_BIN:$PATH
 
-RUN gem install bundler
+RUN gem install bundler:2.2.0
 
 RUN mkdir -p $APP_HOME
 
