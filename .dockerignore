@@ -36,3 +36,5 @@ config/credentials/*.key
 
 .DS_Store
 .byebug_history
+
+/vendor/bundle

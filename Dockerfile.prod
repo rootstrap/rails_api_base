@@ -28,7 +28,7 @@ ENV NODE_ENV production
 ENV WORK_ROOT /src
 ENV APP_HOME $WORK_ROOT/app/
 ENV LANG C.UTF-8
-ENV BUNDLE_PATH $WORK_ROOT/bundle
+ENV BUNDLE_PATH $APP_HOME/vendor/bundle
 
 # Create app directory.
 RUN mkdir -p $APP_HOME
@@ -60,15 +60,36 @@ RUN apt-get update -qq && \
     apt-get install -y build-essential libssl-dev libpq-dev libsasl2-dev && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/archives
 
+# Setup environment variables.
+ENV WORK_ROOT /src
+ENV APP_HOME $WORK_ROOT/app
+ENV LANG C.UTF-8
+
+# Create app directory.
+RUN mkdir -p $APP_HOME
+
+# Setup work directory.
+WORKDIR $APP_HOME
+
 # Copy everything from the builder image
-COPY --from=builder $APP_HOME $APP_HOME
+COPY --from=builder $APP_HOME/config.ru $APP_HOME $APP_HOME/Gemfile.lock $APP_HOME/Gemfile $APP_HOME/Rakefile $APP_HOME/README.md $APP_HOME/
+
+COPY --from=builder $APP_HOME/app $APP_HOME/app
+COPY --from=builder $APP_HOME/config $APP_HOME/config
+COPY --from=builder $APP_HOME/db/ $APP_HOME/db/
+COPY --from=builder $APP_HOME/doc/ $APP_HOME/doc/
+COPY --from=builder $APP_HOME/lib/ $APP_HOME/lib/
+COPY --from=builder $APP_HOME/log/ $APP_HOME/log/
+COPY --from=builder $APP_HOME/public/ $APP_HOME/public/
+COPY --from=builder $APP_HOME/tmp/ $APP_HOME/tmp/
+COPY --from=builder $APP_HOME/vendor/ $APP_HOME/vendor/
 
 # Deployment options
 ENV RAILS_LOG_TO_STDOUT true
 ENV RAILS_SERVE_STATIC_FILES true
 
 # Entrypoint prepares the database.
-ENTRYPOINT ["./bin/docker-entrypoint"]
+# ENTRYPOINT ["./bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
