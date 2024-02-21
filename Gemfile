@@ -44,7 +44,7 @@ gem 'yaaf', '~> 2.2'
 
 group :development, :test do
   gem 'annotate', '~> 3.2', '>= 3.0.3'
-  gem 'dotenv-rails', '~> 3.0.0'
+  gem 'dotenv-rails', '~> 3.0.2'
   gem 'factory_bot_rails', '~> 6.4'
   gem 'faker', '~> 3.2'
   gem 'pry-byebug', '~> 3.9', platform: :mri
@@ -57,7 +57,7 @@ group :development do
   gem 'binding_of_caller', '~> 1.0'
   gem 'brakeman', '~> 6.1'
   gem 'i18n-tasks', '~> 1.0.13'
-  gem 'letter_opener', '~> 1.7'
+  gem 'letter_opener', '~> 1.9'
   gem 'listen', '~> 3.8'
   gem 'rails_best_practices', '~> 1.20'
   gem 'reek', '~> 6.3'
