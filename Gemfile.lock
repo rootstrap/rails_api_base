@@ -585,7 +585,7 @@ GEM
     uri (0.13.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webmock (3.20.0)
+    webmock (3.23.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -668,7 +668,7 @@ DEPENDENCIES
   sprockets (~> 4.2.1)
   strong_migrations (~> 1.7)
   tzinfo-data
-  webmock (~> 3.20)
+  webmock (~> 3.23)
   yaaf (~> 2.2)
 
 RUBY VERSION
