@@ -5,18 +5,13 @@ ARG NODE_VERSION=20.10.0
 FROM node:$NODE_VERSION as node
 
 # Ruby build image.
-FROM ruby:${RUBY_VERSION} as base
+FROM ruby:${RUBY_VERSION}-slim as base
 
-# Throw-away build stage to reduce size of final image
-FROM base as builder
-
-RUN apt-get update -qq && \
-    apt-get install -y build-essential libssl-dev libpq-dev libsasl2-dev && \
-    rm -rf /var/lib/apt/lists/*
-
-# Copy node binaries from node image.
-COPY --from=node /usr/local /usr/local
-COPY --from=node /opt /opt
+# Setup environment variables.
+ENV WORK_ROOT /src
+ENV APP_HOME $WORK_ROOT/app
+ENV LANG C.UTF-8
+ENV BUNDLE_PATH $APP_HOME/vendor/bundle
 
 # Set prod environment to avoid installing dev dependencies
 ENV BUNDLE_WITHOUT development:test
@@ -24,11 +19,16 @@ ENV BUNDLE_DEPLOYMENT 1
 ENV RAILS_ENV production
 ENV NODE_ENV production
 
-# Setup environment variables.
-ENV WORK_ROOT /src
-ENV APP_HOME $WORK_ROOT/app/
-ENV LANG C.UTF-8
-ENV BUNDLE_PATH $APP_HOME/vendor/bundle
+# Throw-away build stage to reduce size of final image
+FROM base as builder
+
+RUN apt-get update -qq && \
+    apt-get install -y build-essential libssl-dev libpq-dev git libsasl2-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy node binaries from node image.
+COPY --from=node /usr/local /usr/local
+COPY --from=node /opt /opt
 
 # Create app directory.
 RUN mkdir -p $APP_HOME
@@ -57,13 +57,8 @@ FROM base
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
-    apt-get install -y build-essential libssl-dev libpq-dev libsasl2-dev && \
-    rm -rf /var/lib/apt/lists/* /var/cache/apt/archives
-
-# Setup environment variables.
-ENV WORK_ROOT /src
-ENV APP_HOME $WORK_ROOT/app
-ENV LANG C.UTF-8
+    apt-get install --no-install-recommends -y curl libpq-dev libvips && \
+    apt-get clean
 
 # Create app directory.
 RUN mkdir -p $APP_HOME
@@ -81,7 +76,7 @@ COPY --from=builder $APP_HOME/doc/ $APP_HOME/doc/
 COPY --from=builder $APP_HOME/lib/ $APP_HOME/lib/
 COPY --from=builder $APP_HOME/log/ $APP_HOME/log/
 COPY --from=builder $APP_HOME/public/ $APP_HOME/public/
-COPY --from=builder $APP_HOME/tmp/ $APP_HOME/tmp/
+# COPY --from=builder $APP_HOME/tmp/ $APP_HOME/tmp/
 COPY --from=builder $APP_HOME/vendor/ $APP_HOME/vendor/
 
 # Deployment options
@@ -89,7 +84,7 @@ ENV RAILS_LOG_TO_STDOUT true
 ENV RAILS_SERVE_STATIC_FILES true
 
 # Entrypoint prepares the database.
-# ENTRYPOINT ["./bin/docker-entrypoint"]
+ENTRYPOINT ["./bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000

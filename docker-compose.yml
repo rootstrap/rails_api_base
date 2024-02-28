@@ -24,11 +24,6 @@ services:
       - 4444:4444
       - 7900:7900
       - 5900:5900
-  spring:
-    build: .
-    volumes:
-      - .:/src/app
-    command: bundle exec spring server
   js:
     build: .
     command: yarn build --watch
