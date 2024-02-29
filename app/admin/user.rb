@@ -54,13 +54,13 @@ ActiveAdmin.register User do
     end
   end
 
-  if Flipper[:impersonation_tool].enabled? && ENV['IMPERSONATION_URL'].present?
+  if ENV['IMPERSONATION_URL'].present?
     action_item :user_impersonation, only: :show do
       signed_data = Impersonation::Verifier.new.sign!(
         user_id: resource.id, admin_user_id: current_admin_user.id
       )
 
-      link_to 'Impersonate User', "#{ENV.fetch('IMPERSONATION_URL')}?auth=#{signed_data}"
+      link_to_if Flipper[:impersonation_tool].enabled?, "<span>Impersonate User</span>".html_safe, "#{ENV.fetch('IMPERSONATION_URL')}?auth=#{signed_data}"
     end
   end
 end
