@@ -60,7 +60,13 @@ ActiveAdmin.register User do
         user_id: resource.id, admin_user_id: current_admin_user.id
       )
 
-      link_to_if Flipper[:impersonation_tool].enabled?, "<span>Impersonate User</span>".html_safe, "#{ENV.fetch('IMPERSONATION_URL')}?auth=#{signed_data}"
+      link_to_if Flipper[:impersonation_tool].enabled?,
+                 "
+                  <span class=\"#{'disabled_impersonate_button' unless Flipper[:impersonation_tool].enabled?}\">
+                    Impersonate User
+                  </span>
+                 ".html_safe,
+                 "#{ENV.fetch('IMPERSONATION_URL')}?auth=#{signed_data}"
     end
   end
 end

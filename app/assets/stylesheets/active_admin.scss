@@ -15,3 +15,10 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+.disabled_impersonate_button {
+  background-color: #4bacfe6b;
+  color: white;
+  border-radius: 3px;
+  cursor: not-allowed;
+  padding: 5px 8px;
+}
