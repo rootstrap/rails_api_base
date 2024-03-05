@@ -2,7 +2,7 @@
 
 ## Installation
 
-1. The link to impersonate users is not available by default. To activate this tool, you need to set the `IMPERSONATION_URL` environment variable with the frontend URL where the auth params are taken and sent back to the server at `/api/v1/impersonations`.
+1. The link to impersonate users is not available by default. To activate this tool, you need to set the `IMPERSONATION_URL` environment variable with the frontend URL where the auth params are taken and sent back to the server at `/api/v1/impersonations`. Additionally, you need to enable the `impersonation_tool` feature flag, which is already registered and can be activated via the admin panel.
 
 2. Add `include API::Concerns::Impersonation::Hooks` to `app/controllers/api/v1/api_controller.rb` in order to set the `impersonated_by` attribute in the `current_user` and the `impersonated` header in the response.
 
