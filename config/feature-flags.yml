@@ -7,3 +7,9 @@
 #   description: "This is a feature flag for demo purposes"
 #   owner: "@github/team"
 #   removal_ticket: "Link to the feature flag removal ticket"
+
+impersonation_tool:
+  description: "This is a feature flag to enable/disable the impersonation tool"
+  owner: "@github/rootstrap/ruby"
+  removal_ticket: "Link to the feature flag removal ticket"
+  

@@ -53,4 +53,20 @@ ActiveAdmin.register User do
       row :updated_at
     end
   end
+
+  if ENV['IMPERSONATION_URL'].present?
+    action_item :user_impersonation, only: :show do
+      signed_data = Impersonation::Verifier.new.sign!(
+        user_id: resource.id, admin_user_id: current_admin_user.id
+      )
+
+      link_to_if Flipper[:impersonation_tool].enabled?,
+                 "
+                  <span class=\"#{'disabled_impersonate_button' unless Flipper[:impersonation_tool].enabled?}\">
+                    Impersonate User
+                  </span>
+                 ".html_safe, # rubocop:disable Rails/OutputSafety
+                 "#{ENV.fetch('IMPERSONATION_URL')}?auth=#{signed_data}"
+    end
+  end
 end

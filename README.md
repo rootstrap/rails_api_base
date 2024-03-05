@@ -132,6 +132,12 @@ With `bundle exec rails code:analysis` you can run the code analysis tool, you c
 - [Rails Best Practices](https://github.com/flyerhzm/rails_best_practices#custom-configuration) Edit `config/rails_best_practices.yml`
 - [Brakeman](https://github.com/presidentbeef/brakeman) Run `brakeman -I` to generate `config/brakeman.ignore`
 
+## Impersonation
+
+The `rails_api_base` incorporates a user impersonation feature, allowing `AdminUser`s to assume the identity of other `User`s. This feature is disabled by default.
+
+See [Impersonation docs](./docs/impersonation.md) for more info
+
 ## Monitoring
 
 In order to use [New Relic](https://newrelic.com) to monitor your application requests and metrics, you must setup `NEW_RELIC_API_KEY` and `NEW_RELIC_APP_NAME` environment variables.

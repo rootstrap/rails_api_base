@@ -37,6 +37,9 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
 
+  # https://api.rubyonrails.org/v6.1.4.3/classes/ActiveSupport/Testing/TimeHelpers.html
+  config.include ActiveSupport::Testing::TimeHelpers
+
   # Form objects specs
   config.define_derived_metadata(file_path: Regexp.new('/spec/forms/')) do |metadata|
     metadata[:type] = :form
