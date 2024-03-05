@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1, defaults: { format: :json } do
       get :status, to: 'health#status'
-      resources :impersonations, only: %i[create]
+      resources :impersonations, only: %i[create] if Flipper[:impersonation_tool].enabled?
       devise_scope :user do
         resource :user, only: %i[update show]
       end

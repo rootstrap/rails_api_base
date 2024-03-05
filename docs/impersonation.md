@@ -39,7 +39,7 @@ Impersonated sessions have a TTL of 1 hour, to change this value update the life
 ### Authentication Handling
 - Authentication is managed by Devise. Admin users without a valid session cannot utilize the impersonation tool.
 
-### Strong Permissions and Auditing
+### Strong Permissions and Auditing Recommendations
 - Ensure robust permissions and auditing mechanisms:
   - Limit impersonation to specific roles, such as admins and the support team.
   - Log every impersonation attempt, capturing details like the admin, the impersonated user, actions performed, and timestamps.

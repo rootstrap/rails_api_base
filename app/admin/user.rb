@@ -65,7 +65,7 @@ ActiveAdmin.register User do
                   <span class=\"#{'disabled_impersonate_button' unless Flipper[:impersonation_tool].enabled?}\">
                     Impersonate User
                   </span>
-                 ".html_safe,
+                 ".html_safe, # rubocop:disable Rails/OutputSafety
                  "#{ENV.fetch('IMPERSONATION_URL')}?auth=#{signed_data}"
     end
   end
