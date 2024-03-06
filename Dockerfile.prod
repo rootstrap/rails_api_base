@@ -67,16 +67,9 @@ RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
 # Copy everything from the builder image
-COPY --from=builder $APP_HOME/config.ru $APP_HOME $APP_HOME/Gemfile.lock $APP_HOME/Gemfile $APP_HOME/Rakefile $APP_HOME/README.md $APP_HOME/
-
-COPY --from=builder $APP_HOME/app $APP_HOME/app
-COPY --from=builder $APP_HOME/config $APP_HOME/config
-COPY --from=builder $APP_HOME/db/ $APP_HOME/db/
-COPY --from=builder $APP_HOME/doc/ $APP_HOME/doc/
-COPY --from=builder $APP_HOME/lib/ $APP_HOME/lib/
-COPY --from=builder $APP_HOME/log/ $APP_HOME/log/
+COPY --link . .
 COPY --from=builder $APP_HOME/public/ $APP_HOME/public/
-# COPY --from=builder $APP_HOME/tmp/ $APP_HOME/tmp/
+COPY --from=builder $APP_HOME/tmp/ $APP_HOME/tmp/
 COPY --from=builder $APP_HOME/vendor/ $APP_HOME/vendor/
 
 # Deployment options
