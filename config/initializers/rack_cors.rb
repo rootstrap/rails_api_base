@@ -8,7 +8,7 @@ module App
         resource '*',
                  headers: :any,
                  methods: %i[get post options put delete],
-                 expose: %w[access-token uid client]
+                 expose: %w[access-token uid client impersonated]
       end
     end
   end
