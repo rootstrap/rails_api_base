@@ -131,10 +131,10 @@
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-6.5.1.tgz#55cc8410abf1003b726324661ce5b0d1c10de258"
   integrity sha512-CNy5vSwN3fsUStPRLX7fUYojyuzoEMSXPl7zSLJ8TgtRfjv24LOnOWKT2zYwaHZCJGkdyRnTmstR0P+Ah503Gw==
 
-arctic_admin@4.2.6:
-  version "4.2.6"
-  resolved "https://registry.yarnpkg.com/arctic_admin/-/arctic_admin-4.2.6.tgz#d4464e1f678b2a8249e32828d48386a6ea32276e"
-  integrity sha512-zdHHjwrf33LEBxxNInW+2D+cwi3Kneu3DJ+nk0A61rCMWvdkJSjFeKc/AxLQCxZRLTNJ7BYZBYjf1gsJ70pwlA==
+arctic_admin@4.2.8:
+  version "4.2.8"
+  resolved "https://registry.yarnpkg.com/arctic_admin/-/arctic_admin-4.2.8.tgz#e0dfa8044daadec2ff0c61ce1196f50a70a0b4a1"
+  integrity sha512-nWMfnKPINDt3dbbW78XFRgl5WnayJwMx+/GxEVSbdrDPLw8wjs7XbYETkuHPjzXM8O2i9f6a1Ghr1FfGy+nFLw==
 
 esbuild@0.20.2:
   version "0.20.2"
