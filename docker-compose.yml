@@ -2,7 +2,7 @@ version: '3.0'
 
 services:
   web:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile.dev
     ports:
@@ -27,7 +27,9 @@ services:
       - 7900:7900
       - 5900:5900
   js:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     command: yarn build --watch
     volumes:
       - .:/src/app

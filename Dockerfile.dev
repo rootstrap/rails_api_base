@@ -28,8 +28,13 @@ RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
 # Copy dependencies files and install libraries.
-COPY --link Gemfile Gemfile.lock package.json yarn.lock ./
-RUN gem install bundler && bundle install -j 4 && yarn install
+COPY --link package.json yarn.lock ./
+RUN yarn install
+
+COPY --link Gemfile Gemfile.lock ./
+RUN gem install bundler && bundle install -j 4
+
+COPY --link . .
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["./bin/docker-entrypoint"]
