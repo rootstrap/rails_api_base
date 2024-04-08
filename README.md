@@ -34,8 +34,8 @@ This template comes with:
 1. Install PostgreSQL in case you don't have it
 1. Install node and yarn.
 1. Run `bootstrap.sh` with the name of your project like `./bin/bootstrap.sh --name=my_awesome_project`
-1. `bundle exec rspec` and make sure all tests pass (non-headless mode) or `HEADLESS=true bundle exec rspec` (headless mode)
 1. Run `yarn install` and `yarn build --watch`. This bundles the JS assets in the administration site using [esbuild](https://github.com/evanw/esbuild).
+1. `bundle exec rspec` and make sure all tests pass (non-headless mode) or `HEADLESS=true bundle exec rspec` (headless mode)
 1. Run `bin/dev`.
 1. You can now try your REST services!
 
@@ -131,6 +131,12 @@ With `bundle exec rails code:analysis` you can run the code analysis tool, you c
 - [Reek](https://github.com/troessner/reek#configuration-file) Edit `config.reek`
 - [Rails Best Practices](https://github.com/flyerhzm/rails_best_practices#custom-configuration) Edit `config/rails_best_practices.yml`
 - [Brakeman](https://github.com/presidentbeef/brakeman) Run `brakeman -I` to generate `config/brakeman.ignore`
+
+## Impersonation
+
+The `rails_api_base` incorporates a user impersonation feature, allowing `AdminUser`s to assume the identity of other `User`s. This feature is disabled by default.
+
+See [Impersonation docs](./docs/impersonation.md) for more info
 
 ## Monitoring
 

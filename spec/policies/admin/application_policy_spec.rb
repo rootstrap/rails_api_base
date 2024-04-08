@@ -22,7 +22,7 @@ describe Admin::ApplicationPolicy do
   end
 
   describe 'scope' do
-    subject { ApplicationPolicy::Scope.new(admin, mock_model).resolve }
+    subject { Admin::ApplicationPolicy::Scope.new(admin, mock_model).resolve }
 
     let(:admin) { create(:admin_user) }
     let(:mock_model) { instance_double('MockModel', all: true) }
