@@ -13,8 +13,11 @@ services:
       SELENIUM_BROWSER: remote
       SELENIUM_BROWSER_HOST: http://chrome-server:4444
       HEADLESS: true
+    command: bash -c './bin/dev'
+    tty: true
     volumes:
       - .:/src/app
+      - node_modules:/src/app/node_modules
     depends_on:
       - db
       - chrome-server
@@ -26,14 +29,6 @@ services:
       - 4444:4444
       - 7900:7900
       - 5900:5900
-  js:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-    command: yarn build --watch
-    volumes:
-      - .:/src/app
-      - node_modules:/src/app/node_modules
   db:
     image: postgres:15
     environment:
