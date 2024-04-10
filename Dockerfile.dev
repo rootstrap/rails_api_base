@@ -27,6 +27,8 @@ RUN mkdir -p $APP_HOME
 # Setup work directory.
 WORKDIR $APP_HOME
 
+RUN gem install foreman
+
 # Copy dependencies files and install libraries.
 COPY --link package.json yarn.lock ./
 RUN yarn install

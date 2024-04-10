@@ -15,6 +15,7 @@ services:
       HEADLESS: true
     command: bash -c './bin/dev'
     tty: true
+    stdin_open: true
     volumes:
       - .:/src/app
       - node_modules:/src/app/node_modules
