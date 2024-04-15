@@ -365,7 +365,7 @@ GEM
     oj (3.16.3)
       bigdecimal (>= 3.0)
     orm_adapter (0.5.0)
-    pagy (8.0.2)
+    pagy (8.1.2)
     parallel (1.24.0)
     parallel_tests (4.6.1)
       parallel
@@ -640,7 +640,7 @@ DEPENDENCIES
   newrelic_rpm (~> 9.8)
   octokit (~> 8.1)
   oj (~> 3.16)
-  pagy (~> 8.0)
+  pagy (~> 8.1)
   parallel_tests (~> 4.6)
   pg (~> 1.5)
   pg_query (~> 5.1.0)
