@@ -13,12 +13,18 @@ services:
       SELENIUM_BROWSER: remote
       SELENIUM_BROWSER_HOST: http://chrome-server:4444
       HEADLESS: true
-    command: bash -c './bin/dev'
+    command: ./bin/dev
     tty: true
     stdin_open: true
-    volumes:
-      - .:/src/app
-      - node_modules:/src/app/node_modules
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /src/app
+        - action: rebuild
+          path: package.json
+        - action: rebuild
+          path: Gemfile
     depends_on:
       - db
       - chrome-server
@@ -41,4 +47,3 @@ services:
       - 5432:5432
 volumes:
   db_data:
-  node_modules:
