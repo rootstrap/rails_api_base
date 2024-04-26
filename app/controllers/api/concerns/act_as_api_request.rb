@@ -11,7 +11,7 @@ module API
       end
 
       def check_json_request
-        return if !request_with_body? || request_content_type.include?('json')
+        return if !request_with_body? || request.content_type&.include?('json')
 
         render json: { error: I18n.t('api.errors.invalid_content_type') }, status: :not_acceptable
       end
@@ -23,17 +23,10 @@ module API
       end
 
       def render_error(status, message, _data = nil)
-        response = {
-          error: message
-        }
-        render json: response, status:
+        render json: { error: message }, status:
       end
 
       private
-
-      def request_content_type
-        request.content_type || ''
-      end
 
       def request_with_body?
         request.post? || request.put? || request.patch?
