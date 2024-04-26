@@ -40,7 +40,7 @@ describe 'PUT api/v1/user/' do
     end
 
     it 'returns the error' do
-      expect(json[:errors][:email]).to include('is not an email')
+      expect(json.dig(:errors, 0, :email)).to include('is not an email')
     end
   end
 
@@ -48,7 +48,7 @@ describe 'PUT api/v1/user/' do
     let(:params) { {} }
 
     it 'returns the missing params error' do
-      expect(json[:error]).to eq 'A required param is missing'
+      expect(json.dig(:errors, 0, :message)).to eq 'A required param is missing'
     end
   end
 end

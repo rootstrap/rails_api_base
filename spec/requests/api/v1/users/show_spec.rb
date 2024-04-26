@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe 'GET api/v1/users/:id' do
-  subject { get api_v1_user_path, headers: auth_headers, as: :json }
+  subject { get api_v1_user_path, headers: auth_headers }
 
   let(:user) { create(:user) }
 
