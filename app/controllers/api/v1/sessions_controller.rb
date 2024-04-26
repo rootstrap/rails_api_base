@@ -4,7 +4,7 @@ module API
   module V1
     class SessionsController < DeviseTokenAuth::SessionsController
       include API::Concerns::ActAsAPIRequest
-      skip_forgery_protection
+      protect_from_forgery with: :null_session
 
       private
 
