@@ -3,21 +3,15 @@
 describe 'POST api/v1/users/sign_up' do
   subject { post user_registration_path, params:, as: :json }
 
-  let(:email) { 'email@example.com' }
-  let(:password) { 'password' }
-  let(:password_confirmation) { 'password' }
-  let(:username) { 'username' }
-  let(:first_name) { 'first name' }
-  let(:last_name) { 'last name' }
   let(:params) do
     {
       user: {
-        email:,
-        password:,
-        password_confirmation:,
-        username:,
-        first_name:,
-        last_name:
+        email: 'email@example.com',
+        password: 'password',
+        password_confirmation: 'password',
+        username: 'username',
+        first_name: 'first name',
+        last_name: 'last name'
       }
     }
   end
@@ -37,12 +31,12 @@ describe 'POST api/v1/users/sign_up' do
     it 'returns the user' do
       user = User.last
       expect(json[:user][:id]).to eq(user.id)
-      expect(json[:user][:email]).to eq(user.email)
-      expect(json[:user][:username]).to eq(user.username)
+      expect(json[:user][:email]).to eq(params.dig(:user, :email))
+      expect(json[:user][:username]).to eq(params.dig(:user, :username))
       expect(json[:user][:uid]).to eq(user.uid)
       expect(json[:user][:provider]).to eq('email')
-      expect(json[:user][:first_name]).to eq(user.first_name)
-      expect(json[:user][:last_name]).to eq(user.last_name)
+      expect(json[:user][:first_name]).to eq(params.dig(:user, :first_name))
+      expect(json[:user][:last_name]).to eq(params.dig(:user, :last_name))
     end
 
     it 'returns a valid client and access token' do
@@ -57,8 +51,8 @@ describe 'POST api/v1/users/sign_up' do
     let(:params) do
       {
         user: {
-          email:,
-          password:,
+          email: 'email@example.com',
+          password: 'password',
           password_confirmation: 'wrong_password!'
         }
       }
@@ -71,7 +65,7 @@ describe 'POST api/v1/users/sign_up' do
 
     it 'return errors upon failure' do
       subject
-      expect(json.to_s).to match("Password confirmation doesn't match Password") 
+      expect(json.to_s).to match("Password confirmation doesn't match Password")
     end
   end
 end

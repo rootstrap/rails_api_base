@@ -62,7 +62,7 @@ describe 'POST api/v1/users/sign_in' do
     it 'return errors upon failure' do
       subject
       expected_response = {
-        error: 'Invalid login credentials. Please try again.'
+        errors: [{ message: 'Invalid login credentials. Please try again.' }]
       }.with_indifferent_access
       expect(json).to eq(expected_response)
     end

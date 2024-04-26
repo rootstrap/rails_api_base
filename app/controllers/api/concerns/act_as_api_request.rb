@@ -22,18 +22,10 @@ module API
         request.session_options[:skip] = true
       end
 
-      def render_error(status, message, _data = nil)
-        render json: { error: message }, status:
-      end
-
       private
 
       def request_with_body?
         request.post? || request.put? || request.patch?
-      end
-
-      def json_request?
-        request.format.json?
       end
     end
   end

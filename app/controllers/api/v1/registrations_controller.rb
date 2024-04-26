@@ -3,8 +3,8 @@
 module API
   module V1
     class RegistrationsController < DeviseTokenAuth::RegistrationsController
-      protect_from_forgery with: :exception, unless: :json_request?
       include API::Concerns::ActAsAPIRequest
+      skip_forgery_protection
 
       private
 
@@ -15,6 +15,10 @@ module API
 
       def render_create_success
         render :create
+      end
+
+      def render_error(status, message, _data = nil)
+        render json: { errors: Array.wrap(message:) }, status:
       end
     end
   end
