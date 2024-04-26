@@ -5,7 +5,6 @@ module API
     class PasswordsController < DeviseTokenAuth::PasswordsController
       include API::Concerns::ActAsAPIRequest
       skip_forgery_protection
-      skip_before_action :check_json_request, on: :edit
 
       private
 
