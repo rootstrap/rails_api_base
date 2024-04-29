@@ -7,7 +7,7 @@
     "arctic_admin": "4.3.1",
     "esbuild": "0.20.2",
     "jquery": "3.7.1",
-    "jquery-ui": "1.13.2",
+    "jquery-ui": "1.13.3",
     "jquery-ujs": "1.2.3"
   },
   "scripts": {
