@@ -1,0 +1,16 @@
+version: '3.0'
+
+services:
+  chrome-server:
+    image: seleniarm/standalone-chromium
+    ports:
+      - 4444:4444
+      - 7900:7900
+      - 5900:5900
+  web:
+    environment:
+      SELENIUM_BROWSER: remote
+      SELENIUM_BROWSER_HOST: http://chrome-server:4444
+      HEADLESS: true
+    depends_on:
+      - chrome-server

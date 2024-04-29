@@ -3,7 +3,8 @@ require 'shellwords'
 require_relative 'helpers'
 
 if running_with_docker?
-  exec "bin/web 'ITERATIONS=#{ENV['ITERATIONS']} bin/rspec #{Shellwords.join(ARGV)}'"
+  compose_command = 'docker compose -f docker-compose.test.yml -f docker-compose.yml run web bundle exec rspec'
+  exec "ITERATIONS=#{ENV['ITERATIONS']} #{compose_command} #{Shellwords.join(ARGV)}"
 else
   require 'bundler/setup'
   load Gem.bin_path('rspec-core', 'rspec')
