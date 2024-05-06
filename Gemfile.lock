@@ -69,8 +69,9 @@ GEM
       rails-html-sanitizer (~> 1.6)
     active_storage_base64 (2.0.0)
       rails (>= 7.0)
-    activeadmin (3.2.0)
+    activeadmin (3.2.1)
       arbre (~> 1.2, >= 1.2.1)
+      csv
       formtastic (>= 3.1)
       formtastic_i18n (>= 0.4)
       inherited_resources (~> 1.7)
@@ -173,6 +174,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
+    csv (3.3.0)
     date (3.3.4)
     debug_inspector (1.2.0)
     delayed_job (4.1.11)
