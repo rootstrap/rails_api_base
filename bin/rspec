@@ -3,7 +3,7 @@ require 'shellwords'
 require_relative 'helpers'
 
 if running_with_docker?
-  compose_command = 'docker compose -f docker-compose.test.yml -f docker-compose.yml run web bundle exec rspec'
+  compose_command = 'docker compose -f docker-compose.yml -f docker-compose.test.yml run web bundle exec rspec'
   exec "ITERATIONS=#{ENV['ITERATIONS']} #{compose_command} #{Shellwords.join(ARGV)}"
 else
   require 'bundler/setup'

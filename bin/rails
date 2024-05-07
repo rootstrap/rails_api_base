@@ -4,7 +4,7 @@ require 'shellwords'
 require_relative 'helpers'
 
 if running_with_docker?
-  exec "bin/web 'bin/rails #{Shellwords.join(ARGV)}'"
+  exec "bin/web './bin/rails #{Shellwords.join(ARGV)}'"
 else
   APP_PATH = File.expand_path('../config/application', __dir__)
   require_relative '../config/boot'
