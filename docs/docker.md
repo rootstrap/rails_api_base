@@ -1,6 +1,35 @@
+# Intro
+This docs explains how to use our different Dockerfiles and some technical details about them.
+
+## Intro to Docker
+`Dockerfile.dev` - This Dockerfile is specific for local development purposes. It's optimized to get the live reloading working and assumes the resulting image size is not a concern here.
+`Dockerfile` - This Dockerfile is optimized to run in production environments. It ensures a minimal image size to run the app, by installing the minimal needed dependencies, and also adds Jemalloc to improve the Ruby memory management.
+
+## Intro to Docker Compose
+`docker-compose.yml` - This compose file is intented to use only for local development, NOT FOR PRODUCTION. It runs all the services we need in order to run our Rails server, and can be easily extended to include more services if your app needs to. It depends on the `Dockerfile.dev` file and has some "watch" mechanisms to build or reload the app when files change.
+`docker-compose.test.yml` - This compose file is only used for the test environment since it includes a standalone chrome-server service we need to run our E2E tests.
+
+# Docker Compose
+
+- How to run the tests with Docker
+- How to run the tests with Docker Compose
+- Scripts bin/*
+  - Warning: To start the server we need to do docker compose up instead of ./bin/rails s.
+- Why we need to use host.docker.internal vs -n host
+
+## How to build and run with Docker Compose (Recommended)
+`docker-compose up --build`
+
+This uses the docker-compose.yml file to build the image and 
+
 # Docker
 
 ## How to build and run with Docker
+
+### On linux
+`docker build -t rails_api_base -f Dockerfile.dev . && docker run --rm --name api-base -it -p 3000:3000 -n host -v .:/src/app -v node_modules:/src/app/node_modules rails_api_base bin/dev`
+
+### On MacOS & Windows
 `docker build -t rails_api_base -f Dockerfile.dev . && docker run --rm --name api-base -it -p 3000:3000 -e POSTGRES_HOST=host.docker.internal -v .:/src/app -v node_modules:/src/app/node_modules rails_api_base bin/dev`
 
 ### A brief explanation of the commands and flags
@@ -19,13 +48,6 @@ Running the container: `docker run --rm --name api-base -it -p 3000:3000 -e POST
 **Note**: as this maps the whole directory into the container, it will also override the node_modules content generated when building the image. If the directory in your host is empty, it won't find the dependencies and raise an error. However, if you previously installed them, esbuild may raise an error because it needs to have installed platform-specific binaries. This is solved with the flag described below.
 - `-v node_modules:/src/app/node_modules`: This mounts a named volume in node_modules directory, which will copy the modules installed when building the image.
 - `bin/dev` is the command ran with docker run. This will run foreman, which will run the two processes defined in Procfile.dev (web and js).
-
-
-## How to build and run with Docker Compose (Recommended)
-`docker-compose build && docker-compose up`
-
-This uses the docker-compose.yml file to build the image and run the web container, using a similar setup as the one explained above. It uses a separate container for the database and automatically runs chrome-server for feature tests with the network adapter created by default.
-
 
 # TODO
 ## How to run tests
