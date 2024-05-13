@@ -1,4 +1,5 @@
 version: '3.0'
+name: 'tests'
 
 services:
   chrome-server:

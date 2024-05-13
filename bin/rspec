@@ -13,12 +13,13 @@ OptionParser.new do |opts|
 end.parse!
 
 if running_with_docker?
-  compose_command = 'docker compose -f docker-compose.test.yml run --build web ./bin/rspec'
+  compose_command = "docker compose -f docker-compose.test.yml run --build web ./bin/rspec #{Shellwords.join(ARGV)}"
+
   if options[:remove_containers]
     compose_command += '&& docker compose -f docker-compose.test.yml down'
   end
 
-  exec "ITERATIONS=#{ENV['ITERATIONS']} #{compose_command} #{Shellwords.join(ARGV)}"
+  exec "ITERATIONS=#{ENV['ITERATIONS']} #{compose_command}"
 else
   require 'bundler/setup'
   load(Gem.bin_path('rspec-core', 'rspec'))
