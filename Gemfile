@@ -1,28 +1,29 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '~> 3.3.0'
+
+ruby '~> 3.3.1'
 
 gem 'rails', '~> 7.1.3'
 
 # Gems
 gem 'activeadmin', '~> 3.2'
-gem 'active_storage_base64', '~> 2.0.0'
-gem 'aws-sdk-s3', '~> 1.146', require: false
+gem 'active_storage_base64', '~> 3.0.0'
+gem 'aws-sdk-s3', '~> 1.148', require: false
 gem 'bootsnap', '~> 1.17'
 gem 'delayed_job_active_record', '~> 4.1'
 gem 'devise', '~> 4.9'
 gem 'devise_token_auth', github: 'lynndylanhurley/devise_token_auth'
 gem 'draper', '~> 4.0', '>= 4.0.1'
-gem 'flipper', '~> 1.2.2'
-gem 'flipper-active_record', '~> 1.2.2'
-gem 'flipper-ui', '~> 1.2.2'
-gem 'jbuilder', '~> 2.10'
+gem 'flipper', '~> 1.3.0'
+gem 'flipper-active_record', '~> 1.3.0'
+gem 'flipper-ui', '~> 1.3.0'
+gem 'jbuilder', '~> 2.12'
 gem 'jsbundling-rails', '~> 1.3'
 gem 'lograge', '~> 0.14'
-gem 'newrelic_rpm', '~> 9.8'
+gem 'newrelic_rpm', '~> 9.9'
 gem 'oj', '~> 3.16'
-gem 'pagy', '~> 8.0'
+gem 'pagy', '~> 8.4'
 gem 'pg', '~> 1.5'
 gem 'puma', '~> 6.4'
 gem 'pundit', '~> 2.3'
@@ -43,7 +44,7 @@ gem 'yaaf', '~> 2.2'
 
 group :development, :test do
   gem 'annotate', '~> 3.2', '>= 3.0.3'
-  gem 'dotenv-rails', '~> 3.1.0'
+  gem 'dotenv-rails', '~> 3.1.1'
   gem 'factory_bot_rails', '~> 6.4'
   gem 'faker', '~> 3.3'
   gem 'pry-byebug', '~> 3.9', platform: :mri
@@ -60,7 +61,7 @@ group :development do
   gem 'listen', '~> 3.9'
   gem 'rails_best_practices', '~> 1.20'
   gem 'reek', '~> 6.3'
-  gem 'rubocop', '~> 1.62', require: false
+  gem 'rubocop', '~> 1.63', require: false
   gem 'rubocop-capybara', '~> 2.20'
   gem 'rubocop-factory_bot', '~> 2.25', require: false
   gem 'rubocop-performance', '~> 1.21', require: false
@@ -74,12 +75,12 @@ group :test do
   gem 'faraday-retry', '~> 2.2'
   gem 'knapsack', '~> 4.0'
   gem 'octokit', '~> 8.1'
-  gem 'parallel_tests', '~> 4.6'
+  gem 'parallel_tests', '~> 4.7'
   gem 'pg_query', '~> 5.1.0'
   gem 'prosopite', '~> 1.4.2'
-  gem 'rspec-openapi', '~> 0.16'
+  gem 'rspec-openapi', '~> 0.18'
   gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
-  gem 'selenium-webdriver', '~> 4.19.0'
+  gem 'selenium-webdriver', '~> 4.20.1'
   gem 'shoulda-matchers', '~> 6.2'
   gem 'simplecov', '~> 0.22.0', require: false
   gem 'webmock', '~> 3.23'

@@ -22,7 +22,7 @@ RSpec.describe 'API::Concerns::Impersonation::Hooks', openapi: false do
 
   describe '#show' do
     subject do
-      get '/show', headers: auth_headers, as: :json
+      get '/show', headers: auth_headers
     end
 
     let(:user) { create(:user) }

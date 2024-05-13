@@ -9,7 +9,7 @@ module Retry
     end
 
     def to_s
-      "\n*Failed test:*" \
+      "\n*Intermittent test found:*" \
         "\n> Scenario: _#{description}_" \
         "\n> File: #{error_location}" \
         "\n> Seed: #{RSpec.configuration.seed}" \

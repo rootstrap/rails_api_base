@@ -2,16 +2,15 @@
 
 RSpec.shared_examples 'does not check authenticity token' do
   context 'with forgery protection enabled' do
-    before do
+    around do |example|
       ActionController::Base.allow_forgery_protection = true
-    end
-
-    after do
+      example.run
       ActionController::Base.allow_forgery_protection = false
     end
 
-    it 'does not raise an error' do
-      expect { subject }.not_to raise_error
+    it 'does not fail' do
+      subject
+      expect(response).not_to be_client_error
     end
   end
 end
