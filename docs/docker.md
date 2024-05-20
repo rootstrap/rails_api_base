@@ -1,6 +1,9 @@
 # Intro
 This docs explains how to use our different Dockerfiles and some technical details about them.
 
+## Intro to bin scripts
+Our scripts in `bin` directory have been updated so we can run them with docker. To do this, you have to set the `DOCKER_ENABLED=true` env variable. This can be done using the .env file, or exporting this env variable in the terminal.
+
 ## Intro to Docker
 `Dockerfile.dev` - This Dockerfile is specific for local development purposes. It's optimized to get the live reloading working and assumes the resulting image size is not a concern here.
 `Dockerfile` - This Dockerfile is optimized to run in production environments. It ensures a minimal image size to run the app, by installing the minimal needed dependencies, and also adds Jemalloc to improve the Ruby memory management.
@@ -9,18 +12,33 @@ This docs explains how to use our different Dockerfiles and some technical detai
 `docker-compose.yml` - This compose file is intented to use only for local development, NOT FOR PRODUCTION. It runs all the services we need in order to run our Rails server, and can be easily extended to include more services if your app needs to. It depends on the `Dockerfile.dev` file and has some "watch" mechanisms to build or reload the app when files change.
 `docker-compose.test.yml` - This compose file is only used for the test environment since it includes a standalone chrome-server service we need to run our E2E tests.
 
-# Docker Compose
+# Usage
 
-- How to run the tests with Docker
-- How to run the tests with Docker Compose
-- Scripts bin/*
-  - Warning: To start the server we need to do docker compose up instead of ./bin/rails s.
-- Why we need to use host.docker.internal vs -n host
+## bin scripts
 
-## How to build and run with Docker Compose (Recommended)
-`docker-compose up --build`
+### How to run tests
+```bash
+./bin/rspec
+```
+> [!WARNING]
+> By default this command will not stop the db and chrome-server services when the process completes. To achieve this you can run `./bin/rspec --rm` instead
 
-This uses the docker-compose.yml file to build the image and 
+### How to use rails console
+```bash
+./bin/rails c
+```
+
+## Docker Compose
+
+### How to build and run (Recommended)
+```bash
+docker compose up --build --watch
+```
+
+### How to run the tests
+```bash
+docker compose -f docker-compose.test.yml run web ./bin/rspec
+```
 
 # Docker
 
