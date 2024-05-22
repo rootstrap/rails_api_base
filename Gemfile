@@ -13,7 +13,7 @@ gem 'aws-sdk-s3', '~> 1.151', require: false
 gem 'bootsnap', '~> 1.17'
 gem 'delayed_job_active_record', '~> 4.1'
 gem 'devise', '~> 4.9'
-gem 'devise_token_auth', github: 'lynndylanhurley/devise_token_auth'
+gem 'devise_token_auth', '~> 1.2', '>= 1.2.3'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'flipper', '~> 1.3.0'
 gem 'flipper-active_record', '~> 1.3.0'
