@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/lynndylanhurley/devise_token_auth.git
-  revision: 1d1f689a418292ba5cbe8dd13ccf13996b36d67c
-  specs:
-    devise_token_auth (1.2.3)
-      bcrypt (~> 3.0)
-      devise (> 3.5.2, < 5)
-      rails (>= 4.2.0, < 7.2)
-
-GIT
   remote: https://github.com/rootstrap/rspec-retry.git
   revision: 8266536fb6f4bc8d005c3863bcdfe8d7a6c9b203
   branch: add-intermittent-callback
@@ -182,6 +173,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise_token_auth (1.2.3)
+      bcrypt (~> 3.0)
+      devise (> 3.5.2, < 5)
+      rails (>= 4.2.0, < 7.2)
     diff-lcs (1.5.1)
     docile (1.4.0)
     dotenv (3.1.2)
@@ -618,7 +613,7 @@ DEPENDENCIES
   capybara (~> 3.40)
   delayed_job_active_record (~> 4.1)
   devise (~> 4.9)
-  devise_token_auth!
+  devise_token_auth (~> 1.2, >= 1.2.3)
   dotenv-rails (~> 3.1.2)
   draper (~> 4.0, >= 4.0.1)
   factory_bot_rails (~> 6.4)
@@ -677,4 +672,4 @@ RUBY VERSION
    ruby 3.3.1p55
 
 BUNDLED WITH
-   2.5.7
+   2.5.10
