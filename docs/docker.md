@@ -26,10 +26,13 @@ To build and run the project in development we recommend using Docker Compose in
 > [!WARNING]
 > By default this command will not stop the db and chrome-server services when the process completes. To achieve this you can run `./bin/rspec --rm` instead
 
-### How to use rails console
+### How to use Rails console
 ```bash
 ./bin/rails c
 ```
+
+### How to start the Rails server
+Currently there is no script for doing this with docker. Check how to start the Rails server using Docker Compose in the next section.
 
 ## Docker Compose
 
@@ -43,7 +46,7 @@ docker compose build
 docker compose up --watch
 ```
 > [!TIP]
-> You can run `docker compose up --build --watch` if you want to build and run the services in a single step.
+> You can run `docker compose up --build --watch` if you want to build and run the services in a single step. The watch flag allows to refresh the container content without having to rebuild/restart it manually.
 
 ### How to run the tests
 ```bash
@@ -52,42 +55,54 @@ docker compose -f docker-compose.test.yml run web ./bin/rspec
 
 ## Docker
 
-###How to build
+### How to build
 ```bash
 docker build -t rails_api_base -f Dockerfile.dev .
 ```
 - `-t rails_api_base`: This tags the image with rails_api_base. Here you can use the tag you prefer, useful if handling multiple versions or images (e.g. if you want to separate between _dev and _prod images locally).
-- `-f Dockerfile.dev`: This flag (--file) specifies the development image in Dockerfile.dev. Without this, it will build the Dockerfile image, which is intended for production.
+- `-f Dockerfile.dev` (optional): This flag (--file) specifies the development image in Dockerfile.dev. Without this, it will build the Dockerfile image, which is intended for production.
 
 ### How to run on MacOS & Windows
 ```bash
-docker run --rm --name api-base -it -p 3000:3000 -e POSTGRES_HOST=host.docker.internal -v .:/src/app -v node_modules:/src/app/node_modules rails_api_base bin/dev
+docker run --rm --name api-base -it -p 3000:3000 -e POSTGRES_HOST=host.docker.internal -v .:/src/app -v node_modules:/src/app/node_modules rails_api_base
 ```
 - `--rm`: this removes the container file system and anonymous volumes when it exits.
-- `--name api-base`: this adds a name to the container. Useful when running commands for the container or referring to it from another container in the same network.
+- `--name api-base` (optional): this adds a name to the container. Useful when running commands for the container or referring to it from another container in the same network.
 - `-it`: this runs the container in interactive mode, connecting your terminal to the I/O of the container.
 - `-p 3000:3000`: This exposes port 3000 running the server, so that you can access it from your browser.
-- `-e POSTGRES_HOST=host.docker.internal`: This allows using your local host database.
+- `-e POSTGRES_HOST=host.docker.internal`: This allows using your local host database. `host.docker.internal` is an internal DNS name provided by Docker to reference the host IP. See [the docs](https://docs.docker.com/desktop/networking/#i-want-to-connect-from-a-container-to-a-service-on-the-host) for more details.
 - `-v .:/src/app`: This mounts a hosted volume into the container working directory. This allows us to change the files in the directory and have the changes reflected in the running container.
 > [!NOTE]
 > As this maps the whole directory into the container, it will also override the node_modules content generated when building the image. If the directory in your host is empty, it won't find the dependencies and raise an error. However, if you previously installed them, esbuild may raise an error because it needs to have installed platform-specific binaries. This is solved with the flag described below.
 - `-v node_modules:/src/app/node_modules`: This mounts a named volume in node_modules directory, which will copy the modules installed when building the image.
-- `bin/dev` is the command ran with docker run. This will run foreman, which will run the two processes defined in Procfile.dev (web and js).
 
 ### How to run on Linux
 ```bash
 docker run --rm --name api-base -it -p 3000:3000 -n host -v .:/src/app -v node_modules:/src/app/node_modules rails_api_base bin/dev
 ```
+> [!NOTE]
+> Since Docker runs natively on Linux, there is no need to use the special DNS name to reference the host IP, we can use the host network itself to access the ports and services running on it.
 
+### How to run tests
+Setup steps:
+```bash
+# Create a bridge network
+docker network create rails_api_base_test_network
 
-# TODO
-## How to run tests
-- Set up network adapter
+# Run a Postgres server in the network
+docker run --name db -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_HOST_AUTH_METHOD=trust --network=rails_api_base_test_network postgres:15
 
-## How to debug
+# Run a Chromium server for the capybara e2e tests
+docker run --name chrome-server -p 4444:4444 --network=rails_api_base_test_network seleniarm/standalone-chromium
+```
+> [!NOTE]
+> Why are these steps needed?
+> - https://docs.docker.com/network/drivers/bridge/#differences-between-user-defined-bridges-and-the-default-bridge
 
-## Other
-Run console, other commands
+Now you can run the RSpec tests
+```bash
+docker run --rm -it --network=rails_api_base_test_network -e POSTGRES_HOST=db -e SELENIUM_BROWSER_HOST=http://chrome-server:4444 -e SELENIUM_BROWSER=remote rails_api_base_dev ./bin/rspec
+```
 
-## Suggestions
+## Suggestions (optional)
 You can enable VirtioFS as file system implementation for the containers (from Docker app). In MacOS it could improve the startup time of the web container if using a hosted volume.
