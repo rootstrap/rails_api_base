@@ -10,7 +10,6 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_HOST: db
-    command: ./bin/dev
     tty: true
     stdin_open: true
     develop:
