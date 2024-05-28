@@ -15,7 +15,7 @@ Before you start, make sure you have the following:
 3. **AWS Credentials**: 
    - AWS Access Key ID
    - AWS Secret Access Key
-   - These credentials should have permissions to interact with ECR and ECS.
+   - These credentials should have permission to interact with ECR and ECS.
 
 4. **GitHub Repository Setup**:
    - Secrets: Add the following secrets to your GitHub repository:
@@ -29,3 +29,13 @@ Before you start, make sure you have the following:
      - `CONTAINER_NAME`: The name of the container defined in your ECS task definition.
      - `ECS_SERVICE`: The name of your ECS service.
      - `ECS_CLUSTER`: The name of your ECS cluster.
+
+5. **GitHub Actions Workflow**:
+To set up the GitHub Actions workflow for continuous deployment to AWS, you need to modify the existing cd.yml file in the .github/workflows directory of your GitHub repository.
+Uncomment the branches section under on: push: and add the necessary branches to enable automatic deployment. For example:
+
+on:
+  push:
+    branches:
+      - main
+      - dev
