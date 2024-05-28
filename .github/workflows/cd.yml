@@ -1,7 +1,7 @@
 name: CD
 
-on:
-  push:
+# on:
+#   push:
     # Uncomment and add the necessary branches to enable automatic deployment on AWS
     # branches:
       # - main
