@@ -30,13 +30,13 @@ Capybara.register_driver :chrome do |app|
     app,
     browser: browser.to_sym,
     url: ENV.fetch('SELENIUM_BROWSER_HOST', nil),
-    options: options,
+    options:
   )
 end
 
 if browser == 'remote'
   Capybara.server_host = '0.0.0.0'
-  Capybara.app_host = "http://#{ENV.fetch("HOSTNAME")}:#{Capybara.server_port}"
+  Capybara.app_host = "http://#{ENV.fetch('HOSTNAME')}:#{Capybara.server_port}"
 end
 
 Capybara.configure do |config|
