@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'active_storage/service/disk_service'
-
 module ActiveStorage
   class Service
     class DiskWithHostService < ActiveStorage::Service::DiskService
