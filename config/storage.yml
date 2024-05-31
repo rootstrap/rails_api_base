@@ -1,9 +1,9 @@
 local:
-  service: Disk
+  service: DiskWithHost
   root: <%= Rails.root.join('storage') %>
 
 test:
-  service: Disk
+  service: DiskWithHost
   root: <%= Rails.root.join('tmp/storage') %>
 
 amazon:

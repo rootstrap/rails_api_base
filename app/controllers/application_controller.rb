@@ -2,7 +2,6 @@
 
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
-  include ActiveStorage::SetCurrent
 
   after_action :verify_authorized,
                except: :index,
