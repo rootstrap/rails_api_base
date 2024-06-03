@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
-"@activeadmin/activeadmin@3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@activeadmin/activeadmin/-/activeadmin-3.2.1.tgz#da961923986985f6202adf6466d10e6b70a6c626"
-  integrity sha512-cLZ/9kv1A1+dFVPLRr6ECgdIyF4cwMt9H0CQPNeYVzNgkCPiqeYkrxQNbj4Jj/+kkvYDeLPtjXa2uGbrrv7oJA==
+"@activeadmin/activeadmin@3.2.2":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@activeadmin/activeadmin/-/activeadmin-3.2.2.tgz#7185463a59a181e6bab4ed09f18187bda18ba114"
+  integrity sha512-4wMLyEH8IzpDDlpKzv1co3TW+Uhdr8H6SEEa0oLPKkqxtNiA1y11uYN5cSTVC+irMaprL5/irENXke1aJdHWMg==
   dependencies:
     jquery "^3.4.1"
-    jquery-ui "^1.12.1"
+    jquery-ui "^1.13.3"
     jquery-ujs "^1.2.2"
 
 "@esbuild/aix-ppc64@0.21.4":
@@ -165,7 +165,7 @@ esbuild@0.21.4:
     "@esbuild/win32-ia32" "0.21.4"
     "@esbuild/win32-x64" "0.21.4"
 
-jquery-ui@1.13.3, jquery-ui@^1.12.1:
+jquery-ui@1.13.3, jquery-ui@^1.13.3:
   version "1.13.3"
   resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.13.3.tgz#d9f5292b2857fa1f2fdbbe8f2e66081664eb9bc5"
   integrity sha512-D2YJfswSJRh/B8M/zCowDpNFfwsDmtfnMPwjJTyvl+CBqzpYwQ+gFYIbUUlzijy/Qvoy30H1YhoSui4MNYpRwA==
