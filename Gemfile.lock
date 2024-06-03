@@ -360,7 +360,7 @@ GEM
     parallel (1.24.0)
     parallel_tests (4.7.1)
       parallel
-    parser (3.3.1.0)
+    parser (3.3.2.0)
       ast (~> 2.4.1)
       racc
     pg (1.5.6)
@@ -518,7 +518,7 @@ GEM
       rubocop-ast (>= 1.31.1, < 2.0)
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
-    rubocop-rspec (2.29.2)
+    rubocop-rspec (2.30.0)
       rubocop (~> 1.40)
       rubocop-capybara (~> 2.17)
       rubocop-factory_bot (~> 2.22)
@@ -656,7 +656,7 @@ DEPENDENCIES
   rubocop-performance (~> 1.21)
   rubocop-rails (~> 2.25)
   rubocop-rake (~> 0.6.0)
-  rubocop-rspec (~> 2.29)
+  rubocop-rspec (~> 2.30)
   sass-rails (~> 6.0.0)
   selenium-webdriver (~> 4.21.1)
   sendgrid (~> 1.2.4)
