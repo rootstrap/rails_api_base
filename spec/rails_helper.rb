@@ -82,11 +82,6 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-Rails.application.executor.to_complete do
-  ActiveStorage::Current.url_options = { host: ENV.fetch('SERVER_HOST', nil),
-                                         port: ENV.fetch('PORT', 3000) }
-end
-
 Flipper.configure do |config|
   config.default { Flipper.new(Flipper::Adapters::Memory.new) }
 end
