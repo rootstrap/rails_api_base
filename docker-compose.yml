@@ -8,6 +8,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_HOST: db
+      BINDING: 0.0.0.0
     tty: true
     stdin_open: true
     develop:

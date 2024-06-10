@@ -28,14 +28,14 @@ RUN mkdir -p $APP_HOME
 # Setup work directory.
 WORKDIR $APP_HOME
 
-RUN gem install foreman
+RUN gem install foreman bundler
 
 # Copy dependencies files and install libraries.
 COPY --link package.json yarn.lock ./
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
 COPY --link Gemfile Gemfile.lock ./
-RUN gem install bundler && bundle install -j 4
+RUN bundle install -j 4
 
 COPY --link . .
 

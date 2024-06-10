@@ -40,7 +40,7 @@ WORKDIR $APP_HOME
 # Copy dependencies files and install libraries.
 COPY --link Gemfile Gemfile.lock package.json yarn.lock ./
 
-RUN gem install bundler && bundle install -j 4 && yarn install && \
+RUN gem install bundler && bundle install -j 4 && yarn install --frozen-lockfile && \
     bundle exec bootsnap precompile --gemfile && \
     rm -rf ~/.bundle/ $BUNDLE_PATH/ruby/*/cache $BUNDLE_PATH/ruby/*/bundler/gems/*/.git
 

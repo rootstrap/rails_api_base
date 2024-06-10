@@ -7,7 +7,7 @@ options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: ./bin/rspec [options]"
 
-  opts.on("-rm", "--remove-containers", "If provided, all services will be stopped after the test completes.") do
+  opts.on("-rm", "--remove-containers", "If provided, all services will be stopped after the test is completed.") do
     options[:remove_containers] = true
   end
 end.parse!

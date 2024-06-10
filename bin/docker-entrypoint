@@ -9,6 +9,4 @@ if [ "${1}" == "./bin/rspec" ]; then
   ./bin/rails db:test:prepare
 fi
 
-rm -f tmp/pids/server.pid
-
 exec "${@}"

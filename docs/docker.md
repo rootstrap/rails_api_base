@@ -10,7 +10,7 @@ Our scripts in `bin` directory have been updated so we can run them with docker.
 `Dockerfile` - This Dockerfile is optimized to run in production environments. It ensures a minimal image size to run the app, by installing the minimal needed dependencies, and also adds Jemalloc to improve the Ruby memory management.
 
 ## Intro to Docker Compose
-`docker-compose.yml` - This compose file is intented to use only for local development, NOT FOR PRODUCTION. It runs all the services we need in order to run our Rails server, and can be easily extended to include more services if your app needs to. It depends on the `Dockerfile.dev` file and has some "watch" mechanisms to build or reload the app when files change.
+`docker-compose.yml` - This compose file is intended to be used only for local development, NOT FOR PRODUCTION. It runs all the services we need in order to run our Rails server, and can be easily extended to include more services if your app needs to. It depends on the `Dockerfile.dev` file and has some "watch" mechanisms to build or reload the app when files change.
 
 `docker-compose.test.yml` - This compose file is only used for the test environment since it includes a standalone chrome-server service we need to run our E2E tests.
 
@@ -32,7 +32,9 @@ To build and run the project in development we recommend using Docker Compose in
 ```
 
 ### How to start the Rails server
-Currently there is no script for doing this with docker. Check how to start the Rails server using Docker Compose in the next section.
+```bash
+./bin/rails s
+```
 
 ## Docker Compose
 
