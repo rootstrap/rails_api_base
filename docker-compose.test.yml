@@ -1,0 +1,32 @@
+name: 'tests'
+
+services:
+  chrome-server:
+    image: seleniarm/standalone-chromium
+    ports:
+      - 4444:4444
+      - 7900:7900
+      - 5900:5900
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_HOST: db
+      SELENIUM_BROWSER: remote
+      SELENIUM_BROWSER_HOST: http://chrome-server:4444
+      HEADLESS: true
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+      - chrome-server
+    links:
+      - db:db
+      - chrome-server:chrome-server
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust

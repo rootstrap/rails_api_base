@@ -26,6 +26,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -85,6 +90,11 @@ jobs:
           if [ $(git diff ${{ github.event.before }} ${{ github.event.after }} --name-only | grep 'spec/requests/api' | wc -l) -gt 0 ]; then
             echo "OPENAPI=true" >> $GITHUB_ENV
           fi
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -173,6 +183,11 @@ jobs:
         run: |
           ./cc-test-reporter sum-coverage coverage/**/*.json
           ./cc-test-reporter upload-coverage
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
       - name: Setup Ruby
         if: ${{ env.OPENAPI }}
         uses: ruby/setup-ruby@v1

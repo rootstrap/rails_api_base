@@ -1,20 +1,25 @@
-version: '3.0'
-
 services:
   web:
-    build: .
-    entrypoint: >
-      bash -c "
-      rm -f tmp/pids/server.pid
-      && bundle exec rails s -b 0.0.0.0 -p 3000"
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     ports:
-      - ${RAILS_PORT-3000}:3000
+      - 3000:3000
     environment:
-      POSTGRES_USER: ${POSTGRES_USER-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD-postgres}
+      POSTGRES_USER: postgres
       POSTGRES_HOST: db
-    volumes:
-      - .:/src/myapp
+      BINDING: 0.0.0.0
+    tty: true
+    stdin_open: true
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /src/app
+        - action: rebuild
+          path: package.json
+        - action: rebuild
+          path: Gemfile
     depends_on:
       - db
     links:
@@ -22,18 +27,11 @@ services:
   db:
     image: postgres:15
     environment:
-      POSTGRES_USER: ${POSTGRES_USER-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD-postgres}
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
       - db_data:/var/lib/postgresql/data
     ports:
-      - ${POSTGRES_PORT-5432}:5432
-  js:
-    build: .
-    entrypoint: yarn build --watch
-    volumes:
-      - .:/src/myapp
-      - node_modules:/src/myapp/node_modules
+      - 5432:5432
 volumes:
   db_data:
-  node_modules:

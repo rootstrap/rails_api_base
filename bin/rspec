@@ -1,10 +1,26 @@
 #!/usr/bin/env ruby
 require 'shellwords'
 require_relative 'helpers'
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: ./bin/rspec [options]"
+
+  opts.on("-rm", "--remove-containers", "If provided, all services will be stopped after the test is completed.") do
+    options[:remove_containers] = true
+  end
+end.parse!
 
 if running_with_docker?
-  exec "bin/web 'ITERATIONS=#{ENV['ITERATIONS']} bin/rspec #{Shellwords.join(ARGV)}'"
+  compose_command = "docker compose -f docker-compose.test.yml run --build web ./bin/rspec #{Shellwords.join(ARGV)}"
+
+  if options[:remove_containers]
+    compose_command += '&& docker compose -f docker-compose.test.yml down'
+  end
+
+  exec "ITERATIONS=#{ENV['ITERATIONS']} #{compose_command}"
 else
   require 'bundler/setup'
-  load Gem.bin_path('rspec-core', 'rspec')
+  load(Gem.bin_path('rspec-core', 'rspec'))
 end
