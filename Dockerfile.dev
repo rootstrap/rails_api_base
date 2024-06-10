@@ -1,5 +1,6 @@
 ARG RUBY_VERSION=3.3.1
 ARG NODE_VERSION=20.10.0
+ARG YARN_VERSION=1.22.19
 
 # Use Node image so we can pull the binaries from here.
 FROM node:$NODE_VERSION as node
