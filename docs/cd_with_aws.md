@@ -17,7 +17,11 @@ Before you start, make sure you have the following:
    - AWS Secret Access Key
    - These credentials should have permission to interact with ECR and ECS.
 
-4. **GitHub Repository Setup**:
+4. **Create Environments**:
+
+   The GitHub Actions workflow will automatically deploy to the correct environment based on the branch being pushed to. The branch `main` will always be linked to the `production` environment, while other branches will use their own names as the environment. All environments added in GitHub must have the same name as the branches.
+
+5. **GitHub Repository Setup**:
    - Secrets: Add the following secrets to your GitHub repository:
      - `AWS_ACCESS_KEY_ID`: Your AWS Access Key ID.
      - `AWS_SECRET_ACCESS_KEY`: Your AWS Secret Access Key.
@@ -30,7 +34,7 @@ Before you start, make sure you have the following:
      - `ECS_SERVICE`: The name of your ECS service.
      - `ECS_CLUSTER`: The name of your ECS cluster.
 
-5. **GitHub Actions Workflow**:
+6. **GitHub Actions Workflow**:
 To set up the GitHub Actions workflow for continuous deployment to AWS, you need to modify the existing cd.yml file in the .github/workflows directory of your GitHub repository.
 Uncomment the branches section under on: push: and add the necessary branches to enable automatic deployment. For example:
 
@@ -39,3 +43,4 @@ on:
     branches:
       - main
       - dev
+
