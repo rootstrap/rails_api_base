@@ -142,7 +142,6 @@ Style/SlicingWithRange:
 Style/StringConcatenation:
   Enabled: false
 
-RSpec/Capybara/FeatureMethods:
-  EnabledMethods:
-    - feature
-    - scenario
+RSpec/Dialect:
+  Enabled: false
+
