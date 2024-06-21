@@ -22,10 +22,10 @@ Before you start, make sure you have the following:
    The GitHub Actions workflow will automatically deploy to the correct environment based on the branch being pushed to. The branch `main` will always be linked to the `production` environment, while other branches will use their own names as the environment. All environments added in GitHub must have the same name as the branches.
 
 5. **GitHub Repository Setup**:
-   - Secrets: Add the following secrets to your GitHub repository:
+   - **Environment Secrets**: Add the following secrets to your GitHub environments (these are specific to each environment and not set at the repository level):
      - `AWS_ACCESS_KEY_ID`: Your AWS Access Key ID.
      - `AWS_SECRET_ACCESS_KEY`: Your AWS Secret Access Key.
-   - Variables: Add the following variables to your GitHub repository:
+   - **Environment Variables**: Add the following variables to your GitHub environments:
      - `AWS_REGION`: The region where your ECR and ECS are set up (e.g., `us-east-1`).
      - `ECR_REPOSITORY`: The name of your ECR repository.
      - `ECS_TASK_DEFINITION`: The ARN of your ECS task definition.
@@ -35,12 +35,13 @@ Before you start, make sure you have the following:
      - `ECS_CLUSTER`: The name of your ECS cluster.
 
 6. **GitHub Actions Workflow**:
-To set up the GitHub Actions workflow for continuous deployment to AWS, you need to modify the existing cd.yml file in the .github/workflows directory of your GitHub repository.
-Uncomment the branches section under on: push: and add the necessary branches to enable automatic deployment. For example:
+   To set up the GitHub Actions workflow for continuous deployment to AWS, you need to modify the existing cd.yml file in the .github/workflows directory of your GitHub repository.
 
-on:
-  push:
-    branches:
-      - main
-      - dev
+   Uncomment the branches section under `on: push:` and add the necessary branches to enable automatic deployment. For example:
 
+   ```yaml
+   on:
+     push:
+       branches:
+         - main
+         - dev
