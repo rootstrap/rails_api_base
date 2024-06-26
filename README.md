@@ -48,6 +48,8 @@ This template comes with:
 1. (Optional) Run the tests to make sure everything is working with: `bin/rspec .`.
 1. You can now try your REST services!
 
+See [Docker docs](./docs/docker.md) for more info
+
 ## Dev scripts
 
 This template provides a handful of scripts to make your dev experience better!

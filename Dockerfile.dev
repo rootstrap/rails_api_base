@@ -39,6 +39,8 @@ RUN bundle install -j 4
 
 COPY --link . .
 
+RUN yarn build
+
 # Entrypoint prepares the database.
 ENTRYPOINT ["./bin/docker-entrypoint"]
 
