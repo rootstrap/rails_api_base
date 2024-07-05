@@ -17,7 +17,10 @@
 /public/assets
 /spec/tmp
 /storage
-/tmp
+/tmp/*
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
 /vendor/bundle
 /yarn-error.log
 capybara-*.html
