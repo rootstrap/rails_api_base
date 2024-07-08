@@ -17,6 +17,7 @@ services:
       SELENIUM_BROWSER: remote
       SELENIUM_BROWSER_HOST: http://chrome-server:4444
       HEADLESS: true
+      RAILS_ENV: test
     tty: true
     stdin_open: true
     depends_on:
