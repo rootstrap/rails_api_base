@@ -178,6 +178,7 @@ run "bundle exec rubocop -A ."
 
 # Precompile assets
 rails_command "assets:precompile"
+run "yarn build"
 
 # Run tests
 run "bundle exec rspec spec/components/example/component_spec.rb"

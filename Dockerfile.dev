@@ -20,7 +20,6 @@ COPY --from=node /opt /opt
 ENV WORK_ROOT /src
 ENV APP_HOME $WORK_ROOT/app/
 ENV LANG C.UTF-8
-ENV BUNDLE_PATH $WORK_ROOT/bundle
 
 # Create app directory.
 RUN mkdir -p $APP_HOME

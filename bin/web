@@ -6,7 +6,7 @@ require_relative 'helpers'
 command = if running_with_docker?
   puts "Running in service web...\n"
 
-  "docker compose run --service-ports web sh -c #{Shellwords.join(ARGV)}"
+  "docker compose run --service-ports --build --rm web sh -c #{Shellwords.join(ARGV)}"
 else
   args = ARGV.length > 1 ? Shellwords.join(ARGV) : ARGV.first
   # we remove '' if the command has it
