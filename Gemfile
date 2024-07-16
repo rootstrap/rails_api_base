@@ -34,7 +34,7 @@ gem 'sass-rails', '~> 6.0.0'
 gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets', '~> 4.2.1'
 gem 'strong_migrations', '~> 2.0'
-gem 'yaaf', '~> 2.2'
+gem 'yaaf', '~> 3.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
