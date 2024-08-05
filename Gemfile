@@ -10,7 +10,7 @@ gem 'rails', '~> 7.1.3'
 gem 'activeadmin', '~> 3.2'
 gem 'active_storage_base64', '~> 3.0.0'
 gem 'aws-sdk-s3', '~> 1.156', require: false
-gem 'bootsnap', '~> 1.17'
+gem 'bootsnap', '~> 1.18'
 gem 'delayed_job_active_record', '~> 4.1'
 gem 'devise', '~> 4.9'
 gem 'devise_token_auth', '~> 1.2', '>= 1.2.3'
