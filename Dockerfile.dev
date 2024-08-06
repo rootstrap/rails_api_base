@@ -20,6 +20,7 @@ COPY --from=node /opt /opt
 ENV WORK_ROOT /src
 ENV APP_HOME $WORK_ROOT/app/
 ENV LANG C.UTF-8
+ENV RUBY_YJIT_ENABLE "1"
 
 # Create app directory.
 RUN mkdir -p $APP_HOME

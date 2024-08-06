@@ -13,6 +13,7 @@ ENV WORK_ROOT /src
 ENV APP_HOME $WORK_ROOT/app
 ENV LANG C.UTF-8
 ENV BUNDLE_PATH $APP_HOME/vendor/bundle
+ENV RUBY_YJIT_ENABLE "1"
 
 # Set prod environment to avoid installing dev dependencies
 ENV BUNDLE_WITHOUT development:test
