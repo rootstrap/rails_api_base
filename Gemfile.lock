@@ -557,7 +557,7 @@ GEM
     sendgrid (1.2.4)
       json
     sexp_processor (4.17.1)
-    shoulda-matchers (6.2.0)
+    shoulda-matchers (6.3.0)
       activesupport (>= 5.2.0)
     simplecov (0.22.0)
       docile (~> 1.1)
@@ -668,7 +668,7 @@ DEPENDENCIES
   sass-rails (~> 6.0.0)
   selenium-webdriver (~> 4.23.0)
   sendgrid (~> 1.2.4)
-  shoulda-matchers (~> 6.2)
+  shoulda-matchers (~> 6.3)
   simplecov (~> 0.22.0)
   sprockets (~> 4.2.1)
   strong_migrations (~> 2.0)
