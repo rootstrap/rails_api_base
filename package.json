@@ -1,9 +1,9 @@
 {
   "name": "rails_api_base",
   "private": "true",
-  "engines" : {
-    "node" : "20.10.0",
-    "yarn" : "1.22"
+  "engines": {
+    "node": "20.10.0",
+    "yarn": "1.22"
   },
   "dependencies": {
     "@activeadmin/activeadmin": "3.2.3",
@@ -11,10 +11,12 @@
     "arctic_admin": "4.3.1",
     "esbuild": "0.23.0",
     "jquery": "3.7.1",
-    "jquery-ui": "1.14.0",
-    "jquery-ujs": "1.2.3"
+    "jquery-ui": "1.13.3",
+    "jquery-ujs": "1.2.3",
+    "sass": "^1.77.8"
   },
   "scripts": {
-    "build": "node esbuild.config.mjs"
+    "build": "node esbuild.config.mjs",
+    "build:css": "sass ./app/assets/stylesheets:./app/assets/builds --no-source-map --load-path=node_modules"
   }
 }
