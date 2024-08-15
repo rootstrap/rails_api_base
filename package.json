@@ -16,7 +16,8 @@
     "sass": "^1.77.8"
   },
   "scripts": {
-    "build": "node esbuild.config.mjs",
+    "build": "yarn build:js && yarn build:css",
+    "build:js": "node esbuild.config.mjs",
     "build:css": "sass ./app/assets/stylesheets:./app/assets/builds --no-source-map --load-path=node_modules"
   }
 }
