@@ -1,6 +1,5 @@
 # Add gems
 insert_into_file 'Gemfile', after: "# Gems\n" do <<-EOF
-gem 'cssbundling-rails', '~> 1.3'
 gem 'stimulus-rails', '~> 1.3'
 gem 'turbo-rails', '2.0.0.pre.beta.2'
 gem 'view_component', '~> 3.7'
@@ -21,6 +20,11 @@ run 'yarn add esbuild-rails@^1.0.7'
 
 # Run CSS generator
 rails_command 'css:install:tailwind'
+
+# Add Sass build for Active Admin styles
+insert_into_file 'package.json', after: "application.css --minify" do
+  ' && sass ./app/assets/stylesheets/active_admin.scss:./app/assets/builds/active_admin.css --no-source-map --load-path=node_modules'
+end
 
 # Update application layout
 gsub_file 'app/views/layouts/application.html.erb', "    <%= stylesheet_link_tag \"application\" %>\n", ''
