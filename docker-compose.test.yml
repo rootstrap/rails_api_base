@@ -20,6 +20,8 @@ services:
       RAILS_ENV: test
     tty: true
     stdin_open: true
+    volumes:
+      - .:/src/app
     depends_on:
       - db
       - chrome-server
