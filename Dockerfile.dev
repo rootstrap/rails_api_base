@@ -1,6 +1,5 @@
 ARG RUBY_VERSION=3.3.5
-ARG NODE_VERSION=20.10.0
-ARG YARN_VERSION=1.22.19
+ARG NODE_VERSION=22.7.0
 
 # Use Node image so we can pull the binaries from here.
 FROM node:$NODE_VERSION as node
@@ -30,7 +29,9 @@ WORKDIR $APP_HOME
 RUN gem install foreman bundler
 
 # Copy dependencies files and install libraries.
-COPY --link package.json yarn.lock ./
+COPY --link package.json yarn.lock .yarnrc.yml ./
+
+RUN corepack enable
 RUN yarn install --frozen-lockfile
 
 COPY --link Gemfile Gemfile.lock ./
