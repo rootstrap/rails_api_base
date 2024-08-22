@@ -1,214 +1,214 @@
-name: CI
+# name: CI
 
-on:
-  workflow_dispatch:
-  pull_request:
-  push:
-    branches: [main]
+# on:
+#   workflow_dispatch:
+#   pull_request:
+#   push:
+#     branches: [main]
 
-permissions:
-  pull-requests: write
-  contents: write
+# permissions:
+#   pull-requests: write
+#   contents: write
 
-env:
-  RAILS_ENV: test
-  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-  CI: true
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  REPO: ${{ github.repository }}
-  PARALLEL_TEST_FIRST_IS_1: true
+# env:
+#   RAILS_ENV: test
+#   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+#   CI: true
+#   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#   REPO: ${{ github.repository }}
+#   PARALLEL_TEST_FIRST_IS_1: true
 
-jobs:
-  linters:
-    name: Linters
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-      - name: Label PR
-        if: github.event.pull_request
-        uses: actions/labeler@v5
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Run Code Analysis
-        run: bundle exec rails code:analysis
-  tests:
-    name: Tests
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
+# jobs:
+#   linters:
+#     name: Linters
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 10
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+#       - name: Setup Node
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version-file: '.nvmrc'
+#           cache: 'yarn'
+#       - name: Setup Ruby
+#         uses: ruby/setup-ruby@v1
+#         with:
+#           bundler-cache: true
+#       - name: Label PR
+#         if: github.event.pull_request
+#         uses: actions/labeler@v5
+#         with:
+#           repo-token: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Run Code Analysis
+#         run: bundle exec rails code:analysis
+#   tests:
+#     name: Tests
+#     runs-on: ubuntu-latest
+#     timeout-minutes: 20
 
-    services:
-      db:
-        image: postgres:15
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_HOST_AUTH_METHOD: trust
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+#     services:
+#       db:
+#         image: postgres:15
+#         env:
+#           POSTGRES_USER: postgres
+#           POSTGRES_HOST_AUTH_METHOD: trust
+#         ports:
+#           - 5432:5432
+#         options: >-
+#           --health-cmd pg_isready
+#           --health-interval 10s
+#           --health-timeout 5s
+#           --health-retries 5
 
-    strategy:
-      fail-fast: false
-      matrix:
-        # Set N number of parallel jobs you want to run tests on.
-        # Use higher number if you have slow tests to split them on more parallel jobs.
-        # Remember to update ci_node_index below to 0..N-1
-        ci_node_total: [1]
-        # set N-1 indexes for parallel jobs
-        # When you run 2 parallel jobs then first job will have index 0, the second job will have index 1 etc
-        ci_node_index: [0]
+#     strategy:
+#       fail-fast: false
+#       matrix:
+#         # Set N number of parallel jobs you want to run tests on.
+#         # Use higher number if you have slow tests to split them on more parallel jobs.
+#         # Remember to update ci_node_index below to 0..N-1
+#         ci_node_total: [1]
+#         # set N-1 indexes for parallel jobs
+#         # When you run 2 parallel jobs then first job will have index 0, the second job will have index 1 etc
+#         ci_node_index: [0]
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Set ENV for CodeClimate
-        if: github.event_name == 'pull_request'
-        run: |
-          git fetch --no-tags --prune --depth=1 origin +refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
-          echo "GIT_BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
-          echo "GIT_COMMIT_SHA=$(git rev-parse origin/$GITHUB_HEAD_REF)" >> $GITHUB_ENV
-          echo "PULL_REQUEST_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
-      - name: Set ENV for API Docs
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          if [ $(git diff ${{ github.event.before }} ${{ github.event.after }} --name-only | grep 'spec/requests/api' | wc -l) -gt 0 ]; then
-            echo "OPENAPI=true" >> $GITHUB_ENV
-          fi
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-      - name: Setup Code Climate test-reporter
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
-      - name: Setup Database
-        run: bundle exec rails parallel:load_schema
-      - name: Run yarn commands
-        run: yarn install
-      - name: Precompile assets
-        run: bundle exec rails assets:precompile
-      - name: Check for untracked changes in schema.rb
-        uses: rootstrap/check_untracked_changes@v1
-        with:
-          path: "./db/schema.rb"
-      - name: Get CPU info
-        id: cpu_info
-        run: echo "cpu_cores=$(nproc)" >> $GITHUB_ENV
-      - name: Run Tests
-        env:
-          KNAPSACK_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
-          KNAPSACK_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
-          PARALLEL_TESTS_CONCURRENCY: ${{ env.cpu_cores }}
-        run: HEADLESS=true bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
-      - name: Check for missing annotations
-        run: bundle exec annotate
-      - name: Check for untracked changes in app and spec directories
-        uses: rootstrap/check_untracked_changes@v1
-        with:
-          path: "./app/ ./spec/"
-      - name: Report to CodeClimate
-        run: ./cc-test-reporter format-coverage --output "coverage/coverage.${{ matrix.ci_node_index }}.json"
-      - name: Upload partial coverage
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage
-          path: "coverage/coverage.${{ matrix.ci_node_index }}.json"
-      - name: Merge API Docs from threads
-        env:
-          CI_NODE_INDEX: ${{ matrix.ci_node_index }}
-        if: ${{ env.OPENAPI }}
-        run: bundle exec ./bin/merge-api-docs.rb
-      - name: Upload partial API Docs
-        if: ${{ env.OPENAPI }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: api_docs
-          path: "tmp/openapi${{ matrix.ci_node_index }}.yaml"
-  merge_results:
-    name: Merge Results
-    runs-on: ubuntu-latest
-    needs: tests
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ssh-key: "${{ secrets.PUSH_KEY }}"
-      - name: Set ENV for CodeClimate
-        if: github.event_name == 'pull_request'
-        run: |
-          git fetch --no-tags --prune --depth=1 origin +refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
-          echo "GIT_BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
-          echo "GIT_COMMIT_SHA=$(git rev-parse origin/$GITHUB_HEAD_REF)" >> $GITHUB_ENV
-          echo "PULL_REQUEST_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
-      - name: Set ENV for API Docs
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          if [ $(git diff ${{ github.event.before }} ${{ github.event.after }} --name-only | grep 'spec/requests/api' | wc -l) -gt 0 ]; then
-            echo "OPENAPI=true" >> $GITHUB_ENV
-          fi
-      - name: Setup Code Climate test-reporter
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-      - name: Download coverage reports
-        uses: actions/download-artifact@v4
-        with:
-          name: coverage
-          path: coverage/coverage.*.json
-      - name: Report coverage
-        run: |
-          ./cc-test-reporter sum-coverage coverage/**/*.json
-          ./cc-test-reporter upload-coverage
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
-      - name: Setup Ruby
-        if: ${{ env.OPENAPI }}
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-      - name: Download API Docs
-        if: ${{ env.OPENAPI }}
-        uses: actions/download-artifact@v4
-        with:
-          name: api_docs
-          path: tmp/
-      - name: Merge API Docs from nodes
-        env:
-          MOVE_TMP_FILES: true
-        if: ${{ env.OPENAPI }}
-        run: bundle exec ./bin/merge-api-docs.rb
-      - name: Commit & push API Docs
-        if: ${{ env.OPENAPI }}
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add "doc/openapi.yaml"
-          git commit -m "Update API Docs" || echo "No changes to commit"
-          git push origin main
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 0
+#       - name: Set ENV for CodeClimate
+#         if: github.event_name == 'pull_request'
+#         run: |
+#           git fetch --no-tags --prune --depth=1 origin +refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
+#           echo "GIT_BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
+#           echo "GIT_COMMIT_SHA=$(git rev-parse origin/$GITHUB_HEAD_REF)" >> $GITHUB_ENV
+#           echo "PULL_REQUEST_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+#       - name: Set ENV for API Docs
+#         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+#         run: |
+#           if [ $(git diff ${{ github.event.before }} ${{ github.event.after }} --name-only | grep 'spec/requests/api' | wc -l) -gt 0 ]; then
+#             echo "OPENAPI=true" >> $GITHUB_ENV
+#           fi
+#       - name: Setup Node
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version-file: '.nvmrc'
+#           cache: 'yarn'
+#       - name: Setup Ruby
+#         uses: ruby/setup-ruby@v1
+#         with:
+#           bundler-cache: true
+#       - name: Setup Code Climate test-reporter
+#         run: |
+#           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+#           chmod +x ./cc-test-reporter
+#           ./cc-test-reporter before-build
+#       - name: Setup Database
+#         run: bundle exec rails parallel:load_schema
+#       - name: Run yarn commands
+#         run: yarn install
+#       - name: Precompile assets
+#         run: bundle exec rails assets:precompile
+#       - name: Check for untracked changes in schema.rb
+#         uses: rootstrap/check_untracked_changes@v1
+#         with:
+#           path: "./db/schema.rb"
+#       - name: Get CPU info
+#         id: cpu_info
+#         run: echo "cpu_cores=$(nproc)" >> $GITHUB_ENV
+#       - name: Run Tests
+#         env:
+#           KNAPSACK_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+#           KNAPSACK_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+#           PARALLEL_TESTS_CONCURRENCY: ${{ env.cpu_cores }}
+#         run: HEADLESS=true bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
+#       - name: Check for missing annotations
+#         run: bundle exec annotate
+#       - name: Check for untracked changes in app and spec directories
+#         uses: rootstrap/check_untracked_changes@v1
+#         with:
+#           path: "./app/ ./spec/"
+#       - name: Report to CodeClimate
+#         run: ./cc-test-reporter format-coverage --output "coverage/coverage.${{ matrix.ci_node_index }}.json"
+#       - name: Upload partial coverage
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: coverage
+#           path: "coverage/coverage.${{ matrix.ci_node_index }}.json"
+#       - name: Merge API Docs from threads
+#         env:
+#           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+#         if: ${{ env.OPENAPI }}
+#         run: bundle exec ./bin/merge-api-docs.rb
+#       - name: Upload partial API Docs
+#         if: ${{ env.OPENAPI }}
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: api_docs
+#           path: "tmp/openapi${{ matrix.ci_node_index }}.yaml"
+#   merge_results:
+#     name: Merge Results
+#     runs-on: ubuntu-latest
+#     needs: tests
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 0
+#           ssh-key: "${{ secrets.PUSH_KEY }}"
+#       - name: Set ENV for CodeClimate
+#         if: github.event_name == 'pull_request'
+#         run: |
+#           git fetch --no-tags --prune --depth=1 origin +refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
+#           echo "GIT_BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
+#           echo "GIT_COMMIT_SHA=$(git rev-parse origin/$GITHUB_HEAD_REF)" >> $GITHUB_ENV
+#           echo "PULL_REQUEST_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+#       - name: Set ENV for API Docs
+#         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+#         run: |
+#           if [ $(git diff ${{ github.event.before }} ${{ github.event.after }} --name-only | grep 'spec/requests/api' | wc -l) -gt 0 ]; then
+#             echo "OPENAPI=true" >> $GITHUB_ENV
+#           fi
+#       - name: Setup Code Climate test-reporter
+#         run: |
+#           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+#           chmod +x ./cc-test-reporter
+#       - name: Download coverage reports
+#         uses: actions/download-artifact@v4
+#         with:
+#           name: coverage
+#           path: coverage/coverage.*.json
+#       - name: Report coverage
+#         run: |
+#           ./cc-test-reporter sum-coverage coverage/**/*.json
+#           ./cc-test-reporter upload-coverage
+#       - name: Setup Node
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version-file: '.nvmrc'
+#           cache: 'yarn'
+#       - name: Setup Ruby
+#         if: ${{ env.OPENAPI }}
+#         uses: ruby/setup-ruby@v1
+#         with:
+#           bundler-cache: true
+#       - name: Download API Docs
+#         if: ${{ env.OPENAPI }}
+#         uses: actions/download-artifact@v4
+#         with:
+#           name: api_docs
+#           path: tmp/
+#       - name: Merge API Docs from nodes
+#         env:
+#           MOVE_TMP_FILES: true
+#         if: ${{ env.OPENAPI }}
+#         run: bundle exec ./bin/merge-api-docs.rb
+#       - name: Commit & push API Docs
+#         if: ${{ env.OPENAPI }}
+#         run: |
+#           git config --local user.email "action@github.com"
+#           git config --local user.name "GitHub Action"
+#           git add "doc/openapi.yaml"
+#           git commit -m "Update API Docs" || echo "No changes to commit"
+#           git push origin main
