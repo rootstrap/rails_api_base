@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 ruby '~> 3.3.3'
 
-gem 'rails', '~> 7.1.3'
+gem 'rails', '~> 7.1.4'
 
 # Gems
 gem 'activeadmin', '~> 3.2'
