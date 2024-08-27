@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'shellwords'
+require_relative 'helpers'
+
+# explicit rubocop config increases performance slightly while avoiding config confusion.
+ARGV.unshift('--config', File.expand_path('../.rubocop.yml', __dir__))
+
+if running_with_docker?
+  puts "Running in service web...\n"
+  exec "bin/web 'bin/rubocop #{Shellwords.join(ARGV)}'"
+else
+  puts "Running asdf\n"
+  load Gem.bin_path('rubocop', 'rubocop')
+end

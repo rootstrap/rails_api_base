@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 ruby '~> 3.3.3'
 
-gem 'rails', '~> 7.1.3'
+gem 'rails', '~> 7.2.1'
 
 # Gems
 gem 'activeadmin', '~> 3.2'
@@ -14,7 +14,7 @@ gem 'bootsnap', '~> 1.18'
 gem 'cssbundling-rails', '~> 1.4', '>= 1.4.1'
 gem 'delayed_job_active_record', '~> 4.1'
 gem 'devise', '~> 4.9'
-gem 'devise_token_auth', '~> 1.2', '>= 1.2.3'
+gem 'devise_token_auth', github: 'lynndylanhurley/devise_token_auth'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'flipper', '~> 1.3.0'
 gem 'flipper-active_record', '~> 1.3.0'
