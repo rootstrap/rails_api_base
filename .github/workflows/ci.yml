@@ -44,6 +44,7 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
           outputs: type=docker,dest=/tmp/api_base_test_image.tar
+          file: Dockerfile.dev
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
