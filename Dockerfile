@@ -40,7 +40,7 @@ WORKDIR $APP_HOME
 COPY --link Gemfile Gemfile.lock package.json yarn.lock .yarnrc.yml ./
 
 RUN corepack enable
-RUN gem install bundler && bundle install -j 4 && yarn install --frozen-lockfile && \
+RUN gem install bundler && bundle install -j 4 && yarn install --immutable && \
     bundle exec bootsnap precompile --gemfile && \
     rm -rf ~/.bundle/ $BUNDLE_PATH/ruby/*/cache $BUNDLE_PATH/ruby/*/bundler/gems/*/.git
 
