@@ -32,8 +32,10 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          key: ${{ runner.os }}-buildx-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
           restore-keys: |
+            ${{ runner.os }}-buildx-${{ github.head_ref || github.ref_name }}
+            ${{ runner.os }}-buildx-main
             ${{ runner.os }}-buildx-
 
       - name: Build and export
@@ -132,7 +134,7 @@ jobs:
             echo "OPENAPI=true" >> $GITHUB_ENV
           fi
       - name: Setup Database
-        run: docker run api_base/test:latest -n host bundle exec rails parallel:load_schema
+        run: docker run --network host api_base/test:latest bundle exec rails parallel:load_schema
       # - name: Check for untracked changes in schema.rb
       #   uses: rootstrap/check_untracked_changes@v1
       #   with:
