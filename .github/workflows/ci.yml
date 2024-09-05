@@ -13,7 +13,6 @@ permissions:
   contents: write
 
 env:
-  RAILS_ENV: test
   CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
   CI: true
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -92,6 +91,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
+    env:
+      RAILS_ENV: test
+
     services:
       db:
         image: postgres:15
@@ -134,7 +136,7 @@ jobs:
             echo "OPENAPI=true" >> $GITHUB_ENV
           fi
       - name: Setup Database
-        run: docker run --network host api_base/test:latest bundle exec rails parallel:load_schema
+        run: docker run --network host -e RAILS_ENV=test api_base/test:latest bundle exec rake parallel:setup
       # - name: Check for untracked changes in schema.rb
       #   uses: rootstrap/check_untracked_changes@v1
       #   with:
