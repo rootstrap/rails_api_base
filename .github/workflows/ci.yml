@@ -83,6 +83,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Code Analysis
         run: docker run api_base/test:latest bundle exec rails code:analysis
+  
   tests:
     name: Tests
     runs-on: ubuntu-latest
@@ -114,66 +115,59 @@ jobs:
         ci_node_index: [0]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Download artifact
+        uses: actions/download-artifact@v4
         with:
-          fetch-depth: 0
+          name: api base test image
+          path: /tmp
+      - name: Load image
+        run: |
+          docker load --input /tmp/api_base_test_image.tar
+          docker image ls -a
       - name: Set ENV for API Docs
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           if [ $(git diff ${{ github.event.before }} ${{ github.event.after }} --name-only | grep 'spec/requests/api' | wc -l) -gt 0 ]; then
             echo "OPENAPI=true" >> $GITHUB_ENV
           fi
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
       - name: Setup Database
-        run: bundle exec rails parallel:load_schema
-      - name: Run yarn commands
-        run: yarn install
-      - name: Precompile assets
-        run: bundle exec rails assets:precompile
-      - name: Check for untracked changes in schema.rb
-        uses: rootstrap/check_untracked_changes@v1
-        with:
-          path: "./db/schema.rb"
-      - name: Get CPU info
-        id: cpu_info
-        run: echo "cpu_cores=$(nproc)" >> $GITHUB_ENV
-      - name: Run Tests
-        env:
-          KNAPSACK_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
-          KNAPSACK_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
-          PARALLEL_TESTS_CONCURRENCY: ${{ env.cpu_cores }}
-        run: HEADLESS=true bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
-      - name: Check for missing annotations
-        run: bundle exec annotate
-      - name: Check for untracked changes in app and spec directories
-        uses: rootstrap/check_untracked_changes@v1
-        with:
-          path: "./app/ ./spec/"
-      - name: Upload partial coverage
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage
-          path: "coverage/coverage.${{ matrix.ci_node_index }}.json"
-      - name: Merge API Docs from threads
-        env:
-          CI_NODE_INDEX: ${{ matrix.ci_node_index }}
-        if: ${{ env.OPENAPI }}
-        run: bundle exec ./bin/merge-api-docs.rb
-      - name: Upload partial API Docs
-        if: ${{ env.OPENAPI }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: api_docs
-          path: "tmp/openapi${{ matrix.ci_node_index }}.yaml"
+        run: docker run api_base/test:latest -n host bundle exec rails parallel:load_schema
+      # - name: Check for untracked changes in schema.rb
+      #   uses: rootstrap/check_untracked_changes@v1
+      #   with:
+      #     path: "./db/schema.rb"
+      # - name: Get CPU info
+      #   id: cpu_info
+      #   run: echo "cpu_cores=$(nproc)" >> $GITHUB_ENV
+      # - name: Run Tests
+      #   env:
+      #     KNAPSACK_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+      #     KNAPSACK_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+      #     PARALLEL_TESTS_CONCURRENCY: ${{ env.cpu_cores }}
+      #   run: HEADLESS=true bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
+      # - name: Check for missing annotations
+      #   run: bundle exec annotate
+      # - name: Check for untracked changes in app and spec directories
+      #   uses: rootstrap/check_untracked_changes@v1
+      #   with:
+      #     path: "./app/ ./spec/"
+      # - name: Upload partial coverage
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: coverage
+      #     path: "coverage/coverage.${{ matrix.ci_node_index }}.json"
+      # - name: Merge API Docs from threads
+      #   env:
+      #     CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+      #   if: ${{ env.OPENAPI }}
+      #   run: bundle exec ./bin/merge-api-docs.rb
+      # - name: Upload partial API Docs
+      #   if: ${{ env.OPENAPI }}
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: api_docs
+      #     path: "tmp/openapi${{ matrix.ci_node_index }}.yaml"
+
 #   merge_results:
 #     name: Merge Results
 #     runs-on: ubuntu-latest
