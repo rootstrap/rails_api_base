@@ -144,17 +144,16 @@ jobs:
       - name: Get CPU info
         id: cpu_info
         run: echo "cpu_cores=$(nproc)" >> $GITHUB_ENV
+      - uses: actions/checkout@v2
+      - uses: nanasess/setup-chromedriver@v2
+        # with:
+          # Optional: do not specify to match Chrome's version
+          # chromedriver-version: '88.0.4324.96'
       - name: Setup ChromeDriver
-        - uses: actions/checkout@v2
-        - uses: nanasess/setup-chromedriver@v2
-          # with:
-            # Optional: do not specify to match Chrome's version
-            # chromedriver-version: '88.0.4324.96'
-        - run: |
-            export DISPLAY=:99
-            chromedriver --url-base=/wd/hub &
-            sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
-
+        run: |
+          export DISPLAY=:99
+          chromedriver --url-base=/wd/hub &
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
 
       - name: Run Tests
         env:
