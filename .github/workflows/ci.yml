@@ -144,7 +144,7 @@ jobs:
       - name: Get CPU info
         id: cpu_info
         run: echo "cpu_cores=$(nproc)" >> $GITHUB_ENV
-      steps:
+      - name: Setup ChromeDriver
         - uses: actions/checkout@v2
         - uses: nanasess/setup-chromedriver@v2
           # with:
