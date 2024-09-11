@@ -13,6 +13,7 @@ services:
     stdin_open: true
     volumes:
       - .:/src/app
+      - node_modules:/src/app/node_modules
     depends_on:
       - db
     links:
@@ -28,3 +29,4 @@ services:
       - 5432:5432
 volumes:
   db_data:
+  node_modules:
