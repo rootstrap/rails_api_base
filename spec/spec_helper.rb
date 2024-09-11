@@ -22,8 +22,6 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
 
 browser = ENV.fetch('SELENIUM_BROWSER', 'chrome')
 
-Selenium::WebDriver::Chrome.path = ENV.fetch('CHROME_PATH', nil) if browser == 'chrome'
-
 Capybara.register_driver :chrome do |app|
   args = %w[no-sandbox disable-gpu disable-dev-shm-usage]
   args << (ENV['HEADLESS'] == 'true' ? 'headless' : 'non-headless')

@@ -150,7 +150,7 @@ jobs:
           KNAPSACK_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
           KNAPSACK_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
           PARALLEL_TESTS_CONCURRENCY: ${{ env.cpu_cores }}
-        run: docker run --network host -e PARALLEL_TESTS_CONCURRENCY=$PARALLEL_TESTS_CONCURRENCY -e KNAPSACK_CI_NODE_TOTAL=$KNAPSACK_CI_NODE_TOTAL -e KNAPSACK_CI_NODE_INDEX=$KNAPSACK_CI_NODE_INDEX -e RAILS_ENV=test -e HEADLESS=true -e CI=true -e CHROME_PATH=$CHROMEWEBDRIVER api_base/test:latest bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
+        run: docker run --network host -e PARALLEL_TESTS_CONCURRENCY=$PARALLEL_TESTS_CONCURRENCY -e KNAPSACK_CI_NODE_TOTAL=$KNAPSACK_CI_NODE_TOTAL -e KNAPSACK_CI_NODE_INDEX=$KNAPSACK_CI_NODE_INDEX -e RAILS_ENV=test -e HEADLESS=true -e CI=true -e SELENIUM_BROWSER=remote -e SELENIUM_BROWSER_HOST=0.0.0.0 api_base/test:latest bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
       # - name: Check for missing annotations
       #   run: bundle exec annotate
       # - name: Check for untracked changes in app and spec directories
