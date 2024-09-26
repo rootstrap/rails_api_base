@@ -11,10 +11,6 @@ describe 'GET api/v1/settings/must_update' do
     }
   end
 
-  before do
-    puts ENV['TEST_ENV_NUMBER']
-  end
-
   context 'with correct settings' do
     before { create(:setting_version) }
 
