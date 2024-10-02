@@ -157,7 +157,7 @@ jobs:
           PARALLEL_TESTS_CONCURRENCY: ${{ env.cpu_cores }}
         run: docker run --network host -e PARALLEL_TESTS_CONCURRENCY=$PARALLEL_TESTS_CONCURRENCY -e KNAPSACK_CI_NODE_TOTAL=$KNAPSACK_CI_NODE_TOTAL -e KNAPSACK_CI_NODE_INDEX=$KNAPSACK_CI_NODE_INDEX -e RAILS_ENV=test -e HEADLESS=true -e CI=true -e SELENIUM_BROWSER_HOST=http://localhost:4444 -e SELENIUM_BROWSER=remote -e PARALLEL_TEST_FIRST_IS_1=true api_base/test:latest bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
       - name: Check for missing annotations
-        run: docker run -v .:/src/app  --network host -e RAILS_ENV=test -e PARALLEL_TEST_FIRST_IS_1=true api_base/test:latest bundle exec annotate
+        run: docker run --mount source=.,target=/src/app --network host -e RAILS_ENV=test -e PARALLEL_TEST_FIRST_IS_1=true api_base/test:latest bundle exec annotate
       - name: Check for untracked changes in app and spec directories
         uses: rootstrap/check_untracked_changes@v1
         with:
