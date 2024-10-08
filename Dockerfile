@@ -1,6 +1,5 @@
 ARG RUBY_VERSION=3.3.5
-ARG NODE_VERSION=20.10.0
-ARG YARN_VERSION=1.22.19
+ARG NODE_VERSION=22.7.0
 
 # Use Node image so we can pull the binaries from here.
 FROM node:$NODE_VERSION as node
@@ -38,9 +37,10 @@ RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
 # Copy dependencies files and install libraries.
-COPY --link Gemfile Gemfile.lock package.json yarn.lock ./
+COPY --link Gemfile Gemfile.lock package.json yarn.lock .yarnrc.yml ./
 
-RUN gem install bundler && bundle install -j 4 && yarn install --frozen-lockfile && \
+RUN corepack enable
+RUN gem install bundler && bundle install -j 4 && yarn install --immutable && \
     bundle exec bootsnap precompile --gemfile && \
     rm -rf ~/.bundle/ $BUNDLE_PATH/ruby/*/cache $BUNDLE_PATH/ruby/*/bundler/gems/*/.git
 
