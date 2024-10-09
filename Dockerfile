@@ -23,7 +23,7 @@ ENV NODE_ENV production
 FROM base as builder
 
 RUN apt-get update -qq && \
-    apt-get install -y build-essential libssl-dev libpq-dev git libsasl2-dev && \
+    apt-get install -y build-essential libssl-dev libpq-dev git libsasl2-dev curl && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy node binaries from node image.
