@@ -141,7 +141,7 @@ jobs:
             echo "OPENAPI=true" >> $GITHUB_ENV
           fi
       - name: Setup Database
-        run: docker run --mount type=bind,source=${{ github.workspace }},target=/src/app --network host -e RAILS_ENV=test -e PARALLEL_TEST_FIRST_IS_1=true api_base/test:latest bundle exec rake parallel:load_schema
+        run: docker run -v ${{ github.workspace }}:/src/app --network host -e RAILS_ENV=test -e PARALLEL_TEST_FIRST_IS_1=true api_base/test:latest bundle exec rake parallel:load_schema
       - name: Check for untracked changes in schema.rb
         uses: rootstrap/check_untracked_changes@v1
         with:
