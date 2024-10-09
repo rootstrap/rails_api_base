@@ -40,6 +40,9 @@ COPY --link . .
 
 RUN yarn build
 
+RUN ls
+RUN pwd
+
 # Entrypoint prepares the database.
 ENTRYPOINT ["./bin/docker-entrypoint"]
 
