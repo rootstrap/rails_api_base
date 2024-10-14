@@ -25,7 +25,7 @@ describe Admin::ApplicationPolicy do
     subject { Admin::ApplicationPolicy::Scope.new(admin, mock_model).resolve }
 
     let(:admin) { create(:admin_user) }
-    let(:mock_model) { instance_double('MockModel', all: true) }
+    let(:mock_model) { double('MockModel', all: true) }
 
     it 'shows all models' do
       expect(subject).to be(true)
