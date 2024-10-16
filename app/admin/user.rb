@@ -3,6 +3,13 @@
 ActiveAdmin.register User do
   permit_params :email, :first_name, :last_name, :username, :password, :password_confirmation
 
+  member_action :impersonate, method: :post do
+    signed_data = Impersonation::Verifier.new.sign!(
+      user_id: resource.id, admin_user_id: current_admin_user.id
+    )
+    redirect_to "#{ENV.fetch('IMPERSONATION_URL')}?auth=#{signed_data}", allow_other_host: true
+  end
+
   form do |f|
     f.inputs 'Details' do
       f.input :email
@@ -55,18 +62,9 @@ ActiveAdmin.register User do
   end
 
   if ENV['IMPERSONATION_URL'].present?
-    action_item :user_impersonation, only: :show do
-      signed_data = Impersonation::Verifier.new.sign!(
-        user_id: resource.id, admin_user_id: current_admin_user.id
-      )
-
-      link_to_if Flipper[:impersonation_tool].enabled?,
-                 "
-                  <span class=\"#{'disabled_impersonate_button' unless Flipper[:impersonation_tool].enabled?}\">
-                    Impersonate User
-                  </span>
-                 ".html_safe, # rubocop:disable Rails/OutputSafety
-                 "#{ENV.fetch('IMPERSONATION_URL')}?auth=#{signed_data}"
+    action_item :user_impersonation, only: :show, if: proc { Flipper.enabled?(:impersonation_tool) } do
+      link_to 'Impersonate User', impersonate_admin_user_path(resource), method: :post,
+                                                                         target: '_blank', rel: 'noopener'
     end
   end
 end
