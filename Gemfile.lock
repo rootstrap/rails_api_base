@@ -508,7 +508,7 @@ GEM
     rswag-api (2.15.0)
       activesupport (>= 5.2, < 8.0)
       railties (>= 5.2, < 8.0)
-    rswag-ui (2.14.0)
+    rswag-ui (2.15.0)
       actionpack (>= 5.2, < 8.0)
       railties (>= 5.2, < 8.0)
     rubocop (1.66.1)
@@ -604,7 +604,7 @@ GEM
     yaaf (3.0.2)
       activemodel (>= 5.2)
       activerecord (>= 5.2)
-    zeitwerk (2.7.0)
+    zeitwerk (2.7.1)
 
 PLATFORMS
   arm64-darwin-22
@@ -661,7 +661,7 @@ DEPENDENCIES
   rspec-rails (~> 7.0)
   rspec-retry!
   rswag-api (~> 2.15.0)
-  rswag-ui (~> 2.14.0)
+  rswag-ui (~> 2.15.0)
   rubocop (~> 1.66)
   rubocop-capybara (~> 2.21)
   rubocop-factory_bot (~> 2.26)
