@@ -91,6 +91,8 @@ jobs:
     needs: docker
     timeout-minutes: 10
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
