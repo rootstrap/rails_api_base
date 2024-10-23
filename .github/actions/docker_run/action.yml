@@ -1,0 +1,14 @@
+name: 'Run with Docker'
+description: 'Action to run with Docker'
+inputs:
+  run:
+    description: 'command to run'
+    required: true
+  image:
+    description: 'image to be used'
+    required: true
+runs:
+  using: 'docker'
+  image: ${{ inputs.image }}
+  args:
+    - ${{ inputs.run }}
