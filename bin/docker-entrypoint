@@ -8,5 +8,6 @@ fi
 if [[ "${1}" == "./bin/rspec" ]] || [[ "$RAILS_ENV" == "test" ]]; then
   ./bin/rails db:test:prepare
 fi
-
+echo "TEST"
+ls -la
 exec "${@}"
