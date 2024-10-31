@@ -104,7 +104,7 @@ jobs:
       - name: Run Code Analysis
         uses: ./.github/actions/docker-run
         with:
-          run: 'echo "Running Code Analysis"'
+          run: 'bundle exec rails code:analysis'
 
   # tests:
   #   name: Tests
