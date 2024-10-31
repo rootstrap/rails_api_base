@@ -9,6 +9,6 @@ inputs:
     required: true
 runs:
   using: 'docker'
-  image: ${{ inputs.image }}
+  image: 'api_base/test:latest'
   args:
     - ${{ inputs.run }}

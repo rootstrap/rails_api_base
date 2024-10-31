@@ -103,10 +103,10 @@ jobs:
           docker load --input /tmp/api_base_test_image.tar
           docker image ls -a
       - name: Run Code Analysis
-        uses: ./.github/actions/docker-run
+        uses: .github/actions/docker-run
         with:
           run: 'echo $DOCKER_BUILD_RECORD_UPLOAD && bundle exec rails code:analysis'
-          image: 'api_base/test:latest'
+          #image: 'api_base/test:latest'
 
   # tests:
   #   name: Tests
