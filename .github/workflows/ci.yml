@@ -18,7 +18,6 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   REPO: ${{ github.repository }}
   PARALLEL_TEST_FIRST_IS_1: true
-  DOCKER_BUILD_RECORD_UPLOAD: false
 
 jobs:
   docker:
@@ -105,8 +104,8 @@ jobs:
       - name: Run Code Analysis
         uses: ./.github/actions/docker-run
         with:
-          run: 'echo $DOCKER_BUILD_RECORD_UPLOAD && bundle exec rails code:analysis'
-          #image: 'api_base/test:latest'
+          run: 'bundle exec rails code:analysis'
+          image: 'api_base/test:latest'
 
   # tests:
   #   name: Tests
