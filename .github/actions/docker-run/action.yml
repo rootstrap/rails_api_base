@@ -6,7 +6,7 @@ inputs:
     required: true
   image:
     description: 'image to be used'
-    required: true
+    required: false
 runs:
   using: 'docker'
   image: 'api_base/test:latest'
