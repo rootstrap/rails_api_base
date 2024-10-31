@@ -105,7 +105,6 @@ jobs:
         uses: ./.github/actions/docker-run
         with:
           run: 'bundle exec rails code:analysis'
-          image: 'api_base/test:latest'
 
   # tests:
   #   name: Tests

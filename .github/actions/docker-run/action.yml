@@ -4,11 +4,8 @@ inputs:
   run:
     description: 'command to run'
     required: true
-  image:
-    description: 'image to be used'
-    required: false
 runs:
   using: 'docker'
-  image: ${{ INPUT_IMAGE }}
+  image: 'api_base/test:latest'
   args:
     - ${{ inputs.run }}
