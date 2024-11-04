@@ -8,4 +8,5 @@ runs:
   using: 'docker'
   image: 'api_base/test:latest'
   args:
+    - "--network=host"
     - ${{ inputs.run }}
