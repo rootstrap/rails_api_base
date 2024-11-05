@@ -384,7 +384,7 @@ GEM
     parallel (1.26.3)
     parallel_tests (4.7.2)
       parallel
-    parser (3.3.5.1)
+    parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
     pg (1.5.9)
@@ -513,7 +513,7 @@ GEM
     rswag-ui (2.15.0)
       actionpack (>= 5.2, < 8.0)
       railties (>= 5.2, < 8.0)
-    rubocop (1.67.0)
+    rubocop (1.68.0)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -663,7 +663,7 @@ DEPENDENCIES
   rspec-retry!
   rswag-api (~> 2.15.0)
   rswag-ui (~> 2.15.0)
-  rubocop (~> 1.67)
+  rubocop (~> 1.68)
   rubocop-capybara (~> 2.21)
   rubocop-factory_bot (~> 2.26)
   rubocop-performance (~> 1.22)

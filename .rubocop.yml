@@ -142,6 +142,9 @@ Style/RedundantRegexpCharacterClass:
 Style/ReturnNil:
   Enabled: true
 
+Style/SafeNavigationChainLength:
+  Enabled: false
+
 Style/SlicingWithRange:
   Enabled: false
 
