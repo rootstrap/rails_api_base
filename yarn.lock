@@ -872,7 +872,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jquery-ui@npm:1.14.0, jquery-ui@npm:^1.13.3":
+"jquery-ui@npm:1.14.1":
+  version: 1.14.1
+  resolution: "jquery-ui@npm:1.14.1"
+  dependencies:
+    jquery: "npm:>=1.12.0 <5.0.0"
+  checksum: 10c0/cf7a3c0aac369e513d78bc5864bbafb6ddf85a43513ca5d00b11d65e2890a6618ff2ef5b8cb2925db9a6b7d0c2482d717fb10cc813e419024ae8bc457e18f51d
+  languageName: node
+  linkType: hard
+
+"jquery-ui@npm:^1.13.3":
   version: 1.14.0
   resolution: "jquery-ui@npm:1.14.0"
   dependencies:
@@ -1163,7 +1172,7 @@ __metadata:
     arctic_admin: "npm:4.3.1"
     esbuild: "npm:0.24.0"
     jquery: "npm:3.7.1"
-    jquery-ui: "npm:1.14.0"
+    jquery-ui: "npm:1.14.1"
     jquery-ujs: "npm:1.2.3"
     sass: "npm:^1.80.4"
   languageName: unknown
