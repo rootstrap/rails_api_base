@@ -46,3 +46,6 @@ When splitting tests in different nodes, each report covers only a part of the c
 For this reason a job in the CI is added to sums coverages from all nodes to be used by SimpleCov. This job will be executed after all nodes have finished and will send the final report to CodeClimate.
 
 For the case of CPU cores we do not need to add extra configuration since the report of each node contains the info of all the cores that have been splited.
+
+## Build production Docker image
+As part of our CI process, we introduced a job called Docker that builds a Docker image using the `Dockerfile` that is part of this repository. This job helps us to guarantee the code we are trying to merge produces a valid Docker image and can be safely released to production.
