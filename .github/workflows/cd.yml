@@ -3,9 +3,9 @@ name: CD
 on:
   workflow_dispatch:
   #   push:
-      # Uncomment and add the necessary branches to enable automatic deployment on AWS
-      # branches:
-        # - main
+  # Uncomment and add the necessary branches to enable automatic deployment on AWS
+  # branches:
+  # - main
 
 jobs:
   deploy:
@@ -46,6 +46,20 @@ jobs:
         run: |
           aws ecs describe-task-definition --task-definition ${{ vars.ECS_TASK_DEFINITION }} --query taskDefinition > ${{ vars.ECS_TASK_DEFINITION_PATH }}
 
+      - name: Download Parameter Store Values
+        id: ssm-download
+        run: |
+          PARAMETERS_JSON=$(aws ssm get-parameters --query "Parameters[*].{Name:Name,ARN:ARN}" --output json | jq -c '.')
+          echo "parameters=${PARAMETERS_JSON}" >> $GITHUB_OUTPUT
+
+      - name: Format SSM Parameters
+        id: format-secrets
+        run: |
+          FORMATTED_SECRETS=$(ruby bin/format_secrets.rb)
+          echo "formatted_secrets=${FORMATTED_SECRETS}" >> $GITHUB_OUTPUT
+        env:
+          SSM_PARAMETERS_JSON: "${{ steps.ssm-download.outputs.parameters }}"
+
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
@@ -53,6 +67,8 @@ jobs:
           task-definition: ${{ vars.ECS_TASK_DEFINITION_PATH }}
           container-name: ${{ vars.CONTAINER_NAME }}
           image: ${{ steps.image-digest.outputs.image }}
+          secrets: |
+            ${{ steps.format-secrets.outputs.formatted_secrets }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
