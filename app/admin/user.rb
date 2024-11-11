@@ -3,11 +3,13 @@
 ActiveAdmin.register User do
   permit_params :email, :first_name, :last_name, :username, :password, :password_confirmation
 
-  member_action :impersonate, method: :post do
-    signed_data = Impersonation::Verifier.new.sign!(
-      user_id: resource.id, admin_user_id: current_admin_user.id
-    )
-    redirect_to "#{ENV.fetch('IMPERSONATION_URL')}?auth=#{signed_data}", allow_other_host: true
+  if ENV['IMPERSONATION_URL'].present?
+    member_action :impersonate, method: :post do
+      signed_data = Impersonation::Verifier.new.sign!(
+        user_id: resource.id, admin_user_id: current_admin_user.id
+      )
+      redirect_to "#{ENV.fetch('IMPERSONATION_URL')}?auth=#{signed_data}", allow_other_host: true
+    end
   end
 
   form do |f|
