@@ -4,44 +4,44 @@
 # visually distinguish log levels.
 module ColorizedLogger
   COLOR_CODES = {
-    debug:   "\e[36m",  # Cyan
-    info:    "\e[32m",  # Green
-    warn:    "\e[33m",  # Yellow
-    error:   "\e[31m",  # Red
-    fatal:   "\e[35m",  # Magenta
-    unknown: "\e[37m"   # White (or terminal default)
+    debug: "\e[36m", # Cyan
+    info: "\e[32m",  # Green
+    warn: "\e[33m",  # Yellow
+    error: "\e[31m",  # Red
+    fatal: "\e[35m",  # Magenta
+    unknown: "\e[37m" # White (or terminal default)
   }.freeze
 
   RESET = "\e[0m"
 
-  def debug(progname = nil, &block)
-    super(colorize(:debug, progname, &block))
+  def debug(progname = nil, &)
+    super(colorize(:debug, progname, &))
   end
 
-  def info(progname = nil, &block)
-    super(colorize(:info, progname, &block))
+  def info(progname = nil, &)
+    super(colorize(:info, progname, &))
   end
 
-  def warn(progname = nil, &block)
-    super(colorize(:warn, progname, &block))
+  def warn(progname = nil, &)
+    super(colorize(:warn, progname, &))
   end
 
-  def error(progname = nil, &block)
-    super(colorize(:error, progname, &block))
+  def error(progname = nil, &)
+    super(colorize(:error, progname, &))
   end
 
-  def fatal(progname = nil, &block)
-    super(colorize(:fatal, progname, &block))
+  def fatal(progname = nil, &)
+    super(colorize(:fatal, progname, &))
   end
 
-  def unknown(progname = nil, &block)
-    super(colorize(:unknown, progname, &block))
+  def unknown(progname = nil, &)
+    super(colorize(:unknown, progname, &))
   end
 
   private
 
   def colorize(level, message, &block)
-    "#{COLOR_CODES[level]}#{message || (block && block.call)}#{RESET}"
+    "#{COLOR_CODES[level]}#{message || block&.call}#{RESET}"
   end
 end
 
