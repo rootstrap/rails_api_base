@@ -33,7 +33,7 @@ gem 'rswag-api', '~> 2.15.0'
 gem 'rswag-ui', '~> 2.15.0'
 gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets-rails', '~> 3.5', '>= 3.5.2'
-gem 'strong_migrations', '~> 2.0'
+gem 'strong_migrations', '~> 2.1'
 gem 'yaaf', '~> 3.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
