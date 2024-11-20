@@ -94,6 +94,12 @@ RSpec/MultipleExpectations:
 RSpec/NamedSubject:
   Enabled: false
 
+RSpec/VerifiedDoubles:
+  Exclude:
+    - spec/policies/admin/application_policy_spec.rb
+    - spec/policies/admin/page_policy_spec.rb
+    - spec/policies/application_policy_spec.rb
+
 Style/ArrayCoercion:
   Enabled: true
 
@@ -135,6 +141,9 @@ Style/RedundantRegexpCharacterClass:
 
 Style/ReturnNil:
   Enabled: true
+
+Style/SafeNavigationChainLength:
+  Enabled: false
 
 Style/SlicingWithRange:
   Enabled: false

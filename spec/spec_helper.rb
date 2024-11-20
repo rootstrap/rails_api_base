@@ -18,7 +18,7 @@ Knapsack::Adapters::RSpecAdapter.bind
 FactoryBot.factories.clear
 FactoryBot.reload
 
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |file| require file }
+Rails.root.glob('spec/support/**/*.rb').each { |file| require file }
 
 browser = ENV.fetch('SELENIUM_BROWSER', 'chrome')
 

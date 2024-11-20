@@ -18,13 +18,6 @@ RSpec/AnyInstance:
   Exclude:
     - 'spec/requests/api/v1/users/show_spec.rb'
 
-# Offense count: 4
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: .
-# SupportedStyles: constant, string
-RSpec/VerifiedDoubleReference:
-  EnforcedStyle: string
-
 # Offense count: 2
 # Configuration parameters: Include.
 # Include: app/controllers/**/*.rb, app/mailers/**/*.rb

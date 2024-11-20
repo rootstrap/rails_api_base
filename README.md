@@ -4,7 +4,7 @@
 [![Code Climate](https://codeclimate.com/github/rootstrap/rails_api_base/badges/gpa.svg)](https://codeclimate.com/github/rootstrap/rails_api_base)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/63de7f82c79f5fe82f46/test_coverage)](https://codeclimate.com/github/rootstrap/rails_api_base/test_coverage)
 
-Rails API Base is a boilerplate project for JSON RESTful APIs. It follows the community best practices in terms of standards, security and maintainability, integrating a variety of testing and code quality tools. It's based on Rails 7.1 and Ruby 3.3.
+Rails API Base is a boilerplate project for JSON RESTful APIs. It follows the community best practices in terms of standards, security and maintainability, integrating a variety of testing and code quality tools. It's based on Rails 7.2 and Ruby 3.3.
 
 Finally, it contains a plug an play Administration console (thanks to [ActiveAdmin](https://github.com/activeadmin/activeadmin)).
 
@@ -32,8 +32,9 @@ This template comes with:
 
 1. Clone this repo
 1. Install PostgreSQL in case you don't have it
-1. Install node and yarn. Expected node version ">=16 || 14 >=14.17".
-1. Run `bootstrap.sh` with the name of your project like `./bin/bootstrap.sh --name=my_awesome_project`
+1. Install node. The expected node version is defined in `.nvmrc` file.
+1. Install yarn. You can run `corepack enable` to install the required yarn binaries. Corepack is already included in newest node versions.
+1. Run `bootstrap.sh` with the name of your project like `./bin/bootstrap.sh --name=my_awesome_project`.
 1. Run `yarn install` and `yarn build --watch`. This bundles the JS assets in the administration site using [esbuild](https://github.com/evanw/esbuild).
 1. `bundle exec rspec` and make sure all tests pass (non-headless mode) or `HEADLESS=true bundle exec rspec` (headless mode)
 1. Run `bin/dev`.

@@ -1,6 +1,5 @@
-ARG RUBY_VERSION=3.3.3
-ARG NODE_VERSION=20.10.0
-ARG YARN_VERSION=1.22.19
+ARG RUBY_VERSION=3.3.5
+ARG NODE_VERSION=22.7.0
 
 # Use Node image so we can pull the binaries from here.
 FROM node:$NODE_VERSION as node
@@ -9,7 +8,7 @@ FROM node:$NODE_VERSION as node
 FROM ruby:${RUBY_VERSION}-slim
 
 RUN apt-get update -qq && \
-    apt-get install -y build-essential libssl-dev libpq-dev vim git libsasl2-dev && \
+    apt-get install -y build-essential libssl-dev libpq-dev vim git libsasl2-dev curl && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy node binaries from node image.
@@ -30,8 +29,10 @@ WORKDIR $APP_HOME
 RUN gem install foreman bundler
 
 # Copy dependencies files and install libraries.
-COPY --link package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY --link package.json yarn.lock .yarnrc.yml ./
+
+RUN corepack enable
+RUN yarn install --immutable
 
 COPY --link Gemfile Gemfile.lock ./
 RUN bundle install -j 4
