@@ -180,8 +180,9 @@ jobs:
           PARALLEL_TESTS_CONCURRENCY: ${{ env.cpu_cores }}
           HEADLESS: true
           CI: true
-          SELENIUM_BROWSER_HOST: http://localhost:4444
+          SELENIUM_BROWSER_HOST: http://chrome-server:4444
           SELENIUM_BROWSER: remote
+          POSTGRES_HOST: db
         uses: ./.github/actions/docker-run
         with:
           run: "bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'"
