@@ -177,8 +177,8 @@ jobs:
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
           ./cc-test-reporter before-build
-      - name: Let Rails generate the secret_key_base
-        run: bundle exec rails runner 'puts Rails.application.secret_key_base'
+      # - name: Let Rails generate the secret_key_base
+      #   run: bundle exec rails runner 'puts Rails.application.secret_key_base'
       - name: Setup Database
         run: docker run -v ${{ github.workspace }}:/src/app --network host -e RAILS_ENV=test -e PARALLEL_TEST_FIRST_IS_1=true api_base/test:latest bundle exec rake parallel:create parallel:migrate
       - name: Check for untracked changes in schema.rb
