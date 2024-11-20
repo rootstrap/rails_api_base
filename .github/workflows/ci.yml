@@ -20,7 +20,7 @@ env:
   PARALLEL_TEST_FIRST_IS_1: true
 
 jobs:
-  docker:
+  docker-build:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Docker Buildx
@@ -52,7 +52,7 @@ jobs:
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-  docker-dev:
+  docker:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Docker Buildx
