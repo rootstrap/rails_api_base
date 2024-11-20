@@ -38,7 +38,7 @@ RUN bundle install -j 4
 
 COPY --link . .
 
-RUN yarn build
+RUN SECRET_KEY_BASE=DUMMY ./bin/rails assets:precompile
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["./bin/docker-entrypoint"]
