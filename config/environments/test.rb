@@ -70,4 +70,10 @@ Rails.application.configure do
 
   # Use test adapter for ActiveJob
   config.active_job.queue_adapter = :test
+
+  # Disable logging in CI to improve run time by 10%
+  if ENV['CI'].present?
+    config.logger = Logger.new(nil)
+    config.log_level = :fatal
+  end
 end
