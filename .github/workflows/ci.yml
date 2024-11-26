@@ -29,19 +29,19 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v4
         with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
+          path: /tmp/.prod-buildx-cache
+          key: prod-${{ runner.os }}-buildx-${{ github.head_ref || github.ref_name }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-buildx-${{ github.head_ref || github.ref_name }}
-            ${{ runner.os }}-buildx-main
-            ${{ runner.os }}-buildx-
+            prod-${{ runner.os }}-buildx-${{ github.head_ref || github.ref_name }}
+            prod-${{ runner.os }}-buildx-main
+            prod-${{ runner.os }}-buildx-
 
       - name: Build prod Docker image
         uses: docker/build-push-action@v6
         with:
           push: false
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+          cache-from: type=local,src=/tmp/.prod-buildx-cache
+          cache-to: type=local,dest=/tmp/.prod-buildx-cache-new,mode=max
           file: Dockerfile
 
       - # Temp fix
@@ -49,8 +49,8 @@ jobs:
         # https://github.com/moby/buildkit/issues/1896
         name: Move cache
         run: |
-          rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+          rm -rf /tmp/.prod-buildx-cache
+          mv /tmp/.prod-buildx-cache-new /tmp/.prod-buildx-cache
 
   docker:
     runs-on: ubuntu-latest
