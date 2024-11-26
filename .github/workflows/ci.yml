@@ -121,9 +121,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
-    env:
-      RAILS_ENV: test
-
     services:
       db:
         image: postgres:15
@@ -199,6 +196,7 @@ jobs:
           SELENIUM_BROWSER_HOST: http://chrome-server:4444
           SELENIUM_BROWSER: remote
           POSTGRES_HOST: db
+          RAILS_ENV: test
         uses: ./.github/actions/docker-run
         with:
           run: "bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'"
