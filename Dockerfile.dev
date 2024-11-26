@@ -39,7 +39,9 @@ RUN bundle install -j 4
 
 COPY --link . .
 
-RUN SECRET_KEY_BASE=DUMMY ./bin/rails assets:precompile
+# Let Rails generate the secret_key_base
+RUN ./bin/rails runner 'puts Rails.application.secret_key_base'
+RUN ./bin/rails assets:precompile
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["./bin/docker-entrypoint"]
