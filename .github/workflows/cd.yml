@@ -49,7 +49,7 @@ jobs:
       - name: Download Parameter Store Values
         id: ssm-download
         run: |
-          PARAMETERS_JSON=$(aws ssm describe-parameters --query "Parameters[*].{Name:Name,ARN:ARN}" --output json | jq -c '.')
+          PARAMETERS_JSON=$(aws ssm describe-parameters --query "Parameters[?contains(Name, 'backend')].{Name:Name,ARN:ARN}" --output json | jq -c '.')
           echo "parameters=${PARAMETERS_JSON}" >> $GITHUB_OUTPUT
 
       - name: Format SSM Parameters
