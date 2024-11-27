@@ -48,7 +48,7 @@ Before you start, make sure you have the following:
 
      - Click **Create parameter**.
      - Fill out the details:
-       - **Name**: Provide a unique name (e.g., `SERVICE_API_KEY`).
+       - **Name**: Provide a unique and valid name (e.g., `/rails_api_base/backend/service_api_key`).
        - **Type**: Choose `SecureString` for sensitive data.
        - **Value**: Enter the parameter value (e.g., a password or secret).
      - Click **Create parameter**.
