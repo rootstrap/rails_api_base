@@ -175,9 +175,7 @@ jobs:
       # - name: Let Rails generate the secret_key_base
       #   run: bundle exec rails runner 'puts Rails.application.secret_key_base'
       - name: LS Before
-        uses: ./.github/actions/docker-run
-        with:
-          run: "ls -R -a app/assets"
+        run: "docker run api_base/test:latest ls -R -a app/assets"
       - name: Setup Database
         run: docker run -v ${{ github.workspace }}:/src/app --network host -e RAILS_ENV=test -e PARALLEL_TEST_FIRST_IS_1=true api_base/test:latest bundle exec rake parallel:create parallel:migrate
       - name: Check for untracked changes in schema.rb
