@@ -199,7 +199,7 @@ jobs:
           RAILS_ENV: test
         uses: ./.github/actions/docker-run
         with:
-          run: "ls -a"
+          run: "ls -a /app/assets/build"
 
       - name: Run Tests
         env:
