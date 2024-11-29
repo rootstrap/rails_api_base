@@ -186,6 +186,21 @@ jobs:
         id: cpu_info
         run: echo "cpu_cores=$(nproc)" >> $GITHUB_ENV
 
+      - name: Run Tests Test
+        env:
+          KNAPSACK_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
+          KNAPSACK_CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+          PARALLEL_TESTS_CONCURRENCY: ${{ env.cpu_cores }}
+          HEADLESS: true
+          CI: true
+          SELENIUM_BROWSER_HOST: http://chrome-server:4444
+          SELENIUM_BROWSER: remote
+          POSTGRES_HOST: db
+          RAILS_ENV: test
+        uses: ./.github/actions/docker-run
+        with:
+          run: "ls -a /src/app/assets/builds"
+
       - name: Run Tests
         env:
           KNAPSACK_CI_NODE_TOTAL: ${{ matrix.ci_node_total }}
