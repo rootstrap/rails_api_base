@@ -186,10 +186,11 @@ jobs:
         id: cpu_info
         run: echo "cpu_cores=$(nproc)" >> $GITHUB_ENV
 
-      - name: LS After
-        uses: ./.github/actions/docker-run
-        with:
-          run: "ls -R -a app/assets"
+      - name: This is the worst patch ever
+        run: |
+          docker run -it -d --name rails_app api_base/test:latest "sleep infinity"
+          docker container cp rails_app:/src/app/app/assets/builds/. app/assets/builds
+          docker rm -f rails_app
 
       - name: Run Tests
         env:
