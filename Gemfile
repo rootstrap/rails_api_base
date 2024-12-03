@@ -77,7 +77,7 @@ group :test do
   gem 'knapsack', '~> 4.0'
   gem 'octokit', '~> 9.2'
   gem 'parallel_tests', '~> 4.7'
-  gem 'pg_query', '~> 5.1.0'
+  gem 'pg_query', '~> 6.0.0'
   gem 'prosopite', '~> 1.4.2'
   gem 'rspec-openapi', '~> 0.18'
   gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
