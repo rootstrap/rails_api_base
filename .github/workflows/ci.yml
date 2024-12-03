@@ -65,6 +65,8 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'yarn'
+      - name: Run yarn commands
+        run: yarn install
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -131,6 +133,8 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'yarn'
+      - name: Run yarn commands
+        run: yarn install
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -144,8 +148,6 @@ jobs:
         run: bundle exec rails runner 'puts Rails.application.secret_key_base'
       - name: Setup Database
         run: bundle exec rails parallel:load_schema
-      - name: Run yarn commands
-        run: yarn install
       - name: Precompile assets
         run: bundle exec rails assets:precompile
       - name: Check for untracked changes in schema.rb
