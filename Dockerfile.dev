@@ -42,8 +42,6 @@ COPY --link . .
 # Let Rails generate the secret_key_base
 RUN ./bin/rails runner 'puts Rails.application.secret_key_base'
 RUN ./bin/rails assets:precompile
-RUN yarn build
-RUN ls -R -a app/assets
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["./bin/docker-entrypoint"]
