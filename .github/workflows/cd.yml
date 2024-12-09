@@ -3,9 +3,9 @@ name: CD
 on:
   workflow_dispatch:
   #   push:
-  # Uncomment and add the necessary branches to enable automatic deployment on AWS
-  # branches:
-  # - main
+      # Uncomment and add the necessary branches to enable automatic deployment on AWS
+      # branches:
+        # - main
 
 jobs:
   deploy:
@@ -57,10 +57,8 @@ jobs:
       - name: Format SSM Parameters
         id: format-secrets
         run: |
-          FORMATTED_SECRETS=$(ruby bin/format_secrets.rb)
+          FORMATTED_SECRETS=$(ruby bin/format_aws_secrets.rb ${{ steps.ssm-download.outputs.parameters }})
           echo "formatted_secrets=${FORMATTED_SECRETS}" >> $GITHUB_OUTPUT
-        env:
-          SSM_PARAMETERS_JSON: "${{ steps.ssm-download.outputs.parameters }}"
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def

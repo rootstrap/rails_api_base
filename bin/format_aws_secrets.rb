@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require 'json'
 
-data = JSON.parse(ENV['SSM_PARAMETERS_JSON'])
+data = JSON.parse(ARGV[0])
 
 formatted_secrets = data.map do |param|
   param_name = param['Name'].split('/').last.upcase

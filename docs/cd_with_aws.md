@@ -49,6 +49,9 @@ Before you start, make sure you have the following:
      - Click **Create parameter**.
      - Fill out the details:
        - **Name**: Provide a unique and valid name (e.g., `/rails_api_base/backend/service_api_key`).
+
+          > The naming convention follows this structure: `project_name/backend/variable_name`. This format is aligned with AWS parameter hierarchy standards, allowing for better organization and management of all parameters.
+
        - **Type**: Choose `SecureString` for sensitive data.
        - **Value**: Enter the parameter value (e.g., a password or secret).
      - Click **Create parameter**.
