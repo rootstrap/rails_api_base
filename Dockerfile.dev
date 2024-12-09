@@ -37,8 +37,6 @@ RUN yarn install --immutable
 COPY --link Gemfile Gemfile.lock ./
 RUN bundle install -j 4
 
-RUN echo "TEST"
-
 COPY --link . .
 
 RUN yarn build
