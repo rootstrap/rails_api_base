@@ -2,7 +2,7 @@ ARG RUBY_VERSION=3.3.5
 ARG NODE_VERSION=22.7.0
 
 # Use Node image so we can pull the binaries from here.
-FROM node:$NODE_VERSION as node
+FROM node:$NODE_VERSION AS node
 
 # Ruby build image.
 FROM ruby:${RUBY_VERSION}-slim
@@ -16,9 +16,9 @@ COPY --from=node /usr/local /usr/local
 COPY --from=node /opt /opt
 
 # Setup environment variables.
-ENV WORK_ROOT /src
-ENV APP_HOME $WORK_ROOT/app/
-ENV LANG C.UTF-8
+ENV WORK_ROOT=/src
+ENV APP_HOME=$WORK_ROOT/app/
+ENV LANG=C.UTF-8
 
 # Create app directory.
 RUN mkdir -p $APP_HOME

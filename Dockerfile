@@ -2,25 +2,25 @@ ARG RUBY_VERSION=3.3.5
 ARG NODE_VERSION=22.7.0
 
 # Use Node image so we can pull the binaries from here.
-FROM node:$NODE_VERSION as node
+FROM node:$NODE_VERSION AS node
 
 # Ruby build image.
-FROM ruby:${RUBY_VERSION}-slim as base
+FROM ruby:${RUBY_VERSION}-slim AS base
 
 # Setup environment variables.
-ENV WORK_ROOT /src
-ENV APP_HOME $WORK_ROOT/app
-ENV LANG C.UTF-8
-ENV BUNDLE_PATH $APP_HOME/vendor/bundle
+ENV WORK_ROOT=/src
+ENV APP_HOME=$WORK_ROOT/app
+ENV LANG=C.UTF-8
+ENV BUNDLE_PATH=$APP_HOME/vendor/bundle
 
 # Set prod environment to avoid installing dev dependencies
-ENV BUNDLE_WITHOUT development:test
-ENV BUNDLE_DEPLOYMENT 1
-ENV RAILS_ENV production
-ENV NODE_ENV production
+ENV BUNDLE_WITHOUT=development:test
+ENV BUNDLE_DEPLOYMENT=1
+ENV RAILS_ENV=production
+ENV NODE_ENV=production
 
 # Throw-away build stage to reduce size of final image
-FROM base as builder
+FROM base AS builder
 
 RUN apt-get update -qq && \
     apt-get install -y build-essential libssl-dev libpq-dev git libsasl2-dev curl && \
@@ -76,8 +76,8 @@ COPY --from=builder $APP_HOME/vendor/ $APP_HOME/vendor/
 RUN ln -s /usr/lib/*-linux-gnu/libjemalloc.so.2 /usr/lib/libjemalloc.so.2
 
 # Deployment options
-ENV RAILS_LOG_TO_STDOUT true
-ENV RAILS_SERVE_STATIC_FILES true
+ENV RAILS_LOG_TO_STDOUT=true
+ENV RAILS_SERVE_STATIC_FILES=true
 ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
 
 # Entrypoint prepares the database.
