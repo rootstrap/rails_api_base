@@ -363,7 +363,7 @@ GEM
       timeout
     net-smtp (0.5.0)
       net-protocol
-    newrelic_rpm (9.13.0)
+    newrelic_rpm (9.16.1)
     nio4r (2.7.4)
     nokogiri (1.16.8)
       mini_portile2 (~> 2.8.2)
@@ -643,7 +643,7 @@ DEPENDENCIES
   letter_opener (~> 1.10)
   listen (~> 3.9)
   lograge (~> 0.14)
-  newrelic_rpm (~> 9.13)
+  newrelic_rpm (~> 9.16)
   octokit (~> 9.2)
   oj (~> 3.16)
   pagy (~> 9.3)
