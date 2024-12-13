@@ -147,7 +147,7 @@ jobs:
       - name: Let Rails generate the secret_key_base
         uses: ./.github/actions/docker-run
         with:
-          run: bundle exec rails runner "puts Rails.application.secret_key_base"
+          run: bundle exec rails runner puts Rails.application.secret_key_base
       - name: Get CPU info
         id: cpu_info
         run: echo "cpu_cores=$(nproc)" >> $GITHUB_ENV
