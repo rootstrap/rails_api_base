@@ -9,5 +9,5 @@ run:
   web: bundle exec puma -C config/puma.rb
   worker:
     command:
-      - ./bin/delayed_job start
+      - bundle exec rails jobs:work
     image: web
