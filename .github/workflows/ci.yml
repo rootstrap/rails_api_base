@@ -187,11 +187,12 @@ jobs:
         uses: rootstrap/check_untracked_changes@v1
         with:
           path: "./app/ ./spec/"
-      - name: Get app assets from running container
+      - name: Run LSs
         run: |
-          docker run -it -d --name rails_app api_base/test:latest "sleep infinity"
-          docker container cp rails_app:/src/app/coverage/. app/coverage/
-          docker rm -f rails_app
+          ls
+          ls -a coverage
+      - name: Report to CodeClimate
+        run: ./cc-test-reporter format-coverage --output "coverage/coverage.${{ matrix.ci_node_index }}.json"
       - name: Upload partial coverage
         uses: actions/upload-artifact@v4
         with:
