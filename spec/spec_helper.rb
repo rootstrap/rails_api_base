@@ -57,7 +57,8 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
-  config.order = 'random'
+  config.order = :random
+  Kernel.srand config.seed
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
