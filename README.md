@@ -90,7 +90,6 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Knapsack](https://github.com/KnapsackPro/knapsack) for splitting tests evenly based on execution time
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing emails in the browser
 - [New Relic](https://github.com/newrelic/newrelic-ruby-agent) for monitoring and debugging
-- [Oj](https://github.com/ohler55/oj) for optimized JSON
 - [Pagy](https://github.com/ddnexus/pagy) for pagination
 - [Parallel Tests](https://github.com/grosser/parallel_tests) for running the tests in multiple cores
 - [Prosopite](https://github.com/charkost/prosopite) to detect N+1 queries
