@@ -11,6 +11,7 @@ jobs:
   deploy:
     name: Deploy on AWS ECS
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     environment:
       name: ${{ github.ref == 'refs/heads/main' && 'production' || github.ref_name }}
     steps:
