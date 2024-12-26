@@ -37,8 +37,7 @@ RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
 # Copy dependencies files and install libraries.
-COPY --link Gemfile Gemfile.lock package.json yarn.lock .yarnrc.yml ./
-COPY --link .ruby-version .ruby-version
+COPY --link Gemfile Gemfile.lock package.json yarn.lock .yarnrc.yml .ruby-version ./
 
 RUN corepack enable
 RUN gem install bundler && bundle install -j 4 && yarn install --immutable && \
