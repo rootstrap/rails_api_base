@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=3.3.5
+ARG RUBY_VERSION=3.4.1
 ARG NODE_VERSION=22.7.0
 
 # Use Node image so we can pull the binaries from here.
