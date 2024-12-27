@@ -176,7 +176,9 @@ jobs:
           SELENIUM_BROWSER_HOST: http://chrome-server:4444
           SELENIUM_BROWSER: remote
           COVERAGE: true
-        run: bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
+        uses: ./.github/actions/docker-run
+        with:
+          run: bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
       - name: Check for missing annotations
         uses: ./.github/actions/docker-run
         with:
@@ -190,12 +192,12 @@ jobs:
           ls
           ls -a coverage
       - name: Report to CodeClimate
-        run: ./cc-test-reporter format-coverage --output "coverage/coverage.${{ matrix.ci_node_index }}.json"
+        run: ./cc-test-reporter format-coverage --output "coverage/coverage.json"
       - name: Upload partial coverage
         uses: actions/upload-artifact@v4
         with:
           name: coverage
-          path: "coverage/coverage.${{ matrix.ci_node_index }}.json"
+          path: "coverage/coverage.json"
       - name: Merge API Docs from threads
         env:
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
