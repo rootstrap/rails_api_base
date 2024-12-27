@@ -176,9 +176,7 @@ jobs:
           SELENIUM_BROWSER_HOST: http://chrome-server:4444
           SELENIUM_BROWSER: remote
           COVERAGE: true
-        uses: ./.github/actions/docker-run
-        with:
-          run: bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
+        run: bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
       - name: Check for missing annotations
         uses: ./.github/actions/docker-run
         with:
