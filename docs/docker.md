@@ -92,7 +92,7 @@ Setup steps:
 docker network create rails_api_base_test_network
 
 # Run a Postgres server in the network
-docker run --name db -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_HOST_AUTH_METHOD=trust --network=rails_api_base_test_network postgres:15
+docker run --name db -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_HOST_AUTH_METHOD=trust --network=rails_api_base_test_network postgres:16
 
 # Run a Chromium server for the capybara e2e tests
 docker run --name chrome-server -p 4444:4444 --network=rails_api_base_test_network seleniarm/standalone-chromium
