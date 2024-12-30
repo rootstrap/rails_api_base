@@ -29,7 +29,7 @@ services:
       - db:db
       - chrome-server:chrome-server
   db:
-    image: postgres:15
+    image: postgres:16
     environment:
       POSTGRES_USER: postgres
       POSTGRES_HOST_AUTH_METHOD: trust
