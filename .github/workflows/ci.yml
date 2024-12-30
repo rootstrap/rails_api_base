@@ -192,12 +192,14 @@ jobs:
           ls
           ls -a coverage
       - name: Report to CodeClimate
-        run: ./cc-test-reporter format-coverage --output "coverage/coverage.json"
+        run: |
+          sed -i 's/\/github\/workspace\///g' coverage/coverage.${{ matrix.ci_node_index }}.json
+          ./cc-test-reporter format-coverage --output "coverage/coverage.${{ matrix.ci_node_index }}.json"
       - name: Upload partial coverage
         uses: actions/upload-artifact@v4
         with:
           name: coverage
-          path: "coverage/coverage.json"
+          path: "coverage/coverage.${{ matrix.ci_node_index }}.json"
       - name: Merge API Docs from threads
         env:
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
