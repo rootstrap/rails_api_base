@@ -192,9 +192,11 @@ jobs:
           ls
           ls -a coverage
       - name: Report to CodeClimate
-        run: |
-          chmod -R 777 "coverage/"
-          ./cc-test-reporter format-coverage --output "coverage/coverage.${{ matrix.ci_node_index }}.json" --prefix /github/workspace
+        env:
+          CI_NODE_INDEX: ${{ matrix.ci_node_index }}
+        uses: ./.github/actions/docker-run
+        with:
+          run: ./cc-test-reporter format-coverage --output "coverage/coverage.${CI_NODE_INDEX}.json"
       - name: Upload partial coverage
         uses: actions/upload-artifact@v4
         with:
