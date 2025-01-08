@@ -196,7 +196,7 @@ jobs:
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
         uses: ./.github/actions/docker-run
         with:
-          run: git config --global --add safe.directory /github/workspace && ./cc-test-reporter format-coverage --output "coverage/coverage.${CI_NODE_INDEX}.json"
+          run: ./cc-test-reporter format-coverage --output "coverage/coverage.${CI_NODE_INDEX}.json"
       - name: Upload partial coverage
         uses: actions/upload-artifact@v4
         with:
