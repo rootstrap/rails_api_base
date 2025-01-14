@@ -23,7 +23,7 @@ ENV NODE_ENV=production
 FROM base AS builder
 
 RUN apt-get update -qq && \
-    apt-get install -y build-essential libssl-dev libpq-dev git libsasl2-dev curl && \
+    apt-get install -y build-essential libssl-dev libpq-dev git libsasl2-dev libyaml-dev curl && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy node binaries from node image.
@@ -58,7 +58,7 @@ FROM base
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libpq-dev libvips libjemalloc2 && \
+    apt-get install --no-install-recommends -y curl libpq-dev libvips libjemalloc2 libyaml-dev && \
     apt-get clean
 
 # Create app directory.
