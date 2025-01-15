@@ -37,7 +37,7 @@ RUN yarn install
 COPY --link Gemfile Gemfile.lock ./
 RUN bundle install -j 4
 
-RUN git config --global --add safe.directory pwd
+RUN git config --system --add safe.directory /github/workspace
 
 COPY --link . .
 
