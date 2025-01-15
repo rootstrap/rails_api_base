@@ -187,16 +187,16 @@ jobs:
         uses: rootstrap/check_untracked_changes@v1
         with:
           path: "./app/ ./spec/"
-      - name: Run LSs
-        run: |
-          ls
-          ls -a coverage
       - name: Report to CodeClimate
         env:
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
         uses: ./.github/actions/docker-run
         with:
           run: ./cc-test-reporter format-coverage --output "coverage/coverage.${CI_NODE_INDEX}.json"
+      - name: Run LSs
+        run: |
+          ls
+          ls -a coverage
       - name: Upload partial coverage
         uses: actions/upload-artifact@v4
         with:
