@@ -34,7 +34,7 @@ COPY --link package.json yarn.lock .yarnrc.yml ./
 RUN corepack enable
 RUN yarn install --immutable
 
-COPY --link Gemfile Gemfile.lock ./
+COPY --link Gemfile Gemfile.lock .ruby-version ./
 RUN bundle install -j 4
 
 COPY --link . .
