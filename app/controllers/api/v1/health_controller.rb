@@ -7,7 +7,7 @@ module API
       skip_after_action :verify_authorized
 
       def status
-        render json: { online: true, test: true }
+        render json: { online: true }
       end
     end
   end
