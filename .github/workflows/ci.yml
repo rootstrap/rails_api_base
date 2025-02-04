@@ -24,7 +24,7 @@ jobs:
 
       - name: Check if cache exists from main
         run: |
-          gh cache list --scope main
+          gh cache list --ref refs/heads/main
 
       - name: Build prod Docker image
         uses: docker/build-push-action@v6
