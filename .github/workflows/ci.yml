@@ -22,10 +22,6 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Check if cache exists from main
-        run: |
-          gh cache list --ref refs/heads/main
-
       - name: Build prod Docker image
         uses: docker/build-push-action@v6
         with:
@@ -34,6 +30,9 @@ jobs:
           cache-to: type=gha,scope=${{ github.ref_name }},mode=max
           file: Dockerfile
 
+      - name: Check if cache exists from main
+        run: |
+          gh cache list --ref refs/heads/main
   linters:
     name: Linters
     runs-on: ubuntu-latest
