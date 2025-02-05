@@ -29,9 +29,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: false
-          cache-from: |
-            type=gha,scope=${{ github.ref_name }}
-            type=gha,scope=main
+          cache-from: type=gha,scope=main
           cache-to: type=gha,scope=${{ github.ref_name }},mode=max
           file: Dockerfile
 
