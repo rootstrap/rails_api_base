@@ -31,7 +31,7 @@ jobs:
           push: false
           cache-from: |
             type=gha,scope=${{ github.ref_name }}
-            type=gha,ref=main
+            type=gha,scope=main
           cache-to: type=gha,scope=${{ github.ref_name }},mode=max
           file: Dockerfile
 
