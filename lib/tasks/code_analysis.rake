@@ -8,5 +8,11 @@ namespace :code do
     sh 'bundle exec reek .'
     sh 'bundle exec rails_best_practices .'
     sh 'bundle exec i18n-tasks health'
+
+    if system('which hadolint > /dev/null 2>&1')
+      sh 'hadolint Dockerfile*'
+    else
+      puts 'Hadolint is not installed. Skipping Dockerfile linting.'
+    end
   end
 end
