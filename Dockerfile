@@ -22,7 +22,7 @@ ENV NODE_ENV=production
 # Throw-away build stage to reduce size of final image
 FROM base AS builder
 
-RUN sudo apt-get update -qq && \
+RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential libssl-dev libpq-dev git libsasl2-dev libyaml-dev curl && \
     rm -rf /var/lib/apt/lists/*
 

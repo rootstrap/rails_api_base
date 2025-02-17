@@ -135,7 +135,7 @@ With `bundle exec rails code:analysis` you can run the code analysis tool, you c
 - [Brakeman](https://github.com/presidentbeef/brakeman) Run `brakeman -I` to generate `config/brakeman.ignore`
 
 ## More linters
-- [Hadolint](https://github.com/hadolint/hadolint) Install with `brew install hadolint` and run `hadolint Dockerfile*`. Edit `.hadolint.yaml` to omit additional rules.
+- [Hadolint](https://github.com/hadolint/hadolint) Install with `brew install hadolint` and run `hadolint Dockerfile*`. Edit `.hadolint.yml` to omit additional rules.
 
 ## Impersonation
 
