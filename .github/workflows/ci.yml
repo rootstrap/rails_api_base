@@ -62,6 +62,10 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Code Analysis
         run: bundle exec rails code:analysis
+      - name: Run Dockerfile linter
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile*
   tests:
     name: Tests
     runs-on: ubuntu-latest

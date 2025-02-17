@@ -133,7 +133,9 @@ With `bundle exec rails code:analysis` you can run the code analysis tool, you c
 - [Reek](https://github.com/troessner/reek#configuration-file) Edit `config.reek`
 - [Rails Best Practices](https://github.com/flyerhzm/rails_best_practices#custom-configuration) Edit `config/rails_best_practices.yml`
 - [Brakeman](https://github.com/presidentbeef/brakeman) Run `brakeman -I` to generate `config/brakeman.ignore`
-- [Hadolint](https://github.com/hadolint/hadolint) Edit `.hadolint.yaml`
+
+## More linters
+- [Hadolint](https://github.com/hadolint/hadolint) Install with `brew install hadolint` and run `hadolint Dockerfile*`. Edit `.hadolint.yaml` to omit additional rules.
 
 ## Impersonation
 
