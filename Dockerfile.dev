@@ -7,7 +7,7 @@ FROM node:$NODE_VERSION AS node
 # Ruby build image.
 FROM ruby:${RUBY_VERSION}-slim
 
-RUN apt-get update -qq && \
+RUN sudo apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential libssl-dev libpq-dev vim git libsasl2-dev libyaml-dev curl && \
     rm -rf /var/lib/apt/lists/*
 
