@@ -23,7 +23,7 @@ ENV NODE_ENV=production
 FROM base AS builder
 
 RUN apt-get update -qq && \
-    apt-get install -y build-essential libssl-dev libpq-dev git libsasl2-dev libyaml-dev curl && \
+    apt-get install --no-install-recommends -y build-essential libssl-dev libpq-dev git libsasl2-dev libyaml-dev curl && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy node binaries from node image.
@@ -31,7 +31,7 @@ COPY --from=node /usr/local /usr/local
 COPY --from=node /opt /opt
 
 # Create app directory.
-RUN mkdir -p $APP_HOME
+RUN mkdir -p "${APP_HOME}"
 
 # Setup work directory.
 WORKDIR $APP_HOME
@@ -42,7 +42,7 @@ COPY --link Gemfile Gemfile.lock package.json yarn.lock .yarnrc.yml .ruby-versio
 RUN corepack enable
 RUN gem install bundler && bundle install -j 4 && yarn install --immutable && \
     bundle exec bootsnap precompile --gemfile && \
-    rm -rf ~/.bundle/ $BUNDLE_PATH/ruby/*/cache $BUNDLE_PATH/ruby/*/bundler/gems/*/.git
+    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
 
 # Copy application code
 COPY --link . .
@@ -59,10 +59,10 @@ FROM base
 # Install packages needed for deployment
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl libpq-dev libvips libjemalloc2 libyaml-dev && \
-    apt-get clean
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Create app directory.
-RUN mkdir -p $APP_HOME
+RUN mkdir -p "${APP_HOME}"
 
 # Setup work directory.
 WORKDIR $APP_HOME
