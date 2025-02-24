@@ -480,7 +480,7 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.4.0)
+    rexml (3.4.1)
     rouge (4.3.0)
     rspec-core (3.13.2)
       rspec-support (~> 3.13.0)
@@ -591,7 +591,7 @@ GEM
     useragent (0.16.11)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webmock (3.24.0)
+    webmock (3.25.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -676,7 +676,7 @@ DEPENDENCIES
   sprockets-rails (~> 3.5, >= 3.5.2)
   strong_migrations (~> 2.2)
   tzinfo-data
-  webmock (~> 3.24)
+  webmock (~> 3.25)
   yaaf (~> 3.0)
 
 RUBY VERSION
