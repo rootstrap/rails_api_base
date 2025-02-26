@@ -31,6 +31,9 @@ Layout/LineLength:
   Exclude:
     - db/**/*
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 Layout/SpaceBeforeFirstArg:
   Exclude:
     - app/views/api/**/**/*
