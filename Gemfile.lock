@@ -1,7 +1,6 @@
 GIT
   remote: https://github.com/lynndylanhurley/devise_token_auth.git
   revision: aedef3ca68d4e69bdc4a3e8987fa9d5f45420eec
-  ref: aedef3c
   specs:
     devise_token_auth (1.2.5)
       bcrypt (~> 3.0)
@@ -592,7 +591,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.6.0)
-    uri (0.13.1)
+    uri (1.0.3)
     useragent (0.16.11)
     warden (1.2.9)
       rack (>= 2.0.9)
