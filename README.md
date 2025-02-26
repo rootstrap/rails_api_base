@@ -4,7 +4,7 @@
 [![Code Climate](https://codeclimate.com/github/rootstrap/rails_api_base/badges/gpa.svg)](https://codeclimate.com/github/rootstrap/rails_api_base)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/63de7f82c79f5fe82f46/test_coverage)](https://codeclimate.com/github/rootstrap/rails_api_base/test_coverage)
 
-Rails API Base is a boilerplate project for JSON RESTful APIs. It follows the community best practices in terms of standards, security and maintainability, integrating a variety of testing and code quality tools. It's based on Rails 7.2 and Ruby 3.3.
+Rails API Base is a boilerplate project for JSON RESTful APIs. It follows the community best practices in terms of standards, security and maintainability, integrating a variety of testing and code quality tools. It's based on Rails 8.0 and Ruby 3.4.
 
 Finally, it contains a plug an play Administration console (thanks to [ActiveAdmin](https://github.com/activeadmin/activeadmin)).
 
@@ -73,7 +73,7 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 
 - [ActiveAdmin](https://github.com/activeadmin/activeadmin) for easy administration
 - [Arctic Admin](https://github.com/cprodhomme/arctic_admin) for responsive active admin
-- [Annotate](https://github.com/ctran/annotate_models) for documenting the schema in the classes
+- [Annotaterb](https://github.com/drwl/annotaterb) for documenting the schema in the classes
 - [Better Errors](https://github.com/charliesome/better_errors) for a better error page
 - [Brakeman](https://github.com/presidentbeef/brakeman) for security static analysis
 - [Byebug](https://github.com/deivid-rodriguez/byebug) for debugging
