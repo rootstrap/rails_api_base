@@ -73,7 +73,7 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 
 - [ActiveAdmin](https://github.com/activeadmin/activeadmin) for easy administration
 - [Arctic Admin](https://github.com/cprodhomme/arctic_admin) for responsive active admin
-- [Annotate](https://github.com/ctran/annotate_models) for documenting the schema in the classes
+- [Annotaterb](https://github.com/drwl/annotaterb) for documenting the schema in the classes
 - [Better Errors](https://github.com/charliesome/better_errors) for a better error page
 - [Brakeman](https://github.com/presidentbeef/brakeman) for security static analysis
 - [Byebug](https://github.com/deivid-rodriguez/byebug) for debugging
