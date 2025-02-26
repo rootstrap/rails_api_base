@@ -9,8 +9,7 @@ module API
       private
 
       def sign_up_params
-        params.require(:user).permit(:email, :password, :password_confirmation,
-                                     :username, :first_name, :last_name)
+        params.expect(user: %i[email password password_confirmation username first_name last_name])
       end
 
       def render_create_success
