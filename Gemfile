@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 ruby file: '.ruby-version'
 
-gem 'rails', '~> 7.2.2'
+gem 'rails', '~> 8.0.1'
 
 # Gems
 gem 'activeadmin', '~> 3.2'
@@ -42,7 +42,7 @@ gem 'yaaf', '~> 3.0'
 # gem 'image_processing', '~> 1.2'
 
 group :development, :test do
-  gem 'annotate', '~> 3.2', '>= 3.0.3'
+  gem 'annotaterb', '~> 4.14.0'
   gem 'dotenv-rails', '~> 3.1.6'
   gem 'factory_bot_rails', '~> 6.4'
   gem 'faker', '~> 3.5'

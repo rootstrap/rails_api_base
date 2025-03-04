@@ -157,7 +157,7 @@ jobs:
           PARALLEL_TESTS_CONCURRENCY: ${{ env.cpu_cores }}
         run: HEADLESS=true bundle exec parallel_rspec -n $PARALLEL_TESTS_CONCURRENCY -e './bin/parallel_tests'
       - name: Check for missing annotations
-        run: bundle exec annotate
+        run: bundle exec annotaterb models
       - name: Check for untracked changes in app and spec directories
         uses: rootstrap/check_untracked_changes@v1
         with:
