@@ -16,7 +16,7 @@ module API
       private
 
       def update_user_params
-        params.expect(user: %i[username first_name last_name email])
+        params.expect(user: %i[first_name last_name email])
       end
     end
   end
