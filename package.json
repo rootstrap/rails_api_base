@@ -7,7 +7,7 @@
   },
   "packageManager": "yarn@4.4.1",
   "dependencies": {
-    "@activeadmin/activeadmin": "3.2.5",
+    "@activeadmin/activeadmin": "3.3.0",
     "@fortawesome/fontawesome-free": "6.7.2",
     "arctic_admin": "4.3.1",
     "esbuild": "0.25.0",
