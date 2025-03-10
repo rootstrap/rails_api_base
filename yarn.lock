@@ -5,14 +5,14 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@activeadmin/activeadmin@npm:3.2.5":
-  version: 3.2.5
-  resolution: "@activeadmin/activeadmin@npm:3.2.5"
+"@activeadmin/activeadmin@npm:3.3.0":
+  version: 3.3.0
+  resolution: "@activeadmin/activeadmin@npm:3.3.0"
   dependencies:
     jquery: "npm:^3.4.1"
     jquery-ui: "npm:^1.13.3"
     jquery-ujs: "npm:^1.2.2"
-  checksum: 10c0/0096564b73cedbf52eb80bc6eb9183bd781b9b75f1597090a4d6667778d5dfb2d341545d49c571e20083d896e503e287e418ff62c4af6e27aff9dfb6a3925396
+  checksum: 10c0/b61755d10e814679e6d0d66b770e5594f6c8c88511f452e1dc7067dec6a60032ef557c4d42c133edb606422ef581fe83dec600de1bd3c30536ddbf76a1f54d6b
   languageName: node
   linkType: hard
 
@@ -1177,7 +1177,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "rails_api_base@workspace:."
   dependencies:
-    "@activeadmin/activeadmin": "npm:3.2.5"
+    "@activeadmin/activeadmin": "npm:3.3.0"
     "@fortawesome/fontawesome-free": "npm:6.7.2"
     arctic_admin: "npm:4.3.1"
     esbuild: "npm:0.25.0"
