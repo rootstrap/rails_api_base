@@ -9,6 +9,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_HOST: db
       BINDING: 0.0.0.0
+      OTEL_TRACES_EXPORTER: zipkin
+      OTEL_EXPORTER_ZIPKIN_ENDPOINT: "http://zipkin:9411"
     tty: true
     stdin_open: true
     volumes:
@@ -16,8 +18,10 @@ services:
       - node_modules:/src/app/node_modules
     depends_on:
       - db
+      - zipkin
     links:
       - db:db
+      - zipkin:zipkin
     healthcheck:
         test: ["CMD", "curl", "-f", "http://localhost:3000"]
         interval: 1m30s
@@ -39,6 +43,12 @@ services:
       timeout: 10s
       retries: 5
       start_period: 20s
+
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
+
 volumes:
   db_data:
   node_modules:
