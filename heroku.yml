@@ -11,3 +11,7 @@ run:
     command:
       - bundle exec rails jobs:work
     image: web
+release:
+  image: web
+  command:
+    - ./bin/release.sh
