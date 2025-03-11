@@ -141,7 +141,7 @@ jobs:
         run: bundle exec rails runner 'puts Rails.application.secret_key_base'
       - name: Setup Database
         run: |
-          bundle exec rails parallel:setup
+          bundle exec rails parallel:load_schema
           bundle exec rails parallel:migrate
       - name: Check for untracked changes in schema.rb
         uses: rootstrap/check_untracked_changes@v1
