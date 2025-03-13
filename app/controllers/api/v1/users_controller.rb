@@ -16,6 +16,7 @@ module API
       private
 
       def update_user_params
+        # [UseTusk] generate unit tests
         params.expect(user: %i[first_name last_name email])
       end
     end
