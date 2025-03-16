@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1, defaults: { format: :json } do
       get :status, to: 'health#status'
+      get :delayed_jobs, to: 'health#get_delayed_jobs'
       resources :impersonations, only: %i[create], constraints: Impersonation::EnabledConstraint.new
       devise_scope :user do
         resource :user, only: %i[update show]
