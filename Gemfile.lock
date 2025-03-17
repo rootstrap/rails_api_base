@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/lynndylanhurley/devise_token_auth.git
-  revision: aedef3ca68d4e69bdc4a3e8987fa9d5f45420eec
+  revision: 80f04b4f1e1d63e0d627c625ad6ac6c5e52509dc
   specs:
     devise_token_auth (1.2.5)
       bcrypt (~> 3.0)
@@ -345,7 +345,7 @@ GEM
     method_source (1.1.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.8)
-    minitest (5.25.4)
+    minitest (5.25.5)
     msgpack (1.7.5)
     net-http (0.4.1)
       uri
@@ -360,12 +360,12 @@ GEM
       net-protocol
     newrelic_rpm (9.17.0)
     nio4r (2.7.4)
-    nokogiri (1.18.3)
+    nokogiri (1.18.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.18.3-arm64-darwin)
+    nokogiri (1.18.4-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.18.3-x86_64-linux-gnu)
+    nokogiri (1.18.4-x86_64-linux-gnu)
       racc (~> 1.4)
     octokit (9.2.0)
       faraday (>= 1, < 3)
