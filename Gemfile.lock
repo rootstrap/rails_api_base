@@ -64,7 +64,7 @@ GEM
     active_storage_base64 (3.0.0)
       activestorage (> 7.0)
       activesupport (> 7.0)
-    activeadmin (3.2.5)
+    activeadmin (3.3.0)
       arbre (~> 1.2, >= 1.2.1)
       csv
       formtastic (>= 3.1)
@@ -168,7 +168,7 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.4.2)
       railties (>= 6.0.0)
-    csv (3.3.1)
+    csv (3.3.3)
     date (3.4.1)
     debug_inspector (1.2.0)
     delayed_job (4.1.13)
@@ -459,7 +459,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.2.1)
-    ransack (4.2.1)
+    ransack (4.3.0)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
@@ -624,7 +624,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_storage_base64 (~> 3.0.0)
-  activeadmin (~> 3.2)
+  activeadmin (~> 3.3)
   annotaterb (~> 4.14.0)
   aws-sdk-s3 (~> 1.182)
   better_errors (~> 2.10)
