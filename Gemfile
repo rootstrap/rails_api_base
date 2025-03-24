@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 ruby file: '.ruby-version'
 
-gem 'rails', '~> 8.0.1'
+gem 'rails', '~> 8.0.2'
 
 # Gems
 gem 'activeadmin', '~> 3.2'
