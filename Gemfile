@@ -60,7 +60,7 @@ group :development do
   gem 'listen', '~> 3.9'
   gem 'rails_best_practices', '~> 1.20'
   gem 'reek', '~> 6.4'
-  gem 'rubocop', '~> 1.73', require: false
+  gem 'rubocop', '~> 1.75', require: false
   gem 'rubocop-capybara', '~> 2.22'
   gem 'rubocop-factory_bot', '~> 2.26', require: false
   gem 'rubocop-performance', '~> 1.24', require: false
