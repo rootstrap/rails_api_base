@@ -72,7 +72,7 @@ end
 
 group :test do
   gem 'capybara', '~> 3.40'
-  gem 'faraday-retry', '~> 2.2'
+  gem 'faraday-retry', '~> 2.3'
   gem 'knapsack', '~> 4.0'
   gem 'octokit', '~> 9.2'
   gem 'parallel_tests', '~> 4.9'
