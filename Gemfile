@@ -22,11 +22,10 @@ gem 'flipper-ui', '~> 1.3.3'
 gem 'jbuilder', '~> 2.13'
 gem 'jsbundling-rails', '~> 1.3'
 gem 'lograge', '~> 0.14'
-gem 'newrelic_rpm', '~> 9.17'
 
 gem 'opentelemetry-sdk', '~> 1.8'
 gem 'opentelemetry-instrumentation-all', '~> 0.74.0'
-gem 'opentelemetry-exporter-zipkin', '~> 0.24.0'
+gem 'opentelemetry-exporter-otlp'
 
 gem 'pagy', '~> 9.3'
 gem 'pg', '~> 1.5'
