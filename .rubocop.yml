@@ -5,14 +5,16 @@ inherit_mode:
   merge:
     - Exclude
 
-require:
+plugins:
   - rubocop-capybara
-  - rubocop-factory_bot
   - rubocop-performance
   - rubocop-rails
   - rubocop-rake
   - rubocop-rspec
   - rubocop-rspec_rails
+
+require:
+  - rubocop-factory_bot
 
 AllCops:
   NewCops: enable
@@ -69,6 +71,8 @@ Metrics/CyclomaticComplexity:
 
 Metrics/MethodLength:
   Max: 24
+  Exclude:
+    - db/migrate/20250401200354_create_good_jobs.rb
 
 Metrics/ModuleLength:
   Max: 200
@@ -84,6 +88,11 @@ Rails/FilePath:
 
 Rails/SaveBang:
   Enabled: true
+
+Rails/ThreeStateBooleanColumn:
+  Enabled: true
+  Exclude:
+    - db/migrate/20250401200354_create_good_jobs.rb
 
 RSpec/ExampleLength:
   Enabled: false
