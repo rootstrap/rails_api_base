@@ -22,7 +22,7 @@ gem 'good_job', '~> 4.9.3'
 gem 'jbuilder', '~> 2.13'
 gem 'jsbundling-rails', '~> 1.3'
 gem 'lograge', '~> 0.14'
-gem 'newrelic_rpm', '~> 9.17'
+gem 'newrelic_rpm', '~> 9.18'
 gem 'pagy', '~> 9.3'
 gem 'pg', '~> 1.5'
 gem 'puma', '~> 6.6'
@@ -32,7 +32,7 @@ gem 'rswag-api', '~> 2.16.0'
 gem 'rswag-ui', '~> 2.16.0'
 gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets-rails', '~> 3.5', '>= 3.5.2'
-gem 'strong_migrations', '~> 2.2'
+gem 'strong_migrations', '~> 2.3'
 gem 'yaaf', '~> 3.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -46,7 +46,7 @@ group :development, :test do
   gem 'dotenv-rails', '~> 3.1.6'
   gem 'factory_bot_rails', '~> 6.4'
   gem 'faker', '~> 3.5'
-  gem 'pry-byebug', '~> 3.9', platform: :mri
+  gem 'pry-byebug', '~> 3.11', platform: :mri
   gem 'pry-rails', '~> 0.3.11'
   gem 'rspec-rails', '~> 7.1'
 end
@@ -62,9 +62,9 @@ group :development do
   gem 'reek', '~> 6.5'
   gem 'rubocop', '~> 1.75', require: false
   gem 'rubocop-capybara', '~> 2.22'
-  gem 'rubocop-factory_bot', '~> 2.26', require: false
-  gem 'rubocop-performance', '~> 1.24', require: false
-  gem 'rubocop-rails', '~> 2.30', require: false
+  gem 'rubocop-factory_bot', '~> 2.27', require: false
+  gem 'rubocop-performance', '~> 1.25', require: false
+  gem 'rubocop-rails', '~> 2.31', require: false
   gem 'rubocop-rake', '~> 0.7.1', require: false
   gem 'rubocop-rspec', '~> 3.5', require: false
   gem 'rubocop-rspec_rails', '~> 2.31.0', require: false
@@ -75,12 +75,12 @@ group :test do
   gem 'faraday-retry', '~> 2.3'
   gem 'knapsack', '~> 4.0'
   gem 'octokit', '~> 9.2'
-  gem 'parallel_tests', '~> 4.9'
+  gem 'parallel_tests', '~> 5.1'
   gem 'pg_query', '~> 6.1.0'
-  gem 'prosopite', '~> 2.0.0'
+  gem 'prosopite', '~> 2.1.0'
   gem 'rspec-openapi', '~> 0.18'
   gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
-  gem 'selenium-webdriver', '~> 4.30.1'
+  gem 'selenium-webdriver', '~> 4.31.0'
   gem 'shoulda-matchers', '~> 6.3'
   gem 'simplecov', '~> 0.22.0', require: false
   gem 'webmock', '~> 3.25'
