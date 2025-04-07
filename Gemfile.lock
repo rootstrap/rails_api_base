@@ -268,7 +268,13 @@ GEM
       fugit (>= 1.11.0)
       railties (>= 6.1.0)
       thor (>= 1.0.0)
-    google-protobuf (4.29.2)
+    google-protobuf (4.30.2)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.30.2-arm64-darwin)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.30.2-x86_64-linux)
       bigdecimal
       rake (>= 13)
     has_scope (0.8.2)
@@ -388,7 +394,7 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.9)
-    pg_query (6.0.0)
+    pg_query (6.1.0)
       google-protobuf (>= 3.25.3)
     pp (0.6.2)
       prettyprint
@@ -667,7 +673,7 @@ DEPENDENCIES
   pagy (~> 9.3)
   parallel_tests (~> 4.9)
   pg (~> 1.5)
-  pg_query (~> 6.0.0)
+  pg_query (~> 6.1.0)
   prosopite (~> 2.0.0)
   pry-byebug (~> 3.9)
   pry-rails (~> 0.3.11)
