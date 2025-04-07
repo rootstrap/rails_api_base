@@ -77,7 +77,7 @@ group :test do
   gem 'octokit', '~> 9.2'
   gem 'parallel_tests', '~> 4.9'
   gem 'pg_query', '~> 6.0.0'
-  gem 'prosopite', '~> 2.0.0'
+  gem 'prosopite', '~> 2.1.0'
   gem 'rspec-openapi', '~> 0.18'
   gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
   gem 'selenium-webdriver', '~> 4.30.1'
