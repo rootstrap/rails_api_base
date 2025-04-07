@@ -46,7 +46,7 @@ group :development, :test do
   gem 'dotenv-rails', '~> 3.1.6'
   gem 'factory_bot_rails', '~> 6.4'
   gem 'faker', '~> 3.5'
-  gem 'pry-byebug', '~> 3.9', platform: :mri
+  gem 'pry-byebug', '~> 3.11', platform: :mri
   gem 'pry-rails', '~> 0.3.11'
   gem 'rspec-rails', '~> 7.1'
 end
