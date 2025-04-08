@@ -77,7 +77,6 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Better Errors](https://github.com/charliesome/better_errors) for a better error page
 - [Brakeman](https://github.com/presidentbeef/brakeman) for security static analysis
 - [Byebug](https://github.com/deivid-rodriguez/byebug) for debugging
-- [DelayedJob](https://github.com/collectiveidea/delayed_job) for background processing
 - [Devise](https://github.com/plataformatec/devise) for basic authentication
 - [Devise Token Auth](https://github.com/lynndylanhurley/devise_token_auth) for API authentication
 - [Dotenv](https://github.com/bkeepers/dotenv) for handling environment variables
@@ -85,6 +84,7 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Factory Bot](https://github.com/thoughtbot/factory_bot) for testing data
 - [Faker](https://github.com/stympy/faker) for generating test data
 - [Flipper](https://github.com/jnunemaker/flipper) for feature flag support
+- [GoodJob](https://github.com/bensheldon/good_job) for background processing
 - [Jbuilder](https://github.com/rails/jbuilder) for JSON views
 - [JS Bundling](https://github.com/rails/jsbundling-rails) for bundling JS assets
 - [Knapsack](https://github.com/KnapsackPro/knapsack) for splitting tests evenly based on execution time
