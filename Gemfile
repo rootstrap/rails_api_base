@@ -24,8 +24,13 @@ gem 'jsbundling-rails', '~> 1.3'
 gem 'lograge', '~> 0.14'
 
 gem 'opentelemetry-sdk', '~> 1.8'
-gem 'opentelemetry-instrumentation-all', '~> 0.74.0'
 gem 'opentelemetry-exporter-otlp'
+
+# Choose instrumentation gems
+gem 'opentelemetry-instrumentation-pg'
+gem 'opentelemetry-instrumentation-rails'
+gem 'opentelemetry-instrumentation-net_http'
+gem 'opentelemetry-instrumentation-rake'
 
 gem 'pagy', '~> 9.3'
 gem 'pg', '~> 1.5'
