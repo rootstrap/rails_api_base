@@ -4,7 +4,20 @@ module API
   module V1
     class RegistrationsController < DeviseTokenAuth::RegistrationsController
       include API::Concerns::ActAsAPIRequest
+      include TelemetrySpan
       protect_from_forgery with: :null_session
+
+      def create
+        super do |resource|
+          current_span.add_event(
+            'New User created',
+            attributes: {
+              "new_user_created.id" => resource.id,
+              "new_user_created.timestamp" => resource.created_at
+            }
+          )
+        end
+      end
 
       private
 
