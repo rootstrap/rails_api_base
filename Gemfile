@@ -74,7 +74,7 @@ group :test do
   gem 'capybara', '~> 3.40'
   gem 'faraday-retry', '~> 2.3'
   gem 'knapsack', '~> 4.0'
-  gem 'octokit', '~> 9.2'
+  gem 'octokit', '~> 10.0'
   gem 'parallel_tests', '~> 5.1'
   gem 'pg_query', '~> 6.1.0'
   gem 'prosopite', '~> 2.1.0'
