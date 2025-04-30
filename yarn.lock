@@ -431,10 +431,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"arctic_admin@npm:4.3.1":
-  version: 4.3.1
-  resolution: "arctic_admin@npm:4.3.1"
-  checksum: 10c0/327a90f472a92e1886b6be9d5198ec0bbe2f8e885615bec4894bf3fa244df1efea882785f66d3cc5dcdf3df2a146ccb00bfab9a0979bc581222ab0aecec1b665
+"arctic_admin@npm:4.3.3":
+  version: 4.3.3
+  resolution: "arctic_admin@npm:4.3.3"
+  checksum: 10c0/2124f9cfa997d48d7a903e2ac45530e2b2fdaacda35932eb0ca178feddbf84bbdcfeb40a5d9782b21d09062139d9e6b4a087c1b449713e705b554df484c306a8
   languageName: node
   linkType: hard
 
@@ -1179,7 +1179,7 @@ __metadata:
   dependencies:
     "@activeadmin/activeadmin": "npm:3.3.0"
     "@fortawesome/fontawesome-free": "npm:6.7.2"
-    arctic_admin: "npm:4.3.1"
+    arctic_admin: "npm:4.3.3"
     esbuild: "npm:0.25.3"
     jquery: "npm:3.7.1"
     jquery-ui: "npm:1.14.1"
