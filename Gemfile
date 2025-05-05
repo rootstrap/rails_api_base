@@ -48,7 +48,7 @@ group :development, :test do
   gem 'faker', '~> 3.5'
   gem 'pry-byebug', '~> 3.11', platform: :mri
   gem 'pry-rails', '~> 0.3.11'
-  gem 'rspec-rails', '~> 7.1'
+  gem 'rspec-rails', '~> 8.0'
 end
 
 group :development do
