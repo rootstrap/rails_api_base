@@ -1,9 +1,11 @@
 variable "newrelic_account_id" {
   type = string
+  default = ""
 }
 
 variable "newrelic_api_key" {
   type = string
+  default = ""
 }
 
 variable "newrelic_region" {
@@ -13,7 +15,7 @@ variable "newrelic_region" {
 
 variable "app_name" {
   type = string
-  default = "rails_api_base"
+  default = "rails_api_base - development"
 }
 
 # TODO:
@@ -38,33 +40,28 @@ provider "newrelic" {
   region     = var.newrelic_region
 }
 
-data "newrelic_entity" "rails_api_base" {
-  name = "rails_api_base" # Must be an exact match to your application name in New Relic
+data "newrelic_entity" "app" {
+  name = var.app_name # Must be an exact match to your application name in New Relic
   domain = "APM" # or BROWSER, INFRA, MOBILE, SYNTH, depending on your entity's domain
   type = "APPLICATION"
 }
 
-# Define your alert policy
 resource "newrelic_alert_policy" "golden_metrics_policy" {
-  name = "Golden Metrics Alert Policy"
-}
-
-resource "newrelic_alert_policy" "golden_signal_policy" {
-  name = "Golden Signals - ${data.newrelic_entity.rails_api_base.name}"
+  name = "Golden Signals - ${data.newrelic_entity.app.name}"
 }
 
 # Response time - Create Alert Condition
 resource "newrelic_nrql_alert_condition" "response_time_alert" {
-  policy_id = newrelic_alert_policy.golden_signal_policy.id
+  policy_id = newrelic_alert_policy.golden_metrics_policy.id
   type = "static"
-  name = "Response Time - ${data.newrelic_entity.rails_api_base.name}"
+  name = "Response Time - ${data.newrelic_entity.app.name}"
   description = "High Transaction Response Time"
   # runbook_url = "https://www.example.com"
   enabled = true
   violation_time_limit_seconds = 3600
 
   nrql {
-    query = "SELECT filter(average(newrelic.timeslice.value), WHERE metricTimesliceName = 'HttpDispatcher') OR 0 FROM Metric WHERE appId IN (${data.newrelic_entity.rails_api_base.application_id}) AND metricTimesliceName IN ('HttpDispatcher', 'Agent/MetricsReported/count')"
+    query = "SELECT filter(average(newrelic.timeslice.value), WHERE metricTimesliceName = 'HttpDispatcher') OR 0 FROM Metric WHERE appId IN (${data.newrelic_entity.app.application_id}) AND metricTimesliceName IN ('HttpDispatcher', 'Agent/MetricsReported/count')"
   }
 
   critical {
@@ -154,28 +151,28 @@ resource "newrelic_notification_channel" "team_email_channel" {
 
 resource "newrelic_workflow" "team_workflow" {
   name = "workflow-example"
-  enrichments_enabled = true
+  # enrichments_enabled = true
   # destinations_enabled = true
   enabled = true
   muting_rules_handling = "NOTIFY_ALL_ISSUES"
 
-  enrichments {
-    nrql {
-      name = "Log"
-      configuration {
-       query = "SELECT count(*) FROM Metric"
-      }
-    }
-  }
+  #enrichments {
+  #  nrql {
+   #   name = "Log"
+    #  configuration {
+  #     query = "SELECT count(*) FROM Metric"
+   #   }
+ #   }
+ # }
 
   issues_filter {
     name = "filter-example"
     type = "FILTER"
 
     predicate {
-      attribute = "accumulations.sources"
+      attribute = "accumulations.policyName"
       operator = "EXACTLY_MATCHES"
-      values = [ "newrelic" ]
+      values = [ newrelic_alert_policy.golden_metrics_policy.name ]
     }
   }
 
