@@ -11,7 +11,7 @@
 
 common: &default_settings
   # Required license key associated with your New Relic account.
-  license_key: <%= ENV['NEW_RELIC_API_KEY'] %>
+  license_key: <%= ENV['NEW_RELIC_LICENSE_KEY'] %>
 
   # Your application name. Renaming here affects where data displays in New
   # Relic. For more details, see https://docs.newrelic.com/docs/apm/new-relic-apm/maintenance/renaming-applications
@@ -30,7 +30,7 @@ common: &default_settings
 development:
   <<: *default_settings
   # Do not track the development environment by default.
-  monitor_mode: false
+  monitor_mode: true
 
 test:
   <<: *default_settings

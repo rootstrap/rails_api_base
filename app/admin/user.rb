@@ -69,4 +69,10 @@ ActiveAdmin.register User do
                                                                          target: '_blank', rel: 'noopener'
     end
   end
+
+  controller do
+    def index
+      raise 'test'
+    end
+  end
 end

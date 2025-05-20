@@ -97,7 +97,6 @@ resource "newrelic_nrql_alert_condition" "low_throughput" {
   enabled = true
 }
 
-# Error percentage
 # Error rate condition
 resource "newrelic_nrql_alert_condition" "error_rate" {
   policy_id = newrelic_alert_policy.golden_metrics_policy.id
@@ -110,7 +109,7 @@ resource "newrelic_nrql_alert_condition" "error_rate" {
 
   critical {
     threshold = 5
-    threshold_duration = 300
+    threshold_duration = 60
     threshold_occurrences = "ALL"
     operator = "above"
   }
@@ -122,6 +121,8 @@ resource "newrelic_nrql_alert_condition" "error_rate" {
 
   enabled = true
 }
+
+# TODO: Add newrelic_workload and setup error inbox notification
 
 #######################################
 #          NOTIFICATIONS              #
@@ -151,19 +152,8 @@ resource "newrelic_notification_channel" "team_email_channel" {
 
 resource "newrelic_workflow" "team_workflow" {
   name = "workflow-example"
-  # enrichments_enabled = true
-  # destinations_enabled = true
   enabled = true
   muting_rules_handling = "NOTIFY_ALL_ISSUES"
-
-  #enrichments {
-  #  nrql {
-   #   name = "Log"
-    #  configuration {
-  #     query = "SELECT count(*) FROM Metric"
-   #   }
- #   }
- # }
 
   issues_filter {
     name = "filter-example"
@@ -180,7 +170,6 @@ resource "newrelic_workflow" "team_workflow" {
     channel_id = newrelic_notification_channel.team_email_channel.id
   }
 }
-
 
 # # Response time condition
 # resource "newrelic_nrql_alert_condition" "response_time" {
