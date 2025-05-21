@@ -14,7 +14,7 @@
     "jquery": "3.7.1",
     "jquery-ui": "1.14.1",
     "jquery-ujs": "1.2.3",
-    "sass": "^1.88.0"
+    "sass": "^1.89.0"
   },
   "scripts": {
     "build": "yarn build:js && yarn build:css",
