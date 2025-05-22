@@ -20,6 +20,11 @@ Rails.application.routes.draw do
       resources :settings, only: [] do
         get :must_update, on: :collection
       end
+      resources :colors, only: [:index, :create, :destroy] do
+        collection do
+          delete :reset
+        end
+      end
     end
   end
 
