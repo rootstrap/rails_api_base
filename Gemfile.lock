@@ -108,7 +108,7 @@ GEM
       uri (>= 0.13.1)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
-    annotaterb (4.14.0)
+    annotaterb (4.15.0)
     arbre (1.7.0)
       activesupport (>= 3.0.0)
       ruby2_keywords (>= 0.0.2)
@@ -646,7 +646,7 @@ PLATFORMS
 DEPENDENCIES
   active_storage_base64 (~> 3.0.0)
   activeadmin (~> 3.3)
-  annotaterb (~> 4.14.0)
+  annotaterb (~> 4.15.0)
   aws-sdk-s3 (~> 1.188)
   better_errors (~> 2.10)
   binding_of_caller (~> 1.0)
