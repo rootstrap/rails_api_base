@@ -231,30 +231,6 @@ resource "newrelic_one_dashboard" "exampledash" {
   page {
     name = "New Relic Terraform Example"
 
-    widget_table {
-      title  = "List of Transactions"
-      row    = 1
-      column = 4
-      width  = 6
-      height = 3
-
-      refresh_rate = 60000 // data refreshes every 60 seconds
-
-      nrql_query {
-        query = "FROM Transaction SELECT *"
-      }
-
-      initial_sorting {
-        direction = "desc"
-        name      = "timestamp"
-      }
-
-      data_format {
-        name = "duration"
-        type = "decimal"
-      }
-    }
-
     widget_billboard {
       title  = "Requests per minute"
       row    = 1
@@ -274,20 +250,17 @@ resource "newrelic_one_dashboard" "exampledash" {
       }
     }
 
-    # widget_bar {
-    #   title  = "Average transaction duration, by application"
-    #   row    = 1
-    #   column = 7
-    #   width  = 6
-    #   height = 3
+     widget_bar {
+       title  = "Average transaction duration, by application"
+       row    = 1
+       column = 7
+       width  = 6
+       height = 3
 
-    #   nrql_query {
-    #     query      = "FROM Transaction SELECT average(duration) FACET appName"
-    #   }
-
-    #   # Must be another dashboard GUID
-    #   linked_entity_guids = ["abc123"]
-    # }
+       nrql_query {
+         query      = "FROM Transaction SELECT average(duration) FACET appName"
+       }
+     }
 
     # widget_bar {
     #   title  = "Average transaction duration, by application"
@@ -352,7 +325,7 @@ resource "newrelic_one_dashboard" "exampledash" {
 
       threshold {
         name     = "Duration Threshold"
-        from     = 1 
+        from     = 1
         to       = 2
         severity = "critical"
       }

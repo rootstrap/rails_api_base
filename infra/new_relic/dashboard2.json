@@ -1,0 +1,561 @@
+{
+	"name": "Activerecord",
+	"description": null,
+	"pages": [
+		{
+			"name": "Activerecord Overview",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.markdown"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 5
+					},
+					"title": "",
+					"rawConfiguration": {
+						"text": "\n![Transactions](https://raw.githubusercontent.com/newrelic/newrelic-quickstarts/main/quickstarts/ruby/curb/images/Transactions.png)\n"
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 6,
+						"row": 1,
+						"height": 3,
+						"width": 7
+					},
+					"title": "Transactions Overview",
+					"rawConfiguration": {
+						"dataFormatters": [],
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM Transaction SELECT count(*) as 'Total transactions', average(duration) as 'Average duration (s)', percentile(duration, 90) as 'Slowest 10%/duration'  SINCE 1 week ago WHERE appName LIKE '%'"
+							}
+						],
+						"thresholds": []
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.markdown"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 5
+					},
+					"title": "",
+					"rawConfiguration": {
+						"text": "\n![Errors](https://raw.githubusercontent.com/newrelic/newrelic-quickstarts/main/quickstarts/ruby/curb/images/Errors.png)\n"
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 6,
+						"row": 4,
+						"height": 3,
+						"width": 7
+					},
+					"title": "Errors Overview",
+					"rawConfiguration": {
+						"dataFormatters": [],
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM Transaction SELECT count(*) as 'Total transactions',percentage(count(*), WHERE error IS true) as 'Failed transactions In %', count(*) * percentage(count(*), WHERE error IS true) / 100 as 'Failed transactions' SINCE 1 week ago WHERE appName LIKE '%'"
+							}
+						],
+						"thresholds": []
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.markdown"
+					},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 3,
+						"width": 5
+					},
+					"title": "",
+					"rawConfiguration": {
+						"text": "\n![VM Metrics](https://raw.githubusercontent.com/newrelic/newrelic-quickstarts/main/quickstarts/ruby/curb/images/VM-metrics.png)\n"
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 6,
+						"row": 7,
+						"height": 3,
+						"width": 7
+					},
+					"title": "VM Overview",
+					"rawConfiguration": {
+						"dataFormatters": [],
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM Metric SELECT average(apm.service.cpu.usertime.utilization) * 100 as 'Average CPU utilization ', average(apm.service.memory.physical) as 'Average physical memory' WHERE appName like '%' SINCE 1 WEEK AGO"
+							}
+						],
+						"thresholds": []
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.markdown"
+					},
+					"layout": {
+						"column": 5,
+						"row": 10,
+						"height": 3,
+						"width": 5
+					},
+					"title": "",
+					"rawConfiguration": {
+						"text": "## More details available on Application Monitoring (APM) page.\nDive deeper on transaction details, distributed tracing, related entities, anomalies, errors\nand more. [Open the Explorer.](https://onenr.io/0rVRVGaNWja)"
+					},
+					"linkedEntityGuids": null
+				}
+			]
+		},
+		{
+			"name": "Errors",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 8
+					},
+					"title": "Error Overview",
+					"rawConfiguration": {
+						"dataFormatters": [],
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM Transaction SELECT count(*) as 'Total transactions', percentage(count(*), WHERE error IS true) as 'Failed transactions in %', count(*) * percentage(count(*), WHERE error IS true) / 100 as 'Failed transactions' SINCE 1 week ago"
+							}
+						],
+						"thresholds": []
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 9,
+						"row": 1,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Top 10 Failed Transactions",
+					"rawConfiguration": {
+						"dataFormatters": [],
+						"facet": {
+							"showOtherSeries": false
+						},
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "Select percentage(count(*), WHERE error IS true) from Transaction WHERE transactionType = 'Web' facet name SINCE last week"
+							}
+						]
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Transactions Errors Today Compared With 1 Week Ago",
+					"rawConfiguration": {
+						"legend": {
+							"enabled": true
+						},
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from Transaction where response.status = '404' and transactionType = 'Web' TIMESERIES 10 minutes since today COMPARE WITH 1 week ago"
+							}
+						],
+						"yAxisLeft": {
+							"zero": true
+						}
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Latest Error",
+					"rawConfiguration": {
+						"dataFormatters": [],
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM TransactionError SELECT latest(timestamp) as 'Latest error' SINCE last week "
+							}
+						],
+						"thresholds": []
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "dc5b694f-9125-4c64-8e4e-c52e604c8088.range-chart"
+					},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Transaction Errors Day By Day",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM TransactionError SELECT count(*), percentage(count(*), WHERE error IS true) FACET dateOf(timestamp) SINCE 1 week ago"
+							}
+						],
+						"other": {
+							"visible": false
+						}
+					},
+					"linkedEntityGuids": null
+				}
+			]
+		},
+		{
+			"name": "VM Metrics",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 7
+					},
+					"title": "VM Overview",
+					"rawConfiguration": {
+						"dataFormatters": [],
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM Metric SELECT average(apm.service.cpu.usertime.utilization) * 100 as 'Average CPU utilization ', average(apm.service.memory.physical) as 'Average physical memory' WHERE appName like '%' SINCE 1 WEEK AGO"
+							}
+						],
+						"thresholds": []
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 8,
+						"row": 1,
+						"height": 3,
+						"width": 5
+					},
+					"title": "CPU Utilization",
+					"rawConfiguration": {
+						"legend": {
+							"enabled": true
+						},
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT rate(sum(apm.service.cpu.usertime.utilization), 1 second) * 100 as cpuUsage FROM Metric WHERE appName like '%' SINCE 30 minutes ago TIMESERIES"
+							}
+						]
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.area"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 12
+					},
+					"title": "Average Physical Memory",
+					"rawConfiguration": {
+						"legend": {
+							"enabled": true
+						},
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(apm.service.memory.physical) FROM Metric WHERE appName like '%' SINCE 30 minutes ago TIMESERIES"
+							}
+						]
+					},
+					"linkedEntityGuids": null
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"description": null,
+			"widgets": [
+				{
+					"visualization": {
+						"id": "viz.billboard"
+					},
+					"layout": {
+						"column": 1,
+						"row": 1,
+						"height": 3,
+						"width": 7
+					},
+					"title": "Transactions Overview",
+					"rawConfiguration": {
+						"dataFormatters": [],
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM Transaction SELECT count(*), average(duration) as 'Average duration (s)', percentile(duration, 90) as 'Slowest 10%/duration' WHERE appName LIKE '%' SINCE 1 WEEK AGO"
+							}
+						],
+						"thresholds": []
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.pie"
+					},
+					"layout": {
+						"column": 8,
+						"row": 1,
+						"height": 3,
+						"width": 5
+					},
+					"title": "Most Popular Transactions",
+					"rawConfiguration": {
+						"facet": {
+							"showOtherSeries": false
+						},
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) FROM Transaction WHERE (transactionType = 'Web') SINCE last week EXTRAPOLATE FACET name"
+							}
+						]
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 1,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Adpex Score Today Compared With 1 Week Ago",
+					"rawConfiguration": {
+						"legend": {
+							"enabled": true
+						},
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT apdex(duration,t: 0.4) FROM Transaction TIMESERIES SINCE today COMPARE WITH 1 week ago"
+							}
+						],
+						"yAxisLeft": {
+							"zero": true
+						}
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 5,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Throughput Today Compared With 1 Week Ago",
+					"rawConfiguration": {
+						"legend": {
+							"enabled": true
+						},
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT count(*) from Transaction TIMESERIES 1 hour  since today COMPARE WITH 1 week ago"
+							}
+						],
+						"yAxisLeft": {
+							"zero": true
+						}
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.line"
+					},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Average Transaction Duration Today Compared With 1 Week Ago",
+					"rawConfiguration": {
+						"dataFormatters": [],
+						"legend": {
+							"enabled": true
+						},
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration) FROM Transaction TIMESERIES SINCE today COMPARE WITH 1 week ago"
+							}
+						],
+						"yAxisLeft": {
+							"zero": true
+						}
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "dc5b694f-9125-4c64-8e4e-c52e604c8088.stacked-bar-chart"
+					},
+					"layout": {
+						"column": 1,
+						"row": 7,
+						"height": 4,
+						"width": 4
+					},
+					"title": "Top 5 Slowest Transactions",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT max(duration) FROM Transaction WHERE (transactionType = 'Web') SINCE 1 week ago LIMIT 5 EXTRAPOLATE FACET name"
+							}
+						],
+						"other": {
+							"visible": false
+						},
+						"yAxis": {
+							"label": "Seconds"
+						}
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "dc5b694f-9125-4c64-8e4e-c52e604c8088.range-chart"
+					},
+					"layout": {
+						"column": 5,
+						"row": 7,
+						"height": 4,
+						"width": 8
+					},
+					"title": "Transactions Day By Day ",
+					"rawConfiguration": {
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "FROM Transaction SELECT count(*), percentage(count(*), WHERE error IS false) FACET dateOf(timestamp) SINCE 1 week ago"
+							}
+						],
+						"other": {
+							"visible": null
+						}
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 1,
+						"row": 11,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Transaction Duration Overview",
+					"rawConfiguration": {
+						"dataFormatters": [],
+						"facet": {
+							"showOtherSeries": false
+						},
+						"nrqlQueries": [
+							{
+								"accountId": 0,
+								"query": "SELECT average(duration), max(duration), min(duration) FROM Transaction WHERE appName LIKE '%' FACET name"
+							}
+						]
+					},
+					"linkedEntityGuids": null
+				}
+			]
+		}
+	]
+}
