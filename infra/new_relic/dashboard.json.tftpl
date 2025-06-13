@@ -163,7 +163,7 @@
 						"height": 3,
 						"width": 4
 					},
-					"title": "Top 10 Failed Transactions",
+					"title": "Top 10 Failed Web Transactions",
 					"rawConfiguration": {
 						"dataFormatters": [],
 						"facet": {
@@ -225,6 +225,31 @@
 							}
 						],
 						"thresholds": []
+					},
+					"linkedEntityGuids": null
+				},
+				{
+					"visualization": {
+						"id": "viz.table"
+					},
+					"layout": {
+						"column": 9,
+						"row": 4,
+						"height": 3,
+						"width": 4
+					},
+					"title": "Top 10 Failed Non-Web Transactions",
+					"rawConfiguration": {
+						"dataFormatters": [],
+						"facet": {
+							"showOtherSeries": false
+						},
+						"nrqlQueries": [
+							{
+								"accountId": "${account_id}",
+								"query": "Select percentage(count(*), WHERE error IS true) from Transaction WHERE transactionType != 'Web' facet name SINCE last week WHERE appName = '${app_name}'"
+							}
+						]
 					},
 					"linkedEntityGuids": null
 				}

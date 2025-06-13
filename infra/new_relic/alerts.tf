@@ -108,24 +108,24 @@ resource "newrelic_nrql_alert_condition" "low_throughput" {
 }
 
 # Error rate condition
-resource "newrelic_nrql_alert_condition" "error_rate" {
+resource "newrelic_nrql_alert_condition" "error_alert" {
   for_each = toset(var.app_name)
   policy_id = newrelic_alert_policy.golden_metrics_policy[each.value].id
   type = "static"
-  name = "High Error Rate - ${each.value}"
-  description = "High Error Rate"
+  name = "Error alert - ${each.value}"
+  description = "Error Alert"
   enabled = true
   violation_time_limit_seconds = 259200 # 3 days
 
   nrql {
-    query = "SELECT (filter(count(*), WHERE error IS true) / count(*)) * 100 AS 'error_rate' FROM Transaction WHERE appName = '${each.value}'"
+    query = "SELECT count(*) FROM Transaction WHERE error IS true AND appName = '${each.value}'"
   }
 
   critical {
-    threshold = 5
+    threshold = 1
     threshold_duration = 60
     threshold_occurrences = "ALL"
-    operator = "above"
+    operator = "above_or_equals"
   }
 }
 
