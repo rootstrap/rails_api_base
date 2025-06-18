@@ -96,7 +96,7 @@ resource "newrelic_nrql_alert_condition" "low_throughput" {
   violation_time_limit_seconds = 259200 # 3 days
 
   nrql {
-    query = "FROM Transaction SELECT rate(count(*), 1 minute) WHERE appName = '${each.value}'"
+    query = "FROM Transaction SELECT count(*) WHERE appName = '${each.value}'"
   }
 
   critical {
@@ -126,6 +126,50 @@ resource "newrelic_nrql_alert_condition" "error_alert" {
     threshold_duration = 60
     threshold_occurrences = "ALL"
     operator = "above_or_equals"
+  }
+}
+
+# CPU usage
+resource "newrelic_nrql_alert_condition" "cpu_usage" {
+  for_each = toset(var.app_name)
+  policy_id = newrelic_alert_policy.golden_metrics_policy[each.value].id
+  type = "static"
+  name = "CPU Usage - ${each.value}"
+  description = "CPU Usage"
+  enabled = true
+  violation_time_limit_seconds = 259200 # 3 days
+
+  nrql {
+    query = "FROM Metric SELECT average(apm.service.cpu.usertime.utilization) * 100 WHERE appName = '${app_name}'"
+  }
+
+  critical {
+    threshold = 90
+    threshold_duration = 300
+    threshold_occurrences = "ALL"
+    operator = "above"
+  }
+}
+
+# Memory usage
+resource "newrelic_nrql_alert_condition" "memory_usage" {
+  for_each = toset(var.app_name)
+  policy_id = newrelic_alert_policy.golden_metrics_policy[each.value].id
+  type = "static"
+  name = "Memory Usage - ${each.value}"
+  description = "Memory Usage"
+  enabled = true
+  violation_time_limit_seconds = 259200 # 3 days
+
+  nrql {
+    query = "FROM Metric SELECT average(apm.service.cpu.usertime.utilization) * 100 WHERE appName = '${app_name}'"
+  }
+
+  critical {
+    threshold = 90
+    threshold_duration = 300
+    threshold_occurrences = "ALL"
+    operator = "above"
   }
 }
 
