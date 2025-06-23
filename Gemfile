@@ -42,7 +42,7 @@ gem 'yaaf', '~> 3.0'
 # gem 'image_processing', '~> 1.2'
 
 group :development, :test do
-  gem 'annotaterb', '~> 4.15.0'
+  gem 'annotaterb', '~> 4.16.0'
   gem 'dotenv-rails', '~> 3.1.8'
   gem 'factory_bot_rails', '~> 6.5'
   gem 'faker', '~> 3.5'
