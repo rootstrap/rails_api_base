@@ -64,22 +64,22 @@ resource "newrelic_alert_policy" "percentiles_policy" {
 }
 
 # Response time - Create Alert Condition
-resource "newrelic_nrql_alert_condition" "response_time_alert" {
+resource "newrelic_nrql_alert_condition" "p90_latency_alert" {
   for_each = toset(var.app_name)
   policy_id = newrelic_alert_policy.golden_metrics_policy[each.value].id
   type = "static"
-  name = "Response Time - ${each.value}"
+  name = "P90 Response Time - ${each.value}"
   description = "High Transaction Response Time"
   enabled = true
   violation_time_limit_seconds = 259200 # 3 days
 
   nrql {
-    query = "SELECT average(duration) FROM Transaction WHERE appName = '${each.value}'"
+    query = "SELECT percentile(duration, 90) FROM Transaction WHERE appName = '${each.value}'"
   }
 
   critical {
     operator              = "above"
-    threshold             = 5
+    threshold             = 1
     threshold_duration    = 300
     threshold_occurrences = "ALL"
   }
@@ -126,50 +126,6 @@ resource "newrelic_nrql_alert_condition" "error_alert" {
     threshold_duration = 60
     threshold_occurrences = "ALL"
     operator = "above_or_equals"
-  }
-}
-
-# CPU usage
-resource "newrelic_nrql_alert_condition" "cpu_usage" {
-  for_each = toset(var.app_name)
-  policy_id = newrelic_alert_policy.golden_metrics_policy[each.value].id
-  type = "static"
-  name = "CPU Usage - ${each.value}"
-  description = "CPU Usage"
-  enabled = true
-  violation_time_limit_seconds = 259200 # 3 days
-
-  nrql {
-    query = "FROM Metric SELECT average(apm.service.cpu.usertime.utilization) * 100 WHERE appName = '${app_name}'"
-  }
-
-  critical {
-    threshold = 90
-    threshold_duration = 300
-    threshold_occurrences = "ALL"
-    operator = "above"
-  }
-}
-
-# Memory usage
-resource "newrelic_nrql_alert_condition" "memory_usage" {
-  for_each = toset(var.app_name)
-  policy_id = newrelic_alert_policy.golden_metrics_policy[each.value].id
-  type = "static"
-  name = "Memory Usage - ${each.value}"
-  description = "Memory Usage"
-  enabled = true
-  violation_time_limit_seconds = 259200 # 3 days
-
-  nrql {
-    query = "FROM Metric SELECT average(apm.service.cpu.usertime.utilization) * 100 WHERE appName = '${app_name}'"
-  }
-
-  critical {
-    threshold = 90
-    threshold_duration = 300
-    threshold_occurrences = "ALL"
-    operator = "above"
   }
 }
 
@@ -265,6 +221,28 @@ resource "newrelic_nrql_alert_condition" "endpoint_p95" {
   }
 }
 
+# Generate a P90 alert for each transaction defined in locals.transactions
+resource "newrelic_nrql_alert_condition" "transaction_p90_alert" {
+  for_each = { for t in local.transactions : "${t.app_name}|${t.transaction_name}" => t }
+  policy_id = newrelic_alert_policy.percentiles_policy[each.value.app_name].id
+  type = "static"
+  name = "P90 Alert - ${each.value.app_name} - ${each.value.friendly_name}"
+  description = "P90 Alert for ${each.value.transaction_name} in ${each.value.app_name}"
+  enabled = true
+  violation_time_limit_seconds = 259200 # 3 days
+
+  nrql {
+    query = "SELECT percentile(duration, 90) FROM Transaction WHERE appName = '${each.value.app_name}' AND name = '${each.value.transaction_name}'"
+  }
+
+  critical {
+    threshold = each.value.p90_latency_threshold
+    threshold_duration = 60
+    threshold_occurrences = "ALL"
+    operator = "above"
+  }
+}
+
 #######################################
 #             DASHBOARDS              #
 #######################################
@@ -328,4 +306,21 @@ resource "newrelic_workflow" "workflow" {
   destination {
     channel_id = newrelic_notification_channel.email_channel[each.value].id
   }
+}
+
+locals {
+  transactions_per_environment = {
+    "Admin Users Index" = {
+      transaction_name              = "Controller/admin/admin_users/index"
+      p90_latency_threshold         = 0.2
+    }
+  }
+  transactions = flatten([
+    for app in var.app_name : [
+      for t_k, t_v in local.transactions_per_environment : merge({
+        app_name      = app,
+        friendly_name = t_k
+      }, t_v)
+    ]
+  ])
 }
