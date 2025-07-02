@@ -9,86 +9,55 @@ terraform {
   }
 }
 
+locals {
+  transactions_per_environment = {
+    "Admin Users Index" = {
+      transaction_name = "Controller/admin/admin_users/index"
+      p90_latency_threshold = 0.2
+    }
+  }
+  # Must be an exact match to your application name in New Relic
+  app_name = "rails_api_base"
+  # app_environments = ["development", "staging", "production"]
+  app_environments = ["development", "development2"]
+  devs_emails = ["julian.pasquale@rootstrap.com", "ignacio.perez@rootstrap.com"]
+  app_names = [
+    for env in local.app_environments : "${local.app_name} - ${env}"
+  ]
+  transactions = flatten([
+    for app in local.app_names : [
+      for t_k, t_v in local.transactions_per_environment : merge({
+        app_name = app,
+        friendly_name = t_k
+      }, t_v)
+    ]
+  ])
+}
+
 # We use env variables to configure the provider
 provider "newrelic" {}
-
-# Must be an exact match to your application name in New Relic
-variable "app_name" {
-  type = list(string)
-  description = "List of New Relic application names."
-  default = [
-    "rails_api_base - development"
-  ]
-}
 
 variable "account_id" {
   type = number
   description = "New Relic account ID."
 }
 
-# List of endpoints to monitor for latency
-variable "endpoints" {
-  type = list(string)
-  description = "List of endpoint URIs to create P95 alert conditions for."
-  default = []
-}
-
-# Map of endpoint-specific thresholds (in seconds)
-variable "endpoint_thresholds" {
-  type = map(object({
-    p90 = optional(number)
-    p95 = optional(number)
-  }))
-  description = "Map of endpoint URIs to custom P90/P95 thresholds. If not set, uses default threshold."
-  default = {
-    "/api/v1/orders" = { p90 = 2.0, p95 = 3.0 }
-    "/api/v1/users"  = { p90 = 1.5 } # Only override P90, use default for P95
-  }
-}
-
 data "newrelic_entity" "app" {
-  for_each = toset(var.app_name)
+  for_each = toset(local.app_names)
   name   = each.value
   domain = "APM"
   type   = "APPLICATION"
 }
 
-resource "newrelic_alert_policy" "golden_metrics_policy" {
-  for_each = toset(var.app_name)
-  name = "Golden Signals - ${each.value}"
-}
-
-resource "newrelic_alert_policy" "percentiles_policy" {
-  for_each = toset(var.app_name)
-  name = "Percentiles - ${each.value}"
-}
-
-# Response time - Create Alert Condition
-resource "newrelic_nrql_alert_condition" "p90_latency_alert" {
-  for_each = toset(var.app_name)
-  policy_id = newrelic_alert_policy.golden_metrics_policy[each.value].id
-  type = "static"
-  name = "P90 Response Time - ${each.value}"
-  description = "High Transaction Response Time"
-  enabled = true
-  violation_time_limit_seconds = 259200 # 3 days
-
-  nrql {
-    query = "SELECT percentile(duration, 90) FROM Transaction WHERE appName = '${each.value}'"
-  }
-
-  critical {
-    operator              = "above"
-    threshold             = 1
-    threshold_duration    = 300
-    threshold_occurrences = "ALL"
-  }
+resource "newrelic_alert_policy" "rails_app_policy" {
+  for_each = toset(local.app_names)
+  name = "Rails app policy - ${each.value}"
 }
 
 # Throughput condition
 resource "newrelic_nrql_alert_condition" "low_throughput" {
-  for_each = toset(var.app_name)
-  policy_id = newrelic_alert_policy.golden_metrics_policy[each.value].id
+  for_each = toset(local.app_names)
+  policy_id = newrelic_alert_policy.rails_app_policy[each.value].id
   type = "static"
   name = "Low Throughput - ${each.value}"
   description = "Low Throughput"
@@ -109,8 +78,8 @@ resource "newrelic_nrql_alert_condition" "low_throughput" {
 
 # Error rate condition
 resource "newrelic_nrql_alert_condition" "error_alert" {
-  for_each = toset(var.app_name)
-  policy_id = newrelic_alert_policy.golden_metrics_policy[each.value].id
+  for_each = toset(local.app_names)
+  policy_id = newrelic_alert_policy.rails_app_policy[each.value].id
   type = "static"
   name = "Error alert - ${each.value}"
   description = "Error Alert"
@@ -134,12 +103,12 @@ resource "newrelic_nrql_alert_condition" "error_alert" {
 #######################################
 
 # Global P90 Alert
-resource "newrelic_nrql_alert_condition" "p90_alert" {
-  for_each = toset(var.app_name)
-  policy_id = newrelic_alert_policy.percentiles_policy[each.value].id
+resource "newrelic_nrql_alert_condition" "p90_latency_alert" {
+  for_each = toset(local.app_names)
+  policy_id = newrelic_alert_policy.rails_app_policy[each.value].id
   type = "static"
-  name = "P90 Alert - ${each.value}"
-  description = "P90 Alert"
+  name = "P90 Response Time - ${each.value}"
+  description = "High P90 Response Time"
   enabled = true
   violation_time_limit_seconds = 259200 # 3 days
 
@@ -148,20 +117,20 @@ resource "newrelic_nrql_alert_condition" "p90_alert" {
   }
 
   critical {
-    threshold = 1.5 # Recommended starting value, see below
-    threshold_duration = 60
-    threshold_occurrences = "ALL"
     operator = "above"
+    threshold = 1
+    threshold_duration = 300
+    threshold_occurrences = "ALL"
   }
 }
 
 # Global P95 Alert
 resource "newrelic_nrql_alert_condition" "p95_alert" {
-  for_each = toset(var.app_name)
-  policy_id = newrelic_alert_policy.percentiles_policy[each.value].id
+  for_each = toset(local.app_names)
+  policy_id = newrelic_alert_policy.rails_app_policy[each.value].id
   type = "static"
-  name = "P95 Alert - ${each.value}"
-  description = "P95 Alert"
+  name = "P95 Response Time - ${each.value}"
+  description = "High P95 Response Time"
   enabled = true
   violation_time_limit_seconds = 259200 # 3 days
 
@@ -170,52 +139,8 @@ resource "newrelic_nrql_alert_condition" "p95_alert" {
   }
 
   critical {
-    threshold = 5
-    threshold_duration = 60
-    threshold_occurrences = "ALL"
-    operator = "above"
-  }
-}
-
-# Per-endpoint P90 Alert
-resource "newrelic_nrql_alert_condition" "endpoint_p90" {
-  for_each = { for pair in flatten([for app in var.app_name : [for endpoint in var.endpoints : { app = app, endpoint = endpoint }]]) : "${pair.app}|${pair.endpoint}" => pair }
-  policy_id = newrelic_alert_policy.percentiles_policy[each.value.app].id
-  type = "static"
-  name = "P90 Alert - ${each.value.app} - ${each.value.endpoint}"
-  description = "P90 Alert for endpoint ${each.value.endpoint}"
-  enabled = true
-  violation_time_limit_seconds = 259200 # 3 days
-
-  nrql {
-    query = "SELECT percentile(duration, 90) FROM Transaction WHERE appName = '${each.value.app}' AND request.uri = '${each.value.endpoint}'"
-  }
-
-  critical {
-    threshold = lookup(try(var.endpoint_thresholds[each.value.endpoint].p90, null), each.value.endpoint, 1.5)
-    threshold_duration = 60
-    threshold_occurrences = "ALL"
-    operator = "above"
-  }
-}
-
-# Per-endpoint P95 Alert
-resource "newrelic_nrql_alert_condition" "endpoint_p95" {
-  for_each = { for pair in flatten([for app in var.app_name : [for endpoint in var.endpoints : { app = app, endpoint = endpoint }]]) : "${pair.app}|${pair.endpoint}" => pair }
-  policy_id = newrelic_alert_policy.percentiles_policy[each.value.app].id
-  type = "static"
-  name = "P95 Alert - ${each.value.app} - ${each.value.endpoint}"
-  description = "P95 Alert for endpoint ${each.value.endpoint}"
-  enabled = true
-  violation_time_limit_seconds = 259200 # 3 days
-
-  nrql {
-    query = "SELECT percentile(duration, 95) FROM Transaction WHERE appName = '${each.value.app}' AND request.uri = '${each.value.endpoint}'"
-  }
-
-  critical {
-    threshold = lookup(try(var.endpoint_thresholds[each.value.endpoint].p95, null), each.value.endpoint, 2.5)
-    threshold_duration = 60
+    threshold = 1
+    threshold_duration = 300
     threshold_occurrences = "ALL"
     operator = "above"
   }
@@ -224,10 +149,10 @@ resource "newrelic_nrql_alert_condition" "endpoint_p95" {
 # Generate a P90 alert for each transaction defined in locals.transactions
 resource "newrelic_nrql_alert_condition" "transaction_p90_alert" {
   for_each = { for t in local.transactions : "${t.app_name}|${t.transaction_name}" => t }
-  policy_id = newrelic_alert_policy.percentiles_policy[each.value.app_name].id
+  policy_id = newrelic_alert_policy.rails_app_policy[each.value.app_name].id
   type = "static"
-  name = "P90 Alert - ${each.value.app_name} - ${each.value.friendly_name}"
-  description = "P90 Alert for ${each.value.transaction_name} in ${each.value.app_name}"
+  name = "P90 Alert on ${each.value.friendly_name} - ${each.value.app_name}"
+  description = "P90 Alert on ${each.value.transaction_name} in ${each.value.app_name}"
   enabled = true
   violation_time_limit_seconds = 259200 # 3 days
 
@@ -237,7 +162,7 @@ resource "newrelic_nrql_alert_condition" "transaction_p90_alert" {
 
   critical {
     threshold = each.value.p90_latency_threshold
-    threshold_duration = 60
+    threshold_duration = 300
     threshold_occurrences = "ALL"
     operator = "above"
   }
@@ -248,7 +173,7 @@ resource "newrelic_nrql_alert_condition" "transaction_p90_alert" {
 #######################################
 
 resource "newrelic_one_dashboard_json" "activerecord_dashboard" {
-  for_each = toset(var.app_name)
+  for_each = toset(local.app_names)
   json = templatefile("${path.module}/dashboard.json.tftpl", {
     app_name = each.value,
     account_id = var.account_id
@@ -260,18 +185,18 @@ resource "newrelic_one_dashboard_json" "activerecord_dashboard" {
 #######################################
 
 resource "newrelic_notification_destination" "email_destination" {
-  for_each = toset(var.app_name)
+  for_each = toset(local.app_names)
   name = "Email destination - ${each.value}"
   type = "EMAIL"
 
   property {
     key = "email"
-    value = "julian.pasquale@rootstrap.com,ignacio.perez@rootstrap.com"
+    value = join(",", local.devs_emails)
   }
 }
 
 resource "newrelic_notification_channel" "email_channel" {
-  for_each = toset(var.app_name)
+  for_each = toset(local.app_names)
   name = "Email channel - ${each.value}"
   type = "EMAIL"
   destination_id = newrelic_notification_destination.email_destination[each.value].id
@@ -284,7 +209,7 @@ resource "newrelic_notification_channel" "email_channel" {
 }
 
 resource "newrelic_workflow" "workflow" {
-  for_each = toset(var.app_name)
+  for_each = toset(local.app_names)
   name = "Workflow - ${each.value}"
   enabled = true
   muting_rules_handling = "NOTIFY_ALL_ISSUES"
@@ -297,8 +222,7 @@ resource "newrelic_workflow" "workflow" {
       attribute = "accumulations.policyName"
       operator = "EXACTLY_MATCHES"
       values = [
-        newrelic_alert_policy.golden_metrics_policy[each.value].name,
-        newrelic_alert_policy.percentiles_policy[each.value].name
+        newrelic_alert_policy.rails_app_policy[each.value].name
       ]
     }
   }
@@ -306,21 +230,4 @@ resource "newrelic_workflow" "workflow" {
   destination {
     channel_id = newrelic_notification_channel.email_channel[each.value].id
   }
-}
-
-locals {
-  transactions_per_environment = {
-    "Admin Users Index" = {
-      transaction_name              = "Controller/admin/admin_users/index"
-      p90_latency_threshold         = 0.2
-    }
-  }
-  transactions = flatten([
-    for app in var.app_name : [
-      for t_k, t_v in local.transactions_per_environment : merge({
-        app_name      = app,
-        friendly_name = t_k
-      }, t_v)
-    ]
-  ])
 }

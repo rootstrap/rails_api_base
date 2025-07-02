@@ -1,15 +1,33 @@
-## Docker usage
+# Installation
+
+Follow the [Terraform installation docs](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) to install Terraform CLI.
+
+## Usage
+
+There are only three commands that need to be run in order to apply this terraform template and fully setup your New Relic monitoring.
 
 ```bash
-# Build container
-docker build -t new-relic-tf .
+# Init
+terraform init
 
-# Run init command
-docker run -v .:/app --env-file .env -it new-relic-tf init
+# Plan
+terraform plan
 
-# Run plan command to verify what is going to change
-docker run -v .:/app --env-file .env -it new-relic-tf plan
+# Apply
+terraform apply
+```
 
-# Apply plan
-docker run -v .:/app --env-file .env -it new-relic-tf apply
+# Docker usage
+
+If you want to use Docker to avoid installing Terraform, we recommend to use one of the latest versions of the Dockerfile.
+
+```bash
+# Init
+docker run -w /app -v .:/app --env-file .env -it hashicorp/terraform:latest init
+
+# Plan
+docker run -w /app -v .:/app --env-file .env -it hashicorp/terraform:latest plan
+
+# Apply
+docker run -w /app -v .:/app --env-file .env -it hashicorp/terraform:latest apply
 ```
