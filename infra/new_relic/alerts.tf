@@ -18,9 +18,8 @@ locals {
   }
   # Must be an exact match to your application name in New Relic
   app_name = "rails_api_base"
-  # app_environments = ["development", "staging", "production"]
-  app_environments = ["development", "development2"]
-  devs_emails = ["julian.pasquale@rootstrap.com", "ignacio.perez@rootstrap.com"]
+  app_environments = ["development", "staging", "production"]
+  devs_emails = ["devs@example.com"]
   app_names = [
     for env in local.app_environments : "${local.app_name} - ${env}"
   ]
