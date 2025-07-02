@@ -3,13 +3,6 @@
 ActiveAdmin.register AdminUser do
   permit_params :email, :password, :password_confirmation
 
-  controller do
-    def index
-      sleep 5
-      super
-    end
-  end
-
   index do
     selectable_column
     id_column

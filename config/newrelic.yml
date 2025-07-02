@@ -30,7 +30,7 @@ common: &default_settings
 development:
   <<: *default_settings
   # Do not track the development environment by default.
-  monitor_mode: true
+  monitor_mode: false
 
 test:
   <<: *default_settings
