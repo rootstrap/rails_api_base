@@ -403,7 +403,7 @@ GEM
       prettyprint
     prettyprint (0.2.0)
     prism (1.4.0)
-    prosopite (2.1.0)
+    prosopite (2.1.1)
     pry (0.15.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -680,7 +680,7 @@ DEPENDENCIES
   parallel_tests (~> 5.3)
   pg (~> 1.5)
   pg_query (~> 6.1.0)
-  prosopite (~> 2.1.0)
+  prosopite (~> 2.1.1)
   pry-byebug (~> 3.11)
   pry-rails (~> 0.3.11)
   puma (~> 6.6)
