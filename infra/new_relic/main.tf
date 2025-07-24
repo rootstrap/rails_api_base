@@ -40,16 +40,15 @@ locals {
 # We use env variables to configure the provider
 provider "newrelic" {}
 
-variable "account_id" {
-  type        = number
-  description = "New Relic account ID."
-}
-
 data "newrelic_entity" "app" {
   for_each = toset(local.app_names)
   name     = each.value
   domain   = "APM"
   type     = "APPLICATION"
+}
+
+data "newrelic_account" "account" {
+  # This will use the current account based on the API key
 }
 
 resource "newrelic_alert_policy" "rails_app_policy" {
@@ -157,7 +156,7 @@ resource "newrelic_one_dashboard_json" "activerecord_dashboard" {
   for_each = toset(local.app_names)
   json = templatefile("${path.module}/dashboard.json.tftpl", {
     app_name   = each.value,
-    account_id = var.account_id
+    account_id = data.newrelic_account.account.id
   })
 }
 
