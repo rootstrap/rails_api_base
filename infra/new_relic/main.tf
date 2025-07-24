@@ -11,10 +11,11 @@ terraform {
 
 locals {
   transactions_per_environment = {
-    "Admin Users Index" = {
-      transaction_name      = "Controller/admin/admin_users/index"
-      p90_latency_threshold = 0.2
-    }
+    # Example:
+    # "Admin Users Index" = {
+    #   transaction_name      = "Controller/admin/admin_users/index"
+    #   p90_latency_threshold = 0.2
+    # }
   }
   # Must be an exact match to your application name in New Relic
   app_name             = "rails_api_base"
@@ -22,6 +23,7 @@ locals {
   slack_channel_id     = "your-slack-channel-id"
   slack_destination_id = "your-slack-destination-id"
   devs_emails          = ["devs@example.com"]
+
   app_names = [
     for env in local.app_environments : "${local.app_name} - ${env}"
   ]
@@ -53,28 +55,6 @@ data "newrelic_entity" "app" {
 resource "newrelic_alert_policy" "rails_app_policy" {
   for_each = toset(local.app_names)
   name     = "Rails app policy - ${each.value}"
-}
-
-# Throughput condition
-resource "newrelic_nrql_alert_condition" "low_throughput" {
-  for_each                     = toset(local.app_names)
-  policy_id                    = newrelic_alert_policy.rails_app_policy[each.value].id
-  type                         = "static"
-  name                         = "Low Throughput - ${each.value}"
-  description                  = "Low Throughput"
-  enabled                      = true
-  violation_time_limit_seconds = 259200 # 3 days
-
-  nrql {
-    query = "FROM Transaction SELECT count(*) WHERE appName = '${each.value}'"
-  }
-
-  critical {
-    threshold             = 5
-    threshold_duration    = 300
-    threshold_occurrences = "ALL"
-    operator              = "below"
-  }
 }
 
 # Error rate condition
@@ -114,7 +94,7 @@ resource "newrelic_nrql_alert_condition" "p90_latency_alert" {
   violation_time_limit_seconds = 259200 # 3 days
 
   nrql {
-    query = "SELECT percentile(duration, 90) FROM Transaction WHERE appName = '${each.value}'"
+    query = "SELECT percentile(duration, 90) FROM Transaction WHERE appName = '${each.value}' AND transactionType = 'Web'"
   }
 
   critical {
@@ -136,7 +116,7 @@ resource "newrelic_nrql_alert_condition" "p95_alert" {
   violation_time_limit_seconds = 259200 # 3 days
 
   nrql {
-    query = "SELECT percentile(duration, 95) FROM Transaction WHERE appName = '${each.value}'"
+    query = "SELECT percentile(duration, 95) FROM Transaction WHERE appName = '${each.value}' AND transactionType = 'Web'"
   }
 
   critical {
@@ -158,7 +138,7 @@ resource "newrelic_nrql_alert_condition" "transaction_p90_alert" {
   violation_time_limit_seconds = 259200 # 3 days
 
   nrql {
-    query = "SELECT percentile(duration, 90) FROM Transaction WHERE appName = '${each.value.app_name}' AND name = '${each.value.transaction_name}'"
+    query = "SELECT percentile(duration, 90) FROM Transaction WHERE appName = '${each.value.app_name}' AND name = '${each.value.transaction_name}' AND transactionType = 'Web'"
   }
 
   critical {
