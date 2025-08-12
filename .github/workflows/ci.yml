@@ -12,7 +12,6 @@ permissions:
 
 env:
   RAILS_ENV: test
-  CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
   CI: true
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   REPO: ${{ github.repository }}
@@ -132,11 +131,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: Setup Code Climate test-reporter
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-          ./cc-test-reporter before-build
       - name: Let Rails generate the secret_key_base
         run: bundle exec rails runner 'puts Rails.application.secret_key_base'
       - name: Setup Database
@@ -164,13 +158,13 @@ jobs:
         uses: rootstrap/check_untracked_changes@v1
         with:
           path: "./app/ ./spec/"
-      - name: Report to CodeClimate
-        run: ./cc-test-reporter format-coverage --output "coverage/coverage.${{ matrix.ci_node_index }}.json"
-      - name: Upload partial coverage
+      - name: Rename coverage files
+        run: mv coverage/coverage.json coverage/coverage-${{ matrix.ci_node_index }}.json
+      - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
-          name: coverage
-          path: "coverage/coverage.${{ matrix.ci_node_index }}.json"
+          name: "coverage-${{ matrix.ci_node_index }}"
+          path: coverage/coverage-${{ matrix.ci_node_index }}.json
       - name: Merge API Docs from threads
         env:
           CI_NODE_INDEX: ${{ matrix.ci_node_index }}
@@ -192,32 +186,27 @@ jobs:
         with:
           fetch-depth: 0
           ssh-key: "${{ secrets.PUSH_KEY }}"
-      - name: Set ENV for CodeClimate
-        if: github.event_name == 'pull_request'
-        run: |
-          git fetch --no-tags --prune --depth=1 origin +refs/heads/$GITHUB_HEAD_REF:refs/remotes/origin/$GITHUB_HEAD_REF
-          echo "GIT_BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
-          echo "GIT_COMMIT_SHA=$(git rev-parse origin/$GITHUB_HEAD_REF)" >> $GITHUB_ENV
-          echo "PULL_REQUEST_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
       - name: Set ENV for API Docs
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           if [ $(git diff ${{ github.event.before }} ${{ github.event.after }} --name-only | grep 'spec/requests/api' | wc -l) -gt 0 ]; then
             echo "OPENAPI=true" >> $GITHUB_ENV
           fi
-      - name: Setup Code Climate test-reporter
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
-      - name: Download coverage reports
+      - name: Download coverage report
         uses: actions/download-artifact@v4
         with:
-          name: coverage
-          path: coverage/coverage.*.json
-      - name: Report coverage
+          pattern: coverage-*
+          path: coverage/
+          merge-multiple: true
+      - name: Set ENV for SonarQube
         run: |
-          ./cc-test-reporter sum-coverage coverage/**/*.json
-          ./cc-test-reporter upload-coverage
+          echo "SONAR_PROJECT_VERSION=$(echo $GITHUB_SHA | cut -c1-8)" >> $GITHUB_ENV
+          echo "SONAR_REPORT_PATHS=$(ls coverage/coverage-*.json | paste -sd "," -)" >> $GITHUB_ENV
+      - name: SonarQube Scanner
+        uses: sonarsource/sonarqube-scan-action@v5.3.0
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       - name: Enable Corepack
         run: corepack enable
       - name: Setup Node
