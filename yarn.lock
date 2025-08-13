@@ -198,10 +198,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/fontawesome-free@npm:6.7.2":
-  version: 6.7.2
-  resolution: "@fortawesome/fontawesome-free@npm:6.7.2"
-  checksum: 10c0/e27fb8b846f0bcf40c904acc210829a640329fc7b7ec4e42a7c43cb53739ed6052d78df90810f555a5c80bc608fee5a5174db3fa6da617f582d6210009a19278
+"@fortawesome/fontawesome-free@npm:7.0.0":
+  version: 7.0.0
+  resolution: "@fortawesome/fontawesome-free@npm:7.0.0"
+  checksum: 10c0/204a192c5a340a01c348d62dbee2bf94a540ef33e035b758cbb96cba203c5d28948ab59d57f23ff67617f49812e0642d5050b00dcdbf6bf6c17e03e4096f5e06
   languageName: node
   linkType: hard
 
@@ -1188,7 +1188,7 @@ __metadata:
   resolution: "rails_api_base@workspace:."
   dependencies:
     "@activeadmin/activeadmin": "npm:3.3.0"
-    "@fortawesome/fontawesome-free": "npm:6.7.2"
+    "@fortawesome/fontawesome-free": "npm:7.0.0"
     arctic_admin: "npm:4.3.3"
     esbuild: "npm:0.25.6"
     jquery: "npm:3.7.1"
