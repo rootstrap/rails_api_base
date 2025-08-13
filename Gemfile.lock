@@ -145,7 +145,7 @@ GEM
       debug_inspector (>= 1.2.0)
     bootsnap (1.18.6)
       msgpack (~> 1.2)
-    brakeman (7.0.2)
+    brakeman (7.1.0)
       racc
     builder (3.3.0)
     byebug (12.0.0)
@@ -653,7 +653,7 @@ DEPENDENCIES
   better_errors (~> 2.10)
   binding_of_caller (~> 1.0)
   bootsnap (~> 1.18)
-  brakeman (~> 7.0)
+  brakeman (~> 7.1)
   capybara (~> 3.40)
   cssbundling-rails (~> 1.4)
   devise (~> 4.9)
