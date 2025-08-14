@@ -16,7 +16,7 @@ jobs:
       name: ${{ github.ref == 'refs/heads/main' && 'production' || github.ref_name }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -63,7 +63,7 @@ jobs:
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@v1.7.4
+        uses: aws-actions/amazon-ecs-render-task-definition@v1.7.5
         with:
           task-definition: ${{ vars.ECS_TASK_DEFINITION_PATH }}
           container-name: ${{ vars.CONTAINER_NAME }}
