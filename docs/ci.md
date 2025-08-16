@@ -1,6 +1,31 @@
-# CI
+# Continuous Integration
+
+This project uses GitHub Actions for continuous integration. The workflow is defined in `.github/workflows/ci.yml`.
+
+## What's being tested and analyzed?
+
+The CI process includes:
+1. Running all RSpec tests
+2. Running code style checks via RuboCop
+3. Running security checks via Brakeman
+4. Running best practices checks via Rails Best Practices
+5. Running code quality and test coverage analysis via SonarQube
+6. Checking for missing annotations
+7. Linting Dockerfiles
+8. Building Docker images
+9. Generating and updating API documentation
+
+## CI Setup Requirements
+
+### SonarQube Configuration
+Configure these secrets in your GitHub repository (Settings → Secrets and variables → Actions):
+- `SONAR_TOKEN`: Your SonarQube token
+- `SONAR_HOST_URL`: Your SonarQube server URL
+
+The CI will automatically run tests, generate coverage reports, and upload results to SonarQube.
 
 ## Parallelization with Parallel Tests & Knapsack
+
 Knapsack and Parallel Tests gems allow us to run tests in several nodes at the same time, benefiting us in the execution time. Knapsack parallelizes them at node level while Parallel Tests does it at CPU level.
 
 Knapsack splits tests based on an execution time report. In case there are files that were not added in the report, they will all run on the same node and may overload it, so it is strongly recommended to update the report frequently.
