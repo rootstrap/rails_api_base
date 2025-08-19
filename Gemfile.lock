@@ -61,7 +61,7 @@ GEM
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
-    active_storage_base64 (3.0.0)
+    active_storage_base64 (3.0.1)
       activestorage (> 7.0)
       activesupport (> 7.0)
     activeadmin (3.3.0)
@@ -647,7 +647,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  active_storage_base64 (~> 3.0.0)
+  active_storage_base64 (~> 3.0.1)
   activeadmin (~> 3.3)
   annotaterb (~> 4.17.0)
   aws-sdk-s3 (~> 1.196)

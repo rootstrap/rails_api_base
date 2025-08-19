@@ -8,7 +8,7 @@ gem 'rails', '~> 8.0.2'
 
 # Gems
 gem 'activeadmin', '~> 3.3'
-gem 'active_storage_base64', '~> 3.0.0'
+gem 'active_storage_base64', '~> 3.0.1'
 gem 'aws-sdk-s3', '~> 1.196', require: false
 gem 'bootsnap', '~> 1.18'
 gem 'cssbundling-rails', '~> 1.4'
