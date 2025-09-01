@@ -1,8 +1,8 @@
 # Rails API Template
 
 [![Github Actions CI](https://github.com/rootstrap/rails_api_base/actions/workflows/ci.yml/badge.svg?event=push)](https://github.com/rootstrap/rails_api_base/actions)
-[![Code Climate](https://codeclimate.com/github/rootstrap/rails_api_base/badges/gpa.svg)](https://codeclimate.com/github/rootstrap/rails_api_base)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/63de7f82c79f5fe82f46/test_coverage)](https://codeclimate.com/github/rootstrap/rails_api_base/test_coverage)
+[![Quality Gate Status](${SONAR_HOST_URL}/api/project_badges/measure?project=rails-api-base&metric=alert_status)](${SONAR_HOST_URL}/dashboard?id=rails-api-base)
+[![Coverage](${SONAR_HOST_URL}/api/project_badges/measure?project=rails-api-base&metric=coverage)](${SONAR_HOST_URL}/dashboard?id=rails-api-base)
 
 Rails API Base is a boilerplate project for JSON RESTful APIs. It follows the community best practices in terms of standards, security and maintainability, integrating a variety of testing and code quality tools. It's based on Rails 8.0 and Ruby 3.4.
 
@@ -134,6 +134,26 @@ With `bundle exec rails code:analysis` you can run the code analysis tool, you c
 - [Rails Best Practices](https://github.com/flyerhzm/rails_best_practices#custom-configuration) Edit `config/rails_best_practices.yml`
 - [Brakeman](https://github.com/presidentbeef/brakeman) Run `brakeman -I` to generate `config/brakeman.ignore`
 
+## Code quality and test coverage
+
+The project uses SonarQube Community Edition to ensure code quality and monitor test coverage. The configuration can be found in `sonar-project.properties`.
+
+To set up SonarQube:
+
+1. Install SonarQube locally (see [CI documentation](docs/ci.md#setting-up-sonarqube) for details)
+2. Configure your environment variables:
+   ```bash
+   export SONAR_TOKEN=your_token
+   export SONAR_HOST_URL=http://localhost:9000
+   ```
+3. Run the analysis:
+   ```bash
+   bundle exec rspec
+   sonar-scanner
+   ```
+
+For more details about the CI process and SonarQube setup, check the [CI documentation](docs/ci.md).
+
 ## More linters
 - [Hadolint](https://github.com/hadolint/hadolint) Install with `brew install hadolint` and run `hadolint Dockerfile*`. Edit `.hadolint.yml` to omit additional rules.
 
@@ -147,12 +167,6 @@ See [Impersonation docs](./docs/impersonation.md) for more info
 
 In order to use [New Relic](https://newrelic.com) to monitor your application requests and metrics, you must setup `NEW_RELIC_API_KEY` and `NEW_RELIC_APP_NAME` environment variables.
 To obtain an API key you must create an account in the platform.
-
-## Configuring Code Climate
-
-1. After adding the project to CC, go to `Repo Settings`
-1. On the `Test Coverage` tab, copy the `Test Reporter ID`
-1. Set the current value of `CC_TEST_REPORTER_ID` in the [GitHub secrets and variables](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)
 
 ## Code Owners
 
