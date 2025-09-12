@@ -62,12 +62,12 @@ jobs:
       - name: Run Code Analysis
         run: bundle exec rails code:analysis
       - name: Run linter on production Dockerfile
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.2.0
         with:
           dockerfile: "Dockerfile"
 
       - name: Run linter on dev Dockerfile
-        uses: hadolint/hadolint-action@v3.1.0
+        uses: hadolint/hadolint-action@v3.2.0
         with:
           dockerfile: "Dockerfile.dev"
   tests:
