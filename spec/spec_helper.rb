@@ -11,6 +11,7 @@ require 'webmock/rspec'
 require 'shoulda/matchers'
 require 'pundit/rspec'
 require 'capybara/rspec'
+require 'simplecov_json_formatter'
 
 Knapsack.tracker.config(enable_time_offset_warning: false)
 Knapsack::Adapters::RSpecAdapter.bind
@@ -68,3 +69,10 @@ RSpec.configure do |config|
     ActionMailer::Base.deliveries.clear
   end
 end
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+  [
+    SimpleCov::Formatter::JSONFormatter,
+    SimpleCov::Formatter::HTMLFormatter
+  ]
+)
