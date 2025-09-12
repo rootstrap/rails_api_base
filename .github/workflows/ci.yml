@@ -56,7 +56,7 @@ jobs:
           bundler-cache: true
       - name: Label PR
         if: github.event.pull_request
-        uses: actions/labeler@v5
+        uses: actions/labeler@v6
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Code Analysis
