@@ -611,7 +611,7 @@ GEM
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
     stringio (3.1.7)
-    strong_migrations (2.4.0)
+    strong_migrations (2.5.0)
       activerecord (>= 7.1)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
@@ -710,7 +710,7 @@ DEPENDENCIES
   shoulda-matchers (~> 6.5)
   simplecov (~> 0.22.0)
   sprockets-rails (~> 3.5, >= 3.5.2)
-  strong_migrations (~> 2.4)
+  strong_migrations (~> 2.5)
   tzinfo-data
   webmock (~> 3.25)
   yaaf (~> 3.0)
