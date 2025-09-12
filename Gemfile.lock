@@ -141,7 +141,7 @@ GEM
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
       rouge (>= 1.0.0)
-    bigdecimal (3.2.2)
+    bigdecimal (3.2.3)
     binding_of_caller (1.0.1)
       debug_inspector (>= 1.2.0)
     bootsnap (1.18.6)
@@ -165,7 +165,7 @@ GEM
       sexp_processor
     coderay (1.1.3)
     concurrent-ruby (1.3.5)
-    connection_pool (2.5.3)
+    connection_pool (2.5.4)
     crack (1.0.0)
       bigdecimal
       rexml
@@ -611,7 +611,7 @@ GEM
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
     stringio (3.1.7)
-    strong_migrations (2.4.0)
+    strong_migrations (2.5.0)
       activerecord (>= 7.1)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
@@ -710,7 +710,7 @@ DEPENDENCIES
   shoulda-matchers (~> 6.5)
   simplecov (~> 0.22.0)
   sprockets-rails (~> 3.5, >= 3.5.2)
-  strong_migrations (~> 2.4)
+  strong_migrations (~> 2.5)
   tzinfo-data
   webmock (~> 3.25)
   yaaf (~> 3.0)
