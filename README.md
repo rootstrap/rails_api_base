@@ -1,8 +1,8 @@
 # Rails API Template
 
 [![Github Actions CI](https://github.com/rootstrap/rails_api_base/actions/workflows/ci.yml/badge.svg?event=push)](https://github.com/rootstrap/rails_api_base/actions)
-[![Quality Gate Status](${SONAR_HOST_URL}/api/project_badges/measure?project=rails-api-base&metric=alert_status)](${SONAR_HOST_URL}/dashboard?id=rails-api-base)
-[![Coverage](${SONAR_HOST_URL}/api/project_badges/measure?project=rails-api-base&metric=coverage)](${SONAR_HOST_URL}/dashboard?id=rails-api-base)
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/project/overview)
+
 
 Rails API Base is a boilerplate project for JSON RESTful APIs. It follows the community best practices in terms of standards, security and maintainability, integrating a variety of testing and code quality tools. It's based on Rails 8.0 and Ruby 3.4.
 

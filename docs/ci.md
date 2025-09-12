@@ -17,10 +17,15 @@ The CI process includes:
 
 ## CI Setup Requirements
 
-### SonarQube Configuration
+### SonarCloud Configuration
+Create an account in [SonarCloud](https://sonarcloud.io) and create a new project
 Configure these secrets in your GitHub repository (Settings → Secrets and variables → Actions):
 - `SONAR_TOKEN`: Your SonarQube token
-- `SONAR_HOST_URL`: Your SonarQube server URL
+- `SONAR_HOST_URL`: Your SonarQube server URL, default is https://sonarcloud.io
+Configure these properties in `sonar-project.properties`:
+- `sonar.projectKey`: Your SonarQube project key
+- `sonar.organization`: Your SonarQube organization
+
 
 The CI will automatically run tests, generate coverage reports, and upload results to SonarQube.
 
