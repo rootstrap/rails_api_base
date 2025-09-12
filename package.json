@@ -8,7 +8,7 @@
   "packageManager": "yarn@4.4.1",
   "dependencies": {
     "@activeadmin/activeadmin": "3.3.0",
-    "@fortawesome/fontawesome-free": "7.0.0",
+    "@fortawesome/fontawesome-free": "7.0.1",
     "arctic_admin": "4.3.3",
     "esbuild": "0.25.9",
     "jquery": "3.7.1",
