@@ -43,6 +43,7 @@ gem 'yaaf', '~> 3.0'
 
 group :development, :test do
   gem 'annotaterb', '~> 4.19.0'
+  gem 'chaotic_order', '~> 0.1.0'
   gem 'dotenv-rails', '~> 3.1.8'
   gem 'factory_bot_rails', '~> 6.5'
   gem 'faker', '~> 3.5'
