@@ -4,6 +4,7 @@ module API
   module V1
     class RegistrationsController < DeviseTokenAuth::RegistrationsController
       include API::Concerns::ActAsAPIRequest
+
       protect_from_forgery with: :null_session
 
       private

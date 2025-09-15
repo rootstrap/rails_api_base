@@ -4,6 +4,7 @@ RSpec.describe 'API::Concerns::Impersonation::Hooks', openapi: false do
   before do
     stub_const('FakeController', Class.new(API::V1::APIController) do
       include API::Concerns::Impersonation::Hooks
+
       skip_after_action :verify_authorized
 
       def show
