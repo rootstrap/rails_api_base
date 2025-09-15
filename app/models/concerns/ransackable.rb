@@ -5,7 +5,7 @@ module Ransackable
 
   class_methods do
     def ransackable_attributes(auth_object = nil)
-      return (column_names + ransackers.keys) if auth_object == :admin
+      return column_names + ransackers.keys if auth_object == :admin
 
       const_defined?(:RANSACK_ATTRIBUTES) ? self::RANSACK_ATTRIBUTES : []
     end
