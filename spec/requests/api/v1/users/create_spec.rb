@@ -51,7 +51,7 @@ describe 'POST api/v1/users' do
 
     it 'does not return a successful response' do
       subject
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
     end
   end
 
@@ -69,7 +69,7 @@ describe 'POST api/v1/users' do
 
     it 'does not return a successful response' do
       subject
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
     end
   end
 
@@ -87,7 +87,7 @@ describe 'POST api/v1/users' do
 
     it 'does not return a successful response' do
       subject
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
     end
   end
 end
