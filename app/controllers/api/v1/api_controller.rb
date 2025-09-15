@@ -27,7 +27,7 @@ module API
       end
 
       def render_parameter_missing(exception)
-        render_error(exception, { message: I18n.t('api.errors.missing_param') }, :unprocessable_entity)
+        render_error(exception, { message: I18n.t('api.errors.missing_param') }, :unprocessable_content)
       end
 
       def render_error(exception, errors, status)
