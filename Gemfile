@@ -81,7 +81,7 @@ group :test do
   gem 'prosopite', '~> 2.1.1'
   gem 'rspec-openapi', '~> 0.19'
   gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
-  gem 'selenium-webdriver', '~> 4.34.0'
+  gem 'selenium-webdriver', '~> 4.35.0'
   gem 'shoulda-matchers', '~> 6.5'
   gem 'simplecov', '~> 0.22.0', require: false
   gem 'webmock', '~> 3.25'
