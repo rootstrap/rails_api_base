@@ -61,7 +61,7 @@ group :development do
   gem 'listen', '~> 3.9'
   gem 'rails_best_practices', '~> 1.20'
   gem 'reek', '~> 6.5'
-  gem 'rubocop', '~> 1.80', require: false
+  gem 'rubocop', '~> 1.81', require: false
   gem 'rubocop-capybara', '~> 2.22'
   gem 'rubocop-factory_bot', '~> 2.27', require: false
   gem 'rubocop-performance', '~> 1.26', require: false
