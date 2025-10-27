@@ -1,30 +1,29 @@
-ARG RUBY_VERSION=3.3.3
-ARG NODE_VERSION=20.10.0
-ARG YARN_VERSION=1.22.19
+ARG RUBY_VERSION=3.4.2
+ARG NODE_VERSION=22.7.0
 
 # Use Node image so we can pull the binaries from here.
-FROM node:$NODE_VERSION as node
+FROM node:$NODE_VERSION AS node
 
 # Ruby build image.
-FROM ruby:${RUBY_VERSION}-slim as base
+FROM ruby:${RUBY_VERSION}-slim AS base
 
 # Setup environment variables.
-ENV WORK_ROOT /src
-ENV APP_HOME $WORK_ROOT/app
-ENV LANG C.UTF-8
-ENV BUNDLE_PATH $APP_HOME/vendor/bundle
+ENV WORK_ROOT=/src
+ENV APP_HOME=$WORK_ROOT/app
+ENV LANG=C.UTF-8
+ENV BUNDLE_PATH=$APP_HOME/vendor/bundle
 
 # Set prod environment to avoid installing dev dependencies
-ENV BUNDLE_WITHOUT development:test
-ENV BUNDLE_DEPLOYMENT 1
-ENV RAILS_ENV production
-ENV NODE_ENV production
+ENV BUNDLE_WITHOUT=development:test
+ENV BUNDLE_DEPLOYMENT=1
+ENV RAILS_ENV=production
+ENV NODE_ENV=production
 
 # Throw-away build stage to reduce size of final image
-FROM base as builder
+FROM base AS builder
 
 RUN apt-get update -qq && \
-    apt-get install -y build-essential libssl-dev libpq-dev git libsasl2-dev && \
+    apt-get install --no-install-recommends -y build-essential libssl-dev libpq-dev git libsasl2-dev libyaml-dev curl && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy node binaries from node image.
@@ -32,17 +31,18 @@ COPY --from=node /usr/local /usr/local
 COPY --from=node /opt /opt
 
 # Create app directory.
-RUN mkdir -p $APP_HOME
+RUN mkdir -p "${APP_HOME}"
 
 # Setup work directory.
 WORKDIR $APP_HOME
 
 # Copy dependencies files and install libraries.
-COPY --link Gemfile Gemfile.lock package.json yarn.lock ./
+COPY --link Gemfile Gemfile.lock package.json yarn.lock .yarnrc.yml .ruby-version ./
 
-RUN gem install bundler && bundle install -j 4 && yarn install --frozen-lockfile && \
+RUN corepack enable
+RUN gem install bundler && bundle install -j 4 && yarn install --immutable && \
     bundle exec bootsnap precompile --gemfile && \
-    rm -rf ~/.bundle/ $BUNDLE_PATH/ruby/*/cache $BUNDLE_PATH/ruby/*/bundler/gems/*/.git
+    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
 
 # Copy application code
 COPY --link . .
@@ -58,8 +58,8 @@ FROM base
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libpq-dev libvips libjemalloc2 && \
-    apt-get clean
+    apt-get install --no-install-recommends -y curl libpq-dev libvips libjemalloc2 libyaml-dev && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 ENV USERNAME rails_api_base
 ENV USER_UID 1000
@@ -70,7 +70,7 @@ RUN groupadd --gid $USER_GID $USERNAME && \
     useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 
 # Create app directory.
-RUN mkdir -p $APP_HOME && chown -R $USERNAME:$USERNAME $APP_HOME && chmod -R 700 $APP_HOME
+RUN mkdir -p "${APP_HOME}" && chown -R $USERNAME:$USERNAME $APP_HOME && chmod -R 700 $APP_HOME
 
 # Change to the rootless user.
 USER $USERNAME
@@ -89,8 +89,8 @@ RUN ln -s /usr/lib/*-linux-gnu/libjemalloc.so.2 /usr/lib/libjemalloc.so.2
 USER $USERNAME
 
 # Deployment options
-ENV RAILS_LOG_TO_STDOUT true
-ENV RAILS_SERVE_STATIC_FILES true
+ENV RAILS_LOG_TO_STDOUT=true
+ENV RAILS_SERVE_STATIC_FILES=true
 ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
 
 # Entrypoint prepares the database.
@@ -98,4 +98,5 @@ ENTRYPOINT ["./bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD ["./bin/rails", "server"]
+
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]

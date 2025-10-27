@@ -1,10 +1,9 @@
 # Rails API Template
 
 [![Github Actions CI](https://github.com/rootstrap/rails_api_base/actions/workflows/ci.yml/badge.svg?event=push)](https://github.com/rootstrap/rails_api_base/actions)
-[![Code Climate](https://codeclimate.com/github/rootstrap/rails_api_base/badges/gpa.svg)](https://codeclimate.com/github/rootstrap/rails_api_base)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/63de7f82c79f5fe82f46/test_coverage)](https://codeclimate.com/github/rootstrap/rails_api_base/test_coverage)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rootstrap_rails_api_base&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=rootstrap_rails_api_base)
 
-Rails API Base is a boilerplate project for JSON RESTful APIs. It follows the community best practices in terms of standards, security and maintainability, integrating a variety of testing and code quality tools. It's based on Rails 7.2 and Ruby 3.3.
+Rails API Base is a boilerplate project for JSON RESTful APIs. It follows the community best practices in terms of standards, security and maintainability, integrating a variety of testing and code quality tools. It's based on Rails 8.0 and Ruby 3.4.
 
 Finally, it contains a plug an play Administration console (thanks to [ActiveAdmin](https://github.com/activeadmin/activeadmin)).
 
@@ -32,8 +31,9 @@ This template comes with:
 
 1. Clone this repo
 1. Install PostgreSQL in case you don't have it
-1. Install node and yarn. Expected node version ">=16 || 14 >=14.17".
-1. Run `bootstrap.sh` with the name of your project like `./bin/bootstrap.sh --name=my_awesome_project`
+1. Install node. The expected node version is defined in `.nvmrc` file.
+1. Install yarn. You can run `corepack enable` to install the required yarn binaries. Corepack is already included in newest node versions.
+1. Run `bootstrap.sh` with the name of your project like `./bin/bootstrap.sh --name=my_awesome_project`.
 1. Run `yarn install` and `yarn build --watch`. This bundles the JS assets in the administration site using [esbuild](https://github.com/evanw/esbuild).
 1. `bundle exec rspec` and make sure all tests pass (non-headless mode) or `HEADLESS=true bundle exec rspec` (headless mode)
 1. Run `bin/dev`.
@@ -72,11 +72,10 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 
 - [ActiveAdmin](https://github.com/activeadmin/activeadmin) for easy administration
 - [Arctic Admin](https://github.com/cprodhomme/arctic_admin) for responsive active admin
-- [Annotate](https://github.com/ctran/annotate_models) for documenting the schema in the classes
+- [Annotaterb](https://github.com/drwl/annotaterb) for documenting the schema in the classes
 - [Better Errors](https://github.com/charliesome/better_errors) for a better error page
 - [Brakeman](https://github.com/presidentbeef/brakeman) for security static analysis
 - [Byebug](https://github.com/deivid-rodriguez/byebug) for debugging
-- [DelayedJob](https://github.com/collectiveidea/delayed_job) for background processing
 - [Devise](https://github.com/plataformatec/devise) for basic authentication
 - [Devise Token Auth](https://github.com/lynndylanhurley/devise_token_auth) for API authentication
 - [Dotenv](https://github.com/bkeepers/dotenv) for handling environment variables
@@ -84,12 +83,12 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Factory Bot](https://github.com/thoughtbot/factory_bot) for testing data
 - [Faker](https://github.com/stympy/faker) for generating test data
 - [Flipper](https://github.com/jnunemaker/flipper) for feature flag support
+- [GoodJob](https://github.com/bensheldon/good_job) for background processing
 - [Jbuilder](https://github.com/rails/jbuilder) for JSON views
 - [JS Bundling](https://github.com/rails/jsbundling-rails) for bundling JS assets
 - [Knapsack](https://github.com/KnapsackPro/knapsack) for splitting tests evenly based on execution time
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing emails in the browser
 - [New Relic](https://github.com/newrelic/newrelic-ruby-agent) for monitoring and debugging
-- [Oj](https://github.com/ohler55/oj) for optimized JSON
 - [Pagy](https://github.com/ddnexus/pagy) for pagination
 - [Parallel Tests](https://github.com/grosser/parallel_tests) for running the tests in multiple cores
 - [Prosopite](https://github.com/charkost/prosopite) to detect N+1 queries
@@ -134,6 +133,29 @@ With `bundle exec rails code:analysis` you can run the code analysis tool, you c
 - [Rails Best Practices](https://github.com/flyerhzm/rails_best_practices#custom-configuration) Edit `config/rails_best_practices.yml`
 - [Brakeman](https://github.com/presidentbeef/brakeman) Run `brakeman -I` to generate `config/brakeman.ignore`
 
+## Code quality and test coverage
+
+The project uses SonarQube Community Edition to ensure code quality and monitor test coverage. The configuration can be found in `sonar-project.properties`.
+
+To set up SonarQube:
+
+1. Install SonarQube locally (see [CI documentation](docs/ci.md#setting-up-sonarqube) for details)
+2. Configure your environment variables:
+   ```bash
+   export SONAR_TOKEN=your_token
+   export SONAR_HOST_URL=http://localhost:9000
+   ```
+3. Run the analysis:
+   ```bash
+   bundle exec rspec
+   sonar-scanner
+   ```
+
+For more details about the CI process and SonarQube setup, check the [CI documentation](docs/ci.md).
+
+## More linters
+- [Hadolint](https://github.com/hadolint/hadolint) Install with `brew install hadolint` and run `hadolint Dockerfile*`. Edit `.hadolint.yml` to omit additional rules.
+
 ## Impersonation
 
 The `rails_api_base` incorporates a user impersonation feature, allowing `AdminUser`s to assume the identity of other `User`s. This feature is disabled by default.
@@ -144,12 +166,6 @@ See [Impersonation docs](./docs/impersonation.md) for more info
 
 In order to use [New Relic](https://newrelic.com) to monitor your application requests and metrics, you must setup `NEW_RELIC_API_KEY` and `NEW_RELIC_APP_NAME` environment variables.
 To obtain an API key you must create an account in the platform.
-
-## Configuring Code Climate
-
-1. After adding the project to CC, go to `Repo Settings`
-1. On the `Test Coverage` tab, copy the `Test Reporter ID`
-1. Set the current value of `CC_TEST_REPORTER_ID` in the [GitHub secrets and variables](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository)
 
 ## Code Owners
 

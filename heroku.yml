@@ -9,5 +9,9 @@ run:
   web: bundle exec puma -C config/puma.rb
   worker:
     command:
-      - ./bin/delayed_job start
+      - bundle exec good_job start --probe-port=3006
     image: web
+release:
+  image: web
+  command:
+    - ./bin/release.sh

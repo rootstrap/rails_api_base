@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/integer/time'
-
 # The test environment is used exclusively to run your application's
 # test suite. You never need to work with it otherwise. Remember that
 # your test database is "scratch space" for the test suite and is wiped
@@ -19,12 +17,12 @@ Rails.application.configure do
   # loading is working properly before deploying your code.
   config.eager_load = ENV['CI'].present?
 
-  # Configure public file server for tests with Cache-Control for performance.
+  # Configure public file server for tests with cache-control for performance.
   config.public_file_server.enabled = true
-  config.public_file_server.headers = { 'Cache-Control' => "public, max-age=#{1.hour.to_i}" }
+  config.public_file_server.headers = { 'cache-control' => 'public, max-age=3600' }
 
-  # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  # Show full error reports.
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
   config.cache_store = :null_store
 
@@ -46,9 +44,8 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
-  # Unlike controllers, the mailer instance doesn't have any context about the
-  # incoming request so you'll need to provide the :host parameter yourself.
-  config.action_mailer.default_url_options = { host: 'www.example.com' }
+  # Set host to be used by links generated in mailer templates.
+  config.action_mailer.default_url_options = { host: 'example.com' }
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
@@ -70,4 +67,10 @@ Rails.application.configure do
 
   # Use test adapter for ActiveJob
   config.active_job.queue_adapter = :test
+
+  # Disable logging in CI to improve run time by 10%
+  if ENV['CI'].present?
+    config.logger = Logger.new(nil)
+    config.log_level = :fatal
+  end
 end

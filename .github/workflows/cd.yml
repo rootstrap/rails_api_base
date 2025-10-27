@@ -11,14 +11,15 @@ jobs:
   deploy:
     name: Deploy on AWS ECS
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     environment:
       name: ${{ github.ref == 'refs/heads/main' && 'production' || github.ref_name }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v5
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -36,7 +37,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.login-ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}:${{ github.sha }}
+          tags: |
+            ${{ steps.login-ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}:${{ github.sha }}
+            ${{ steps.login-ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}:latest
 
       - name: Get the image digest
         id: image-digest
@@ -46,13 +49,29 @@ jobs:
         run: |
           aws ecs describe-task-definition --task-definition ${{ vars.ECS_TASK_DEFINITION }} --query taskDefinition > ${{ vars.ECS_TASK_DEFINITION_PATH }}
 
+      - name: Download Parameter Store Values
+        id: ssm-download
+        run: |
+          PARAMETERS_JSON=$(aws ssm describe-parameters --query "Parameters[?contains(Name, 'backend')].{Name:Name,ARN:ARN}" --output json | jq -c '.')
+          echo "parameters=${PARAMETERS_JSON}" >> $GITHUB_OUTPUT
+
+      - name: Format SSM Parameters
+        id: format-secrets
+        run: |
+          echo '${{ steps.ssm-download.outputs.parameters }}' > params.json
+          ./bin/format_aws_secrets params.json
+
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        uses: aws-actions/amazon-ecs-render-task-definition@v1.8.1
         with:
           task-definition: ${{ vars.ECS_TASK_DEFINITION_PATH }}
           container-name: ${{ vars.CONTAINER_NAME }}
           image: ${{ steps.image-digest.outputs.image }}
+          environment-variables: |
+            DUMMY=DUMMY
+          secrets: |
+            ${{ steps.format-secrets.outputs.formatted_secrets }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2

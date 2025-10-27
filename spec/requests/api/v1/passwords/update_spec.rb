@@ -35,7 +35,7 @@ describe 'PUT api/v1/users/passwords/' do
     it 'does not change the password if confirmation does not match' do
       params[:password_confirmation] = 'anotherpass'
       put user_password_path, params:, headers:, as: :json
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
     end
   end
 end

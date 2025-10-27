@@ -1,0 +1,4 @@
+ignored:
+  - DL3059 # Multiple consecutive `RUN` instructions. We ignore this because we want to cache as many RUN stages as possible.
+  - DL3008 # Pin versions in apt-get install.
+  - DL3028 # Pin versions in gem install.

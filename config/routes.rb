@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   namespace :admin do
     authenticate(:admin_user) do
       mount Flipper::UI.app(Flipper) => '/feature-flags'
+      mount GoodJob::Engine => '/background-jobs'
     end
   end
 

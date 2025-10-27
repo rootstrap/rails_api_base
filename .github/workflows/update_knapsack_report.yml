@@ -10,11 +10,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 15
 
     services:
       db:
-        image: postgres:15
+        image: postgres:16
         env:
           POSTGRES_USER: postgres
           POSTGRES_HOST_AUTH_METHOD: trust
@@ -30,7 +30,7 @@ jobs:
       RAILS_ENV: test
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:

@@ -5,7 +5,7 @@ inherit_mode:
   merge:
     - Exclude
 
-require:
+plugins:
   - rubocop-capybara
   - rubocop-factory_bot
   - rubocop-performance
@@ -69,6 +69,8 @@ Metrics/CyclomaticComplexity:
 
 Metrics/MethodLength:
   Max: 24
+  Exclude:
+    - db/migrate/20250401200354_create_good_jobs.rb
 
 Metrics/ModuleLength:
   Max: 200
@@ -85,6 +87,11 @@ Rails/FilePath:
 Rails/SaveBang:
   Enabled: true
 
+Rails/ThreeStateBooleanColumn:
+  Enabled: true
+  Exclude:
+    - db/migrate/20250401200354_create_good_jobs.rb
+
 RSpec/ExampleLength:
   Enabled: false
 
@@ -93,6 +100,12 @@ RSpec/MultipleExpectations:
 
 RSpec/NamedSubject:
   Enabled: false
+
+RSpec/VerifiedDoubles:
+  Exclude:
+    - spec/policies/admin/application_policy_spec.rb
+    - spec/policies/admin/page_policy_spec.rb
+    - spec/policies/application_policy_spec.rb
 
 Style/ArrayCoercion:
   Enabled: true
@@ -135,6 +148,9 @@ Style/RedundantRegexpCharacterClass:
 
 Style/ReturnNil:
   Enabled: true
+
+Style/SafeNavigationChainLength:
+  Enabled: false
 
 Style/SlicingWithRange:
   Enabled: false

@@ -71,7 +71,7 @@ sed_i() {
 export -f sed_i
 
 # Define the file types to search for
-file_types=("yml" "yaml" "erb" "rb" "json")
+file_types=("yml" "yaml" "erb" "rb" "json" "tf")
 
 for file_type in "${file_types[@]}"
 do
