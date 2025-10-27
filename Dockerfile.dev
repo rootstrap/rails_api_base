@@ -20,8 +20,21 @@ ENV WORK_ROOT=/src
 ENV APP_HOME=$WORK_ROOT/app/
 ENV LANG=C.UTF-8
 
-# Create app directory.
-RUN mkdir -p $APP_HOME
+# Setup rootless user for security
+ARG USERNAME=rails
+ARG USER_UID=1000
+ARG USER_GID=1000
+
+RUN groupadd --gid $USER_GID $USERNAME && \
+    useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+
+# Create app directory with proper ownership
+RUN mkdir -p $APP_HOME && \
+    chown -R $USERNAME:$USERNAME $APP_HOME && \
+    chmod -R 700 $APP_HOME
+
+# Switch to non-root user
+USER $USERNAME
 
 # Setup work directory.
 WORKDIR $APP_HOME
@@ -29,15 +42,15 @@ WORKDIR $APP_HOME
 RUN gem install foreman bundler
 
 # Copy dependencies files and install libraries.
-COPY --link package.json yarn.lock .yarnrc.yml ./
+COPY --link --chown=$USERNAME:$USERNAME --chmod=700 package.json yarn.lock .yarnrc.yml ./
 
 RUN corepack enable
 RUN yarn install --immutable && yarn cache clean
 
-COPY --link Gemfile Gemfile.lock .ruby-version ./
+COPY --link --chown=$USERNAME:$USERNAME --chmod=700 Gemfile Gemfile.lock .ruby-version ./
 RUN bundle install -j 4
 
-COPY --link . .
+COPY --link --chown=$USERNAME:$USERNAME --chmod=700 . .
 
 RUN yarn build
 
