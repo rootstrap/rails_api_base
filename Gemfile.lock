@@ -397,7 +397,7 @@ GEM
       json
       yaml
     parallel (1.27.0)
-    parallel_tests (5.4.0)
+    parallel_tests (5.5.0)
       parallel
     parser (3.3.10.0)
       ast (~> 2.4.1)
@@ -690,7 +690,7 @@ DEPENDENCIES
   newrelic_rpm (~> 9.22)
   octokit (~> 10.0)
   pagy (~> 43.0)
-  parallel_tests (~> 5.4)
+  parallel_tests (~> 5.5)
   pg (~> 1.6)
   pg_query (~> 6.1.0)
   prosopite (~> 2.1.2)
