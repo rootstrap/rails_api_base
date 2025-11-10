@@ -59,7 +59,7 @@ group :development do
   gem 'i18n-tasks', '~> 1.0.15'
   gem 'letter_opener', '~> 1.10'
   gem 'listen', '~> 3.9'
-  gem 'rails_best_practices', '~> 1.20'
+  gem 'rails_best_practices', '~> 1.23'
   gem 'reek', '~> 6.5'
   gem 'rubocop', '~> 1.81', require: false
   gem 'rubocop-capybara', '~> 2.22'
