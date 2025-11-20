@@ -1,0 +1,17 @@
+// Wrapper to use Font Awesome with modern @use syntax
+// Configure variables before loading Font Awesome
+@use '@fortawesome/fontawesome-free/scss/variables' with (
+  $font-path: "."
+);
+
+// Load Font Awesome core modules
+@forward '@fortawesome/fontawesome-free/scss/core';
+@forward '@fortawesome/fontawesome-free/scss/sizing';
+@forward '@fortawesome/fontawesome-free/scss/widths';
+@forward '@fortawesome/fontawesome-free/scss/list';
+@forward '@fortawesome/fontawesome-free/scss/bordered';
+@forward '@fortawesome/fontawesome-free/scss/pulled';
+@forward '@fortawesome/fontawesome-free/scss/animated';
+@forward '@fortawesome/fontawesome-free/scss/rotated-flipped';
+@forward '@fortawesome/fontawesome-free/scss/stacked';
+@forward '@fortawesome/fontawesome-free/scss/icons';
