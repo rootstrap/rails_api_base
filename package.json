@@ -19,6 +19,6 @@
   "scripts": {
     "build": "yarn build:js && yarn build:css",
     "build:js": "node esbuild.config.mjs",
-    "build:css": "sass ./app/assets/stylesheets:./app/assets/builds --no-source-map --load-path=node_modules"
+    "build:css": "sass ./app/assets/stylesheets:./app/assets/builds --no-source-map --load-path=node_modules --silence-deprecation=import --silence-deprecation=color-functions --silence-deprecation=global-builtin"
   }
 }
