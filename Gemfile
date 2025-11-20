@@ -30,6 +30,7 @@ gem 'pundit', '~> 2.5'
 gem 'rack-cors', '~> 3.0'
 gem 'rswag-api', '~> 2.17.0'
 gem 'rswag-ui', '~> 2.17.0'
+gem 'ostruct', '~> 0.6.0' # Required by rswag-ui; will no longer be part of default gems in Ruby 3.5+
 gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets-rails', '~> 3.5', '>= 3.5.2'
 gem 'strong_migrations', '~> 2.5'
