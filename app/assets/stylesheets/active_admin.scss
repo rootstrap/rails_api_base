@@ -1,3 +1,7 @@
+// Font Awesome with modern @use syntax (via wrapper files)
+@use 'fontawesome_wrapper';
+@use 'solid_wrapper';
+
 // Sass variable overrides must be declared before loading up Active Admin's styles.
 //
 // To view the variables that Active Admin provides, take a look at
@@ -6,12 +10,9 @@
 //
 // For example, to change the sidebar width:
 // $sidebar-width: 242px;
-$fa-font-path: ".";
 
 // Active Admin's got SASS!
 @import 'arctic_admin/src/scss/main';
-@import '@fortawesome/fontawesome-free/scss/fontawesome';
-@import '@fortawesome/fontawesome-free/scss/solid';
 
 // Overriding any non-variable Sass must be done after the fact.
 // For example, to change the default status-tag color:
