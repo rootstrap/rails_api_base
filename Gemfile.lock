@@ -1,11 +1,11 @@
 GIT
   remote: https://github.com/lynndylanhurley/devise_token_auth.git
-  revision: aedef3ca68d4e69bdc4a3e8987fa9d5f45420eec
+  revision: 02f1117964a751c8c2137c08f3d26987dc6bd42a
   specs:
     devise_token_auth (1.2.5)
       bcrypt (~> 3.0)
       devise (> 3.5.2, < 5)
-      rails (>= 4.2.0, < 8.1)
+      rails (>= 4.2.0, < 8.2)
 
 GIT
   remote: https://github.com/rootstrap/rspec-retry.git
@@ -368,7 +368,7 @@ GEM
     method_source (1.1.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    minitest (5.26.1)
+    minitest (5.26.2)
     msgpack (1.8.0)
     net-http (0.6.0)
       uri
