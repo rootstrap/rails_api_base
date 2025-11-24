@@ -368,7 +368,7 @@ GEM
     method_source (1.1.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    minitest (5.26.1)
+    minitest (5.26.2)
     msgpack (1.8.0)
     net-http (0.6.0)
       uri
@@ -517,7 +517,7 @@ GEM
       railties (>= 7.0)
     rexml (3.4.4)
     rouge (4.3.0)
-    rspec-core (3.13.5)
+    rspec-core (3.13.6)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.5)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -525,7 +525,7 @@ GEM
     rspec-mocks (3.13.5)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-openapi (0.20.0)
+    rspec-openapi (0.21.0)
       actionpack (>= 5.2.0)
       rails-dom-testing
       rspec-core
@@ -703,7 +703,7 @@ DEPENDENCIES
   rails (~> 8.0.4)
   rails_best_practices (~> 1.23)
   reek (~> 6.5)
-  rspec-openapi (~> 0.20)
+  rspec-openapi (~> 0.21)
   rspec-rails (~> 8.0)
   rspec-retry!
   rswag-api (~> 2.17.0)
