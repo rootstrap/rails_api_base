@@ -189,7 +189,7 @@ GEM
     dotenv-rails (3.1.8)
       dotenv (= 3.1.8)
       railties (>= 6.1)
-    draper (4.0.4)
+    draper (4.0.6)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
       activemodel-serializers-xml (>= 1.0)
