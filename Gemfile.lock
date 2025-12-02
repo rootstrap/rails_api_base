@@ -525,7 +525,7 @@ GEM
     rspec-mocks (3.13.5)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-openapi (0.21.0)
+    rspec-openapi (0.21.1)
       actionpack (>= 5.2.0)
       rails-dom-testing
       rspec-core
