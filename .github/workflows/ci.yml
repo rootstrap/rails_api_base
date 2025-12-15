@@ -203,7 +203,7 @@ jobs:
           echo "SONAR_PROJECT_VERSION=$(echo $GITHUB_SHA | cut -c1-8)" >> $GITHUB_ENV
           echo "SONAR_REPORT_PATHS=$(ls coverage/coverage-*.json | paste -sd "," -)" >> $GITHUB_ENV
       - name: SonarQube Scanner
-        uses: sonarsource/sonarqube-scan-action@v6.0.0
+        uses: sonarsource/sonarqube-scan-action@v7.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
