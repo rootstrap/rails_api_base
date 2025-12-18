@@ -9,7 +9,7 @@ gem 'rails', '~> 8.0.4'
 # Gems
 gem 'activeadmin', '~> 3.4'
 gem 'active_storage_base64', '~> 3.0.1'
-gem 'aws-sdk-s3', '~> 1.206', require: false
+gem 'aws-sdk-s3', '~> 1.208', require: false
 gem 'bootsnap', '~> 1.19'
 gem 'cssbundling-rails', '~> 1.4'
 gem 'devise', '~> 4.9'
