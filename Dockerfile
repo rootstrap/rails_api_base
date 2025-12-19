@@ -61,9 +61,9 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl libpq-dev libvips libjemalloc2 libyaml-dev && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ENV USERNAME rails_api_base
-ENV USER_UID 1000
-ENV USER_GID 1000
+ENV USERNAME=rails_api_base
+ENV USER_UID=1000
+ENV USER_GID=1000
 
 # Create a rootless user.
 RUN groupadd --gid $USER_GID $USERNAME && \

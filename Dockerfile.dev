@@ -20,9 +20,9 @@ ENV WORK_ROOT=/src
 ENV APP_HOME=$WORK_ROOT/app/
 ENV LANG=C.UTF-8
 
-ENV USERNAME rails_api_base
-ENV USER_UID 1000
-ENV USER_GID 1000
+ENV USERNAME=rails_api_base
+ENV USER_UID=1000
+ENV USER_GID=1000
 
 # Create a rootless user.
 RUN groupadd --gid $USER_GID $USERNAME && \
