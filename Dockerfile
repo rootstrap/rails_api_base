@@ -61,19 +61,32 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl libpq-dev libvips libjemalloc2 libyaml-dev && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+ENV USERNAME=rails_api_base
+ENV USER_UID=1000
+ENV USER_GID=1000
+
+# Create a rootless user.
+RUN groupadd --gid "$USER_GID" "$USERNAME" && \
+    useradd --uid "$USER_UID" --gid "$USER_GID" -m "$USERNAME"
+
 # Create app directory.
-RUN mkdir -p "${APP_HOME}"
+RUN mkdir -p "${APP_HOME}" && chown -R "$USERNAME:$USERNAME" "$APP_HOME" && chmod -R 700 "$APP_HOME"
+
+# Change to the rootless user.
+USER "$USERNAME"
 
 # Setup work directory.
-WORKDIR $APP_HOME
+WORKDIR "$APP_HOME"
 
 # Copy everything from the builder image
-COPY --link . .
-COPY --from=builder $APP_HOME/public/ $APP_HOME/public/
-COPY --from=builder $APP_HOME/tmp/ $APP_HOME/tmp/
-COPY --from=builder $APP_HOME/vendor/ $APP_HOME/vendor/
+COPY --link --chown="$USERNAME:$USERNAME" --chmod=700 . .
+COPY --from=builder --chown="$USERNAME:$USERNAME" --chmod=700 "$APP_HOME/public/" "$APP_HOME/public/"
+COPY --from=builder --chown="$USERNAME:$USERNAME" --chmod=700 "$APP_HOME/tmp/" "$APP_HOME/tmp/"
+COPY --from=builder --chown="$USERNAME:$USERNAME" --chmod=700 "$APP_HOME/vendor/" "$APP_HOME/vendor/"
 
+USER root
 RUN ln -s /usr/lib/*-linux-gnu/libjemalloc.so.2 /usr/lib/libjemalloc.so.2
+USER "$USERNAME"
 
 # Deployment options
 ENV RAILS_LOG_TO_STDOUT=true
