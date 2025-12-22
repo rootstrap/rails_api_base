@@ -620,7 +620,7 @@ GEM
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
     stringio (3.2.0)
-    strong_migrations (2.5.1)
+    strong_migrations (2.5.2)
       activerecord (>= 7.1)
     terminal-table (4.0.0)
       unicode-display_width (>= 1.1.1, < 4)
