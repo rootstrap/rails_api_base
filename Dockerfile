@@ -79,13 +79,15 @@ USER "$USERNAME"
 WORKDIR "$APP_HOME"
 
 # Copy everything from the builder image
-COPY --link --chown="$USERNAME:$USERNAME" --chmod=700 . .
-COPY --from=builder --chown="$USERNAME:$USERNAME" --chmod=700 "$APP_HOME/public/" "$APP_HOME/public/"
-COPY --from=builder --chown="$USERNAME:$USERNAME" --chmod=700 "$APP_HOME/tmp/" "$APP_HOME/tmp/"
-COPY --from=builder --chown="$USERNAME:$USERNAME" --chmod=700 "$APP_HOME/vendor/" "$APP_HOME/vendor/"
+COPY --link --chown="$USERNAME:$USERNAME" . .
+COPY --from=builder --chown="$USERNAME:$USERNAME" "$APP_HOME/public/" "$APP_HOME/public/"
+COPY --from=builder --chown="$USERNAME:$USERNAME" "$APP_HOME/tmp/" "$APP_HOME/tmp/"
+COPY --from=builder --chown="$USERNAME:$USERNAME" "$APP_HOME/vendor/" "$APP_HOME/vendor/"
 
+# Set permissions and create symlink
 USER root
-RUN ln -s /usr/lib/*-linux-gnu/libjemalloc.so.2 /usr/lib/libjemalloc.so.2
+RUN chmod -R 700 "$APP_HOME" && \
+    ln -s /usr/lib/*-linux-gnu/libjemalloc.so.2 /usr/lib/libjemalloc.so.2
 USER "$USERNAME"
 
 # Deployment options
