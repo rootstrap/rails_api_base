@@ -84,7 +84,8 @@ COPY --from=builder --chown="$USERNAME:$USERNAME" "$APP_HOME/public/" "$APP_HOME
 COPY --from=builder --chown="$USERNAME:$USERNAME" "$APP_HOME/tmp/" "$APP_HOME/tmp/"
 COPY --from=builder --chown="$USERNAME:$USERNAME" "$APP_HOME/vendor/" "$APP_HOME/vendor/"
 
-# Set permissions and create symlink
+# Set permissions (700 for security) and create symlink
+# Note: Permissions set via RUN instead of COPY --chmod for Heroku compatibility
 USER root
 RUN chmod -R 700 "$APP_HOME" && \
     ln -s /usr/lib/*-linux-gnu/libjemalloc.so.2 /usr/lib/libjemalloc.so.2
