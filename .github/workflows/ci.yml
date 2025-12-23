@@ -30,7 +30,6 @@ jobs:
       - name: Build prod Docker image
         uses: docker/build-push-action@v6
         with:
-          context: .
           push: false
           cache-from: |
             type=gha,scope=${{ github.ref_name }}
