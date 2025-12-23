@@ -79,7 +79,7 @@ USER "$USERNAME"
 WORKDIR "$APP_HOME"
 
 # Copy everything from the builder image
-COPY --link --chown="$USERNAME:$USERNAME" . .
+COPY --chown="$USERNAME:$USERNAME" . .
 COPY --from=builder --chown="$USERNAME:$USERNAME" "$APP_HOME/public/" "$APP_HOME/public/"
 COPY --from=builder --chown="$USERNAME:$USERNAME" "$APP_HOME/tmp/" "$APP_HOME/tmp/"
 COPY --from=builder --chown="$USERNAME:$USERNAME" "$APP_HOME/vendor/" "$APP_HOME/vendor/"
