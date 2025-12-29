@@ -10,7 +10,7 @@ gem 'rails', '~> 8.0.4'
 gem 'activeadmin', '~> 3.4'
 gem 'active_storage_base64', '~> 3.0.1'
 gem 'aws-sdk-s3', '~> 1.209', require: false
-gem 'bootsnap', '~> 1.19'
+gem 'bootsnap', '~> 1.20'
 gem 'cssbundling-rails', '~> 1.4'
 gem 'devise', '~> 4.9'
 gem 'devise_token_auth', github: 'lynndylanhurley/devise_token_auth'
