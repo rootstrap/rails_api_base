@@ -146,7 +146,7 @@ GEM
       debug_inspector (>= 1.2.0)
     bootsnap (1.19.0)
       msgpack (~> 1.2)
-    brakeman (7.1.1)
+    brakeman (7.1.2)
       racc
     builder (3.3.0)
     byebug (12.0.0)
