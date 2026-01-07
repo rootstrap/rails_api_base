@@ -173,16 +173,11 @@ ActiveAdmin.setup do |config|
   # Add tags to all pages logged in users see:
   #   config.meta_tags = { author: 'My Company' }
 
-  meta_tags_options = { viewport: 'width=device-width, initial-scale=1' }
-  config.meta_tags = meta_tags_options
-
   # By default, sign up/sign in/recover password pages are excluded
   # from showing up in search engine results by adding a robots meta
   # tag. You can reset the hash of meta tags included in logged out
   # pages:
   #   config.meta_tags_for_logged_out_pages = {}
-
-  config.meta_tags_for_logged_out_pages = meta_tags_options
 
   # == Removing Breadcrumbs
   #
