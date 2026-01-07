@@ -8,17 +8,10 @@
 // $sidebar-width: 242px;
 
 // Active Admin's got SASS!
-@import 'arctic_admin/src/scss/main';
-@import '@fortawesome/fontawesome-free/css/all.css';
+@import "active_admin/mixins";
+@import "active_admin/base";
 
 // Overriding any non-variable Sass must be done after the fact.
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
-.disabled_impersonate_button {
-  background-color: #4bacfe6b;
-  color: white;
-  border-radius: 3px;
-  cursor: not-allowed;
-  padding: 5px 8px;
-}

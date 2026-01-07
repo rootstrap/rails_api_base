@@ -1,14 +1,12 @@
 {
   "name": "rails_api_base",
   "private": "true",
-  "engines" : {
-    "node" : "20.10.0",
-    "yarn" : "1.22"
+  "engines": {
+    "node": "20.10.0",
+    "yarn": "1.22"
   },
   "dependencies": {
     "@activeadmin/activeadmin": "3.2.2",
-    "@fortawesome/fontawesome-free": "6.5.2",
-    "arctic_admin": "4.3.1",
     "esbuild": "0.21.5",
     "jquery": "3.7.1",
     "jquery-ui": "1.13.3",
@@ -16,5 +14,6 @@
   },
   "scripts": {
     "build": "node esbuild.config.mjs"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
