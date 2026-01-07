@@ -7,7 +7,7 @@ ruby '~> 3.3.1'
 gem 'rails', '~> 7.1.3'
 
 # Gems
-gem 'activeadmin', '~> 3.2'
+gem 'activeadmin', '4.0.0.beta19'
 gem 'active_storage_base64', '~> 3.0.0'
 gem 'aws-sdk-s3', '~> 1.152', require: false
 gem 'bootsnap', '~> 1.17'
@@ -88,3 +88,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem "cssbundling-rails", "~> 1.4"
+
+gem "importmap-rails", "~> 2.2"

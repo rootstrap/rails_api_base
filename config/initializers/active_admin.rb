@@ -280,9 +280,4 @@ ActiveAdmin.setup do |config|
   #
   # config.include_default_association_filters = true
 
-  # == Webpacker
-  #
-  # Enable and disable use of webpacker
-  #
-  config.use_webpacker = false
 end

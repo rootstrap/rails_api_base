@@ -6,14 +6,17 @@
     "yarn": "1.22"
   },
   "dependencies": {
-    "@activeadmin/activeadmin": "3.2.2",
+    "@activeadmin/activeadmin": "4.0.0-beta19",
+    "@tailwindcss/cli": "^4.1.18",
     "esbuild": "0.21.5",
     "jquery": "3.7.1",
     "jquery-ui": "1.13.3",
-    "jquery-ujs": "1.2.3"
+    "jquery-ujs": "1.2.3",
+    "tailwindcss": "^4.1.18"
   },
   "scripts": {
-    "build": "node esbuild.config.mjs"
+    "build": "node esbuild.config.mjs",
+    "build:css": "npx @tailwindcss/cli -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify && npx @tailwindcss/cli -i ./app/assets/stylesheets/active_admin.css -o ./app/assets/builds/active_admin.css --minify"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
