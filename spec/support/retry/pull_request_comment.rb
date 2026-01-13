@@ -17,7 +17,7 @@ module Retry
       options = { event: 'COMMENT', body: message }
       client.create_pull_request_review(repo, pull_request_number, options)
     rescue StandardError => error
-      puts error.message
+      Rails.logger.error(error.message)
     end
   end
 end
