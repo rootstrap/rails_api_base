@@ -919,7 +919,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jquery@npm:3.7.1, jquery@npm:>=1.12.0 <5.0.0, jquery@npm:^3.4.1":
+"jquery@npm:4.0.0":
+  version: 4.0.0
+  resolution: "jquery@npm:4.0.0"
+  checksum: 10c0/06d8d0f51121af5a691f8b59c74823157bb5b60eea915b30eaa920d6c0ffd91e60ba81e9b97bd8203f331f9dd8d0ec9a4b010935ea314bdd2f15453c29bc780b
+  languageName: node
+  linkType: hard
+
+"jquery@npm:>=1.12.0 <5.0.0, jquery@npm:^3.4.1":
   version: 3.7.1
   resolution: "jquery@npm:3.7.1"
   checksum: 10c0/808cfbfb758438560224bf26e17fcd5afc7419170230c810dd11f5c1792e2263e2970cca8d659eb84fcd9acc301edb6d310096e450277d54be4f57071b0c82d9
@@ -1191,7 +1198,7 @@ __metadata:
     "@fortawesome/fontawesome-free": "npm:7.1.0"
     arctic_admin: "npm:4.3.3"
     esbuild: "npm:0.27.2"
-    jquery: "npm:3.7.1"
+    jquery: "npm:4.0.0"
     jquery-ui: "npm:1.14.1"
     jquery-ujs: "npm:1.2.3"
     sass: "npm:^1.97.2"
