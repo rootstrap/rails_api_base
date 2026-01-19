@@ -58,7 +58,7 @@ group :development do
   gem 'brakeman', '~> 7.1'
   gem 'i18n-tasks', '~> 1.1.2'
   gem 'letter_opener', '~> 1.10'
-  gem 'listen', '~> 3.9'
+  gem 'listen', '~> 3.10'
   gem 'rails_best_practices', '~> 1.23'
   gem 'reek', '~> 6.5'
   gem 'rubocop', '~> 1.82', require: false
