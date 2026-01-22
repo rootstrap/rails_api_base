@@ -73,7 +73,6 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [ActiveAdmin](https://github.com/activeadmin/activeadmin) for easy administration
 - [Arctic Admin](https://github.com/cprodhomme/arctic_admin) for responsive active admin
 - [Annotaterb](https://github.com/drwl/annotaterb) for documenting the schema in the classes
-- [Better Errors](https://github.com/charliesome/better_errors) for a better error page
 - [Brakeman](https://github.com/presidentbeef/brakeman) for security static analysis
 - [Byebug](https://github.com/deivid-rodriguez/byebug) for debugging
 - [Devise](https://github.com/plataformatec/devise) for basic authentication
@@ -102,7 +101,6 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [RSpec OpenAPI](https://github.com/exoego/rspec-openapi) for generating API documentation
 - [Rswag](https://github.com/rswag/rswag) for serving the API documentation
 - [Rubocop](https://github.com/bbatsov/rubocop/) for Ruby linting
-- [Sendgrid](https://github.com/stephenb/sendgrid) for sending emails
 - [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) for other testing matchers
 - [Simplecov](https://github.com/colszowka/simplecov) for code coverage
 - [Strong Migrations](https://github.com/ankane/strong_migrations) for catching unsafe migrations in development
