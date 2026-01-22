@@ -107,6 +107,15 @@ To illustrate, `bin/rails console` will run the console in the docker container 
 - [Webmock](https://github.com/bblimke/webmock) for stubbing http requests
 - [YAAF](https://github.com/rootstrap/yaaf) for form objects
 
+## Email support
+This template includes built-in email delivery support via SendGrid, using Rails' `Action Mailer`.
+
+Email sending with SendGrid is enabled by configuring the environment variable:
+
+```bash
+SENDGRID_API_KEY=your_api_key
+```
+
 ## Optional configuration
 
 - Set your [frontend URL](https://github.com/cyu/rack-cors#origin) in `config/initializers/rack_cors.rb`
