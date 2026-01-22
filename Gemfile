@@ -56,8 +56,6 @@ end
 
 group :development do
   gem 'brakeman', '~> 7.1'
-  # Add debug_inspector explicitly until new binding_of_caller version is released
-  gem 'debug_inspector', '>= 1.2.0'
   gem 'i18n-tasks', '~> 1.1.2'
   gem 'letter_opener', '~> 1.10'
   gem 'listen', '~> 3.10'
