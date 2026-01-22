@@ -1,11 +1,10 @@
 GIT
-  remote: https://github.com/lynndylanhurley/devise_token_auth.git
-  revision: aedef3ca68d4e69bdc4a3e8987fa9d5f45420eec
+  remote: https://github.com/kivikakk/binding_of_caller.git
+  revision: c590ef401ab8311d9e6c2b55cb8a7fa4553c18ab
+  branch: push-yrnnzolypxun
   specs:
-    devise_token_auth (1.2.5)
-      bcrypt (~> 3.0)
-      devise (> 3.5.2, < 5)
-      rails (>= 4.2.0, < 8.1)
+    binding_of_caller (1.0.1)
+      debug_inspector (>= 1.2.0)
 
 GIT
   remote: https://github.com/rootstrap/rspec-retry.git
@@ -142,8 +141,6 @@ GEM
       rack (>= 0.9.0)
       rouge (>= 1.0.0)
     bigdecimal (4.0.1)
-    binding_of_caller (1.0.1)
-      debug_inspector (>= 1.2.0)
     bootsnap (1.20.1)
       msgpack (~> 1.2)
     brakeman (7.1.2)
@@ -184,6 +181,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise_token_auth (1.2.6)
+      bcrypt (~> 3.0)
+      devise (> 3.5.2, < 5)
+      rails (>= 4.2.0, < 8.2)
     diff-lcs (1.6.2)
     docile (1.4.1)
     dotenv (3.2.0)
@@ -666,14 +667,14 @@ DEPENDENCIES
   annotaterb (~> 4.20.0)
   aws-sdk-s3 (~> 1.212)
   better_errors (~> 2.10)
-  binding_of_caller (~> 1.0)
+  binding_of_caller!
   bootsnap (~> 1.20)
   brakeman (~> 7.1)
   capybara (~> 3.40)
   chaotic_order (~> 0.1.0)
   cssbundling-rails (~> 1.4)
   devise (~> 4.9)
-  devise_token_auth!
+  devise_token_auth (~> 1.2, >= 1.2.6)
   dotenv-rails (~> 3.2.0)
   draper (~> 4.0)
   factory_bot_rails (~> 6.5)
@@ -706,6 +707,7 @@ DEPENDENCIES
   rails (~> 8.0.4)
   rails_best_practices (~> 1.23)
   reek (~> 6.5)
+  rspec-core (~> 3.13)
   rspec-openapi (~> 0.23)
   rspec-rails (~> 8.0)
   rspec-retry!
@@ -730,7 +732,7 @@ DEPENDENCIES
   yaaf (~> 3.0)
 
 RUBY VERSION
-   ruby 4.0.1p0
+  ruby 4.0.1p0
 
 BUNDLED WITH
-   2.5.18
+  4.0.4

@@ -13,7 +13,7 @@ gem 'aws-sdk-s3', '~> 1.212', require: false
 gem 'bootsnap', '~> 1.20'
 gem 'cssbundling-rails', '~> 1.4'
 gem 'devise', '~> 4.9'
-gem 'devise_token_auth', github: 'lynndylanhurley/devise_token_auth'
+gem 'devise_token_auth', '~> 1.2', '>= 1.2.6'
 gem 'draper', '~> 4.0'
 gem 'flipper', '~> 1.3.5'
 gem 'flipper-active_record', '~> 1.3.6'
@@ -57,7 +57,9 @@ end
 
 group :development do
   gem 'better_errors', '~> 2.10'
-  gem 'binding_of_caller', '~> 1.0'
+  # Adding binding_of_caller branch until new version is released
+  # https://github.com/banister/binding_of_caller/pull/90
+  gem 'binding_of_caller', github: 'kivikakk/binding_of_caller', branch: 'push-yrnnzolypxun'
   gem 'brakeman', '~> 7.1'
   gem 'i18n-tasks', '~> 1.1.2'
   gem 'letter_opener', '~> 1.10'
@@ -82,6 +84,8 @@ group :test do
   gem 'parallel_tests', '~> 5.5'
   gem 'pg_query', '~> 6.1.0'
   gem 'prosopite', '~> 2.1.2'
+  # Add rspec-core explicitly to fix rspec-retry gem version conflict using bundler v4
+  gem 'rspec-core', '~> 3.13'
   gem 'rspec-openapi', '~> 0.23'
   gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
   gem 'selenium-webdriver', '~> 4.40.0'
