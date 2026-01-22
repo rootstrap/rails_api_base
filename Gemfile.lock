@@ -280,12 +280,6 @@ GEM
     google-protobuf (4.30.2)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.30.2-arm64-darwin)
-      bigdecimal
-      rake (>= 13)
-    google-protobuf (4.30.2-x86_64-linux)
-      bigdecimal
-      rake (>= 13)
     has_scope (0.9.0)
       actionpack (>= 7.0)
       activesupport (>= 7.0)
@@ -609,7 +603,7 @@ GEM
       websocket (~> 1.0)
     sendgrid (1.2.4)
       json
-    sexp_processor (4.17.4)
+    sexp_processor (4.17.5)
     shoulda-matchers (7.0.1)
       activesupport (>= 7.1)
     simplecov (0.22.0)
@@ -734,7 +728,7 @@ DEPENDENCIES
   yaaf (~> 3.0)
 
 RUBY VERSION
-   ruby 3.4.1p0
+   ruby 4.0.1p0
 
 BUNDLED WITH
    2.5.18
