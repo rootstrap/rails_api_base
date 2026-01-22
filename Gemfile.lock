@@ -706,7 +706,6 @@ DEPENDENCIES
   rails (~> 8.0.4)
   rails_best_practices (~> 1.23)
   reek (~> 6.5)
-  rspec-core (~> 3.13)
   rspec-openapi (~> 0.23)
   rspec-rails (~> 8.0)
   rspec-retry!

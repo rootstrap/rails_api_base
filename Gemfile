@@ -85,8 +85,6 @@ group :test do
   gem 'parallel_tests', '~> 5.5'
   gem 'pg_query', '~> 6.1.0'
   gem 'prosopite', '~> 2.1.2'
-  # Add rspec-core explicitly to fix rspec-retry gem version conflict using bundler v4
-  gem 'rspec-core', '~> 3.13'
   gem 'rspec-openapi', '~> 0.23'
   gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
   gem 'selenium-webdriver', '~> 4.40.0'
