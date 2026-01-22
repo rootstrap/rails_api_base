@@ -603,8 +603,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
-    sendgrid (1.2.4)
-      json
     sexp_processor (4.17.5)
     shoulda-matchers (7.0.1)
       activesupport (>= 7.1)
@@ -723,7 +721,6 @@ DEPENDENCIES
   rubocop-rspec (~> 3.9)
   rubocop-rspec_rails (~> 2.32.0)
   selenium-webdriver (~> 4.40.0)
-  sendgrid (~> 1.2.4)
   shoulda-matchers (~> 7.0)
   simplecov (~> 0.22.0)
   sprockets-rails (~> 3.5, >= 3.5.2)
