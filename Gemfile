@@ -23,6 +23,9 @@ gem 'jbuilder', '~> 2.14'
 gem 'jsbundling-rails', '~> 1.3'
 gem 'lograge', '~> 0.14'
 gem 'newrelic_rpm', '~> 10.0'
+# Adding ostruct until rswag-ui gem v3 is released
+# https://github.com/rswag/rswag/pull/790#issuecomment-3710836151
+gem 'ostruct', '~> 0.6'
 gem 'pagy', '~> 43.2'
 gem 'pg', '~> 1.6'
 gem 'puma', '~> 7.1'
