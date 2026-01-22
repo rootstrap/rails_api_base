@@ -61,6 +61,8 @@ group :development do
   # https://github.com/banister/binding_of_caller/pull/90
   gem 'binding_of_caller', github: 'kivikakk/binding_of_caller', branch: 'push-yrnnzolypxun'
   gem 'brakeman', '~> 7.1'
+  # Add debug_inspector explicitly until new binding_of_caller version is released
+  gem 'debug_inspector', '>= 1.2.0'
   gem 'i18n-tasks', '~> 1.1.2'
   gem 'letter_opener', '~> 1.10'
   gem 'listen', '~> 3.10'

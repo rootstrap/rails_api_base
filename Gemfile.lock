@@ -673,6 +673,7 @@ DEPENDENCIES
   capybara (~> 3.40)
   chaotic_order (~> 0.1.0)
   cssbundling-rails (~> 1.4)
+  debug_inspector (>= 1.2.0)
   devise (~> 4.9)
   devise_token_auth (~> 1.2, >= 1.2.6)
   dotenv-rails (~> 3.2.0)
