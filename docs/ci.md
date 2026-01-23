@@ -73,7 +73,7 @@ In your repository settings -> actions -> general ->  Workflow permissions we ne
 
 ## Coverage
 When splitting tests in different nodes, each report covers only a part of the code files being tested.
-For this reason a job in the CI is added to sums coverages from all nodes to be used by SimpleCov. This job will be executed after all nodes have finished and will send the final report to CodeClimate.
+For this reason a job in the CI is added to sums coverages from all nodes to be used by SimpleCov. This job will be executed after all nodes have finished and will send the final report to SonarQube.
 
 For the case of CPU cores we do not need to add extra configuration since the report of each node contains the info of all the cores that have been splited.
 
