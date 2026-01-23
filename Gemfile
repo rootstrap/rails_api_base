@@ -13,7 +13,7 @@ gem 'aws-sdk-s3', '~> 1.212', require: false
 gem 'bootsnap', '~> 1.20'
 gem 'cssbundling-rails', '~> 1.4'
 gem 'devise', '~> 4.9'
-gem 'devise_token_auth', github: 'lynndylanhurley/devise_token_auth'
+gem 'devise_token_auth', '~> 1.2', '>= 1.2.6'
 gem 'draper', '~> 4.0'
 gem 'flipper', '~> 1.3.5'
 gem 'flipper-active_record', '~> 1.3.6'
@@ -23,6 +23,9 @@ gem 'jbuilder', '~> 2.14'
 gem 'jsbundling-rails', '~> 1.3'
 gem 'lograge', '~> 0.14'
 gem 'newrelic_rpm', '~> 10.0'
+# Adding ostruct until rswag-ui gem v3 is released
+# https://github.com/rswag/rswag/pull/790#issuecomment-3710836151
+gem 'ostruct', '~> 0.6'
 gem 'pagy', '~> 43.2'
 gem 'pg', '~> 1.6'
 gem 'puma', '~> 7.1'
@@ -30,7 +33,6 @@ gem 'pundit', '~> 2.5'
 gem 'rack-cors', '~> 3.0'
 gem 'rswag-api', '~> 2.17.0'
 gem 'rswag-ui', '~> 2.17.0'
-gem 'sendgrid', '~> 1.2.4'
 gem 'sprockets-rails', '~> 3.5', '>= 3.5.2'
 gem 'strong_migrations', '~> 2.5'
 gem 'yaaf', '~> 3.0'
@@ -53,8 +55,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'better_errors', '~> 2.10'
-  gem 'binding_of_caller', '~> 1.0'
   gem 'brakeman', '~> 7.1'
   gem 'i18n-tasks', '~> 1.1.2'
   gem 'letter_opener', '~> 1.10'
