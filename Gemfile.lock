@@ -129,7 +129,7 @@ GEM
     bcrypt (3.1.20)
     benchmark (0.5.0)
     bigdecimal (4.0.1)
-    bootsnap (1.20.1)
+    bootsnap (1.21.1)
       msgpack (~> 1.2)
     brakeman (7.1.2)
       racc
@@ -650,7 +650,7 @@ DEPENDENCIES
   activeadmin (~> 3.4)
   annotaterb (~> 4.20.0)
   aws-sdk-s3 (~> 1.212)
-  bootsnap (~> 1.20)
+  bootsnap (~> 1.21)
   brakeman (~> 7.1)
   capybara (~> 3.40)
   chaotic_order (~> 0.1.0)
