@@ -14,11 +14,15 @@
     "jquery": "4.0.0",
     "jquery-ui": "1.14.1",
     "jquery-ujs": "1.2.3",
-    "sass": "^1.97.3"
+    "sass": "^1.97.3",
+    "tar": "^7.5.4"
   },
   "scripts": {
     "build": "yarn build:js && yarn build:css",
     "build:js": "node esbuild.config.mjs",
     "build:css": "sass ./app/assets/stylesheets:./app/assets/builds --no-source-map --load-path=node_modules"
+  },
+  "resolutions": {
+    "tar": "^7.5.4"
   }
 }
