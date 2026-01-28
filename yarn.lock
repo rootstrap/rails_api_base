@@ -1195,7 +1195,6 @@ __metadata:
     jquery-ui: "npm:1.14.1"
     jquery-ujs: "npm:1.2.3"
     sass: "npm:^1.97.3"
-    tar: "npm:^7.5.4"
   languageName: unknown
   linkType: soft
 
