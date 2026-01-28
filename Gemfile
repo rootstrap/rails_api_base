@@ -30,6 +30,8 @@ gem 'pagy', '~> 43.2'
 gem 'pg', '~> 1.6'
 gem 'puma', '~> 7.2'
 gem 'pundit', '~> 2.5'
+gem 'nokogiri', '>= 1.19.0'  # Security: CVE-2025-24855, CVE-2024-55549 fixed in 1.18.4+
+gem 'rack', '>= 3.2.4'  # Security: CVE-2024-25126 fixed in 3.0.9.1+, CVE-2025-61772 fixed in 3.2.2+
 gem 'rack-cors', '~> 3.0'
 gem 'rswag-api', '~> 2.17.0'
 gem 'rswag-ui', '~> 2.17.0'
