@@ -14,15 +14,12 @@
     "jquery": "4.0.0",
     "jquery-ui": "1.14.1",
     "jquery-ujs": "1.2.3",
+    "node-gyp": "^12.1.0",
     "sass": "^1.97.3"
   },
   "scripts": {
     "build": "yarn build:js && yarn build:css",
     "build:js": "node esbuild.config.mjs",
     "build:css": "sass ./app/assets/stylesheets:./app/assets/builds --no-source-map --load-path=node_modules"
-  },
-  "resolutions": {
-    "cacache": "^20.0.1",
-    "node-gyp": "^12.1.0"
   }
 }

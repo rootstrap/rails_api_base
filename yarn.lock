@@ -923,7 +923,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-gyp@npm:^12.1.0":
+"node-gyp@npm:^12.1.0, node-gyp@npm:latest":
   version: 12.2.0
   resolution: "node-gyp@npm:12.2.0"
   dependencies:
@@ -1013,6 +1013,7 @@ __metadata:
     jquery: "npm:4.0.0"
     jquery-ui: "npm:1.14.1"
     jquery-ujs: "npm:1.2.3"
+    node-gyp: "npm:^12.1.0"
     sass: "npm:^1.97.3"
   languageName: unknown
   linkType: soft
