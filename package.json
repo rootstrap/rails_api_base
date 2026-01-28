@@ -9,12 +9,12 @@
   "dependencies": {
     "@activeadmin/activeadmin": "3.4.0",
     "@fortawesome/fontawesome-free": "7.1.0",
+    "@parcel/watcher": "^2.5.6",
     "arctic_admin": "4.3.3",
     "esbuild": "0.27.2",
     "jquery": "4.0.0",
     "jquery-ui": "1.14.1",
     "jquery-ujs": "1.2.3",
-    "node-gyp": "^12.1.0",
     "sass": "^1.97.3"
   },
   "scripts": {
