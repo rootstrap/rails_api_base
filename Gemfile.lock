@@ -516,7 +516,7 @@ GEM
     rspec-mocks (3.13.5)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-openapi (0.23.0)
+    rspec-openapi (0.24.0)
       actionpack (>= 5.2.0)
       rails-dom-testing
       rspec-core
@@ -528,7 +528,7 @@ GEM
       rspec-expectations (~> 3.13)
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
-    rspec-support (3.13.6)
+    rspec-support (3.13.7)
     rswag-api (2.17.0)
       activesupport (>= 5.2, < 8.2)
       railties (>= 5.2, < 8.2)
@@ -691,7 +691,7 @@ DEPENDENCIES
   rails (~> 8.1.2)
   rails_best_practices (~> 1.23)
   reek (~> 6.5)
-  rspec-openapi (~> 0.23)
+  rspec-openapi (~> 0.24)
   rspec-rails (~> 8.0)
   rspec-retry!
   rswag-api (~> 2.17.0)
