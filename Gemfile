@@ -55,7 +55,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'brakeman', '~> 7.1'
+  gem 'brakeman', '~> 8.0'
   gem 'i18n-tasks', '~> 1.1.2'
   gem 'letter_opener', '~> 1.10'
   gem 'listen', '~> 3.10'
