@@ -35,7 +35,7 @@ gem 'rswag-api', '~> 2.17.0'
 gem 'rswag-ui', '~> 2.17.0'
 gem 'sprockets-rails', '~> 3.5', '>= 3.5.2'
 gem 'strong_migrations', '~> 2.5'
-gem 'yaaf', '~> 3.0'
+gem 'yaaf', '~> 3.1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
