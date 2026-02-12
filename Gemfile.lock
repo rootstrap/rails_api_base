@@ -389,7 +389,7 @@ GEM
       json
       yaml
     parallel (1.27.0)
-    parallel_tests (5.5.0)
+    parallel_tests (5.6.0)
       parallel
     parser (3.3.10.1)
       ast (~> 2.4.1)
@@ -679,7 +679,7 @@ DEPENDENCIES
   octokit (~> 10.0)
   ostruct (~> 0.6)
   pagy (~> 43.2)
-  parallel_tests (~> 5.5)
+  parallel_tests (~> 5.6)
   pg (~> 1.6)
   pg_query (~> 6.2.2)
   prosopite (~> 2.1.2)
