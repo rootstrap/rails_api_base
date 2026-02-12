@@ -76,7 +76,7 @@ group :test do
   gem 'faraday-retry', '~> 2.4'
   gem 'knapsack', '~> 4.0'
   gem 'octokit', '~> 10.0'
-  gem 'parallel_tests', '~> 5.5'
+  gem 'parallel_tests', '~> 5.6'
   gem 'pg_query', '~> 6.2.2'
   gem 'prosopite', '~> 2.1.2'
   gem 'rspec-openapi', '~> 0.24'
