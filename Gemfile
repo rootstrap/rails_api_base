@@ -22,7 +22,7 @@ gem 'good_job', '~> 4.13.2'
 gem 'jbuilder', '~> 2.14'
 gem 'jsbundling-rails', '~> 1.3'
 gem 'lograge', '~> 0.14'
-gem 'newrelic_rpm', '~> 10.0'
+gem 'newrelic_rpm', '~> 10.1'
 # Adding ostruct until rswag-ui gem v3 is released
 # https://github.com/rswag/rswag/pull/790#issuecomment-3710836151
 gem 'ostruct', '~> 0.6'
