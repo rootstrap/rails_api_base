@@ -26,7 +26,7 @@ gem 'newrelic_rpm', '~> 10.1'
 # Adding ostruct until rswag-ui gem v3 is released
 # https://github.com/rswag/rswag/pull/790#issuecomment-3710836151
 gem 'ostruct', '~> 0.6'
-gem 'pagy', '~> 43.2'
+gem 'pagy', '~> 43.3'
 gem 'pg', '~> 1.6'
 gem 'puma', '~> 7.2'
 gem 'pundit', '~> 2.5'
