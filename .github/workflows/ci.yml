@@ -154,7 +154,7 @@ jobs:
       - name: Rename coverage files
         run: mv coverage/coverage.json coverage/coverage-${{ matrix.ci_node_index }}.json
       - name: Upload coverage report
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: "coverage-${{ matrix.ci_node_index }}"
           path: coverage/coverage-${{ matrix.ci_node_index }}.json
@@ -165,7 +165,7 @@ jobs:
         run: bundle exec ./bin/merge-api-docs.rb
       - name: Upload partial API Docs
         if: ${{ env.OPENAPI }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: api_docs
           path: "tmp/openapi${{ matrix.ci_node_index }}.yaml"
