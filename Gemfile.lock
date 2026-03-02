@@ -386,7 +386,7 @@ GEM
       sawyer (~> 0.9)
     orm_adapter (0.5.0)
     ostruct (0.6.3)
-    pagy (43.3.0)
+    pagy (43.3.1)
       json
       uri
       yaml
