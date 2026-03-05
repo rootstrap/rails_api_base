@@ -186,7 +186,7 @@ jobs:
             echo "OPENAPI=true" >> $GITHUB_ENV
           fi
       - name: Download coverage report
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           pattern: coverage-*
           path: coverage/
@@ -214,7 +214,7 @@ jobs:
           bundler-cache: true
       - name: Download API Docs
         if: ${{ env.OPENAPI }}
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           name: api_docs
           path: tmp/
