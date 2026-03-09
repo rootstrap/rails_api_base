@@ -58,7 +58,7 @@ GEM
     active_storage_base64 (3.0.1)
       activestorage (> 7.0)
       activesupport (> 7.0)
-    activeadmin (3.4.0)
+    activeadmin (3.5.0)
       arbre (~> 1.2, >= 1.2.1)
       csv
       formtastic (>= 3.1)
@@ -252,8 +252,8 @@ GEM
       rack-protection (>= 1.5.3, < 5.0.0)
       rack-session (>= 1.0.2, < 3.0.0)
       sanitize (< 8)
-    formtastic (5.0.0)
-      actionpack (>= 6.0.0)
+    formtastic (6.0.0)
+      actionpack (>= 7.2.0)
     formtastic_i18n (0.7.0)
     fugit (1.12.1)
       et-orbi (~> 1.4)
@@ -658,7 +658,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_storage_base64 (~> 3.0.1)
-  activeadmin (~> 3.4)
+  activeadmin (~> 3.5)
   annotaterb (~> 4.22.0)
   aws-sdk-s3 (~> 1.215)
   bootsnap (~> 1.23)
