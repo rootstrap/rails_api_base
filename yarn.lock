@@ -5,14 +5,14 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@activeadmin/activeadmin@npm:3.4.0":
-  version: 3.4.0
-  resolution: "@activeadmin/activeadmin@npm:3.4.0"
+"@activeadmin/activeadmin@npm:3.5.0":
+  version: 3.5.0
+  resolution: "@activeadmin/activeadmin@npm:3.5.0"
   dependencies:
-    jquery: "npm:^3.4.1"
-    jquery-ui: "npm:^1.13.3"
+    jquery: "npm:^3.7.1 || ^4.0.0"
+    jquery-ui: "npm:^1.14.2"
     jquery-ujs: "npm:^1.2.2"
-  checksum: 10c0/b809081a2d2603b6f8b025d4941f835220887641edaa8e8a36a5b6fb261fd9498b4f66084fe4f6d6ee0139ee82e4c1057cee119b9c9c0f8c7c18b3731b4bfb14
+  checksum: 10c0/343ff8c4277d6c049cf218d666cb019e0edd418a5e5a6df54bde9a49ce8ea0a8e099b7d06af6489aafcb77b07e95c155053de7187cf2abc12eadf1d391e186ac
   languageName: node
   linkType: hard
 
@@ -731,21 +731,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jquery-ui@npm:1.14.2":
+"jquery-ui@npm:1.14.2, jquery-ui@npm:^1.14.2":
   version: 1.14.2
   resolution: "jquery-ui@npm:1.14.2"
   dependencies:
     jquery: "npm:>=1.12.0 <5.0.0"
   checksum: 10c0/83b65744c4f4f2e9fa12833feb76c964f9565ef8301ef4e224e93e6c867e10a45d7da3e93bc7bcaec5227a61e09a2a6d1ce0198d9c38de08e4ada3d53a628615
-  languageName: node
-  linkType: hard
-
-"jquery-ui@npm:^1.13.3":
-  version: 1.14.0
-  resolution: "jquery-ui@npm:1.14.0"
-  dependencies:
-    jquery: "npm:>=1.12.0 <5.0.0"
-  checksum: 10c0/7139e5273ddf3cb572b32a73dad66a5f4acd1a62dce8f74cdc096643c0ce08fb0ef1a7c8cada8fbb5c27580486351abc8ba9c33f121416f22004a8cd2c456035
   languageName: node
   linkType: hard
 
@@ -758,14 +749,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jquery@npm:4.0.0":
+"jquery@npm:4.0.0, jquery@npm:^3.7.1 || ^4.0.0":
   version: 4.0.0
   resolution: "jquery@npm:4.0.0"
   checksum: 10c0/06d8d0f51121af5a691f8b59c74823157bb5b60eea915b30eaa920d6c0ffd91e60ba81e9b97bd8203f331f9dd8d0ec9a4b010935ea314bdd2f15453c29bc780b
   languageName: node
   linkType: hard
 
-"jquery@npm:>=1.12.0 <5.0.0, jquery@npm:^3.4.1":
+"jquery@npm:>=1.12.0 <5.0.0":
   version: 3.7.1
   resolution: "jquery@npm:3.7.1"
   checksum: 10c0/808cfbfb758438560224bf26e17fcd5afc7419170230c810dd11f5c1792e2263e2970cca8d659eb84fcd9acc301edb6d310096e450277d54be4f57071b0c82d9
@@ -1006,7 +997,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "rails_api_base@workspace:."
   dependencies:
-    "@activeadmin/activeadmin": "npm:3.4.0"
+    "@activeadmin/activeadmin": "npm:3.5.0"
     "@fortawesome/fontawesome-free": "npm:7.2.0"
     arctic_admin: "npm:4.3.3"
     esbuild: "npm:0.27.3"
