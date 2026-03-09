@@ -7,7 +7,7 @@ ruby file: '.ruby-version'
 gem 'rails', '~> 8.1.2'
 
 # Gems
-gem 'activeadmin', '~> 3.4'
+gem 'activeadmin', '~> 3.5'
 gem 'active_storage_base64', '~> 3.0.1'
 gem 'aws-sdk-s3', '~> 1.215', require: false
 gem 'bootsnap', '~> 1.23'
