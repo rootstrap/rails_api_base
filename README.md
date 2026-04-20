@@ -163,6 +163,16 @@ For more details about the CI process and SonarQube setup, check the [CI documen
 ## More linters
 - [Hadolint](https://github.com/hadolint/hadolint) Install with `brew install hadolint` and run `hadolint Dockerfile*`. Edit `.hadolint.yml` to omit additional rules.
 
+## Claude Code setup
+
+This template ships with project-level [Claude Code](https://www.claude.com/product/claude-code) skills under `.claude/skills/` that auto-activate while Claude edits code in your project:
+
+- `ruby-conventions` — triggers on Ruby files; applies Rootstrap's Ruby style guide.
+- `rails-conventions` — triggers on Rails code (controllers, models, migrations, config); applies Rootstrap's Rails conventions.
+- `rspec-conventions` — triggers on spec files; applies Rootstrap's RSpec style guide.
+
+They are distilled from [rootstrap/tech-guides](https://github.com/rootstrap/tech-guides/tree/master/ruby). No setup required — Claude Code loads them automatically based on the files being edited. If you don't use Claude Code, or want to customize the conventions, simply edit or remove the files under `.claude/skills/`.
+
 ## Impersonation
 
 The `rails_api_base` incorporates a user impersonation feature, allowing `AdminUser`s to assume the identity of other `User`s. This feature is disabled by default.
