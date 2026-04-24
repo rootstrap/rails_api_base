@@ -670,7 +670,6 @@ DEPENDENCIES
   devise_token_auth (~> 1.2, >= 1.2.6)
   dotenv-rails (~> 3.2.0)
   draper (~> 4.0)
-  erb (>= 6.0.4)
   factory_bot_rails (~> 6.5)
   faker (~> 3.6)
   faraday-retry (~> 2.4)
