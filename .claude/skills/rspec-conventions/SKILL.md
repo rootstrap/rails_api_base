@@ -73,9 +73,6 @@ Complements `ruby-conventions` — language-level Ruby style still applies.
   ```
 - Use **Webmock/VCR** for HTTP; never hit real APIs in tests.
 
-## Time
-- Use **Timecop** (`Timecop.freeze(Time.now) do ... end`) instead of stubbing `Time.now`/`Date.today`.
-
 ## Shared Examples
 - Extract shared examples when duplication is real and clarifies intent — don't DRY prematurely.
 - Duplication inside specs is acceptable, even preferred, if it aids readability.
