@@ -9,32 +9,32 @@ gem 'rails', '~> 8.1.3'
 # Gems
 gem 'activeadmin', '~> 3.5'
 gem 'active_storage_base64', '~> 3.0.1'
-gem 'aws-sdk-s3', '~> 1.216', require: false
-gem 'bootsnap', '~> 1.23'
+gem 'aws-sdk-s3', '~> 1.220', require: false
+gem 'bootsnap', '~> 1.24'
 gem 'cssbundling-rails', '~> 1.4'
 gem 'devise', '~> 4.9'
 gem 'devise_token_auth', '~> 1.2', '>= 1.2.6'
 gem 'draper', '~> 4.0'
-gem 'flipper', '~> 1.4.0'
-gem 'flipper-active_record', '~> 1.4.0'
-gem 'flipper-ui', '~> 1.4.0'
-gem 'good_job', '~> 4.13.3'
+gem 'flipper', '~> 1.4.1'
+gem 'flipper-active_record', '~> 1.4.1'
+gem 'flipper-ui', '~> 1.4.1'
+gem 'good_job', '~> 4.18.2'
 gem 'jbuilder', '~> 2.14'
 gem 'jsbundling-rails', '~> 1.3'
 gem 'lograge', '~> 0.14'
-gem 'newrelic_rpm', '~> 10.2'
+gem 'newrelic_rpm', '~> 10.4'
 # Adding ostruct until rswag-ui gem v3 is released
 # https://github.com/rswag/rswag/pull/790#issuecomment-3710836151
 gem 'ostruct', '~> 0.6'
-gem 'pagy', '~> 43.4'
+gem 'pagy', '~> 43.5'
 gem 'pg', '~> 1.6'
-gem 'puma', '~> 7.2'
+gem 'puma', '~> 8.0'
 gem 'pundit', '~> 2.5'
 gem 'rack-cors', '~> 3.0'
 gem 'rswag-api', '~> 2.17.0'
 gem 'rswag-ui', '~> 2.17.0'
 gem 'sprockets-rails', '~> 3.5', '>= 3.5.2'
-gem 'strong_migrations', '~> 2.5'
+gem 'strong_migrations', '~> 2.7'
 gem 'yaaf', '~> 3.1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -48,7 +48,7 @@ group :development, :test do
   gem 'chaotic_order', '~> 0.1.0'
   gem 'dotenv-rails', '~> 3.2.0'
   gem 'factory_bot_rails', '~> 6.5'
-  gem 'faker', '~> 3.6'
+  gem 'faker', '~> 3.8'
   gem 'pry-byebug', '~> 3.12', platform: :mri
   gem 'pry-rails', '~> 0.3.11'
   gem 'rspec-rails', '~> 8.0'
@@ -61,8 +61,8 @@ group :development do
   gem 'listen', '~> 3.10'
   gem 'rails_best_practices', '~> 1.23'
   gem 'reek', '~> 6.5'
-  gem 'rubocop', '~> 1.85', require: false
-  gem 'rubocop-capybara', '~> 2.22'
+  gem 'rubocop', '~> 1.86', require: false
+  gem 'rubocop-capybara', '~> 2.23'
   gem 'rubocop-factory_bot', '~> 2.28', require: false
   gem 'rubocop-performance', '~> 1.26', require: false
   gem 'rubocop-rails', '~> 2.34', require: false
@@ -76,12 +76,12 @@ group :test do
   gem 'faraday-retry', '~> 2.4'
   gem 'knapsack', '~> 4.0'
   gem 'octokit', '~> 10.0'
-  gem 'parallel_tests', '~> 5.6'
+  gem 'parallel_tests', '~> 5.7'
   gem 'pg_query', '~> 6.2.2'
-  gem 'prosopite', '~> 2.1.2'
+  gem 'prosopite', '~> 2.2.0'
   gem 'rspec-openapi', '~> 0.25'
   gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
-  gem 'selenium-webdriver', '~> 4.41.0'
+  gem 'selenium-webdriver', '~> 4.43.0'
   gem 'shoulda-matchers', '~> 7.0'
   gem 'simplecov', '~> 0.22.0', require: false
   gem 'webmock', '~> 3.26'
