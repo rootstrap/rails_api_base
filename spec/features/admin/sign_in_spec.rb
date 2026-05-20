@@ -10,7 +10,7 @@ RSpec.describe 'Admin SignIn' do
       fill_in 'Password', with: admin_user.password
       click_on 'Login'
 
-      expect(page).to have_content 'Signed in successfully.'
+      expect(page).to have_text 'Signed in successfully.'
     end
 
     scenario 'Admin fails to sign in with invalid credentials' do
@@ -19,7 +19,7 @@ RSpec.describe 'Admin SignIn' do
       fill_in 'Password', with: 'wrongpassword'
       click_on 'Login'
 
-      expect(page).to have_content 'Invalid Email or password.'
+      expect(page).to have_text 'Invalid Email or password.'
     end
   end
 end
