@@ -9,7 +9,7 @@ gem 'rails', '~> 8.1.3'
 # Gems
 gem 'activeadmin', '~> 3.5'
 gem 'active_storage_base64', '~> 3.0.1'
-gem 'aws-sdk-s3', '~> 1.223', require: false
+gem 'aws-sdk-s3', '~> 1.226', require: false
 gem 'bootsnap', '~> 1.24'
 gem 'cssbundling-rails', '~> 1.4'
 gem 'devise', '~> 4.9'
@@ -18,11 +18,11 @@ gem 'draper', '~> 4.0'
 gem 'flipper', '~> 1.4.2'
 gem 'flipper-active_record', '~> 1.4.2'
 gem 'flipper-ui', '~> 1.4.2'
-gem 'good_job', '~> 4.18.2'
+gem 'good_job', '~> 4.19.1'
 gem 'jbuilder', '~> 2.15'
 gem 'jsbundling-rails', '~> 1.3'
 gem 'lograge', '~> 0.14'
-gem 'newrelic_rpm', '~> 10.5'
+gem 'newrelic_rpm', '~> 10.6'
 # Adding ostruct until rswag-ui gem v3 is released
 # https://github.com/rswag/rswag/pull/790#issuecomment-3710836151
 gem 'ostruct', '~> 0.6'
@@ -44,7 +44,7 @@ gem 'yaaf', '~> 3.1'
 # gem 'image_processing', '~> 1.2'
 
 group :development, :test do
-  gem 'annotaterb', '~> 4.22.0'
+  gem 'annotaterb', '~> 4.23.0'
   gem 'chaotic_order', '~> 0.1.0'
   gem 'dotenv-rails', '~> 3.2.0'
   gem 'factory_bot_rails', '~> 6.5'
@@ -61,13 +61,13 @@ group :development do
   gem 'listen', '~> 3.10'
   gem 'rails_best_practices', '~> 1.23'
   gem 'reek', '~> 6.5'
-  gem 'rubocop', '~> 1.86', require: false
-  gem 'rubocop-capybara', '~> 2.23'
+  gem 'rubocop', '~> 1.88', require: false
+  gem 'rubocop-capybara', '~> 3.0'
   gem 'rubocop-factory_bot', '~> 2.28', require: false
   gem 'rubocop-performance', '~> 1.26', require: false
   gem 'rubocop-rails', '~> 2.35', require: false
   gem 'rubocop-rake', '~> 0.7.1', require: false
-  gem 'rubocop-rspec', '~> 3.9', require: false
+  gem 'rubocop-rspec', '~> 3.10', require: false
   gem 'rubocop-rspec_rails', '~> 2.32.0', require: false
 end
 
@@ -79,10 +79,10 @@ group :test do
   gem 'parallel_tests', '~> 5.7'
   gem 'pg_query', '~> 6.2.2'
   gem 'prosopite', '~> 2.2.0'
-  gem 'rspec-openapi', '~> 0.26'
+  gem 'rspec-openapi', '~> 0.29'
   gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
-  gem 'selenium-webdriver', '~> 4.44.0'
-  gem 'shoulda-matchers', '~> 7.0'
+  gem 'selenium-webdriver', '~> 4.45.0'
+  gem 'shoulda-matchers', '~> 8.0'
   gem 'simplecov', '~> 0.22.0', require: false
   gem 'webmock', '~> 3.26'
 end
