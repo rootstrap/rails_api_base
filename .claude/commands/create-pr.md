@@ -35,7 +35,8 @@ Follow `.claude/rules/github-pr-formatting.md` to fill each section of the templ
 ### 5. Create PR
 
 ```bash
-gh pr create --title "[{TICKET-ID}] {Concise description}" --body "{BODY}" --base main
+BASE_BRANCH=$(gh repo view --json defaultBranchRef --jq '.defaultBranchRef.name' 2>/dev/null || echo "main")
+gh pr create --title "[{TICKET-ID}] {Concise description}" --body "{BODY}" --base "$BASE_BRANCH"
 ```
 
 If there is no associated ticket, drop the `[TICKET-ID]` prefix and use just the description.

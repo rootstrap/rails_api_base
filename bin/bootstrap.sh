@@ -79,6 +79,9 @@ do
   find . -name "*.$file_type" -type f -exec bash -c 'sed_i "s|rails_api_base|'"$project_name"'|g" "$0"' {} \;
 done
 
+# Keep project docs aligned when this template is bootstrapped.
+sed_i "s|rails_api_base|$project_name|g" CLAUDE.md README.md
+
 echo "Replacement completed successfully."
 
 # spin up docker services if flag is specified for the setup to take place inside the containers

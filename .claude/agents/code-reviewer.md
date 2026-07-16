@@ -4,7 +4,7 @@ color: green
 description: "Use proactively after completing code changes, or when the user asks for a code review. Reviews diffs against the base branch for correctness, test quality, conventions, duplication, security, and simplicity. Returns structured findings."
 model: sonnet
 maxTurns: 10
-tools: Read, Grep, Glob, Bash, WebFetch
+tools: Read, Grep, Glob, Bash
 skills:
   - ruby-conventions
   - rails-conventions

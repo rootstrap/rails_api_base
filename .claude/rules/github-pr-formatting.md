@@ -69,7 +69,8 @@ Use checkboxes (`- [ ]` / `- [x]`) to enumerate the work this PR does. Tick the 
 ## Step 3: Create the PR
 
 ```bash
-gh pr create --title "[{TICKET-ID}] {Concise description}" --body "{BODY}" --base main
+BASE_BRANCH=$(gh repo view --json defaultBranchRef --jq '.defaultBranchRef.name' 2>/dev/null || echo "main")
+gh pr create --title "[{TICKET-ID}] {Concise description}" --body "{BODY}" --base "$BASE_BRANCH"
 ```
 
 **Title format:**

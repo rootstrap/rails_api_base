@@ -1,6 +1,7 @@
 ---
 name: rspec-conventions
 description: Rootstrap RSpec conventions. Use when writing, reviewing, or editing RSpec test files (spec/**/*_spec.rb, spec/rails_helper.rb, spec/spec_helper.rb, spec/support/**/*.rb) or factories. Covers describe/context structure, let/subject, matchers, factories, mocking/stubbing, shared examples, and spec types (model, request, feature, controller).
+paths: "spec/**/*_spec.rb,spec/rails_helper.rb,spec/spec_helper.rb,spec/support/**/*.rb,spec/factories/**/*.rb"
 ---
 
 # RSpec Conventions (Rootstrap)
@@ -64,6 +65,7 @@ Complements `ruby-conventions` — language-level Ruby style still applies.
 ## Mocking / Stubbing / Doubles
 - Use mocks/stubs sparingly — favor them in isolated/behavioral specs, not integration specs.
 - Only stub against small, stable, well-known APIs.
+- Avoid `allow_any_instance_of`; it stubs every instance of the class and can hide real interaction bugs. Prefer stubbing or mocking the specific instance used by the example.
 - **Never stub a method whose return you're asserting on** — produces false positives.
   ```ruby
   # Bad: stubs nil? itself

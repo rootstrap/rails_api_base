@@ -32,8 +32,7 @@ Detect the base branch in this order:
    ```
 3. **If the current branch tracks an upstream**, infer from merge base:
    ```bash
-   git merge-base HEAD main 2>/dev/null
-   git merge-base HEAD main 2>/dev/null
+   BASE=$(git merge-base HEAD main 2>/dev/null || echo "main")
    ```
 4. **Fallback**: use `main`.
 

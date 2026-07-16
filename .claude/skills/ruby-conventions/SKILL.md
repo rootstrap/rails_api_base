@@ -1,6 +1,7 @@
 ---
 name: ruby-conventions
 description: Rootstrap Ruby style conventions. Use when writing, reviewing, or editing any Ruby source file (*.rb, *.rake, Gemfile, Rakefile, *.gemspec, config.ru) to ensure code follows the Rootstrap Ruby style guide — covers layout, syntax, naming, classes/modules, exceptions, collections, strings, regexes, metaprogramming, and general best practices.
+paths: "**/*.rb,**/*.rake,**/Gemfile,**/Rakefile,**/*.gemspec,**/config.ru"
 ---
 
 # Ruby Conventions (Rootstrap)
@@ -93,7 +94,7 @@ Most of these are enforced by RuboCop (see `.rubocop.yml`). When in doubt, run R
 - Refactor bad code instead of explaining it.
 - Avoid superfluous comments (`counter += 1 # Increments counter by one`).
 - Keep comments up to date — an outdated comment is worse than none.
-- Annotations: `TODO`, `FIXME`, `OPTIMIZE`, `HACK`, `REVIEW` + `:` + description, above the relevant code. Document custom annotation keywords in the project README.
+- Annotations: `TODO:` + description, above the relevant code. Add other annotation tags only after documenting them as project conventions.
 - Magic comments (`# frozen_string_literal: true`) at top, one per line, blank line before code.
 
 ## Classes & Modules
@@ -108,7 +109,7 @@ Most of these are enforced by RuboCop (see `.rubocop.yml`). When in doubt, run R
 - `Struct.new` for trivial value objects; don't inherit from it.
 - Avoid class variables (`@@var`); prefer class instance variables.
 - Proper visibility (`private`/`protected`); indent modifiers at method level with blank lines.
-- Prefer duck-typing over inheritance.
+- Prefer composition over inheritance. Use duck typing where appropriate.
 - Apply SOLID principles; respect the Liskov Substitution Principle (subclasses should be substitutable for their parents).
 - Encourage factory methods for clearer object creation APIs.
 - Use `alias` in lexical scope; `alias_method` for runtime/module aliasing. Note: `alias` binds at definition time, so subclass overrides won't be picked up unless re-aliased.
@@ -151,8 +152,8 @@ Most of these are enforced by RuboCop (see `.rubocop.yml`). When in doubt, run R
 - Squiggly heredocs `<<~END` for multi-line indented strings.
 
 ## Date & Time
-- `Time.now` over `Time.new`; use `Date` or `Time`, not `DateTime`.
-- (See also `rails-conventions` — in Rails, use `Time.zone.now`/`Time.current`.)
+- In Rails code, use `Time.current`, `Time.zone.now`, or `Time.zone.parse`; avoid `Time.now` and `Time.parse`.
+- In non-Rails Ruby code, prefer `Time.now` over `Time.new`; use `Date` or `Time`, not `DateTime`.
 
 ## Regular Expressions
 - Plain string ops (`string['text']`) over regex when possible; also `string[/regexp/]` and `string[/text(grp)/, 1]` forms.

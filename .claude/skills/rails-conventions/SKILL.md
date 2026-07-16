@@ -1,6 +1,7 @@
 ---
 name: rails-conventions
 description: Rootstrap Rails conventions. Use when writing, reviewing, or editing any Rails code — controllers, models, migrations, routes, views, mailers, initializers, locale files, or Rails config. Covers routing, ActiveRecord, migrations, i18n, time zones, mailers, assets, Bundler groups, and logging.
+paths: "app/**/*.rb,config/**/*.rb,config/**/*.yml,db/**/*.rb,lib/**/*.rb,**/routes.rb"
 ---
 
 # Rails Conventions (Rootstrap)
