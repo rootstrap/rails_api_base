@@ -196,6 +196,7 @@ jobs:
           echo "SONAR_PROJECT_VERSION=$(echo $GITHUB_SHA | cut -c1-8)" >> $GITHUB_ENV
           echo "SONAR_REPORT_PATHS=$(ls coverage/coverage-*.json | paste -sd "," -)" >> $GITHUB_ENV
       - name: SonarQube Scanner
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
         uses: sonarsource/sonarqube-scan-action@v8.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -224,7 +225,7 @@ jobs:
         if: ${{ env.OPENAPI }}
         run: bundle exec ./bin/merge-api-docs.rb
       - name: Commit & push API Docs
-        if: ${{ env.OPENAPI }}
+        if: ${{ env.OPENAPI }} && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
