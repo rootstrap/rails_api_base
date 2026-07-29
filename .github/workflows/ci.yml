@@ -40,11 +40,11 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Enable Corepack
         run: corepack enable
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version-file: '.nvmrc'
           cache: 'yarn'
@@ -102,7 +102,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Set ENV for API Docs
@@ -114,7 +114,7 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version-file: '.nvmrc'
           cache: 'yarn'
@@ -175,7 +175,7 @@ jobs:
     needs: tests
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
           ssh-key: "${{ secrets.PUSH_KEY }}"
@@ -196,14 +196,14 @@ jobs:
           echo "SONAR_PROJECT_VERSION=$(echo $GITHUB_SHA | cut -c1-8)" >> $GITHUB_ENV
           echo "SONAR_REPORT_PATHS=$(ls coverage/coverage-*.json | paste -sd "," -)" >> $GITHUB_ENV
       - name: SonarQube Scanner
-        uses: sonarsource/sonarqube-scan-action@v8.0.0
+        uses: sonarsource/sonarqube-scan-action@v8.2.1
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       - name: Enable Corepack
         run: corepack enable
       - name: Setup Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version-file: '.nvmrc'
           cache: 'yarn'
