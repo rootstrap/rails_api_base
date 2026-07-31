@@ -12,7 +12,7 @@ gem 'active_storage_base64', '~> 3.0.1'
 gem 'aws-sdk-s3', '~> 1.228', require: false
 gem 'bootsnap', '~> 1.24'
 gem 'cssbundling-rails', '~> 1.4'
-gem 'devise', '~> 4.9'
+gem 'devise', '~> 5.0'
 gem 'devise_token_auth', '~> 1.2', '>= 1.2.6'
 gem 'draper', '~> 4.0'
 gem 'flipper', '~> 1.4.2'
