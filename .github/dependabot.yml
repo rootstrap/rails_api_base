@@ -8,6 +8,11 @@ updates:
       bundler:
         patterns:
           - "*"
+    ignore:
+      # SonarQube's SimpleCovSensor can't parse simplecov >= 1.0's JSON schema yet.
+      # https://github.com/SonarSource/sonar-ruby/pull/160
+      - dependency-name: "simplecov"
+        versions: [">= 1.0.0"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
