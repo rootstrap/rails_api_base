@@ -83,7 +83,9 @@ group :test do
   gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
   gem 'selenium-webdriver', '~> 4.46.0'
   gem 'shoulda-matchers', '~> 8.0'
-  gem 'simplecov', '~> 1.0.3', require: false
+  # Pinned below 1.0 — SonarQube's SimpleCov sensor can't parse the 1.0 JSON schema yet
+  # (https://community.sonarsource.com/t/sonarqube-25-12-fails-to-import-simplecov-1-0-0-json-coverage-report/185865)
+  gem 'simplecov', '~> 0.22.0', require: false
   gem 'webmock', '~> 3.26'
 end
 
