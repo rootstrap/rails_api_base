@@ -56,18 +56,18 @@ jobs:
           bundler-cache: true
       - name: Label PR
         if: github.event.pull_request
-        uses: actions/labeler@v6
+        uses: actions/labeler@v7
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Code Analysis
         run: bundle exec rails code:analysis
       - name: Run linter on production Dockerfile
-        uses: hadolint/hadolint-action@v3.3.0
+        uses: hadolint/hadolint-action@v3.4.0
         with:
           dockerfile: "Dockerfile"
 
       - name: Run linter on dev Dockerfile
-        uses: hadolint/hadolint-action@v3.3.0
+        uses: hadolint/hadolint-action@v3.4.0
         with:
           dockerfile: "Dockerfile.dev"
   tests:
