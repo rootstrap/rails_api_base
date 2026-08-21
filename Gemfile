@@ -9,10 +9,10 @@ gem 'rails', '~> 8.1.3'
 # Gems
 gem 'activeadmin', '~> 3.5'
 gem 'active_storage_base64', '~> 3.0.1'
-gem 'aws-sdk-s3', '~> 1.228', require: false
-gem 'bootsnap', '~> 1.24'
+gem 'aws-sdk-s3', '~> 1.229', require: false
+gem 'bootsnap', '~> 1.25'
 gem 'cssbundling-rails', '~> 1.4'
-gem 'devise', '~> 4.9'
+gem 'devise', '~> 5.0'
 gem 'devise_token_auth', '~> 1.2', '>= 1.2.6'
 gem 'draper', '~> 4.0'
 gem 'flipper', '~> 1.4.2'
@@ -22,7 +22,7 @@ gem 'good_job', '~> 4.19.2'
 gem 'jbuilder', '~> 2.15'
 gem 'jsbundling-rails', '~> 1.3'
 gem 'lograge', '~> 0.15'
-gem 'newrelic_rpm', '~> 10.6'
+gem 'newrelic_rpm', '~> 10.7'
 # Adding ostruct until rswag-ui gem v3 is released
 # https://github.com/rswag/rswag/pull/790#issuecomment-3710836151
 gem 'ostruct', '~> 0.6'
@@ -61,11 +61,11 @@ group :development do
   gem 'listen', '~> 3.10'
   gem 'rails_best_practices', '~> 1.23'
   gem 'reek', '~> 6.5'
-  gem 'rubocop', '~> 1.88', require: false
+  gem 'rubocop', '~> 1.89', require: false
   gem 'rubocop-capybara', '~> 3.0'
   gem 'rubocop-factory_bot', '~> 2.28', require: false
-  gem 'rubocop-performance', '~> 1.26', require: false
-  gem 'rubocop-rails', '~> 2.36', require: false
+  gem 'rubocop-performance', '~> 1.27', require: false
+  gem 'rubocop-rails', '~> 2.37', require: false
   gem 'rubocop-rake', '~> 0.7.1', require: false
   gem 'rubocop-rspec', '~> 3.10', require: false
   gem 'rubocop-rspec_rails', '~> 2.32.0', require: false
@@ -79,9 +79,9 @@ group :test do
   gem 'parallel_tests', '~> 5.7'
   gem 'pg_query', '~> 6.2.2'
   gem 'prosopite', '~> 2.2.0'
-  gem 'rspec-openapi', '~> 0.31'
+  gem 'rspec-openapi', '~> 0.33'
   gem 'rspec-retry', github: 'rootstrap/rspec-retry', branch: 'add-intermittent-callback'
-  gem 'selenium-webdriver', '~> 4.46.0'
+  gem 'selenium-webdriver', '~> 4.47.0'
   gem 'shoulda-matchers', '~> 8.0'
   # Pinned below 1.0 — SonarQube's SimpleCov sensor can't parse the 1.0 JSON schema yet
   # (https://community.sonarsource.com/t/sonarqube-25-12-fails-to-import-simplecov-1-0-0-json-coverage-report/185865)
