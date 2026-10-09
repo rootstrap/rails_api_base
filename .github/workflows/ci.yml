@@ -56,18 +56,18 @@ jobs:
           bundler-cache: true
       - name: Label PR
         if: github.event.pull_request
-        uses: actions/labeler@v6
+        uses: actions/labeler@v7
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Code Analysis
         run: bundle exec rails code:analysis
       - name: Run linter on production Dockerfile
-        uses: hadolint/hadolint-action@v3.3.0
+        uses: hadolint/hadolint-action@v3.5.0
         with:
           dockerfile: "Dockerfile"
 
       - name: Run linter on dev Dockerfile
-        uses: hadolint/hadolint-action@v3.3.0
+        uses: hadolint/hadolint-action@v3.5.0
         with:
           dockerfile: "Dockerfile.dev"
   tests:
@@ -196,7 +196,7 @@ jobs:
           echo "SONAR_PROJECT_VERSION=$(echo $GITHUB_SHA | cut -c1-8)" >> $GITHUB_ENV
           echo "SONAR_REPORT_PATHS=$(ls coverage/coverage-*.json | paste -sd "," -)" >> $GITHUB_ENV
       - name: SonarQube Scanner
-        uses: sonarsource/sonarqube-scan-action@v8.2.1
+        uses: sonarsource/sonarqube-scan-action@v8.3.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
