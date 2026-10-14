@@ -61,6 +61,8 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Code Analysis
         run: bundle exec rails code:analysis
+      - name: Check for duplicated code
+        run: npx --yes jscpd@5.4.1 .
       - name: Run linter on production Dockerfile
         uses: hadolint/hadolint-action@v3.3.0
         with:

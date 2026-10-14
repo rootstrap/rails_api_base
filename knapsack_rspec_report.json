@@ -4,7 +4,7 @@
   "spec/policies/admin_user_policy_spec.rb": 0.0266718809999702,
   "spec/requests/api/v1/users/show_spec.rb": 0.8680702419999875,
   "spec/policies/admin/user_policy_spec.rb": 0.017141818000027342,
-  "spec/requests/api/v1/users/create_spec.rb": 0.6782069589999651,
+  "spec/requests/api/v1/registrations/create_spec.rb": 0.6782069589999651,
   "spec/acceptance/settings_spec.rb": 0.2261287540000012,
   "spec/requests/api/v1/status_spec.rb": 0.01959373400001141,
   "spec/policies/admin/page_policy_spec.rb": 0.021792449999963992,

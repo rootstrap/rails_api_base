@@ -1,0 +1,10 @@
+{
+  "threshold": 1,
+  "reporters": ["console"],
+  "gitignore": true,
+  "ignore": [
+    "doc/openapi.yaml",
+    "public/*.html",
+    "knapsack_rspec_report.json"
+  ]
+}
