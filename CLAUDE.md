@@ -19,6 +19,7 @@ The `bin/*` wrappers transparently dispatch to Docker (`docker compose`) when `D
 - `bin/bundle …` — bundler commands.
 - `bin/web <cmd>` — arbitrary shell command inside the app container/environment.
 - `bundle exec rails code:analysis` — runs the full lint suite: Brakeman, RuboCop, Reek, rails_best_practices, i18n-tasks (see `lib/tasks/code_analysis.rake`). Use this before opening a PR.
+- `npx jscpd .` — copy/paste detection (config in `.jscpd.json`). Runs in CI and fails above 1% duplicated lines; generated files (`doc/openapi.yaml`) and Rails' static error pages are ignored.
 - `bundle exec annotaterb models` — refresh schema annotations on models (config in `.annotaterb.yml`).
 - `yarn build:js --watch` / `yarn build:css --watch` — JS/CSS bundling for ActiveAdmin assets (already wired into `bin/dev`).
 
